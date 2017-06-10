@@ -1,0 +1,12 @@
+app:
+  volumes:
+    - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+    - ./.bashrc.docker:/root/.bashrc
+    - ./.bash_history.docker:/root/.bash_history
+    # PRY
+    - ./.pry_history.docker:/root/.pry_history
+    - ./.pryrc.docker:/root/.pryrc
+  environment:
+    - CI_REPORTS=/tmp/shippable/testresults
+    - COVERAGE_REPORTS=/tmp/shippable/codecoverage
+

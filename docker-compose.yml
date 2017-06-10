@@ -1,0 +1,15 @@
+app:
+  container_name: rambda_ruby_app
+  build: .
+  dockerfile: Dockerfile
+  volumes:
+    - .:/srv/app
+    - ./config/config.yml.example:/srv/app/config/config.yml
+  volumes_from:
+    - bundle_cache
+
+bundle_cache:
+  container_name: rambda_ruby_bundle_cache
+  image: busybox
+  volumes:
+    - /bundle_cache

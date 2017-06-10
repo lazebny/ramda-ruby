@@ -1,0 +1,37 @@
+# This is the configuration used to check the rubocop source code.
+
+require: rubocop-rspec
+# inherit_from:
+#   - .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - '**/*.yml'
+    - 'tmp/**/*'
+    - 'docker-compose/**/*'
+  TargetRubyVersion: 2.1
+  DefaultFormatter: fuubar
+
+# Style/Encoding:
+#   Enabled: true
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'Rakefile'
+    - 'ramda-ruby.gemspec'
+
+# Offense count: 431
+# Configuration parameters: AllowURI, URISchemes.
+Metrics/LineLength:
+  Max: 100
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+

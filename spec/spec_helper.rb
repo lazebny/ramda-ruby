@@ -1,5 +1,8 @@
 require 'bundler/setup'
 require 'ramda'
+require 'pry'
+
+R = Ramda
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

@@ -32,13 +32,15 @@ describe Ramda::List do
     end
   end
 
-  # it '#append' do
-  #   # R.append('tests', ['write', 'more']); //=> ['write', 'more', 'tests']
-  #   # R.append('tests', []); //=> ['tests']
-  #   # R.append(['tests'], ['write', 'more']); //=> ['write', 'more', ['tests']]
-  #
-  #   expect(r.append('tests', ['write', 'more'])).to eq(['write', 'more', 'tests'])
-  #   expect(r.append('tests', [])).to eq(['tests'])
-  #   expect(r.append(['tests'], ['write', 'more'])).to eq(['write', 'more', ['tests']])
-  # end
+  context '#append' do
+    it 'from docs' do
+      expect(r.append('tests', %w[write more])).to eq(%w[write more tests])
+      expect(r.append('tests', [])).to eq(['tests'])
+      expect(r.append(['tests'], %w[write more])).to eq(['write', 'more', ['tests']])
+    end
+
+    it 'is curried' do
+      expect(R.append(1).call([4, 3, 2])).to eq([4, 3, 2, 1])
+    end
+  end
 end

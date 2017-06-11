@@ -3,9 +3,16 @@ require 'spec_helper'
 describe Ramda::Function do
   let(:r) { described_class }
 
-  it '#always' do
-    str = 'Tee'
-    expect(r.always(str).call).to be(str)
+  context '#always' do
+    it 'test' do
+      str = 'Tee'
+      expect(r.always(str).call).to be(str)
+    end
+
+    it 'is curried' do
+      str = 'Tee'
+      expect(r.always.call(str).call).to be(str)
+    end
   end
 
   # it '#flip' do

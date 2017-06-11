@@ -1,7 +1,11 @@
+require_relative 'mixins'
+
 module Ramda
   # Function functions
   module Function
-    def self.always(value)
+    extend Ramda::Mixins
+
+    curried_method(:always) do |value|
       -> { value }
     end
 

@@ -6,19 +6,20 @@ describe Ramda do
   end
 
   it 'respond to methods' do
-    [
-      :always,
-      :all,
-      :any,
-      :append,
-      :all_pass,
-      :and,
-      :any_pass,
-      :add,
-      :equals,
-      :lt,
-      :prop_eq
-    ].each do |method| expect(described_class).to be_respond_to(method)
+    %i[
+      always
+      all
+      any
+      append
+      all_pass
+      and
+      any_pass
+      add
+      equals
+      lt
+      prop_eq
+    ].each do |method|
+      expect(described_class).to be_respond_to(method)
     end
   end
 end

@@ -1,22 +1,20 @@
+require_relative 'mixins'
+
 module Ramda
   # Relation functions
   module Relation
-    def self.equals(expected)
-      ->(actual) { actual == expected }
+    extend Ramda::Mixins
+
+    curried_method(:equals) do |a, b|
+      a == b
     end
 
-    def self.lt(a)
-      ->(b) { a < b }
+    curried_method(:lt) do |a, b|
+      a < b
     end
 
-    def self.prop_eq(prop, value)
-      ->(obj) { obj[prop] == value }
-    end
-
-    private_class_method
-
-    def self.lt_source
-      ->(a, b) { a < b }
+    curried_method(:prop_eq) do |prop, value, obj|
+      obj[prop] == value
     end
   end
 end

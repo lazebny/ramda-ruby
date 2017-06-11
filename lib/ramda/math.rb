@@ -1,14 +1,12 @@
+require_relative 'mixins'
+
 module Ramda
   # Math functions
   module Math
-    def self.add
-      method(:apply_math).curry[:+]
-    end
+    extend Ramda::Mixins
 
-    private_class_method
-
-    def self.apply_math(fn, a, b)
-      a.send(fn, b)
+    curried_method(:add) do |a, b|
+      a + b
     end
   end
 end

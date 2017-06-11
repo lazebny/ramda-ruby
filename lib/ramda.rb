@@ -8,7 +8,6 @@ require 'ramda/relation'
 # Ramda library implementation, source: http://ramdajs.com/
 module Ramda
   extend SingleForwardable
-
   def_delegators Ramda::Function,
                  :always
 

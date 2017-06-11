@@ -43,4 +43,43 @@ describe Ramda::List do
       expect(R.append(1).call([4, 3, 2])).to eq([4, 3, 2, 1])
     end
   end
+
+  context '#concat' do
+    it 'from docs' do
+      expect(r.concat('ABC', 'DEF')).to eq('ABCDEF')
+      expect(r.concat([4, 5, 6], [1, 2, 3])).to eql([4, 5, 6, 1, 2, 3])
+      expect(r.concat([], [])).to eql([])
+    end
+
+    it 'is curried' do
+      expect(r.concat('ABC').call('DEF')).to eq('ABCDEF')
+    end
+  end
+
+  context '#contains' do
+    it 'from docs' do
+      expect(r.contains(3, [1, 2, 3])).to be_truthy
+      expect(r.contains(4, [1, 2, 3])).to be_falsey
+      expect(r.contains({ name: 'Fred' }, [{ name: 'Fred' }])).to be_truthy
+      expect(r.contains([42], [[42]])).to be_truthy
+    end
+
+    it 'is curried' do
+      expect(r.contains(3).call([1, 2, 3]))
+    end
+  end
+
+  context '#drop' do
+    it 'from docs' do
+      expect(r.drop(1, %w[foo bar baz])).to eq(%w[bar baz])
+      expect(r.drop(2, %w[foo bar baz])).to eq(%w[baz])
+      expect(r.drop(3, %w[foo bar baz])).to eq([])
+      expect(r.drop(4, %w[foo bar baz])).to eq([])
+      expect(r.drop(3, 'ramda')).to eq('da')
+    end
+
+    it 'is curried' do
+      expect(r.drop(3).call('ramda')).to eq('da')
+    end
+  end
 end

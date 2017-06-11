@@ -14,7 +14,7 @@ module Ramda
     #
     # (a, b -> Boolean) -> (a, b -> Number)
     #
-    # FIXME
+    # FIXME: Implement
     # curried_method(:comparator) do |fn|
     #   fn
     # end
@@ -27,8 +27,33 @@ module Ramda
       ->(*args) { funs.reverse.reduce(args) { |memo, fun| fun.call(*memo) } }
     end
 
+    # FIXME: Implement
     # def self.flip(fn)
     #   -> (*args) { fn.call(args[1]).call(args[0], *args[2..-1]) }.curry
     # end
+
+    # Wraps a constructor function inside a curried function that can be called
+    # with the same arguments and returns the same type.
+    #
+    # (* -> {*}) -> (* -> {*})
+    #
+    # FIXME: Implement
+    # curried_method(:construct) do |constructor|
+    #   -> (args) { constructor.new(*args) }
+    # end
+
+    # Returns a curried equivalent of the provided function. The curried function
+    # has two unusual capabilities. First, its arguments needn't be provided
+    # one at a time. If f is a ternary function and g is R.curry(f),
+    # the following are equivalent:
+    #
+    # g(1)(2)(3)
+    # g(1)(2, 3)
+    # g(1, 2)(3)
+    # g(1, 2, 3)
+
+    # (* -> a) -> (* -> a)
+    #
+    curried_method(:curry, &:curry)
   end
 end

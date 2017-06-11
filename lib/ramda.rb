@@ -12,12 +12,16 @@ module Ramda
   extend SingleForwardable
   def_delegators Ramda::Function,
                  :always,
-                 :compose
+                 :compose,
+                 :curry
 
   def_delegators Ramda::List,
                  :all,
                  :any,
-                 :append
+                 :append,
+                 :concat,
+                 :contains,
+                 :drop
 
   def_delegators Ramda::Logic,
                  :all_pass,
@@ -26,16 +30,22 @@ module Ramda
 
   def_delegators Ramda::Math,
                  :add,
+                 :divide,
                  :multiply
 
   def_delegators Ramda::Object,
-                 :clone
+                 :clone,
+                 :eq_props
 
   def_delegators Ramda::Relation,
                  :equals,
                  :lt,
-                 :prop_eq
+                 :prop_eq,
+                 :count_by,
+                 :difference,
+                 :difference_with
 
   def_delegators Ramda::String,
+                 :to_lower,
                  :to_upper
 end

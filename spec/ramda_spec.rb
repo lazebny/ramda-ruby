@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Ramda do
-  it 'has a version number' do
-    expect(Ramda::VERSION).not_to be nil
-  end
-
   def self.test_ramda(method)
     it "Ramda.#{method}" do
       expect(described_class).to be_respond_to(method)
@@ -21,9 +17,19 @@ describe Ramda do
   test_ramda(:append)
   test_ramda(:clone)
   test_ramda(:compose)
+  test_ramda(:concat)
+  test_ramda(:contains)
+  test_ramda(:count_by)
+  test_ramda(:curry)
+  test_ramda(:difference)
+  test_ramda(:difference_with)
+  test_ramda(:divide)
+  test_ramda(:drop)
+  test_ramda(:eq_props)
   test_ramda(:equals)
   test_ramda(:lt)
   test_ramda(:multiply)
   test_ramda(:prop_eq)
+  test_ramda(:to_lower)
   test_ramda(:to_upper)
 end

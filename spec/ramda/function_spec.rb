@@ -35,12 +35,33 @@ describe Ramda::Function do
     end
   end
 
+  # xcontext '#construct' do
+  # end
+
   xcontext '#flip' do
     it 'from docs' do
       merge_tree = ->(a, b, c) { [a, b, c] }
 
       expect(merge_tree.call(1, 2, 3)).to eq([1, 2, 3])
       expect(R.flip(merge_tree).call(1, 2, 3)).to eq([2, 1, 3])
+    end
+  end
+
+  context '#curry' do
+    it 'from docs' do
+      # var addFourNumbers = (a, b, c, d) => a + b + c + d;
+      #
+      # var curriedAddFourNumbers = R.curry(addFourNumbers);
+      # var f = curriedAddFourNumbers(1, 2);
+      # var g = f(3);
+      # g(4); //=> 10
+
+      add_four_numbers = ->(a, b, c, d) { a + b + c + d }
+
+      curried_add_four_numbers = r.curry(add_four_numbers)
+      f = curried_add_four_numbers.call(1, 2)
+      g = f.call(3)
+      expect(g.call(4)).to be(10)
     end
   end
 end

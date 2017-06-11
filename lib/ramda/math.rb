@@ -13,6 +13,14 @@ module Ramda
       a + b
     end
 
+    # Divides two numbers. Equivalent to a / b.
+    #
+    # Number -> Number -> Number
+    #
+    curried_method(:divide) do |a, b|
+      a.to_f / b
+    end
+
     # Multiplies two numbers. Equivalent to a * b but curried.
     #
     # Number -> Number -> Number

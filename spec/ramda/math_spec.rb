@@ -3,9 +3,24 @@ require 'spec_helper'
 describe Ramda::Math do
   let(:r) { described_class }
 
-  it '#add' do
-    expect(r.add.call(2, 3)).to be(5)
-    expect(r.add.call(2).call(3)).to be(5)
+  context '#add' do
+    it 'from docs' do
+      expect(r.add(2, 3)).to be(5)
+    end
+
+    it 'is curried' do
+      expect(r.add(2).call(3)).to be(5)
+    end
+  end
+
+  context '#divide' do
+    it 'from docs' do
+      expect(r.divide(71, 100)).to be(0.71)
+    end
+
+    it 'is curried' do
+      expect(r.divide(1).call(4)).to be(0.25)
+    end
   end
 
   context '#multipy' do

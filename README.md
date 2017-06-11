@@ -1,8 +1,14 @@
-# Ramda::Ruby
+# Ramda
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ramda/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
+This ruby version of of Ramda library (http://ramdajs.com)
 
-TODO: Delete this and the text above, and describe your gem
+# Not Implemented in version 0.1.0
+
+Function
+
+* comparator
+* construct
+* flip
 
 ## Installation
 

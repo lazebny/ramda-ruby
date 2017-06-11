@@ -19,5 +19,14 @@ module Ramda
         object.dup
       end
     end
+
+    # Reports whether two objects have the same value, in R.equals terms,
+    # for the specified property. Useful as a curried predicate.
+    #
+    # k -> {k: v} -> {k: v} -> Boolean
+    #
+    curried_method(:eq_props) do |prop, a, b|
+      a[prop] == b[prop]
+    end
   end
 end

@@ -82,4 +82,34 @@ describe Ramda::List do
       expect(r.drop(3).call('ramda')).to eq('da')
     end
   end
+
+  context '#filter' do
+    def is_even
+      ->(n) { n.even? }
+    end
+
+    it 'from docs' do
+      expect(r.filter(is_even, [1, 2, 3, 4])).to eq([2, 4])
+      expect(r.filter(is_even, a: 1, b: 2, c: 3, d: 4)).to eq(b: 2, d: 4)
+    end
+
+    it 'is curried' do
+      expect(r.filter(is_even).call([1, 2, 3, 4])).to eq([2, 4])
+    end
+  end
+
+  context '#find' do
+    it 'from docs' do
+      list = [{ a: 1 }, { a: 2 }, { a: 3 }]
+
+      expect(r.find(R.prop_eq(:a, 2), list)).to eq(a: 2)
+      expect(r.find(R.prop_eq(:a, 4), list)).to be_nil
+    end
+
+    it 'is curried' do
+      list = [{ a: 1 }, { a: 2 }, { a: 3 }]
+
+      expect(r.find(R.prop_eq(:a, 2)).call(list)).to eq(a: 2)
+    end
+  end
 end

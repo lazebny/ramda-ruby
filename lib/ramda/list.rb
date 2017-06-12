@@ -78,6 +78,32 @@ module Ramda
       end
     end
 
+    # Takes a predicate and a Filterable, and returns a new filterable of the same
+    # type containing the members of the given filterable which satisfy the given
+    # predicate. Filterable objects include plain objects or any object that
+    # has a filter method such as Array.
+    # Dispatches to the filter method of the second argument, if present.
+    #
+    # Filterable f => (a -> Boolean) -> f a -> f a
+    #
+    curried_method(:filter) do |fn, list|
+      case list
+      when ::Hash
+        list.select { |_, value| fn.call(value) }
+      else
+        list.select(&fn)
+      end
+    end
+
+    # Returns the first element of the list which matches the predicate,
+    # or undefined if no element matches.
+    #
+    # (a -> Boolean) -> [a] -> a | nil
+    #
+    curried_method(:find) do |fn, list|
+      list.find(&fn)
+    end
+
     # TODO: Extract from this module
     def type_error(object)
       raise ArgumentError, "Unexpected type #{object.class}"

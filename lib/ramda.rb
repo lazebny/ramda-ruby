@@ -21,7 +21,9 @@ module Ramda
                  :append,
                  :concat,
                  :contains,
-                 :drop
+                 :drop,
+                 :filter,
+                 :find
 
   def_delegators Ramda::Logic,
                  :all_pass,

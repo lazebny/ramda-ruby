@@ -35,15 +35,24 @@ describe Ramda::Function do
     end
   end
 
-  # xcontext '#construct' do
-  # end
-
-  xcontext '#flip' do
+  xcontext '#construct' do
     it 'from docs' do
-      merge_tree = ->(a, b, c) { [a, b, c] }
+    end
+  end
 
+  context '#flip' do
+    def merge_tree
+      ->(a, b, c) { [a, b, c] }
+    end
+
+    it 'from docs' do
       expect(merge_tree.call(1, 2, 3)).to eq([1, 2, 3])
-      expect(R.flip(merge_tree).call(1, 2, 3)).to eq([2, 1, 3])
+      expect(r.flip(merge_tree).call(1, 2, 3)).to eq([2, 1, 3])
+    end
+
+    it 'curried' do
+      expect(r.flip(merge_tree).call(1, 2).call(3)).to eq([2, 1, 3])
+      expect(r.flip(merge_tree).call(1).call(2).call(3)).to eq([2, 1, 3])
     end
   end
 

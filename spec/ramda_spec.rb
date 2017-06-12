@@ -29,6 +29,8 @@ describe Ramda do
   test_ramda(:equals)
   test_ramda(:filter)
   test_ramda(:find)
+  test_ramda(:flatten)
+  test_ramda(:flip)
   test_ramda(:lt)
   test_ramda(:multiply)
   test_ramda(:prop_eq)

@@ -104,6 +104,13 @@ module Ramda
       list.find(&fn)
     end
 
+    # Returns a new list by pulling every item out of it (and all its sub-arrays)
+    # and putting them in a new array, depth-first.
+    #
+    # [a] -> [b]
+    #
+    curried_method(:flatten, &:flatten)
+
     # TODO: Extract from this module
     def type_error(object)
       raise ArgumentError, "Unexpected type #{object.class}"

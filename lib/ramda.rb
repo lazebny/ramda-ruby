@@ -13,7 +13,8 @@ module Ramda
   def_delegators Ramda::Function,
                  :always,
                  :compose,
-                 :curry
+                 :curry,
+                 :flip
 
   def_delegators Ramda::List,
                  :all,
@@ -23,7 +24,8 @@ module Ramda
                  :contains,
                  :drop,
                  :filter,
-                 :find
+                 :find,
+                 :flatten
 
   def_delegators Ramda::Logic,
                  :all_pass,

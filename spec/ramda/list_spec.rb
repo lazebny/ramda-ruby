@@ -112,4 +112,11 @@ describe Ramda::List do
       expect(r.find(R.prop_eq(:a, 2)).call(list)).to eq(a: 2)
     end
   end
+
+  context '#flatten' do
+    it 'from docs' do
+      expect(r.flatten([1, 2, [3, 4], 5, [6, [7, 8, [9, [10, 11], 12]]]]))
+        .to eq([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    end
+  end
 end

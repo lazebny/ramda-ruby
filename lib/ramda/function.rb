@@ -27,10 +27,14 @@ module Ramda
       ->(*args) { funs.reverse.reduce(args) { |memo, fun| fun.call(*memo) } }
     end
 
-    # FIXME: Implement
-    # def self.flip(fn)
-    #   -> (*args) { fn.call(args[1]).call(args[0], *args[2..-1]) }.curry
-    # end
+    # Returns a new function much like the supplied one, except that the
+    # first two arguments' order is reversed.
+    #
+    # (a -> b -> c -> ... -> z) -> (b -> a -> c -> ... -> z))
+    #
+    curried_method(:flip) do |fn|
+      ->(a, b, *args) { fn.curry.call(b, a, *args) }.curry
+    end
 
     # Wraps a constructor function inside a curried function that can be called
     # with the same arguments and returns the same type.

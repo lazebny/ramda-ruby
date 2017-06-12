@@ -14,7 +14,8 @@ module Ramda
                  :always,
                  :compose,
                  :curry,
-                 :flip
+                 :flip,
+                 :identity
 
   def_delegators Ramda::List,
                  :all,
@@ -25,12 +26,16 @@ module Ramda
                  :drop,
                  :filter,
                  :find,
-                 :flatten
+                 :flatten,
+                 :group_by,
+                 :head,
+                 :index_of
 
   def_delegators Ramda::Logic,
                  :all_pass,
                  :and,
-                 :any_pass
+                 :any_pass,
+                 :is_empty
 
   def_delegators Ramda::Math,
                  :add,
@@ -47,7 +52,10 @@ module Ramda
                  :prop_eq,
                  :count_by,
                  :difference,
-                 :difference_with
+                 :difference_with,
+                 :gt,
+                 :gte,
+                 :intersection
 
   def_delegators Ramda::String,
                  :to_lower,

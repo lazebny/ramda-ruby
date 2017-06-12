@@ -119,4 +119,61 @@ describe Ramda::List do
         .to eq([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
     end
   end
+
+  context '#group_by' do
+
+    it 'from docs' do
+       by_grade = lambda do |student|
+        case student.fetch(:score)
+        when 0...65 then 'F'
+        when 0...70 then 'D'
+        when 0...80 then 'C'
+        when 0...90 then 'B'
+        else
+          'A'
+        end
+      end
+      students = [
+        {name: 'Abby', score: 84},
+        {name: 'Eddy', score: 58},
+        {name: 'Jack', score: 69}
+      ]
+      expect(r.group_by(by_grade, students)).to eq(
+        'D' => [{ name: 'Jack', score: 69}],
+        'F' => [{ name: 'Eddy', score: 58}],
+        'B' => [{ name: 'Abby', score: 84}],
+      )
+    end
+
+    it 'is curried' do
+      students = [
+        {name: 'Mike', age: 30},
+        {name: 'Tom', age: 25},
+        {name: 'Tom', age: 20}
+      ]
+
+      group_by_name = r.group_by(->(a) { a.fetch(:name) })
+      expect(group_by_name.call(students)).to eq(
+        'Tom' => [{name: 'Tom', age: 25}, { name: 'Tom', age: 20}],
+        'Mike' => [{ name: 'Mike', age: 30}]
+      )
+    end
+  end
+
+  context '#head' do
+    it 'from docs' do
+      expect(r.head(%w[fi fo fum])).to eq('fi')
+      expect(r.head([])).to be_nil
+      expect(r.head('abc')).to eq('a')
+      expect(r.head('')).to eq('')
+    end
+  end
+
+  context '#index_of' do
+    it 'from docs' do
+      expect(r.index_of(3, [1,2,3,4])).to be(2)
+      expect(r.index_of(1, [1,2,3,4])).to be(0)
+      expect(r.index_of(10, [1,2,3,4])).to be(-1)
+    end
+  end
 end

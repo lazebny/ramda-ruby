@@ -27,15 +27,6 @@ module Ramda
       ->(*args) { funs.reverse.reduce(args) { |memo, fun| fun.call(*memo) } }
     end
 
-    # Returns a new function much like the supplied one, except that the
-    # first two arguments' order is reversed.
-    #
-    # (a -> b -> c -> ... -> z) -> (b -> a -> c -> ... -> z))
-    #
-    curried_method(:flip) do |fn|
-      ->(a, b, *args) { fn.curry.call(b, a, *args) }.curry
-    end
-
     # Wraps a constructor function inside a curried function that can be called
     # with the same arguments and returns the same type.
     #
@@ -59,5 +50,23 @@ module Ramda
     # (* -> a) -> (* -> a)
     #
     curried_method(:curry, &:curry)
+
+    # Returns a new function much like the supplied one, except that the
+    # first two arguments' order is reversed.
+    #
+    # (a -> b -> c -> ... -> z) -> (b -> a -> c -> ... -> z))
+    #
+    curried_method(:flip) do |fn|
+      ->(a, b, *args) { fn.curry.call(b, a, *args) }.curry
+    end
+
+    # A function that does nothing but return the parameter supplied to it.
+    # Good as a default or placeholder function.
+    #
+    # a -> a
+    #
+    curried_method(:identity) do |el|
+      el
+    end
   end
 end

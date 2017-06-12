@@ -51,6 +51,32 @@ module Ramda
       end
     end
 
+    # Returns true if the first argument is greater than the second; false otherwise.
+    #
+    # Ord a => a -> a -> Boolean
+    #
+    curried_method(:gt) do |a, b|
+      a > b
+    end
+
+    # Returns true if the first argument is greater than or equal to the second;
+    # false otherwise.
+    #
+    # Ord a => a -> a -> Boolean
+    #
+    curried_method(:gte) do |a, b|
+      a >= b
+    end
+
+    # Combines two lists into a set (i.e. no duplicates) composed of those elements
+    # common to both lists. The order is preserved from the original array.
+    #
+    # [*] -> [*] -> [*]
+    #
+    curried_method(:intersection) do |list_a, list_b|
+      list_a & list_b
+    end
+
     # Returns true if the first argument is less than the second; false otherwise.
     #
     # a -> a -> Boolean

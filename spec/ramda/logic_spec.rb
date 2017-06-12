@@ -29,4 +29,16 @@ describe Ramda::Logic do
     expect(is_black_card.call(rank: 'Q', suit: 'spade')).to be_truthy
     expect(is_black_card.call(rank: 'Q', suit: 'diamond')).to be_falsey
   end
+
+  context '#is_empty' do
+    it 'from docs' do
+      expect(r.is_empty([1, 2, 3])).to be_falsey
+      expect(r.is_empty([])).to be_truthy
+      expect(r.is_empty('')).to be_truthy
+      expect(r.is_empty(nil)).to be_falsey
+      expect(r.is_empty({})).to be_truthy
+      expect(r.is_empty(0)).to be_falsey
+      expect(r.is_empty(length: 0)).to be_falsey
+    end
+  end
 end

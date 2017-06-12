@@ -40,6 +40,24 @@ describe Ramda::Function do
     end
   end
 
+  context '#curry' do
+    it 'from docs' do
+      # var addFourNumbers = (a, b, c, d) => a + b + c + d;
+      #
+      # var curriedAddFourNumbers = R.curry(addFourNumbers);
+      # var f = curriedAddFourNumbers(1, 2);
+      # var g = f(3);
+      # g(4); //=> 10
+
+      add_four_numbers = ->(a, b, c, d) { a + b + c + d }
+
+      curried_add_four_numbers = r.curry(add_four_numbers)
+      f = curried_add_four_numbers.call(1, 2)
+      g = f.call(3)
+      expect(g.call(4)).to be(10)
+    end
+  end
+
   context '#flip' do
     def merge_tree
       ->(a, b, c) { [a, b, c] }
@@ -56,21 +74,16 @@ describe Ramda::Function do
     end
   end
 
-  context '#curry' do
+  context '#identity' do
     it 'from docs' do
-      # var addFourNumbers = (a, b, c, d) => a + b + c + d;
-      #
-      # var curriedAddFourNumbers = R.curry(addFourNumbers);
-      # var f = curriedAddFourNumbers(1, 2);
-      # var g = f(3);
-      # g(4); //=> 10
+      expect(r.identity(1)).to be(1)
+      obj = {}
+      expect(r.identity(obj)).to be(obj)
+    end
 
-      add_four_numbers = ->(a, b, c, d) { a + b + c + d }
-
-      curried_add_four_numbers = r.curry(add_four_numbers)
-      f = curried_add_four_numbers.call(1, 2)
-      g = f.call(3)
-      expect(g.call(4)).to be(10)
+    it 'is curried' do
+      obj = {}
+      expect(r.identity.call(obj)).to be(obj)
     end
   end
 end

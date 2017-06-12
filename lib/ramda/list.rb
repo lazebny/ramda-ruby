@@ -111,6 +111,41 @@ module Ramda
     #
     curried_method(:flatten, &:flatten)
 
+    # Splits a list into sub-lists stored in an object, based on the result of
+    # calling a String-returning function on each element, and grouping the
+    # results according to values returned.
+    #
+    # (a -> String) -> [a] -> {String: [a]}
+    #
+    curried_method(:group_by) do |fn, list|
+      list.group_by(&fn)
+    end
+
+    # Returns the first element of the given list or string. In some libraries
+    # this function is named first.
+    #
+    # [a] -> a | nil
+    # String -> String
+    #
+    curried_method(:head) do |el|
+      case el
+      when ::String
+        el[0] || ''
+      else
+        el[0]
+      end
+    end
+
+    # Returns the position of the first occurrence of an item in an array,
+    # or -1 if the item is not included in the array.
+    # R.equals is used to determine equality.
+    #
+    # a -> [a] -> Number
+    #
+    curried_method(:index_of) do |el, list|
+      list.index(el) || -1
+    end
+
     # TODO: Extract from this module
     def type_error(object)
       raise ArgumentError, "Unexpected type #{object.class}"

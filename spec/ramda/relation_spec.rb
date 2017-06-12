@@ -69,4 +69,42 @@ describe Ramda::Relation do
       expect(r.difference_with(cmp, l1, l2)).to eq([{ a: 1, b: 1 }, { a: 2, b: 1 }])
     end
   end
+
+  context '#gt' do
+    it 'from docs' do
+      expect(r.gt(2, 1)).to be_truthy
+      expect(r.gt(2, 2)).to be_falsey
+      expect(r.gt(2, 3)).to be_falsey
+      expect(r.gt('a', 'z')).to be_falsey
+      expect(r.gt('z', 'a')).to be_truthy
+    end
+
+    it 'is curried' do
+      expect(r.gt(2).call(1)).to be_truthy
+    end
+  end
+
+  context '#gte' do
+    it 'from docs' do
+      expect(r.gte(2, 1)).to be_truthy
+      expect(r.gte(2, 2)).to be_truthy
+      expect(r.gte(2, 3)).to be_falsey
+      expect(r.gte('a', 'z')).to be_falsey
+      expect(r.gte('z', 'a')).to be_truthy
+    end
+
+    it 'is curried' do
+      expect(r.gte(2).call(1)).to be_truthy
+    end
+  end
+
+  context '#intersection' do
+    it 'from docs' do
+      expect(r.intersection([1,2,3,4], [7,6,5,4,3])).to eq([3, 4])
+    end
+
+    it 'is curried' do
+      expect(r.intersection([1,2,3,4]).call([7,6,5,4,3])).to match_array([3, 4])
+    end
+  end
 end

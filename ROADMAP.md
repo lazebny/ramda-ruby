@@ -23,15 +23,15 @@ Features in  0.1.0
 * + find
 * + flatten
 * + flip
-* group_by
-* gt
-* gte
-* head
-* identity
-* index_of
-* intersection
+* + group_by
+* + gt
+* + gte
+* + head
+* + identity
+* + index_of
+* + intersection
 * invoker
-* is_empty
+* + is_empty
 * join
 * keys
 * last_index_of

@@ -15,11 +15,11 @@ describe Ramda::Function do
     end
   end
 
-  xcontext '#comparator' do
+  context '#comparator' do
     it 'from docs' do
-      sort_rule = r.comparator(->(a, b) { a <=> b })
+      sort_rule = r.comparator(->(a, b) { a < b })
       numbers = [30, 25, 21]
-      expect(numbers.sort_by { |a, b| a <=> b }).to eq(numbers.sort_by(&sort_rule))
+      expect(R.sort(sort_rule, numbers)).to eq([21, 25, 30])
     end
   end
 
@@ -35,20 +35,15 @@ describe Ramda::Function do
     end
   end
 
-  xcontext '#construct' do
+  context '#construct' do
     it 'from docs' do
+      array_builder = r.construct(Array)
+      expect(array_builder.call(2, 10)).to eq([10, 10])
     end
   end
 
   context '#curry' do
     it 'from docs' do
-      # var addFourNumbers = (a, b, c, d) => a + b + c + d;
-      #
-      # var curriedAddFourNumbers = R.curry(addFourNumbers);
-      # var f = curriedAddFourNumbers(1, 2);
-      # var g = f(3);
-      # g(4); //=> 10
-
       add_four_numbers = ->(a, b, c, d) { a + b + c + d }
 
       curried_add_four_numbers = r.curry(add_four_numbers)
@@ -84,6 +79,16 @@ describe Ramda::Function do
     it 'is curried' do
       obj = {}
       expect(r.identity.call(obj)).to be(obj)
+    end
+  end
+
+  context '#invoker' do
+    it 'from docs' do
+      slice_form = r.invoker(1, 'slice')
+      expect(slice_form.call(6, 'abcdefghijklm')).to eq('g')
+
+      slice_form6 = r.invoker(2, 'slice').call(6)
+      expect(slice_form6.call(8, 'abcdefghijklmnop')).to eq('ghijklmn')
     end
   end
 end

@@ -121,9 +121,8 @@ describe Ramda::List do
   end
 
   context '#group_by' do
-
     it 'from docs' do
-       by_grade = lambda do |student|
+      by_grade = lambda do |student|
         case student.fetch(:score)
         when 0...65 then 'F'
         when 0...70 then 'D'
@@ -134,28 +133,28 @@ describe Ramda::List do
         end
       end
       students = [
-        {name: 'Abby', score: 84},
-        {name: 'Eddy', score: 58},
-        {name: 'Jack', score: 69}
+        { name: 'Abby', score: 84 },
+        { name: 'Eddy', score: 58 },
+        { name: 'Jack', score: 69 }
       ]
       expect(r.group_by(by_grade, students)).to eq(
-        'D' => [{ name: 'Jack', score: 69}],
-        'F' => [{ name: 'Eddy', score: 58}],
-        'B' => [{ name: 'Abby', score: 84}],
+        'D' => [{ name: 'Jack', score: 69 }],
+        'F' => [{ name: 'Eddy', score: 58 }],
+        'B' => [{ name: 'Abby', score: 84 }]
       )
     end
 
     it 'is curried' do
       students = [
-        {name: 'Mike', age: 30},
-        {name: 'Tom', age: 25},
-        {name: 'Tom', age: 20}
+        { name: 'Mike', age: 30 },
+        { name: 'Tom', age: 25 },
+        { name: 'Tom', age: 20 }
       ]
 
       group_by_name = r.group_by(->(a) { a.fetch(:name) })
       expect(group_by_name.call(students)).to eq(
-        'Tom' => [{name: 'Tom', age: 25}, { name: 'Tom', age: 20}],
-        'Mike' => [{ name: 'Mike', age: 30}]
+        'Tom' => [{ name: 'Tom', age: 25 }, { name: 'Tom', age: 20 }],
+        'Mike' => [{ name: 'Mike', age: 30 }]
       )
     end
   end
@@ -171,9 +170,34 @@ describe Ramda::List do
 
   context '#index_of' do
     it 'from docs' do
-      expect(r.index_of(3, [1,2,3,4])).to be(2)
-      expect(r.index_of(1, [1,2,3,4])).to be(0)
-      expect(r.index_of(10, [1,2,3,4])).to be(-1)
+      expect(r.index_of(3, [1, 2, 3, 4])).to be(2)
+      expect(r.index_of(1, [1, 2, 3, 4])).to be(0)
+      expect(r.index_of(10, [1, 2, 3, 4])).to be(-1)
+    end
+  end
+
+  context '#join' do
+    it 'from docs' do
+      expect(r.join('|', [1, 2, 3])).to eq('1|2|3')
+    end
+
+    it 'is curried' do
+      spacer = r.join(' ')
+      expect(spacer.call(['a', 2, 3.4])).to eq('a 2 3.4')
+    end
+  end
+
+  context '#last_index_of' do
+    it 'from docs' do
+      expect(r.last_index_of(3, [-1, 3, 3, 0, 1, 2, 3, 4])).to be(6)
+      expect(r.last_index_of(10, [1, 2, 3, 4])).to be(-1)
+    end
+  end
+
+  context '#sort' do
+    it 'from docs' do
+      diff = ->(a, b) { a - b }
+      expect(r.sort(diff, [4, 2, 7, 5])).to eq([2, 4, 5, 7])
     end
   end
 end

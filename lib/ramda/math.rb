@@ -1,9 +1,9 @@
-require_relative 'mixins'
+require_relative 'internal/curried_method'
 
 module Ramda
   # Math functions
   module Math
-    extend Ramda::Mixins
+    extend ::Ramda::Internal::CurriedMethod
 
     # Add two values.
     #

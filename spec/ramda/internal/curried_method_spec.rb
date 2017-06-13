@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Ramda::Mixins do
-  let(:instance) { Class.new { extend Ramda::Mixins } }
+describe Ramda::Internal::CurriedMethod do
+  let(:instance) { Class.new { extend Ramda::Internal::CurriedMethod } }
 
   it '#curried_method' do
     instance.curried_method(:sample_method) do |a, b, c|

@@ -1,9 +1,9 @@
-require_relative 'mixins'
+require_relative 'internal/curried_method'
 
 module Ramda
   # Logic functions
   module Logic
-    extend Ramda::Mixins
+    extend ::Ramda::Internal::CurriedMethod
 
     curried_method(:all_pass) do |predicates, obj|
       predicates.all? { |predicate| predicate.call(obj) }
@@ -23,7 +23,7 @@ module Ramda
     #
     curried_method(:is_empty) do |el|
       case el
-      when ::NilClass, ::Fixnum
+      when ::NilClass, ::Integer
         false
       else
         el.empty?

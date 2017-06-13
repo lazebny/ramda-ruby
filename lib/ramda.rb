@@ -10,12 +10,16 @@ require 'ramda/string'
 # Ramda library implementation, source: http://ramdajs.com/
 module Ramda
   extend SingleForwardable
+
   def_delegators Ramda::Function,
                  :always,
+                 :comparator,
                  :compose,
+                 :construct,
                  :curry,
                  :flip,
-                 :identity
+                 :identity,
+                 :invoker
 
   def_delegators Ramda::List,
                  :all,
@@ -29,7 +33,10 @@ module Ramda
                  :flatten,
                  :group_by,
                  :head,
-                 :index_of
+                 :index_of,
+                 :join,
+                 :last_index_of,
+                 :sort
 
   def_delegators Ramda::Logic,
                  :all_pass,
@@ -44,18 +51,20 @@ module Ramda
 
   def_delegators Ramda::Object,
                  :clone,
-                 :eq_props
+                 :eq_props,
+                 :keys
 
   def_delegators Ramda::Relation,
-                 :equals,
-                 :lt,
-                 :prop_eq,
                  :count_by,
                  :difference,
                  :difference_with,
+                 :equals,
                  :gt,
                  :gte,
-                 :intersection
+                 :intersection,
+                 :lt,
+                 :lte,
+                 :prop_eq
 
   def_delegators Ramda::String,
                  :to_lower,

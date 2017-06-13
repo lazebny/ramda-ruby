@@ -1,9 +1,9 @@
-require_relative 'mixins'
+require_relative 'internal/curried_method'
 
 module Ramda
   # Relation functions
   module Relation
-    extend Ramda::Mixins
+    extend ::Ramda::Internal::CurriedMethod
 
     # Returns true if its arguments are equivalent, false otherwise.
     # Handles cyclical data structures.
@@ -83,6 +83,15 @@ module Ramda
     #
     curried_method(:lt) do |a, b|
       a < b
+    end
+
+    # Returns true if the first argument is less than or equal to the second;
+    # false otherwise.
+    #
+    # a -> a -> Boolean
+    #
+    curried_method(:lte) do |a, b|
+      a <= b
     end
 
     curried_method(:prop_eq) do |prop, value, obj|

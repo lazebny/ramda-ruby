@@ -1,9 +1,9 @@
-require_relative 'mixins'
+require_relative 'internal/curried_method'
 
 module Ramda
   # Math functions
   module Object
-    extend Ramda::Mixins
+    extend ::Ramda::Internal::CurriedMethod
 
     # Creates a deep copy of the value which may contain (nested)
     # Arrays and Objects, Numbers, Strings, Booleans and Dates.
@@ -28,5 +28,13 @@ module Ramda
     curried_method(:eq_props) do |prop, a, b|
       a[prop] == b[prop]
     end
+
+    # Returns a list containing the names of all the enumerable own properties
+    # of the supplied object.
+    # Note that the order of the output array is not guaranteed.
+    #
+    # {k: v} -> [k]
+    #
+    curried_method(:keys, &:keys)
   end
 end

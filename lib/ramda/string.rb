@@ -1,9 +1,9 @@
-require_relative 'mixins'
+require_relative 'internal/curried_method'
 
 module Ramda
   # String functions
   module String
-    extend Ramda::Mixins
+    extend ::Ramda::Internal::CurriedMethod
 
     # The upper case version of a string.
     #

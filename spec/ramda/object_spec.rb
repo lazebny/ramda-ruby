@@ -28,4 +28,10 @@ describe Ramda::Object do
       expect(r.eq_props(:c).call(o1, o2)).to be_truthy
     end
   end
+
+  context '#keys' do
+    it 'from docs' do
+      expect(r.keys(a: 1, b: 2, c: 3)).to eq(%i[a b c])
+    end
+  end
 end

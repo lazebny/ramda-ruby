@@ -16,35 +16,6 @@ describe Ramda::Relation do
     end
   end
 
-  context '#lt' do
-    it 'from docs' do
-      # R.lt(2, 1); //=> false
-      # R.lt(2, 2); //=> false
-      # R.lt(2, 3); //=> true
-      # R.lt('a', 'z'); //=> true
-      # R.lt('z', 'a'); //=> false
-      expect(r.lt(2, 1)).to be_falsey
-      expect(r.lt(2, 2)).to be_falsey
-      expect(r.lt(2, 3)).to be_truthy
-      expect(r.lt('a', 'z')).to be_truthy
-      expect(r.lt('z', 'a')).to be_falsey
-    end
-
-    it 'is curried' do
-      expect(r.lt(2).call(1)).to be_falsey
-    end
-  end
-
-  it '#lt' do
-    # expect(r.lt(2, 1)).to be_falsey
-    expect(r.lt(2).call(1)).to be_falsey
-    # expect(r.lt.call(2).call(1)).to be_falsey
-    expect(r.lt(2).call(2)).to be_falsey
-    expect(r.lt(2).call(3)).to be_truthy
-    expect(r.lt('a').call('z')).to be_truthy
-    expect(r.lt('z').call('a')).to be_falsey
-  end
-
   context '#count_by' do
     it 'from docs' do
       letters = %w[a b A a B c]
@@ -100,11 +71,39 @@ describe Ramda::Relation do
 
   context '#intersection' do
     it 'from docs' do
-      expect(r.intersection([1,2,3,4], [7,6,5,4,3])).to eq([3, 4])
+      expect(r.intersection([1, 2, 3, 4], [7, 6, 5, 4, 3])).to eq([3, 4])
     end
 
     it 'is curried' do
-      expect(r.intersection([1,2,3,4]).call([7,6,5,4,3])).to match_array([3, 4])
+      expect(r.intersection([1, 2, 3, 4]).call([7, 6, 5, 4, 3])).to match_array([3, 4])
+    end
+  end
+
+  context '#lt' do
+    it 'from docs' do
+      expect(r.lt(2, 1)).to be_falsey
+      expect(r.lt(2, 2)).to be_falsey
+      expect(r.lt(2, 3)).to be_truthy
+      expect(r.lt('a', 'z')).to be_truthy
+      expect(r.lt('z', 'a')).to be_falsey
+    end
+
+    it 'is curried' do
+      expect(r.lt(2).call(1)).to be_falsey
+    end
+  end
+
+  context '#lte' do
+    it 'from docs' do
+      expect(r.lte(2, 1)).to be_falsey
+      expect(r.lte(2, 2)).to be_truthy
+      expect(r.lte(2, 3)).to be_truthy
+      expect(r.lte('a', 'z')).to be_truthy
+      expect(r.lte('z', 'a')).to be_falsey
+    end
+
+    it 'is curried' do
+      expect(r.lt(2).call(1)).to be_falsey
     end
   end
 end

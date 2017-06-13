@@ -94,6 +94,22 @@ module Ramda
       a <= b
     end
 
+    # Returns the larger of its two arguments.
+    #
+    # Ord a => a -> a -> a
+    #
+    curried_method(:max) do |a, b|
+      [a, b].max
+    end
+
+    # Returns the smaller of its two arguments.
+    #
+    # Ord a => a -> a -> a
+    #
+    curried_method(:min) do |a, b|
+      [a, b].min
+    end
+
     curried_method(:prop_eq) do |prop, value, obj|
       obj[prop] == value
     end

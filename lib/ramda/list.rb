@@ -98,7 +98,7 @@ module Ramda
     # Returns the first element of the list which matches the predicate,
     # or undefined if no element matches.
     #
-    # (a -> Boolean) -> [a] -> a | nil
+    # (a -> Boolean) -> [a] -> a | NilClass
     #
     curried_method(:find) do |f, xs|
       xs.find(&f)
@@ -124,7 +124,7 @@ module Ramda
     # Returns the first element of the given list or string. In some libraries
     # this function is named first.
     #
-    # [a] -> a | nil
+    # [a] -> a | NilClass
     # String -> String
     #
     curried_method(:head) do |x|
@@ -163,6 +163,41 @@ module Ramda
       xs.rindex(x) || -1
     end
 
+    # Takes a function and a functor, applies the function to each of the
+    # functor's values, and returns a functor of the same shape.
+    # Ramda provides suitable map implementations for Array and Object,
+    # so this function may be applied to [1, 2, 3] or {x: 1, y: 2, z: 3}.
+    #
+    # Functor f => (a -> b) -> f a -> f b
+    #
+    curried_method(:map) do |f, functor|
+      case functor
+      when ::Hash
+        Hash[functor.map { |k, v| [k, f.call(v)] }]
+      when ::Array
+        functor.map(&f)
+      else
+        type_error(functor)
+      end
+    end
+
+    # Returns the nth element of the given list or string. If n is negative
+    # the element at index length + n is returned.
+    #
+    # Number -> [a] -> a | NilClass
+    # Number -> String -> String
+    #
+    curried_method(:nth) do |index, xs|
+      case xs
+      when ::String
+        xs[index] || ''
+      when ::Array
+        xs[index]
+      else
+        type_error(xs)
+      end
+    end
+
     # Returns a copy of the list, sorted according to the comparator function,
     # which should accept two values at a time and return a negative number
     # if the first value is smaller, a positive number if it's larger, and
@@ -173,8 +208,20 @@ module Ramda
       xs.sort(&comparator)
     end
 
+    # Returns a new list by plucking the same named property off all objects
+    # in the list supplied.
+    #
+    # Pluck will work on any functor in addition to arrays, as it is equivalent
+    # to R.map(R.prop(k), f).
+    #
+    # Functor f => k -> f {k: v} -> f v
+    #
+    curried_method(:pluck) do |key, xs|
+      xs.map { |x| x[key] }
+    end
+
     # TODO: Extract from this module
-    def type_error(object)
+    def self.type_error(object)
       raise ArgumentError, "Unexpected type #{object.class}"
     end
   end

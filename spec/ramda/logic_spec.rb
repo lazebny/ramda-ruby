@@ -41,4 +41,22 @@ describe Ramda::Logic do
       expect(r.is_empty(length: 0)).to be_falsey
     end
   end
+
+  context '#not' do
+    it 'from docs' do
+      expect(r.not(true)).to be_falsey
+      expect(r.not(false)).to be_truthy
+      expect(r.not(0)).to be_falsey
+      expect(r.not(1)).to be_falsey
+    end
+  end
+
+  context '#or' do
+    it 'from docs' do
+      expect(r.or(true, true)).to be_truthy
+      expect(r.or(true, false)).to be_truthy
+      expect(r.or(false, true)).to be_truthy
+      expect(r.or(false, false)).to be_falsey
+    end
+  end
 end

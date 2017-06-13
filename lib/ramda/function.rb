@@ -31,8 +31,8 @@ module Ramda
     # may have any arity; the remaining functions must be unary.
     #
     # Note: The result of compose is not automatically curried.
-    curried_method(:compose) do |*funs|
-      ->(*args) { funs.reverse.reduce(args) { |memo, fun| fun.call(*memo) } }
+    curried_method(:compose) do |*fns|
+      ->(*args) { fns.reverse.reduce(args) { |memo, fn| fn.call(*memo) } }
     end
 
     # Wraps a constructor function inside a curried function that can be called
@@ -87,6 +87,50 @@ module Ramda
       Ramda::Internal::FunctionWithArity.new.call(arity + 1) do |*args, object|
         object.public_send(method_name, *args)
       end.curry
+    end
+
+    # Creates a new function that, when invoked, caches the result of calling
+    # fn for a given argument set and returns the result. Subsequent calls to
+    # the memoized fn with the same argument set will not result in an
+    # additional call to fn; instead, the cached result for that set of arguments
+    # will be returned.
+    #
+    # (*... -> a) -> (*... -> a)
+    #
+    curried_method(:memoize) do |fn|
+      memo = {}
+
+      Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+        memo[args] = fn.call(*args) unless memo.key?(args)
+        memo[args]
+      end.curry
+    end
+
+    # Accepts a function fn and returns a function that guards invocation of fn
+    # such that fn can only ever be called once, no matter how many times the
+    # returned function is invoked. The first value calculated is returned
+    # in subsequent invocations.
+    #
+    # (a... -> b) -> (a... -> b)
+    #
+    curried_method(:once) do |fn|
+      memo = {}
+
+      Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+        memo[:result] = fn.call(*args) unless memo.key?(:result)
+        memo[:result]
+      end.curry
+    end
+
+    # Performs left-to-right function composition. The leftmost function may
+    # have any arity; the remaining functions must be unary.
+    # In some libraries this function is named sequence.
+    # Note: The result of pipe is not automatically curried.
+    #
+    # (((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)
+    #
+    curried_method(:pipe) do |*fns|
+      ->(*args) { fns.reduce(args) { |memo, fn| fn.call(*memo) } }
     end
   end
 end

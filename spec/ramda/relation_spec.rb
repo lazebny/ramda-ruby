@@ -106,4 +106,18 @@ describe Ramda::Relation do
       expect(r.lt(2).call(1)).to be_falsey
     end
   end
+
+  context '#max' do
+    it 'from docs' do
+      expect(r.max(789, 123)).to be(789)
+      expect(r.max('a', 'b')).to eq('b')
+    end
+  end
+
+  context '#min' do
+    it 'from docs' do
+      expect(r.min(789, 123)).to be(123)
+      expect(r.min('a', 'b')).to eq('a')
+    end
+  end
 end

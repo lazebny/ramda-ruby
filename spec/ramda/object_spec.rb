@@ -34,4 +34,36 @@ describe Ramda::Object do
       expect(r.keys(a: 1, b: 2, c: 3)).to eq(%i[a b c])
     end
   end
+
+  context '#merge' do
+    it 'from docs' do
+      expect(r.merge({ name: 'fred', age: 10 }, age: 40))
+        .to eq(name: 'fred', age: 40)
+    end
+
+    xit 'curried' do
+      # var resetToDefault = R.merge(R.__, {x: 0});
+      # resetToDefault({x: 5, y: 2}); //=> {x: 0, y: 2}
+    end
+  end
+
+  context '#omit' do
+    it 'from docs' do
+      expect(r.omit(%i[a d], a: 1, b: 2, c: 3, d: 4)).to eq(b: 2, c: 3)
+    end
+  end
+
+  context '#pick' do
+    it 'from docs' do
+      expect(r.pick(%i[a d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)
+      expect(r.pick(%i[a e f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1)
+    end
+  end
+
+  context '#pick_all' do
+    it 'from docs' do
+      expect(r.pick_all(%i[a d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)
+      expect(r.pick_all(%i[a e f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, e: nil, f: nil)
+    end
+  end
 end

@@ -29,5 +29,21 @@ module Ramda
         el.empty?
       end
     end
+
+    # A function that returns the ! of its argument. It will return true when
+    # passed false-y value, and false when passed a truth-y one.
+    #
+    # * -> Boolean
+    #
+    curried_method(:not, &:!)
+
+    # Returns true if one or both of its arguments are true. Returns false if
+    # both arguments are false.
+    #
+    # a -> b -> a | b
+    #
+    curried_method(:or) do |a, b|
+      a || b
+    end
   end
 end

@@ -194,10 +194,44 @@ describe Ramda::List do
     end
   end
 
+  context '#map' do
+    it 'from docs' do
+      double_fn = ->(x) { x * 2 }
+
+      expect(r.map(double_fn, [1, 2, 3])).to eq([2, 4, 6])
+      expect(r.map(double_fn, x: 1, y: 2, z: 3)).to eq(x: 2, y: 4, z: 6)
+    end
+
+    it 'is curried' do
+      double_fn = ->(x) { x * 2 }
+
+      expect(r.map(double_fn).call([1, 2, 3])).to eq([2, 4, 6])
+    end
+  end
+
+  context '#nth' do
+    it 'from docs' do
+      list = %w[foo bar baz quux]
+      expect(r.nth(1, list)).to eq('bar')
+      expect(r.nth(-1, list)).to eq('quux')
+      expect(r.nth(-99, list)).to be_nil
+
+      expect(r.nth(2, 'abc')).to eq('c')
+      expect(r.nth(3, 'abc')).to eq('')
+    end
+  end
+
   context '#sort' do
     it 'from docs' do
       diff = ->(a, b) { a - b }
       expect(r.sort(diff, [4, 2, 7, 5])).to eq([2, 4, 5, 7])
+    end
+  end
+
+  context '#pluck' do
+    it 'from docs' do
+      expect(r.pluck(:a).call([{ a: 1 }, { a: 2 }])).to eq([1, 2])
+      expect(r.pluck(0).call([[1, 2], [3, 4]])).to eq([1, 3])
     end
   end
 end

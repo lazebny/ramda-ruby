@@ -19,7 +19,10 @@ module Ramda
                  :curry,
                  :flip,
                  :identity,
-                 :invoker
+                 :invoker,
+                 :memoize,
+                 :once,
+                 :pipe
 
   def_delegators Ramda::List,
                  :all,
@@ -36,13 +39,18 @@ module Ramda
                  :index_of,
                  :join,
                  :last_index_of,
-                 :sort
+                 :sort,
+                 :map,
+                 :nth,
+                 :pluck
 
   def_delegators Ramda::Logic,
                  :all_pass,
                  :and,
                  :any_pass,
-                 :is_empty
+                 :is_empty,
+                 :not,
+                 :or
 
   def_delegators Ramda::Math,
                  :add,
@@ -52,7 +60,11 @@ module Ramda
   def_delegators Ramda::Object,
                  :clone,
                  :eq_props,
-                 :keys
+                 :keys,
+                 :merge,
+                 :omit,
+                 :pick,
+                 :pick_all
 
   def_delegators Ramda::Relation,
                  :count_by,
@@ -64,9 +76,12 @@ module Ramda
                  :intersection,
                  :lt,
                  :lte,
+                 :max,
+                 :min,
                  :prop_eq
 
   def_delegators Ramda::String,
+                 :match,
                  :to_lower,
                  :to_upper
 end

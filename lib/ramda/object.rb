@@ -36,5 +36,43 @@ module Ramda
     # {k: v} -> [k]
     #
     curried_method(:keys, &:keys)
+
+    # Create a new object with the own properties of the first object merged
+    # with the own properties of the second object. If a key exists in both
+    # objects, the value from the second object will be used.
+    #
+    # {k: v} -> {k: v} -> {k: v}
+    #
+    curried_method(:merge) do |obj_a, obj_b|
+      obj_a.merge(obj_b)
+    end
+
+    # Returns a partial copy of an object omitting the keys specified.
+    #
+    # [String] -> {String: *} -> {String: *}
+    #
+    curried_method(:omit) do |keys, obj|
+      obj_copy = obj.dup
+      keys.each(&obj_copy.method(:delete))
+      obj_copy
+    end
+
+    # Returns a partial copy of an object containing only the keys specified.
+    # If the key does not exist, the property is ignored.
+    #
+    # [k] -> {k: v} -> {k: v}
+    #
+    curried_method(:pick) do |keys, obj|
+      obj.select { |k, _| keys.include?(k) }
+    end
+
+    # Similar to pick except that this one includes a key: undefined pair for
+    # properties that don't exist.
+    #
+    # [k] -> {k: v} -> {k: v}
+    #
+    curried_method(:pick_all) do |keys, obj|
+      Hash[keys.map { |k| [k, obj.key?(k) ? obj.fetch(k) : nil] }]
+    end
   end
 end

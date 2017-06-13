@@ -29,8 +29,10 @@ describe Ramda::Function do
         "The name's #{last_name}, #{first_name} #{last_name}"
       end
       abs = ->(val) { val < 0 ? -1 * val : val }
+
       expect(r.compose(R.to_upper, classy_greeting).call('James', 'Bond'))
         .to eq("THE NAME'S BOND, JAMES BOND")
+
       expect(r.compose(abs, R.add(1), R.multiply(2)).call(-4)).to be(7)
     end
   end
@@ -89,6 +91,60 @@ describe Ramda::Function do
 
       slice_form6 = r.invoker(2, 'slice').call(6)
       expect(slice_form6.call(8, 'abcdefghijklmnop')).to eq('ghijklmn')
+    end
+  end
+
+  context '#memoize' do
+    it 'from docs' do
+      count = 0
+
+      sum = r.memoize(lambda do |a, b, c|
+        count += 1
+        a + b + c
+      end)
+
+      expect(sum.call(10, 20, 30)).to be(60)
+      expect(sum.call(10, 20, 30)).to be(60)
+      expect(sum.call(10, 20, 30)).to be(60)
+
+      expect(count).to be(1)
+    end
+
+    it 'is curried' do
+      count = 0
+
+      sum = r.memoize(lambda do |a, b, c|
+        count += 1
+        a + b + c
+      end)
+
+      expect(sum.call(10).call(20).call(30)).to be(60)
+      expect(sum.call(10, 20).call(30)).to be(60)
+      expect(sum.call(10, 20, 30)).to be(60)
+
+      expect(count).to be(1)
+    end
+  end
+
+  context '#once' do
+    it 'from docs' do
+      add_one_once = r.once(->(x) { x + 1 })
+      expect(add_one_once.call(10)).to eq(11)
+      expect(add_one_once.call(add_one_once.call(50))).to eq(11)
+    end
+  end
+
+  context '#pipe' do
+    it 'from docs' do
+      classy_greeting = lambda do |first_name, last_name|
+        "The name's #{last_name}, #{first_name} #{last_name}"
+      end
+      abs = ->(val) { val < 0 ? -1 * val : val }
+
+      expect(r.pipe(classy_greeting, R.to_upper).call('James', 'Bond'))
+        .to eq("THE NAME'S BOND, JAMES BOND")
+
+      expect(r.pipe(R.multiply(2), R.add(1), abs).call(-4)).to be(7)
     end
   end
 end

@@ -234,6 +234,41 @@ describe Ramda::List do
     end
   end
 
+  context '#range' do
+    it 'from docs' do
+      expect(r.range(1, 5)).to eq([1, 2, 3, 4])
+      expect(r.range(50, 53)).to eq([50, 51, 52])
+    end
+  end
+
+  context '#reduce' do
+    it 'from docs' do
+      # ((((0 - 1) - 2) - 3) - 4) = -10
+      expect(r.reduce(R.subtract, 0, [1, 2, 3, 4])).to be(-10)
+    end
+  end
+
+  xcontext '#reduce_right' do
+    it 'from docs' do
+      # (1 - (2 - (3 - (4 - 0)))))
+      expect(r.reduce_right(R.subtract, 0, [1, 2, 3, 4])).to be(-2)
+    end
+  end
+
+  context '#reverse' do
+    it 'from docs' do
+      expect(r.reverse([1, 2, 3])).to eq([3, 2, 1])
+      expect(r.reverse([1, 2])).to eq([2, 1])
+      expect(r.reverse([1])).to eq([1])
+      expect(r.reverse([])).to eq([])
+
+      expect(r.reverse('abc')).to eq('cba')
+      expect(r.reverse('ab')).to eq('ba')
+      expect(r.reverse('a')).to eq('a')
+      expect(r.reverse('')).to eq('')
+    end
+  end
+
   context '#reject' do
     it 'from docs' do
       is_odd = ->(n) { n.odd? }
@@ -247,6 +282,20 @@ describe Ramda::List do
     it 'from docs' do
       diff = ->(a, b) { a - b }
       expect(r.sort(diff, [4, 2, 7, 5])).to eq([2, 4, 5, 7])
+    end
+  end
+
+  context '#tail' do
+    it 'from docs' do
+      expect(r.tail([1, 2, 3])).to eq([2, 3])
+      expect(r.tail([1, 2])).to eq([2])
+      expect(r.tail([1])).to eq([])
+      expect(r.tail([])).to eq([])
+
+      expect(r.tail('abc')).to eq('bc')
+      expect(r.tail('ab')).to eq('b')
+      expect(r.tail('a')).to eq('')
+      expect(r.tail('')).to eq('')
     end
   end
 end

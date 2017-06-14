@@ -132,4 +132,21 @@ describe Ramda::Relation do
       expect(R.filter(has_brown_hair, kids)).to eq([fred, rusty])
     end
   end
+
+  context '#sort_by' do
+    it 'from docs 1' do
+      sort_by_first_item = r.sort_by(R.prop(0))
+      pairs = [[-1, 1], [-2, 2], [-3, 3]]
+      expect(sort_by_first_item.call(pairs)).to eq([[-3, 3], [-2, 2], [-1, 1]])
+    end
+
+    it 'from docs 2' do
+      alice = { name: 'ALICE', age: 101 }
+      bob = { name: 'Bob', age: -10 }
+      clara = { name: 'clara', age: 314.159 }
+      people = [clara, bob, alice]
+      sort_by_name_case_insensitive = r.sort_by(R.compose(R.to_lower, R.prop(:name)))
+      expect(sort_by_name_case_insensitive.call(people)).to eq([alice, bob, clara])
+    end
+  end
 end

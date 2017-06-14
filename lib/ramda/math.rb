@@ -36,5 +36,13 @@ module Ramda
     curried_method(:product) do |xs|
       xs.reduce(:*)
     end
+
+    # Subtracts its second argument from its first argument.
+    #
+    # Number -> Number -> Number
+    #
+    curried_method(:subtract) do |a, b|
+      a - b
+    end
   end
 end

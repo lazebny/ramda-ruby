@@ -118,5 +118,13 @@ module Ramda
     curried_method(:prop_eq) do |prop, value, obj|
       obj[prop] == value
     end
+
+    # Sorts the list according to the supplied function.
+    #
+    # Ord b => (a -> b) -> [a] -> [a]
+    #
+    curried_method(:sort_by) do |fn, xs|
+      xs.sort_by(&fn)
+    end
   end
 end

@@ -11,6 +11,17 @@ describe Ramda::String do
     end
   end
 
+  context '#split' do
+    it 'from docs' do
+      path_components = r.split('/')
+
+      expect(R.tail(path_components.call('/usr/local/bin/node')))
+        .to eq(%w[usr local bin node])
+
+      expect(r.split('.', 'a.b.c.xyz.d')).to eq(%w[a b c xyz d])
+    end
+  end
+
   context '#to_upper' do
     it 'from docs' do
       expect(r.to_upper('abc')).to eq('ABC')

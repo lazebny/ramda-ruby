@@ -41,4 +41,17 @@ describe Ramda::Math do
       expect(r.product([2, 4, 6, 8, 100, 1])).to be(38_400)
     end
   end
+
+  context '#subsctrcat' do
+    it 'from docs' do
+      expect(r.subtract(10, 8)).to be(2)
+
+      minus5 = r.subtract(17)
+      expect(minus5.call(5)).to be(12)
+
+      complementary_angel = r.subtract(90)
+      expect(complementary_angel.call(30)).to be(60)
+      expect(complementary_angel.call(72)).to be(18)
+    end
+  end
 end

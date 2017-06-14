@@ -45,7 +45,11 @@ module Ramda
                  :nth,
                  :pluck,
                  :prepend,
-                 :reject
+                 :range,
+                 :reduce,
+                 :reject,
+                 :reverse,
+                 :tail
 
   def_delegators Ramda::Logic,
                  :all_pass,
@@ -59,7 +63,8 @@ module Ramda
                  :add,
                  :divide,
                  :multiply,
-                 :product
+                 :product,
+                 :subtract
 
   def_delegators Ramda::Object,
                  :clone,
@@ -85,10 +90,12 @@ module Ramda
                  :lte,
                  :max,
                  :min,
-                 :prop_eq
+                 :prop_eq,
+                 :sort_by
 
   def_delegators Ramda::String,
                  :match,
+                 :split,
                  :to_lower,
                  :to_upper
 end

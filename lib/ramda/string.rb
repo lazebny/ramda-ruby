@@ -5,6 +5,14 @@ module Ramda
   module String
     extend ::Ramda::Internal::CurriedMethod
 
+    # Splits a string into an array of strings based on the given separator.
+    #
+    # (String | RegExp) -> String -> [String]
+    #
+    curried_method(:split) do |sep, x|
+      x.split(sep)
+    end
+
     # The upper case version of a string.
     #
     # String -> String

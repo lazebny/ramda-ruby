@@ -2,6 +2,7 @@ require_relative 'internal/curried_method'
 
 module Ramda
   # List functions
+  # rubocop:disable Metrics/ModuleLength
   module List
     extend ::Ramda::Internal::CurriedMethod
 
@@ -219,6 +220,51 @@ module Ramda
       [x] + xs.dup
     end
 
+    # Returns a list of numbers from from (inclusive) to to (exclusive).
+    #
+    # Number -> Number -> [Number]
+    #
+    curried_method(:range) do |a, b|
+      (a...b).to_a
+    end
+
+    # Returns a single item by iterating through the list, successively
+    # calling the iterator function and passing it an accumulator value
+    # and the current value from the array, and then passing the result
+    # to the next call.
+    #
+    # The iterator function receives two values: (value, acc),
+    # while the arguments' order of reduce's iterator function is (acc, value).
+    #
+    # ((a, b) -> a) -> a -> [b] -> a
+    #
+    curried_method(:reduce) do |fn, acc, xs|
+      xs.reduce(acc, &fn)
+    end
+
+    # Returns a single item by iterating through the list, successively
+    # calling the iterator function and passing it an accumulator value
+    # and the current value from the array, and then passing the result
+    # to the next call.
+    # Similar to reduce, except moves through the input list from the
+    # right to the left.
+    #
+    # The iterator function receives two values: (value, acc),
+    # while the arguments' order of reduce's iterator function is (acc, value).
+    #
+    # ((a, b) -> a) -> a -> [b] -> a
+    #
+    curried_method(:reduce_right) do |fn, acc, xs|
+      # xs.reverse.reduce(acc, &fn)
+    end
+
+    # Returns a new list or string with the elements or characters in reverse order.
+    #
+    # [a] -> [a]
+    # String -> String
+    #
+    curried_method(:reverse, &:reverse)
+
     # The complement of filter.
     # Acts as a transducer if a transformer is given in list position.
     # Filterable objects include plain objects or any object that has a
@@ -243,6 +289,16 @@ module Ramda
 
     curried_method(:sort) do |comparator, xs|
       xs.sort(&comparator)
+    end
+
+    # Returns all but the first element of the given list or string
+    # (or object with a tail method).
+    #
+    # [a] -> [a]
+    # String -> String
+    #
+    curried_method(:tail) do |xs|
+      drop(1, xs)
     end
 
     # TODO: Extract from this module

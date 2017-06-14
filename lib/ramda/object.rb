@@ -100,5 +100,11 @@ module Ramda
     curried_method(:props) do |keys, obj|
       keys.map(&obj.method(:[]))
     end
+
+    # Returns a list of all the enumerable own properties of the supplied object.
+    #
+    # {k: v} -> [v]
+    #
+    curried_method(:values, &:values)
   end
 end

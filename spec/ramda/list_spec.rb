@@ -344,4 +344,34 @@ describe Ramda::List do
       expect(r.take_while(is_not_four, [1, 2, 3])).to eq([1, 2, 3])
     end
   end
+
+  context '#uniq' do
+    it 'from docs' do
+      expect(r.uniq([1, 1, 2, 1])).to eq([1, 2])
+      expect(r.uniq([1, '1'])).to eq([1, '1'])
+      expect(r.uniq([[42], [42]])).to eq([[42]])
+    end
+  end
+
+  context '#xprod' do
+    it 'from docs' do
+      expect(r.xprod([1, 2], %w[a b]))
+        .to eq([[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']])
+    end
+  end
+
+  context '#zip' do
+    it 'from docs' do
+      expect(r.zip([1, 2, 3], %w[a b c])).to eq([[1, 'a'], [2, 'b'], [3, 'c']])
+      expect(r.zip([1, 2, 3], %w[a b c d])).to eq([[1, 'a'], [2, 'b'], [3, 'c']])
+    end
+  end
+
+  context '#zip_with' do
+    it 'from docs' do
+      f = ->(x, y) { Ramda.join('', [x, y]) }
+
+      expect(r.zip_with(f, [1, 2, 3], %w[a b c])).to eq(%w[1a 2b 3c])
+    end
+  end
 end

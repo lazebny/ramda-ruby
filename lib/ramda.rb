@@ -51,7 +51,11 @@ module Ramda
                  :reverse,
                  :tail,
                  :take,
-                 :take_while
+                 :take_while,
+                 :uniq,
+                 :xprod,
+                 :zip,
+                 :zip_with
 
   def_delegators Ramda::Logic,
                  :all_pass,
@@ -79,7 +83,8 @@ module Ramda
                  :pick_all,
                  :project,
                  :prop,
-                 :props
+                 :props,
+                 :values
 
   def_delegators Ramda::Relation,
                  :count_by,
@@ -94,7 +99,8 @@ module Ramda
                  :max,
                  :min,
                  :prop_eq,
-                 :sort_by
+                 :sort_by,
+                 :union
 
   def_delegators Ramda::String,
                  :match,

@@ -126,5 +126,14 @@ module Ramda
     curried_method(:sort_by) do |fn, xs|
       xs.sort_by(&fn)
     end
+
+    # Combines two lists into a set (i.e. no duplicates) composed of the
+    # elements of each list.
+    #
+    # [*] -> [*] -> [*]
+    #
+    curried_method(:union) do |xs1, xs2|
+      xs1 | xs2
+    end
   end
 end

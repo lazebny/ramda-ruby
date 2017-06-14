@@ -149,4 +149,18 @@ describe Ramda::Relation do
       expect(sort_by_name_case_insensitive.call(people)).to eq([alice, bob, clara])
     end
   end
+
+  context '#union' do
+    it 'from docs' do
+      expect(r.union([1, 2, 3], [2, 3, 4])).to eq([1, 2, 3, 4])
+    end
+  end
+
+  xcontext '#union_with' do
+    it 'from docs' do
+      # var l1 = [{a: 1}, {a: 2}];
+      # var l2 = [{a: 1}, {a: 4}];
+      # expect(r.unionWith(R.eqBy(R.prop('a')), l1, l2); //=> [{a: 1}, {a: 2}, {a: 4}]
+    end
+  end
 end

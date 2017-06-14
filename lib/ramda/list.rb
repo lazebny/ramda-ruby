@@ -322,6 +322,36 @@ module Ramda
       xs[0, xs.index { |x| !fn.call(x) } || xs.size]
     end
 
+    # Returns a new list containing only one copy of each element in the original list.
+    #
+    # [a] -> [a]
+    #
+    curried_method(:uniq, &:uniq)
+
+    # Creates a new list out of the two supplied by creating each possible pair
+    # from the lists.
+    #
+    # [a] -> [b] -> [[a,b]]
+    #
+    curried_method(:xprod) do |xs1, xs2|
+      xs1.product(xs2)
+    end
+
+    # Creates a new list out of the two supplied by pairing up equally-positioned
+    # items from both lists. The returned list is truncated to the length of the
+    # shorter of the two input lists.
+    # Note: zip is equivalent to zip_with(->(a, b) { [a, b] }).
+    #
+    # [a] -> [b] -> [[a,b]]
+    #
+    curried_method(:zip) do |xs1, xs2|
+      xs1.zip(xs2)
+    end
+
+    curried_method(:zip_with) do |fn, xs1, xs2|
+      xs1.zip(xs2).map(&fn)
+    end
+
     # TODO: Extract from this module
     def self.type_error(object, method)
       raise ArgumentError, "Unexpected type #{object.class} in method: #{method}"

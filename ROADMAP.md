@@ -60,25 +60,25 @@
 * + prop
 * + prop_eq
 * + props
-* range
-* reduce
+* + range
+* + reduce
 * reduce_right
 * + reject
-* reverse
-* sort
-* sort_by
-* split
-* substract
-* sum
-* tail
-* take
-* take_while
+* + reverse
+* + sort
+* + sort_by
+* + split
+* + substract
+* + sum
+* + tail
+* + take
+* + take_while
 * * tap
-* union
+* + union
 * union_with
-* uniq
+* + uniq
 * use_with
-* values
-* xprod
-* zip
-* zip_with
+* + values
+* + xprod
+* + zip
+* + zip_with

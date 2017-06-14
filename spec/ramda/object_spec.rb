@@ -95,4 +95,10 @@ describe Ramda::Object do
         .to eq('Tony Bullet-Tooth')
     end
   end
+
+  context '#values' do
+    it 'from docs' do
+      expect(r.values(a: 1, b: 2, c: 3)).to eq([1, 2, 3])
+    end
+  end
 end

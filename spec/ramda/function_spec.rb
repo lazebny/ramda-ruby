@@ -176,4 +176,13 @@ describe Ramda::Function do
       expect(r.tap(say_x, 100)).to be(100)
     end
   end
+
+  xcontext '#use_with' do
+    it 'from docs' do
+      # R.useWith(Math.pow, [R.identity, R.identity])(3, 4); //=> 81
+      # R.useWith(Math.pow, [R.identity, R.identity])(3)(4); //=> 81
+      # R.useWith(Math.pow, [R.dec, R.inc])(3, 4); //=> 32
+      # R.useWith(Math.pow, [R.dec, R.inc])(3)(4); //=> 32
+    end
+  end
 end

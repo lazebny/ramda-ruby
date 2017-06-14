@@ -56,7 +56,9 @@ module Ramda
 
     # (* -> a) -> (* -> a)
     #
-    curried_method(:curry, &:curry)
+    curried_method(:curry) do |fn|
+      fn.to_proc.curry
+    end
 
     # Returns a new function much like the supplied one, except that the
     # first two arguments' order is reversed.

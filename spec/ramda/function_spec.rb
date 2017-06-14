@@ -53,6 +53,14 @@ describe Ramda::Function do
       g = f.call(3)
       expect(g.call(4)).to be(10)
     end
+
+    def test_method(a)
+      a
+    end
+
+    it 'can receive a method' do
+      expect(r.curry(method(:test_method)).call(100)).to eq(100)
+    end
   end
 
   context '#flip' do

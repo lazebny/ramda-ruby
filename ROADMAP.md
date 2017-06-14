@@ -1,4 +1,4 @@
-Features in  0.1.0
+### Features in  0.1.0 ###
 
 * + add
 * + all
@@ -73,7 +73,7 @@ Features in  0.1.0
 * tail
 * take
 * take_while
-* tap
+* * tap
 * union
 * union_with
 * uniq

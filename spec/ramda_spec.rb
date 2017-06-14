@@ -83,7 +83,7 @@ describe Ramda do
   # r(:tail)
   # r(:take)
   # r(:take_while)
-  # r(:tap)
+  r(:tap)
   r(:to_lower)
   r(:to_upper)
   # r(:union)

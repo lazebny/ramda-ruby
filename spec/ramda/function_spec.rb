@@ -160,4 +160,12 @@ describe Ramda::Function do
       expect(r.pipe(R.multiply(2), R.add(1), abs).call(-4)).to be(7)
     end
   end
+
+  context '#tap' do
+    it 'from docs' do
+      say_x = instance_double(Proc)
+      expect(say_x).to receive(:call).with(100)
+      expect(r.tap(say_x, 100)).to be(100)
+    end
+  end
 end

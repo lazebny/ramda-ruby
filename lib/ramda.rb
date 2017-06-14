@@ -22,7 +22,8 @@ module Ramda
                  :invoker,
                  :memoize,
                  :once,
-                 :pipe
+                 :pipe,
+                 :tap
 
   def_delegators Ramda::List,
                  :all,

@@ -139,5 +139,14 @@ module Ramda
     curried_method(:pipe) do |*fns|
       ->(*args) { fns.reduce(args) { |memo, fn| [fn.call(*memo)] }.first }
     end
+
+    # Runs the given function with the supplied object, then returns the object.
+    #
+    # (a -> *) -> a -> a
+    #
+    curried_method(:tap) do |fn, x|
+      fn.call(x)
+      x
+    end
   end
 end

@@ -234,6 +234,15 @@ describe Ramda::List do
     end
   end
 
+  context '#reject' do
+    it 'from docs' do
+      is_odd = ->(n) { n % 2 == 1 }
+
+      expect(r.reject(is_odd, [1, 2, 3, 4])).to eq([2, 4])
+      expect(r.reject(is_odd, a: 1, b: 2, c: 3, d: 4)).to eq(b: 2, d: 4)
+    end
+  end
+
   context '#sort' do
     it 'from docs' do
       diff = ->(a, b) { a - b }

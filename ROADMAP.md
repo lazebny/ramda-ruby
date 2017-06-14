@@ -63,7 +63,7 @@
 * range
 * reduce
 * reduce_right
-* reject
+* + reject
 * reverse
 * sort
 * sort_by

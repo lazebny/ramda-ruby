@@ -73,7 +73,7 @@ describe Ramda do
   # r(:range)
   # r(:reduce)
   # r(:reduce_right)
-  # r(:reject)
+  r(:reject)
   # r(:reverse)
   r(:sort)
   # r(:sort_by)

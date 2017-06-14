@@ -219,6 +219,22 @@ module Ramda
       [x] + xs.dup
     end
 
+    # The complement of filter.
+    # Acts as a transducer if a transformer is given in list position.
+    # Filterable objects include plain objects or any object that has a
+    # filter method such as Array.
+    #
+    # Filterable f => (a -> Boolean) -> f a -> f a
+    #
+    curried_method(:reject) do |f, xs|
+      case xs
+      when ::Hash
+        xs.reject { |_, value| f.call(value) }
+      else
+        xs.reject(&f)
+      end
+    end
+
     # Returns a copy of the list, sorted according to the comparator function,
     # which should accept two values at a time and return a negative number
     # if the first value is smaller, a positive number if it's larger, and

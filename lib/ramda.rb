@@ -44,7 +44,8 @@ module Ramda
                  :map,
                  :nth,
                  :pluck,
-                 :prepend
+                 :prepend,
+                 :reject
 
   def_delegators Ramda::Logic,
                  :all_pass,

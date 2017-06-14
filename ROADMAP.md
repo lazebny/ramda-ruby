@@ -82,3 +82,24 @@
 * + xprod
 * + zip
 * + zip_with
+
+###  Add CI ###
+
+* Travis CI
+* Code Climat
+* Range of ruby versions 1.9, 2.0, 2.1, 2.2, 2.3, 2.4
+
+###  Add all specs from https://github.com/ramda/ramda/tree/master/test ###
+
+###  Add documentation ###
+
+* Get in touch with Ramdajs authors
+* Find out suitable documentation format
+
+### Add CHANGELOG.md ###
+
+### Performance Tests ###
+
+* find out amout of memory which gem uses
+
+### Prepare 0.1.0 Release ###

@@ -120,4 +120,16 @@ describe Ramda::Relation do
       expect(r.min('a', 'b')).to eq('a')
     end
   end
+
+  context '#prop_eq' do
+    it 'from docs' do
+      abby = { name: 'Abby', age: 7, hair: 'blond' }
+      fred = { name: 'Fred', age: 12, hair: 'brown' }
+      rusty = { name: 'Rusty', age: 10, hair: 'brown' }
+      alois = { name: 'Alois', age: 15, disposition: 'surly' }
+      kids = [abby, fred, rusty, alois]
+      has_brown_hair = r.prop_eq(:hair, 'brown')
+      expect(R.filter(has_brown_hair, kids)).to eq([fred, rusty])
+    end
+  end
 end

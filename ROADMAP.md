@@ -7,10 +7,10 @@ Features in  0.1.0
 * + any
 * + append
 * + clone
-* comparator
+* + comparator
 * + compose
 * + concat
-* construct
+* + construct
 * + contains
 * + countBy
 * + curry
@@ -30,36 +30,36 @@ Features in  0.1.0
 * + identity
 * + index_of
 * + intersection
-* invoker
+* + invoker
 * + is_empty
-* join
-* keys
-* last_index_of
+* + join
+* + keys
+* + last_index_of
 * + lt
-* lte
-* map
-* match
-* max
-* memoize
-* merge
-* min
+* + lte
+* + map
+* + match
+* + max
+* + memoize
+* + merge
+* + min
 * + multiply
 * n_ary
-* not
-* nth
-* omit
-* once
-* or
-* pick
-* pick_all
-* pipe
-* pluck
-* prepend
-* product
-* project
-* prop
+* + not
+* + nth
+* + omit
+* + once
+* + or
+* + pick
+* + pick_all
+* + pipe
+* + pluck
+* + prepend
+* + product
+* + project
+* + prop
 * + prop_eq
-* props
+* + props
 * range
 * reduce
 * reduce_right

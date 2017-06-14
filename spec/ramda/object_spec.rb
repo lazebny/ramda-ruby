@@ -66,4 +66,33 @@ describe Ramda::Object do
       expect(r.pick_all(%i[a e f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, e: nil, f: nil)
     end
   end
+
+  context '#project' do
+    it 'from docs' do
+      abby = { name: 'Abby', age: 7, hair: 'blond', grade: 2 }
+      fred = { name: 'Fred', age: 12, hair: 'brown', grade: 7 }
+      kids = [abby, fred]
+
+      expect(r.project(%i[name grade], kids))
+        .to eq([{ name: 'Abby', grade: 2 }, { name: 'Fred', grade: 7 }])
+    end
+  end
+
+  context '#prop' do
+    it 'from docs' do
+      expect(r.prop(:x, x: 100)).to be(100)
+      expect(r.prop(:x, {})).to be_nil
+    end
+  end
+
+  context '#props' do
+    it 'from docs' do
+      expect(r.props(%i[x y], x: 1, y: 2)).to eq([1, 2])
+      expect(r.props(%i[c a b], b: 2, a: 1)).to eq([nil, 1, 2])
+
+      full_name = R.compose(R.join(' '), r.props(%i[first last]))
+      expect(full_name.call(last: 'Bullet-Tooth', age: 33, first: 'Tony'))
+        .to eq('Tony Bullet-Tooth')
+    end
+  end
 end

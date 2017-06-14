@@ -28,5 +28,13 @@ module Ramda
     curried_method(:multiply) do |a, b|
       a * b
     end
+
+    # Multiplies together all the elements of a list.
+    #
+    # [Number] -> Number
+    #
+    curried_method(:product) do |xs|
+      xs.reduce(:*)
+    end
   end
 end

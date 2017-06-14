@@ -35,4 +35,10 @@ describe Ramda::Math do
       expect(r.multiply(2).call(5)).to eq(10)
     end
   end
+
+  context '#product' do
+    it 'from docs' do
+      expect(r.product([2, 4, 6, 8, 100, 1])).to be(38_400)
+    end
+  end
 end

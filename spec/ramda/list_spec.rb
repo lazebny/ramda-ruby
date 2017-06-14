@@ -221,17 +221,23 @@ describe Ramda::List do
     end
   end
 
-  context '#sort' do
-    it 'from docs' do
-      diff = ->(a, b) { a - b }
-      expect(r.sort(diff, [4, 2, 7, 5])).to eq([2, 4, 5, 7])
-    end
-  end
-
   context '#pluck' do
     it 'from docs' do
       expect(r.pluck(:a).call([{ a: 1 }, { a: 2 }])).to eq([1, 2])
       expect(r.pluck(0).call([[1, 2], [3, 4]])).to eq([1, 3])
+    end
+  end
+
+  context '#prepend' do
+    it 'from docs' do
+      expect(r.prepend('fee', %w[fi fo fum])).to eq(%w[fee fi fo fum])
+    end
+  end
+
+  context '#sort' do
+    it 'from docs' do
+      diff = ->(a, b) { a - b }
+      expect(r.sort(diff, [4, 2, 7, 5])).to eq([2, 4, 5, 7])
     end
   end
 end

@@ -198,16 +198,6 @@ module Ramda
       end
     end
 
-    # Returns a copy of the list, sorted according to the comparator function,
-    # which should accept two values at a time and return a negative number
-    # if the first value is smaller, a positive number if it's larger, and
-    # zero if they are equal. Please note that this is a copy of the list.
-    # It does not modify the original.
-
-    curried_method(:sort) do |comparator, xs|
-      xs.sort(&comparator)
-    end
-
     # Returns a new list by plucking the same named property off all objects
     # in the list supplied.
     #
@@ -218,6 +208,25 @@ module Ramda
     #
     curried_method(:pluck) do |key, xs|
       xs.map { |x| x[key] }
+    end
+
+    # Returns a new list with the given element at the front, followed by the
+    # contents of the list.
+    #
+    # a -> [a] -> [a]
+    #
+    curried_method(:prepend) do |x, xs|
+      [x] + xs.dup
+    end
+
+    # Returns a copy of the list, sorted according to the comparator function,
+    # which should accept two values at a time and return a negative number
+    # if the first value is smaller, a positive number if it's larger, and
+    # zero if they are equal. Please note that this is a copy of the list.
+    # It does not modify the original.
+
+    curried_method(:sort) do |comparator, xs|
+      xs.sort(&comparator)
     end
 
     # TODO: Extract from this module

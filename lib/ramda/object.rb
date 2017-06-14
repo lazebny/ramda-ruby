@@ -74,5 +74,31 @@ module Ramda
     curried_method(:pick_all) do |keys, obj|
       Hash[keys.map { |k| [k, obj.key?(k) ? obj.fetch(k) : nil] }]
     end
+
+    # Reasonable analog to SQL select statement.
+    #
+    # [k] -> [{k: v}] -> [{k: v}]
+    #
+    curried_method(:project) do |keys, objs|
+      objs.map(&pick_all(keys))
+    end
+
+    # Returns a function that when supplied an object returns the indicated
+    # property of that object, if it exists.
+    #
+    # s -> {s: a} -> a | NilClass
+    #
+    curried_method(:prop) do |key, obj|
+      obj[key]
+    end
+
+    # Acts as multiple prop: array of keys in, array of values out.
+    # Preserves order.
+    #
+    # [k] -> {k: v} -> [v]
+    #
+    curried_method(:props) do |keys, obj|
+      keys.map(&obj.method(:[]))
+    end
   end
 end

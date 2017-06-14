@@ -42,7 +42,8 @@ module Ramda
                  :sort,
                  :map,
                  :nth,
-                 :pluck
+                 :pluck,
+                 :prepend
 
   def_delegators Ramda::Logic,
                  :all_pass,
@@ -55,7 +56,8 @@ module Ramda
   def_delegators Ramda::Math,
                  :add,
                  :divide,
-                 :multiply
+                 :multiply,
+                 :product
 
   def_delegators Ramda::Object,
                  :clone,
@@ -64,7 +66,10 @@ module Ramda
                  :merge,
                  :omit,
                  :pick,
-                 :pick_all
+                 :pick_all,
+                 :project,
+                 :prop,
+                 :props
 
   def_delegators Ramda::Relation,
                  :count_by,

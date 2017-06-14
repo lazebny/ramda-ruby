@@ -32,7 +32,7 @@ module Ramda
     #
     # Note: The result of compose is not automatically curried.
     curried_method(:compose) do |*fns|
-      ->(*args) { fns.reverse.reduce(args) { |memo, fn| fn.call(*memo) } }
+      pipe(*fns.reverse)
     end
 
     # Wraps a constructor function inside a curried function that can be called
@@ -106,6 +106,13 @@ module Ramda
       end.curry
     end
 
+    curried_method(:n_ary) do |arity, fn|
+      Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
+        empty_args = Array.new(fn.arity - arity, nil)
+        fn.call(*(args + empty_args))
+      end.curry
+    end
+
     # Accepts a function fn and returns a function that guards invocation of fn
     # such that fn can only ever be called once, no matter how many times the
     # returned function is invoked. The first value calculated is returned
@@ -130,7 +137,7 @@ module Ramda
     # (((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)
     #
     curried_method(:pipe) do |*fns|
-      ->(*args) { fns.reduce(args) { |memo, fn| fn.call(*memo) } }
+      ->(*args) { fns.reduce(args) { |memo, fn| [fn.call(*memo)] }.first }
     end
   end
 end

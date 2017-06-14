@@ -4,7 +4,7 @@ describe Ramda::Function do
   let(:r) { described_class }
 
   context '#always' do
-    it 'test' do
+    it 'from docs' do
       str = 'Tee'
       expect(r.always(str).call).to be(str)
     end
@@ -123,6 +123,19 @@ describe Ramda::Function do
       expect(sum.call(10, 20, 30)).to be(60)
 
       expect(count).to be(1)
+    end
+  end
+
+  xcontext '#n_ary' do
+    it 'from docs' do
+      takes_two_args = ->(a, b) { [a, b] }
+
+      # expect(takes_two_args.arity).to be(2)
+      expect(takes_two_args.call(1, 2)).to eq([1, 2])
+
+      takes_one_arg = r.n_ary(1, takes_two_args)
+      # expect(takes_one_arg.arity).to be(1)
+      expect(takes_one_arg.call(1, 2)).to eq([1, nil])
     end
   end
 

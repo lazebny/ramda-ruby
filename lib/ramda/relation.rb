@@ -110,6 +110,11 @@ module Ramda
       [a, b].min
     end
 
+    # Returns true if the specified object property is equal, in R.equals terms,
+    # to the given value; false otherwise.
+    #
+    # String -> a -> Object -> Boolean
+    #
     curried_method(:prop_eq) do |prop, value, obj|
       obj[prop] == value
     end

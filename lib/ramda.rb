@@ -49,7 +49,9 @@ module Ramda
                  :reduce,
                  :reject,
                  :reverse,
-                 :tail
+                 :tail,
+                 :take,
+                 :take_while
 
   def_delegators Ramda::Logic,
                  :all_pass,
@@ -64,7 +66,8 @@ module Ramda
                  :divide,
                  :multiply,
                  :product,
-                 :subtract
+                 :subtract,
+                 :sum
 
   def_delegators Ramda::Object,
                  :clone,

@@ -44,5 +44,13 @@ module Ramda
     curried_method(:subtract) do |a, b|
       a - b
     end
+
+    # Adds together all the elements of a list.
+    #
+    # [Number] -> Number
+    #
+    curried_method(:sum) do |xs|
+      xs.reduce(:+)
+    end
   end
 end

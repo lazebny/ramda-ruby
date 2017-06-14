@@ -301,6 +301,27 @@ module Ramda
       drop(1, xs)
     end
 
+    # Returns the first n elements of the given list, string.
+    #
+    # Number -> [a] -> [a]
+    # Number -> String -> String
+    #
+    curried_method(:take) do |num, xs|
+      xs[0, num]
+    end
+
+    # Returns a new list containing the first n elements of a given list,
+    # passing each value to the supplied predicate function, and terminating
+    # when the predicate function returns false. Excludes the element that
+    # caused the predicate function to fail.
+    # The predicate function is passed one argument: (value).
+    #
+    # (a -> Boolean) -> [a] -> [a]
+    #
+    curried_method(:take_while) do |fn, xs|
+      xs[0, xs.index { |x| !fn.call(x) } || xs.size]
+    end
+
     # TODO: Extract from this module
     def self.type_error(object, method)
       raise ArgumentError, "Unexpected type #{object.class} in method: #{method}"

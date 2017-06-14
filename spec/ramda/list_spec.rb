@@ -298,4 +298,50 @@ describe Ramda::List do
       expect(r.tail('')).to eq('')
     end
   end
+
+  context '#take' do
+    it 'is curried' do
+      personnel = [
+        'Dave Brubeck',
+        'Paul Desmond',
+        'Eugene Wright',
+        'Joe Morello',
+        'Gerry Mulligan',
+        'Bob Bates',
+        'Joe Dodge',
+        'Ron Crotty'
+      ]
+
+      take_five = r.take(5)
+      expect(take_five.call(personnel)).to eq(
+        ['Dave Brubeck', 'Paul Desmond', 'Eugene Wright', 'Joe Morello', 'Gerry Mulligan']
+      )
+    end
+
+    it 'can operate on arrays' do
+      expect(r.take(10, [])).to eq([])
+      expect(r.take(4, %w[foo bar baz])).to eq(%w[foo bar baz])
+      expect(r.take(3, %w[foo bar baz])).to eq(%w[foo bar baz])
+      expect(r.take(2, %w[foo bar baz])).to eq(%w[foo bar])
+      expect(r.take(1, %w[foo bar baz])).to eq(['foo'])
+      expect(r.take(0, %w[foo bar baz])).to eq([])
+    end
+
+    it 'can operate on strings' do
+      expect(r.take(10, 'Ramda')).to eq('Ramda')
+      expect(r.take(3, 'Ramda')).to eq('Ram')
+      expect(r.take(2, 'Ramda')).to eq('Ra')
+      expect(r.take(1, 'Ramda')).to eq('R')
+      expect(r.take(0, 'Ramda')).to eq('')
+    end
+  end
+
+  context '#take_while' do
+    it 'from docs' do
+      is_not_four = ->(x) { x != 4 }
+
+      expect(r.take_while(is_not_four, [1, 2, 3, 4, 3, 2, 1])).to eq([1, 2, 3])
+      expect(r.take_while(is_not_four, [1, 2, 3])).to eq([1, 2, 3])
+    end
+  end
 end

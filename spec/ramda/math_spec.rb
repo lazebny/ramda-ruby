@@ -54,4 +54,10 @@ describe Ramda::Math do
       expect(complementary_angel.call(72)).to be(18)
     end
   end
+
+  context '#sum' do
+    it 'from docs' do
+      expect(r.sum([2, 4, 6, 8, 100, 1])).to be(121)
+    end
+  end
 end

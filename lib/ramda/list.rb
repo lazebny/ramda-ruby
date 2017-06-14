@@ -48,7 +48,7 @@ module Ramda
       when ::Array
         list_a.dup + list_b
       else
-        type_error(list_a)
+        type_error(list_a, :concat)
       end
     end
 
@@ -74,7 +74,7 @@ module Ramda
       when ::Array
         xs[num..-1] || []
       else
-        type_error(xs)
+        type_error(xs, :drop)
       end
     end
 
@@ -177,7 +177,7 @@ module Ramda
       when ::Array
         functor.map(&f)
       else
-        type_error(functor)
+        type_error(functor, :map)
       end
     end
 
@@ -194,7 +194,7 @@ module Ramda
       when ::Array
         xs[index]
       else
-        type_error(xs)
+        type_error(xs, :nth)
       end
     end
 
@@ -246,8 +246,8 @@ module Ramda
     end
 
     # TODO: Extract from this module
-    def self.type_error(object)
-      raise ArgumentError, "Unexpected type #{object.class}"
+    def self.type_error(object, method)
+      raise ArgumentError, "Unexpected type #{object.class} in method: #{method}"
     end
   end
 end

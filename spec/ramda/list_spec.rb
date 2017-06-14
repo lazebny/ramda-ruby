@@ -236,7 +236,7 @@ describe Ramda::List do
 
   context '#reject' do
     it 'from docs' do
-      is_odd = ->(n) { n % 2 == 1 }
+      is_odd = ->(n) { n.odd? }
 
       expect(r.reject(is_odd, [1, 2, 3, 4])).to eq([2, 4])
       expect(r.reject(is_odd, a: 1, b: 2, c: 3, d: 4)).to eq(b: 2, d: 4)

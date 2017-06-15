@@ -17,6 +17,15 @@ module Ramda
       predicates.any? { |predicate| predicate.call(obj) }
     end
 
+    # Creates a function that will process either the onTrue or the onFalse
+    # function depending upon the result of the condition predicate.
+    #
+    # (*... -> Boolean) -> (*... -> *) -> (*... -> *) -> (*... -> *)
+    #
+    curried_method(:if_else) do |predicate, fn1, fn2, obj|
+      predicate.call(obj) ? fn1.call(obj) : fn2.call(obj)
+    end
+
     # Returns true if the given value is its type's empty value; false otherwise.
     #
     # a -> Boolean

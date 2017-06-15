@@ -38,6 +38,7 @@ describe Ramda do
   r(:gte)
   r(:head)
   r(:identity)
+  r(:if_else)
   r(:index_of)
   r(:intersection)
   r(:invoker)

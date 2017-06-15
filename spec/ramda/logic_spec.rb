@@ -30,6 +30,18 @@ describe Ramda::Logic do
     expect(is_black_card.call(rank: 'Q', suit: 'diamond')).to be_falsey
   end
 
+  context '#if_else' do
+    it 'from docs' do
+      inc_count = R.if_else(
+        Ramda.prop(:count),
+        Ramda.prop(:count),
+        Ramda.identity
+      );
+      expect(inc_count.call({})).to eq({})
+      expect(inc_count.call({ count: 1 })).to eq(1)
+    end
+  end
+
   context '#is_empty' do
     it 'from docs' do
       expect(r.is_empty([1, 2, 3])).to be_falsey

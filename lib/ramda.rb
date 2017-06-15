@@ -1,3 +1,5 @@
+require 'forwardable'
+
 require 'ramda/version'
 require 'ramda/function'
 require 'ramda/list'
@@ -61,6 +63,7 @@ module Ramda
                  :all_pass,
                  :and,
                  :any_pass,
+                 :if_else,
                  :is_empty,
                  :not,
                  :or

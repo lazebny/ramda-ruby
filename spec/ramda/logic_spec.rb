@@ -36,9 +36,9 @@ describe Ramda::Logic do
         Ramda.prop(:count),
         Ramda.prop(:count),
         Ramda.identity
-      );
+      )
       expect(inc_count.call({})).to eq({})
-      expect(inc_count.call({ count: 1 })).to eq(1)
+      expect(inc_count.call(count: 1)).to eq(1)
     end
   end
 

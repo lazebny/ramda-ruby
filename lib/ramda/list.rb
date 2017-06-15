@@ -164,6 +164,12 @@ module Ramda
       xs.rindex(x) || -1
     end
 
+    # Returns the number of elements in the array by returning list.length
+    #
+    # [a] -> Number
+    #
+    curried_method(:length, &:size)
+
     # Takes a function and a functor, applies the function to each of the
     # functor's values, and returns a functor of the same shape.
     # Ramda provides suitable map implementations for Array and Object,

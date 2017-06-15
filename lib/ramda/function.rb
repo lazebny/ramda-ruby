@@ -44,6 +44,18 @@ module Ramda
       ->(*args) { constructor.new(*args) }
     end
 
+    # Accepts a converging function and a list of branching functions and returns
+    # a new function. When invoked, this new function is applied to some arguments,
+    # each branching function is applied to those same arguments. The results of
+    # each branching function are passed as arguments to the converging function to
+    # produce the return value.
+    #
+    # (x1 -> x2 -> ... -> z) -> [(a -> b -> ... -> x1), ...] -> (a -> b -> ... -> z))]
+    #
+    curried_method(:converge) do |fn, xs, obj|
+      fn.call(*xs.map { |f| f.call(obj) })
+    end
+
     # Returns a curried equivalent of the provided function. The curried function
     # has two unusual capabilities. First, its arguments needn't be provided
     # one at a time. If f is a ternary function and g is R.curry(f),

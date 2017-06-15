@@ -44,6 +44,16 @@ describe Ramda::Function do
     end
   end
 
+  context '#converge' do
+    it 'from docs' do
+      average = r.converge(R.divide, [R.sum, R.length])
+      expect(average.call([1, 2, 3, 4, 5, 6, 7])).to eq(4)
+
+      strange_concat = r.converge(R.concat, [R.to_upper, R.to_lower])
+      expect(strange_concat.call('Yodel')).to eq('YODELyodel')
+    end
+  end
+
   context '#curry' do
     it 'from docs' do
       add_four_numbers = ->(a, b, c, d) { a + b + c + d }

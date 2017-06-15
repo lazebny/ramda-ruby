@@ -194,6 +194,13 @@ describe Ramda::List do
     end
   end
 
+  context '#length' do
+    it 'from docs' do
+      expect(r.length([])).to eq(0)
+      expect(r.length([1, 2, 3])).to eq(3)
+    end
+  end
+
   context '#map' do
     it 'from docs' do
       double_fn = ->(x) { x * 2 }

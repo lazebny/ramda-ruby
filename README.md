@@ -1,16 +1,17 @@
-# Ramda
+Ramda Ruby
+=============
 
-This ruby version of of Ramda library (http://ramdajs.com)
+This is ruby version of of Ramda library from (http://ramdajs.com)
 
-# Not Implemented in version 0.1.0
 
-Function
+[![Gem Version](https://badge.fury.io/rb/ramda-ruby.svg)](http://badge.fury.io/rb/ramda-ruby)
+[![Travis badge](https://travis-ci.org/lazebny/ramda-ruby.svg?branch=master)](https://travis-ci.org/lazebny/ramda-ruby)
+[![Code Climate Badge](https://codeclimate.com/github/lazebny/ramda-ruby.svg)](https://codeclimate.com/github/lazebny/ramda-ruby)
+[![Inch CI](http://inch-ci.org/github/lazebny/ramda-ruby.svg)](http://inch-ci.org/github/lazebny/ramda-ruby)
 
-* comparator
-* construct
-* flip
 
-## Installation
+Installation
+------------
 
 Add this line to your application's Gemfile:
 
@@ -25,6 +26,12 @@ And then execute:
 Or install it yourself as:
 
     $ gem install ramda-ruby
+
+And then require:
+
+```ruby
+reuire 'ramda'
+```
 
 ## Usage
 

@@ -15,11 +15,11 @@ describe Ramda::Math do
 
   context '#divide' do
     it 'from docs' do
-      expect(r.divide(71, 100)).to be(0.71)
+      expect(r.divide(71, 100)).to eq(0.71)
     end
 
     it 'is curried' do
-      expect(r.divide(1).call(4)).to be(0.25)
+      expect(r.divide(1).call(4)).to eq(0.25)
     end
   end
 

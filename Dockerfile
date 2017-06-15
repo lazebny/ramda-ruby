@@ -1,10 +1,14 @@
-FROM ruby:2.2.4
+FROM ruby:2.1.9
 
 RUN apt-get update && apt-get install -y \
   build-essential \
 
   # debug tools
   vim
+
+RUN gem install bundler -v 1.15.1
+RUN gem install rubocop -v 0.49.1
+RUN gem install rubocop-rspec -v 1.15.1
 
 ENV APP_HOME /srv/app
 

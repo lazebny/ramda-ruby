@@ -16,9 +16,9 @@ describe Ramda::String do
       path_components = r.split('/')
 
       expect(R.tail(path_components.call('/usr/local/bin/node')))
-        .to eq(%w[usr local bin node])
+        .to eq(['usr', 'local', 'bin', 'node'])
 
-      expect(r.split('.', 'a.b.c.xyz.d')).to eq(%w[a b c xyz d])
+      expect(r.split('.', 'a.b.c.xyz.d')).to eq(['a', 'b', 'c', 'xyz', 'd'])
     end
   end
 

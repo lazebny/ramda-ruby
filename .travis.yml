@@ -19,16 +19,17 @@ rvm:
 
   - rbx
 
-# matrix:
-#   include:
-#     - rvm: 2.3.4
-#       jdk: oraclejdk8
-#       env: COVERAGE=1
-#
-#   allow_failures:
-#     - rvm: ruby-head
-#     - rvm: jruby-head
-#     - rvm: 1.9.3
-#     - rvm: rbx
+matrix:
+  include:
+    - rvm: 2.3.4
+      jdk: oraclejdk8
+      env: COVERAGE=1
+
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-head
+    # FIXME
+    - rvm: jruby-1.7.27
+    - rvm: rbx
 
 before_install: gem install bundler -v 1.15.1

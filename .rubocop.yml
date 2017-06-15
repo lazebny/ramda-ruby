@@ -26,6 +26,12 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Max: 100
 
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
 RSpec/ExampleLength:
   Enabled: false
 
@@ -34,4 +40,3 @@ RSpec/MultipleExpectations:
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
-

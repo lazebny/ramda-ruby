@@ -31,7 +31,7 @@ describe Ramda::Object do
 
   context '#keys' do
     it 'from docs' do
-      expect(r.keys(a: 1, b: 2, c: 3)).to eq(%i[a b c])
+      expect(r.keys(a: 1, b: 2, c: 3)).to eq([:a, :b, :c])
     end
   end
 
@@ -49,21 +49,21 @@ describe Ramda::Object do
 
   context '#omit' do
     it 'from docs' do
-      expect(r.omit(%i[a d], a: 1, b: 2, c: 3, d: 4)).to eq(b: 2, c: 3)
+      expect(r.omit([:a, :d], a: 1, b: 2, c: 3, d: 4)).to eq(b: 2, c: 3)
     end
   end
 
   context '#pick' do
     it 'from docs' do
-      expect(r.pick(%i[a d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)
-      expect(r.pick(%i[a e f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1)
+      expect(r.pick([:a, :d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)
+      expect(r.pick([:a, :e, :f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1)
     end
   end
 
   context '#pick_all' do
     it 'from docs' do
-      expect(r.pick_all(%i[a d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)
-      expect(r.pick_all(%i[a e f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, e: nil, f: nil)
+      expect(r.pick_all([:a, :d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)
+      expect(r.pick_all([:a, :e, :f], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, e: nil, f: nil)
     end
   end
 
@@ -73,7 +73,7 @@ describe Ramda::Object do
       fred = { name: 'Fred', age: 12, hair: 'brown', grade: 7 }
       kids = [abby, fred]
 
-      expect(r.project(%i[name grade], kids))
+      expect(r.project([:name, :grade], kids))
         .to eq([{ name: 'Abby', grade: 2 }, { name: 'Fred', grade: 7 }])
     end
   end
@@ -87,10 +87,10 @@ describe Ramda::Object do
 
   context '#props' do
     it 'from docs' do
-      expect(r.props(%i[x y], x: 1, y: 2)).to eq([1, 2])
-      expect(r.props(%i[c a b], b: 2, a: 1)).to eq([nil, 1, 2])
+      expect(r.props([:x, :y], x: 1, y: 2)).to eq([1, 2])
+      expect(r.props([:c, :a, :b], b: 2, a: 1)).to eq([nil, 1, 2])
 
-      full_name = R.compose(R.join(' '), r.props(%i[first last]))
+      full_name = R.compose(R.join(' '), r.props([:first, :last]))
       expect(full_name.call(last: 'Bullet-Tooth', age: 33, first: 'Tony'))
         .to eq('Tony Bullet-Tooth')
     end

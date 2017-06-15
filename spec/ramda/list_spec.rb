@@ -34,9 +34,9 @@ describe Ramda::List do
 
   context '#append' do
     it 'from docs' do
-      expect(r.append('tests', %w[write more])).to eq(%w[write more tests])
+      expect(r.append('tests', ['write', 'more'])).to eq(['write', 'more', 'tests'])
       expect(r.append('tests', [])).to eq(['tests'])
-      expect(r.append(['tests'], %w[write more])).to eq(['write', 'more', ['tests']])
+      expect(r.append(['tests'], ['write', 'more'])).to eq(['write', 'more', ['tests']])
     end
 
     it 'is curried' do
@@ -71,10 +71,10 @@ describe Ramda::List do
 
   context '#drop' do
     it 'from docs' do
-      expect(r.drop(1, %w[foo bar baz])).to eq(%w[bar baz])
-      expect(r.drop(2, %w[foo bar baz])).to eq(%w[baz])
-      expect(r.drop(3, %w[foo bar baz])).to eq([])
-      expect(r.drop(4, %w[foo bar baz])).to eq([])
+      expect(r.drop(1, ['foo', 'bar', 'baz'])).to eq(['bar', 'baz'])
+      expect(r.drop(2, ['foo', 'bar', 'baz'])).to eq(['baz'])
+      expect(r.drop(3, ['foo', 'bar', 'baz'])).to eq([])
+      expect(r.drop(4, ['foo', 'bar', 'baz'])).to eq([])
       expect(r.drop(3, 'ramda')).to eq('da')
     end
 
@@ -161,7 +161,7 @@ describe Ramda::List do
 
   context '#head' do
     it 'from docs' do
-      expect(r.head(%w[fi fo fum])).to eq('fi')
+      expect(r.head(['fi', 'fo', 'fum'])).to eq('fi')
       expect(r.head([])).to be_nil
       expect(r.head('abc')).to eq('a')
       expect(r.head('')).to eq('')
@@ -211,7 +211,7 @@ describe Ramda::List do
 
   context '#nth' do
     it 'from docs' do
-      list = %w[foo bar baz quux]
+      list = ['foo', 'bar', 'baz', 'quux']
       expect(r.nth(1, list)).to eq('bar')
       expect(r.nth(-1, list)).to eq('quux')
       expect(r.nth(-99, list)).to be_nil
@@ -230,7 +230,7 @@ describe Ramda::List do
 
   context '#prepend' do
     it 'from docs' do
-      expect(r.prepend('fee', %w[fi fo fum])).to eq(%w[fee fi fo fum])
+      expect(r.prepend('fee').call(['fi', 'fo', 'fum'])).to eq(['fee', 'fi', 'fo', 'fum'])
     end
   end
 
@@ -320,11 +320,11 @@ describe Ramda::List do
 
     it 'can operate on arrays' do
       expect(r.take(10, [])).to eq([])
-      expect(r.take(4, %w[foo bar baz])).to eq(%w[foo bar baz])
-      expect(r.take(3, %w[foo bar baz])).to eq(%w[foo bar baz])
-      expect(r.take(2, %w[foo bar baz])).to eq(%w[foo bar])
-      expect(r.take(1, %w[foo bar baz])).to eq(['foo'])
-      expect(r.take(0, %w[foo bar baz])).to eq([])
+      expect(r.take(4, ['foo', 'bar', 'baz'])).to eq(['foo', 'bar', 'baz'])
+      expect(r.take(3, ['foo', 'bar', 'baz'])).to eq(['foo', 'bar', 'baz'])
+      expect(r.take(2, ['foo', 'bar', 'baz'])).to eq(['foo', 'bar'])
+      expect(r.take(1, ['foo', 'bar', 'baz'])).to eq(['foo'])
+      expect(r.take(0, ['foo', 'bar', 'baz'])).to eq([])
     end
 
     it 'can operate on strings' do
@@ -355,15 +355,15 @@ describe Ramda::List do
 
   context '#xprod' do
     it 'from docs' do
-      expect(r.xprod([1, 2], %w[a b]))
+      expect(r.xprod([1, 2], ['a', 'b']))
         .to eq([[1, 'a'], [1, 'b'], [2, 'a'], [2, 'b']])
     end
   end
 
   context '#zip' do
     it 'from docs' do
-      expect(r.zip([1, 2, 3], %w[a b c])).to eq([[1, 'a'], [2, 'b'], [3, 'c']])
-      expect(r.zip([1, 2, 3], %w[a b c d])).to eq([[1, 'a'], [2, 'b'], [3, 'c']])
+      expect(r.zip([1, 2, 3], ['a', 'b', 'c'])).to eq([[1, 'a'], [2, 'b'], [3, 'c']])
+      expect(r.zip([1, 2, 3], ['a', 'b', 'c', 'd'])).to eq([[1, 'a'], [2, 'b'], [3, 'c']])
     end
   end
 
@@ -371,7 +371,7 @@ describe Ramda::List do
     it 'from docs' do
       f = ->(x, y) { Ramda.join('', [x, y]) }
 
-      expect(r.zip_with(f, [1, 2, 3], %w[a b c])).to eq(%w[1a 2b 3c])
+      expect(r.zip_with(f, [1, 2, 3], ['a', 'b', 'c'])).to eq(['1a', '2b', '3c'])
     end
   end
 end

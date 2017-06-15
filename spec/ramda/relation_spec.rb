@@ -18,7 +18,7 @@ describe Ramda::Relation do
 
   context '#count_by' do
     it 'from docs' do
-      letters = %w[a b A a B c]
+      letters = ['a', 'b', 'A', 'a', 'B', 'c']
       expect(r.count_by(R.to_lower).call(letters)).to eq('a' => 3, 'b' => 2, 'c' => 1)
     end
   end

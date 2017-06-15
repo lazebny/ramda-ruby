@@ -13,12 +13,28 @@ module Ramda
       a + b
     end
 
+    # Decrements its argument.
+    #
+    # Number -> Number
+    #
+    curried_method(:dec) do |a|
+      a - 1
+    end
+
     # Divides two numbers. Equivalent to a / b.
     #
     # Number -> Number -> Number
     #
     curried_method(:divide) do |a, b|
       a.to_f / b
+    end
+
+    # Increments its argument.
+    #
+    # Number -> Number
+    #
+    curried_method(:inc) do |a|
+      a + 1
     end
 
     # Multiplies two numbers. Equivalent to a * b but curried.

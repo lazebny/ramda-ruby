@@ -13,6 +13,12 @@ describe Ramda::Math do
     end
   end
 
+  context '#dec' do
+    it 'from docs' do
+      expect(r.dec(42)).to eq(41)
+    end
+  end
+
   context '#divide' do
     it 'from docs' do
       expect(r.divide(71, 100)).to eq(0.71)
@@ -20,6 +26,12 @@ describe Ramda::Math do
 
     it 'is curried' do
       expect(r.divide(1).call(4)).to eq(0.25)
+    end
+  end
+
+  context '#inc' do
+    it 'from docs' do
+      expect(r.inc(42)).to eq(43)
     end
   end
 

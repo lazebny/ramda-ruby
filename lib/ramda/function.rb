@@ -162,5 +162,21 @@ module Ramda
       fn.call(x)
       x
     end
+
+    # Accepts a function fn and a list of transformer functions and returns
+    # a new curried function. When the new function is invoked, it calls the
+    # function fn with parameters consisting of the result of calling each
+    # supplied handler on successive arguments to the new function.
+    #
+    # (x1 -> x2 -> ... -> z) -> [(a -> b -> ... -> x1), ...] -> (a -> b -> ... -> z)
+    #
+    curried_method(:use_with) do |fn, fns|
+      Ramda::Internal::FunctionWithArity.new.call(fns.count) do |*args|
+        modified_args = args.each_with_index.map do |arg, index|
+          fns[index].call(arg)
+        end
+        fn.call(*modified_args)
+      end.curry
+    end
   end
 end

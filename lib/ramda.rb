@@ -26,7 +26,8 @@ module Ramda
                  :memoize,
                  :once,
                  :pipe,
-                 :tap
+                 :tap,
+                 :use_with
 
   def_delegators Ramda::List,
                  :all,
@@ -72,7 +73,9 @@ module Ramda
 
   def_delegators Ramda::Math,
                  :add,
+                 :dec,
                  :divide,
+                 :inc,
                  :multiply,
                  :product,
                  :subtract,

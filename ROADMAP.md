@@ -77,7 +77,7 @@
 * + union
 * union_with
 * + uniq
-* use_with
+* + use_with
 * + values
 * + xprod
 * + zip

@@ -187,12 +187,14 @@ describe Ramda::Function do
     end
   end
 
-  xcontext '#use_with' do
+  context '#use_with' do
     it 'from docs' do
-      # R.useWith(Math.pow, [R.identity, R.identity])(3, 4); //=> 81
-      # R.useWith(Math.pow, [R.identity, R.identity])(3)(4); //=> 81
-      # R.useWith(Math.pow, [R.dec, R.inc])(3, 4); //=> 32
-      # R.useWith(Math.pow, [R.dec, R.inc])(3)(4); //=> 32
+      pow = ->(x, count) { Array.new(count, x).reduce(:*) }
+
+      expect(r.use_with(pow, [R.identity, R.identity]).call(3, 4)).to eq(81)
+      expect(r.use_with(pow, [R.identity, R.identity]).call(3).call(4)).to eq(81)
+      expect(r.use_with(pow, [R.dec, R.inc]).call(3, 4)).to eq(32)
+      expect(r.use_with(pow, [R.dec, R.inc]).call(3).call(4)).to eq(32)
     end
   end
 end

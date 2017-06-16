@@ -144,7 +144,7 @@ describe Ramda::Function do
     end
   end
 
-  xcontext '#n_ary' do
+  context '#n_ary' do
     it 'from docs' do
       takes_two_args = ->(a, b) { [a, b] }
 

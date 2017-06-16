@@ -24,6 +24,7 @@ module Ramda
                  :identity,
                  :invoker,
                  :memoize,
+                 :n_ary,
                  :once,
                  :pipe,
                  :tap,

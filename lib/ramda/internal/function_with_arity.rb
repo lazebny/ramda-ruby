@@ -8,19 +8,19 @@ module Ramda
       def call(arity)
         case arity
         when 0
-          -> { yield }
+          ->(*a) { yield(*a) }
         when 1
-          ->(a) { yield(a) }
+          ->(a, *b) { yield(a, *b) }
         when 2
-          ->(a, b) { yield(a, b) }
+          ->(a, b, *c) { yield(a, b, *c) }
         when 3
-          ->(a, b, c) { yield(a, b, c) }
+          ->(a, b, c, *d) { yield(a, b, c, *d) }
         when 4
-          ->(a, b, c, d) { yield(a, b, c, d) }
+          ->(a, b, c, d, *e) { yield(a, b, c, d, *e) }
         when 5
-          ->(a, b, c, d, e) { yield(a, b, c, d, e) }
+          ->(a, b, c, d, e, *f) { yield(a, b, c, d, e, *f) }
         when 6
-          ->(a, b, c, d, e, f) { yield(a, b, c, d, e, f) }
+          ->(a, b, c, d, e, f, *g) { yield(a, b, c, d, e, f, *g) }
         else
           raise ArgumentError, "Arrity #{arity} is not supported"
         end

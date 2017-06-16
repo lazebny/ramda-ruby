@@ -122,8 +122,7 @@ module Ramda
 
     curried_method(:n_ary) do |arity, fn|
       Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
-        empty_args = Array.new(fn.arity - arity, nil)
-        fn.call(*(args + empty_args))
+        fn.call(*(args.first(arity) + Array.new(fn.arity - arity, nil)))
       end.curry
     end
 

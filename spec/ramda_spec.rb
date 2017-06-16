@@ -59,7 +59,7 @@ describe Ramda do
   r(:merge)
   r(:min)
   r(:multiply)
-  # r(:n_ary)
+  r(:n_ary)
   r(:not)
   r(:nth)
   r(:omit)

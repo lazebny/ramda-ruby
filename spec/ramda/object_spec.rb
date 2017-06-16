@@ -3,6 +3,12 @@ require 'spec_helper'
 describe Ramda::Object do
   let(:r) { described_class }
 
+  context '#assoc' do
+    it 'from docs' do
+      expect(r.assoc(:c, 3, {a: 1, b: 2})).to eq(a: 1, b: 2, c: 3)
+    end
+  end
+
   context '#clone' do
     it 'from docs' do
       objects = [{}, {}, {}]

@@ -6,6 +6,7 @@
 * any
 * any_pass
 * append
+* assoc
 * clone
 * comparator
 * compose

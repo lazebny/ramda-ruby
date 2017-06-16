@@ -85,6 +85,7 @@ module Ramda
                  :sum
 
   def_delegators Ramda::Object,
+                 :assoc,
                  :clone,
                  :eq_props,
                  :keys,

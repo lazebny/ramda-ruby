@@ -15,6 +15,7 @@ describe Ramda do
   r(:any)
   r(:any_pass)
   r(:append)
+  r(:assoc)
   r(:clone)
   r(:comparator)
   r(:compose)

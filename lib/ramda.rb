@@ -99,6 +99,7 @@ module Ramda
                  :count_by,
                  :difference,
                  :difference_with,
+                 :eq_by,
                  :equals,
                  :gt,
                  :gte,
@@ -109,7 +110,8 @@ module Ramda
                  :min,
                  :prop_eq,
                  :sort_by,
-                 :union
+                 :union,
+                 :union_with
 
   def_delegators Ramda::String,
                  :match,

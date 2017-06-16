@@ -41,7 +41,8 @@ describe Ramda::Object do
         .to eq(name: 'fred', age: 40)
     end
 
-    xit 'curried' do
+    it 'is curried' do
+      expect(r.merge({a: 1}).call(b: 2)).to eq(a: 1, b: 2)
       # var resetToDefault = R.merge(R.__, {x: 0});
       # resetToDefault({x: 5, y: 2}); //=> {x: 0, y: 2}
     end

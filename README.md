@@ -37,6 +37,16 @@ And then require:
 reuire 'ramda'
 ```
 
+## Documentation
+
+This gem tries to follow the same versions as ramdajs has.
+
+[Implemeted Functions](docs/FUNCTIONS.md)
+
+Currently this project doesn't have own documentation but it tries to follow
+specification from http://ramdajs.com/docs/. You could use this resource as a
+source of documentation. Examples exist in spec directory.
+
 ## Usage
 
 TODO: Write usage instructions here

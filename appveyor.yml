@@ -9,7 +9,7 @@ install:
 build: off
 
 test_script:
-  - bundle exec rake ci
+  - bundle exec rake
 
 environment:
   matrix:
@@ -21,6 +21,6 @@ environment:
     - ruby_version: "22"
     - ruby_version: "22-x64"
 
-matrix:
-  allow_failures:
-    - ruby_version: "193"
+# matrix:
+#   allow_failures:
+#     - ruby_version: "193"

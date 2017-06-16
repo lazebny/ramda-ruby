@@ -1,24 +1,26 @@
 # coding: utf-8
 
-$LOAD_PATH << File.expand_path('../lib', __FILE__)
+$LOAD_PATH <<  File.expand_path('../lib', __FILE__)
 
 require 'ramda/version'
 
-Gem::Specification.new do |spec|
-  spec.name          = 'ramda-ruby'
-  spec.version       = Ramda::VERSION
-  spec.authors       = ['Vadim Lazebny']
-  spec.email         = ['vadim.lazebny@gmail.com']
+Gem::Specification.new do |s|
+  s.name          = 'ramda-ruby'
+  s.version       = Ramda::VERSION
+  s.authors       = ['Vadim Lazebny']
+  s.email         = ['vadim.lazebny@gmail.com']
 
-  spec.summary       = 'RamdaJs implementation for Ruby.'
-  spec.description   = 'A gem for porting RamdaJs tools for Ruby.'
-  spec.homepage      = 'https://github.com/lazebny/ramda-ruby'
-  spec.license       = 'MIT'
+  s.summary       = 'RamdaJs implementation for Ruby.'
+  s.description   = 'A gem for porting RamdaJs tools for Ruby.'
+  s.homepage      = 'https://github.com/lazebny/ramda-ruby'
+  s.license       = 'MIT'
 
-  spec.files = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-  spec.bindir        = 'exe'
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ['lib']
+  s.files             = Dir['README*', 'LICENSE*', 'CHANGELOG*', 'ROADMAP*']
+  s.files            += Dir['{lib}/**/*']
+  s.test_files        = Dir['{spec}/**/*']
+  s.extra_rdoc_files  = Dir['README*', 'LICENSE*', 'CHANGELOG*', 'ROADMAP*']
+  s.extra_rdoc_files += Dir['{docs}/**/*.{txt,md}']
+  s.require_paths     = ['lib']
+
+	s.required_ruby_version = '>= 1.9.3'
 end

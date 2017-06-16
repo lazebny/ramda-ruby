@@ -255,10 +255,25 @@ describe Ramda::List do
     end
   end
 
-  xcontext '#reduce_right' do
+  context '#reduce_right' do
+    def avg
+      ->(a, b) { (a + b) / 2 }
+    end
+
     it 'from docs' do
       # (1 - (2 - (3 - (4 - 0)))))
       expect(r.reduce_right(R.subtract, 0, [1, 2, 3, 4])).to be(-2)
+    end
+
+    it 'returns the accumulator for an empty array' do
+      expect(r.reduce_right(avg, 0, [])).to eq(0)
+    end
+
+    it 'is curried' do
+      something = r.reduce_right(avg, 54)
+      rcat = r.reduce_right(R.concat, '')
+      expect(something.call([12, 4, 10, 6])).to eq(12)
+      expect(rcat.call(['1', '2', '3', '4'])).to eq('1234')
     end
   end
 

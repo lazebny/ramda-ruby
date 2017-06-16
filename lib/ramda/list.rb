@@ -260,8 +260,8 @@ module Ramda
     #
     # ((a, b) -> a) -> a -> [b] -> a
     #
-    curried_method(:reduce_right) do |fn, acc, xs|
-      # xs.reverse.reduce(acc, &fn)
+    curried_method(:reduce_right) do |fn, acc_arg, xs|
+      xs.reverse.reduce(acc_arg) { |acc, x| fn.call(x, acc) }
     end
 
     # Returns a new list or string with the elements or characters in reverse order.

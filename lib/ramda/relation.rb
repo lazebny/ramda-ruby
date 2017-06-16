@@ -42,7 +42,7 @@ module Ramda
       end
     end
 
-    # Takes a function and two values in its domain and returns true if the 
+    # Takes a function and two values in its domain and returns true if the
     # values map to the same value in the codomain; false otherwise.
     #
     # (a -> b) -> a -> a -> Boolean

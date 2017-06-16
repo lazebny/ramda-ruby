@@ -43,7 +43,7 @@ describe Ramda::Relation do
 
   context '#eq_by' do
     it 'from docs' do
-      size_fn = -> (x) { x.size }
+      size_fn = ->(x) { x.size }
       expect(r.eq_by(size_fn, ['abc'], [100])).to be_truthy
       expect(r.eq_by(size_fn, [1, 2], [1])).to be_falsey
     end
@@ -166,9 +166,9 @@ describe Ramda::Relation do
 
   context '#union_with' do
     it 'from docs' do
-      l1 = [{a: 1}, {a: 2}];
-      l2 = [{a: 1}, {a: 4}];
-      expect(r.union_with(R.prop(:a), l1, l2)).to eq([{a: 1}, {a: 2}, {a: 4}])
+      l1 = [{ a: 1 }, { a: 2 }]
+      l2 = [{ a: 1 }, { a: 4 }]
+      expect(r.union_with(R.prop(:a), l1, l2)).to eq([{ a: 1 }, { a: 2 }, { a: 4 }])
     end
   end
 end

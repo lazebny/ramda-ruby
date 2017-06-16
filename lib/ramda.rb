@@ -10,6 +10,7 @@ require 'ramda/relation'
 require 'ramda/string'
 
 # Ramda library implementation, source: http://ramdajs.com/
+# rubocop:disable Metrics/ModuleLength
 module Ramda
   extend SingleForwardable
 
@@ -53,6 +54,7 @@ module Ramda
                  :prepend,
                  :range,
                  :reduce,
+                 :reduce_right,
                  :reject,
                  :reverse,
                  :tail,

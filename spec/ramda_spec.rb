@@ -78,7 +78,7 @@ describe Ramda do
   r(:props)
   r(:range)
   r(:reduce)
-  # r(:reduce_right)
+  r(:reduce_right)
   r(:reject)
   r(:reverse)
   r(:sort)

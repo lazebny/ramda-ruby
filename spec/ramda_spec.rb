@@ -28,6 +28,7 @@ describe Ramda do
   r(:dec)
   r(:difference)
   r(:difference_with)
+  r(:dissoc)
   r(:divide)
   r(:drop)
   r(:eq_by)

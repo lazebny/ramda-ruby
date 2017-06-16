@@ -87,6 +87,7 @@ module Ramda
   def_delegators Ramda::Object,
                  :assoc,
                  :clone,
+                 :dissoc,
                  :eq_props,
                  :keys,
                  :merge,

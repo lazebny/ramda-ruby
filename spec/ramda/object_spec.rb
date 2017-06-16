@@ -5,7 +5,7 @@ describe Ramda::Object do
 
   context '#assoc' do
     it 'from docs' do
-      expect(r.assoc(:c, 3, {a: 1, b: 2})).to eq(a: 1, b: 2, c: 3)
+      expect(r.assoc(:c, 3, a: 1, b: 2)).to eq(a: 1, b: 2, c: 3)
     end
   end
 
@@ -15,6 +15,12 @@ describe Ramda::Object do
       objects_clone = r.clone(objects)
       expect(objects).not_to be(objects_clone)
       expect(objects[0]).not_to be(objects_clone[0])
+    end
+  end
+
+  context '#dissoc' do
+    it 'from docs' do
+      expect(r.dissoc(:b, a: 1, b: 2, c: 3)).to eq(a: 1, c: 3)
     end
   end
 
@@ -48,7 +54,7 @@ describe Ramda::Object do
     end
 
     it 'is curried' do
-      expect(r.merge({a: 1}).call(b: 2)).to eq(a: 1, b: 2)
+      expect(r.merge(a: 1).call(b: 2)).to eq(a: 1, b: 2)
       # var resetToDefault = R.merge(R.__, {x: 0});
       # resetToDefault({x: 5, y: 2}); //=> {x: 0, y: 2}
     end

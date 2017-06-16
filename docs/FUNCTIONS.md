@@ -19,6 +19,7 @@
 * dec
 * difference
 * difference_with
+* dissoc
 * divide
 * drop
 * eq_by

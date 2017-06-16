@@ -22,13 +22,21 @@ module Ramda
     #
     # {*} -> {*}
     #
-    curried_method(:clone) do |object|
-      case object
+    curried_method(:clone) do |obj|
+      case obj
       when Array
-        object.dup.map(&method(:clone))
+        obj.dup.map(&method(:clone))
       else
-        object.dup
+        obj.dup
       end
+    end
+
+    # Returns a new object that does not contain a prop property.
+    #
+    # String -> {k: v} -> {k: v}
+    #
+    curried_method(:dissoc) do |prop, obj|
+      clone(obj).tap { |o| o.delete(prop) }
     end
 
     # Reports whether two objects have the same value, in R.equals terms,

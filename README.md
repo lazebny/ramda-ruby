@@ -51,12 +51,10 @@ require 'ramda'
 
 ## Documentation
 
-This gem tries to follow the same versions as Ramda Js.
+Currently the gem doesn't have own documentation but it tries to follow specification from [Ramda Js](http://ramdajs.com/docs/)
 
-Currently the gem doesn't have own documentation but it tries to follow specification from [Ramda Js](http://ramdajs.com/docs/):
-
-* each release contains [functions](docs/FUNCTIONS.md) from the relevant Ramda Js release
-* each release includes more functions which i found pretty useful
+* each release includes [functions](docs/FUNCTIONS.md) from the relevant [Ramda Js](http://ramdajs.com) release
+* each release includes more functions which i found pretty useful but they are from upcoming releases
 
 You could use [Ramda Js](http://ramdajs.com/docs/) as a source of documentation.
 

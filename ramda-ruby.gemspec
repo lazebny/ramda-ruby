@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors       = ['Vadim Lazebny']
   s.email         = ['vadim.lazebny@gmail.com']
 
-  s.summary       = 'RamdaJs implementation for Ruby.'
-  s.description   = 'A gem for porting RamdaJs tools for Ruby.'
+  s.summary       = 'Ruby version of Ramda Js library.'
+  s.description   = s.summary
   s.homepage      = 'https://github.com/lazebny/ramda-ruby'
   s.license       = 'MIT'
 

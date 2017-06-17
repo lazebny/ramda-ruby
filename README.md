@@ -1,8 +1,7 @@
 Ramda Ruby
 =============
 
-This is ruby version of of Ramda library from (http://ramdajs.com)
-
+This is a ruby version of [Ramda Js](http://ramdajs.com) library.
 
 [![Gem Version](https://badge.fury.io/rb/ramda-ruby.svg)](http://badge.fury.io/rb/ramda-ruby)
 [![Travis badge](https://travis-ci.org/lazebny/ramda-ruby.svg?branch=master)](https://travis-ci.org/lazebny/ramda-ruby)
@@ -34,18 +33,34 @@ Or install it yourself as:
 And then require:
 
 ```ruby
-reuire 'ramda'
+require 'ramda'
 ```
+
+## Philosophy of [Ramda](http://ramdajs.com)
+
+* Ramda emphasizes a purer functional style.
+  Immutability and side-effect free functions are at the heart of its design philosophy.
+  This can help you get the job done with simple, elegant code.
+
+* Ramda functions are automatically curried.
+  This allows you to easily build up new functions from old ones simply by not supplying the final parameters.
+
+* The parameters to Ramda functions are arranged to make it convenient for currying.
+  The data to be operated on is generally supplied last.
+
 
 ## Documentation
 
-This gem tries to follow the same versions as ramdajs has.
+This gem tries to follow the same versions as Ramda Js.
 
-[Implemeted Functions](docs/FUNCTIONS.md)
+Currently the gem doesn't have own documentation but it tries to follow specification from [Ramda Js](http://ramdajs.com/docs/):
 
-Currently this project doesn't have own documentation but it tries to follow
-specification from http://ramdajs.com/docs/. You could use this resource as a
-source of documentation. Examples exist in spec directory.
+* each release contains [functions](docs/FUNCTIONS.md) from the relevant Ramda Js release
+* each release includes more functions which i found pretty useful
+
+You could use [Ramda Js](http://ramdajs.com/docs/) as a source of documentation.
+
+Ruby scpecific examples can be found in [tests](spec/ramda).
 
 ## Usage
 

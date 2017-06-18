@@ -10,6 +10,15 @@ module Ramda
       -> { value }
     end
 
+    # Wraps a function of any arity (including nullary) in a function that
+    # accepts exactly 2 parameters. Any extraneous parameters will not be
+    # passed to the supplied function.
+    #
+    #
+    curried_method(:binary) do |fn|
+      n_ary(2, fn)
+    end
+
     # Makes a comparator function out of a function that reports whether
     # the first element is less than the second.
     #

@@ -4,7 +4,6 @@
 
 ### release 0.2.0
 
-binary
 keys_in
 path
 unary

@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* binary
+
 Release 0.1.4
 ---------------
 

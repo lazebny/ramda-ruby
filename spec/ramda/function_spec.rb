@@ -15,6 +15,16 @@ describe Ramda::Function do
     end
   end
 
+  context '#binary' do
+    it 'from docs' do
+      takes_three_args = ->(a, b, c) { [a, b, c]; }
+      expect(takes_three_args.call(1, 2, 3)).to eq([1, 2, 3])
+
+      takes_two_args = r.binary(takes_three_args)
+      expect(takes_two_args.call(1, 2, 3)).to eq([1, 2, nil])
+    end
+  end
+
   context '#comparator' do
     it 'from docs' do
       sort_rule = r.comparator(->(a, b) { a < b })

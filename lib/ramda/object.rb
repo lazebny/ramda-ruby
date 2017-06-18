@@ -90,6 +90,15 @@ module Ramda
       obj_copy
     end
 
+    # Retrieve the value at a given path.
+    #
+    # [Idx] -> {a} -> a | NilClass
+    # Idx = String | Int
+    #
+    curried_method(:path) do |keys, obj|
+      keys.reduce(obj) { |acc, key| acc.is_a?(Hash) ? acc.fetch(key, nil) : nil }
+    end
+
     # Returns a partial copy of an object containing only the keys specified.
     # If the key does not exist, the property is ignored.
     #

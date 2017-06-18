@@ -4,7 +4,6 @@
 
 ### release 0.2.0
 
-path
 uniq_with
 values_in
 

@@ -79,6 +79,13 @@ describe Ramda::Object do
     end
   end
 
+  context '#path' do
+    it 'from docs' do
+      expect(r.path([:a, :b], a: { b: 2 })).to eq(2)
+      expect(r.path([:a, :b], c: { b: 2 })).to eq(nil)
+    end
+  end
+
   context '#pick' do
     it 'from docs' do
       expect(r.pick([:a, :d], a: 1, b: 2, c: 3, d: 4)).to eq(a: 1, d: 4)

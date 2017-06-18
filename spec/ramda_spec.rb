@@ -79,6 +79,7 @@ describe Ramda do
   r(:once)
   r(:or)
   r(:partition)
+  r(:path)
   r(:pick)
   r(:pick_all)
   r(:pipe)

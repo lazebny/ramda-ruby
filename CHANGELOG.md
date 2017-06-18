@@ -5,6 +5,7 @@ Added:
 
 * binary
 * (pending) keys_in
+* path
 * unary
 
 Release 0.1.4

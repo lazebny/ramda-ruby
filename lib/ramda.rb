@@ -106,6 +106,7 @@ module Ramda
                  :keys,
                  :merge,
                  :omit,
+                 :path,
                  :pick,
                  :pick_all,
                  :project,

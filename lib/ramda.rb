@@ -74,6 +74,7 @@ module Ramda
                  :tail,
                  :take,
                  :take_while,
+                 :times,
                  :uniq,
                  :uniq_with,
                  :xprod,

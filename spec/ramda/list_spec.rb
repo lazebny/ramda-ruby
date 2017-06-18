@@ -453,6 +453,12 @@ describe Ramda::List do
     end
   end
 
+  context '#times' do
+    it 'from docs' do
+      expect(R.times(R.identity, 5)).to eq([0, 1, 2, 3, 4])
+    end
+  end
+
   context '#uniq' do
     it 'from docs' do
       expect(r.uniq([1, 1, 2, 1])).to eq([1, 2])

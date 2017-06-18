@@ -4,50 +4,47 @@
 
 ### release 0.2.3
 
-times
-
 ### release 0.3.0
 
-ap
-chain
-empty
-from_pairs
-is
-length
-math_mod
-of
-unnest
-zip_obj
+* ap
+* chain
+* empty
+* from_pairs
+* is
+* length
+* math_mod
+* of
+* unnest
+* zip_obj
 
 ### release 0.4.0
 
-construct_n
-to_pairs
-to_pairs_in
+* construct_n
+* to_pairs
+* to_pairs_in
 
 ### release 0.4.2
 
-converge
+* converge
 
 ### release 0.5.0
 
-curry_n
+* curry_n
 
 ### release 0.6.0
 
-__
-bind
-cond
-prop_or
-trim
+* __
+* bind
+* cond
+* prop_or
+* trim
 
 ### release 0.7.0
 
-apply
-has
-has_in
-lift
-lift_n
-path_eq
-replace
-
+* apply
+* has
+* has_in
+* lift
+* lift_n
+* path_eq
+* replace

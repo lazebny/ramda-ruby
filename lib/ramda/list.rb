@@ -416,6 +416,17 @@ module Ramda
       xs[0, xs.index { |x| !fn.call(x) } || xs.size]
     end
 
+    # Calls an input function n times, returning an array containing the results
+    # of those function calls.
+    # fn is passed one argument: The current value of n, which begins at 0
+    # and is gradually incremented to n - 1.
+    #
+    # (Number -> a) -> Number -> [a]
+    #
+    curried_method(:times) do |fn, n|
+      n.times.to_a.map(&fn)
+    end
+
     # Returns a new list containing only one copy of each element in the original list.
     #
     # [a] -> [a]

@@ -108,6 +108,7 @@ describe Ramda do
   r(:take)
   r(:take_while)
   r(:tap)
+  r(:times)
   r(:to_lower)
   r(:to_upper)
   r(:unary)

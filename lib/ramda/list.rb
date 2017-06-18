@@ -105,6 +105,34 @@ module Ramda
       xs.find(&f)
     end
 
+    # Returns the index of the first element of the list which matches the predicate,
+    # or nil if no element matches.
+    #
+    # (a -> Boolean) -> [a] -> Number | NilClass
+    #
+    curried_method(:find_index) do |fn, xs|
+      xs.index(&fn)
+    end
+
+    # Returns the last element of the list which matches the predicate,
+    # or nil if no element matches.
+    #
+    # (a -> Boolean) -> [a] -> a | NilClass
+    #
+    curried_method(:find_last) do |fn, xs|
+      index = xs.rindex(&fn)
+      xs[index] unless index.nil?
+    end
+
+    # Returns the index of the last element of the list which matches the
+    # predicate, or nil if no element matches.
+    #
+    # (a -> Boolean) -> [a] -> Number | NilClass
+    #
+    curried_method(:find_last_index) do |fn, xs|
+      xs.rindex(&fn)
+    end
+
     # Returns a new list by pulling every item out of it (and all its sub-arrays)
     # and putting them in a new array, depth-first.
     #
@@ -138,12 +166,12 @@ module Ramda
     end
 
     # Returns the position of the first occurrence of an item in an array,
-    # or -1 if the item is not included in the array.
+    # or nil if the item is not included in the array.
     #
-    # a -> [a] -> Number
+    # a -> [a] -> Number | NilClass
     #
     curried_method(:index_of) do |x, xs|
-      xs.index(x) || -1
+      xs.index(x)
     end
 
     # Returns a string made by inserting the separator between each element and
@@ -156,12 +184,12 @@ module Ramda
     end
 
     # Returns the position of the last occurrence of an item in an array,
-    # or -1 if the item is not included in the array.
+    # or nil if the item is not included in the array.
     #
-    # a -> [a] -> Number
+    # a -> [a] -> Number | NilClass
     #
     curried_method(:last_index_of) do |x, xs|
-      xs.rindex(x) || -1
+      xs.rindex(x)
     end
 
     # Returns the number of elements in the array by returning list.length

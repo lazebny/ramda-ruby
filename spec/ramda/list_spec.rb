@@ -113,6 +113,30 @@ describe Ramda::List do
     end
   end
 
+  context '#find_index' do
+    it 'from docs' do
+      xs = [{ a: 1 }, { a: 2 }, { a: 3 }]
+      expect(R.find_index(R.prop_eq(:a, 2)).call(xs)).to eq(1)
+      expect(R.find_index(R.prop_eq(:a, 4)).call(xs)).to be_nil
+    end
+  end
+
+  context '#find_last' do
+    it 'from docs' do
+      xs = [{ a: 1, b: 0 }, { a: 1, b: 1 }]
+      expect(r.find_last(R.prop_eq(:a, 1)).call(xs)).to eq(a: 1, b: 1)
+      expect(r.find_last(R.prop_eq(:a, 4)).call(xs)).to be_nil
+    end
+  end
+
+  context '#find_last_index' do
+    it 'from docs' do
+      xs = [{ a: 1, b: 0 }, { a: 1, b: 1 }]
+      expect(r.find_last_index(R.prop_eq(:a, 1)).call(xs)).to eq(1)
+      expect(r.find_last_index(R.prop_eq(:a, 4)).call(xs)).to be_nil
+    end
+  end
+
   context '#flatten' do
     it 'from docs' do
       expect(r.flatten([1, 2, [3, 4], 5, [6, [7, 8, [9, [10, 11], 12]]]]))
@@ -172,7 +196,7 @@ describe Ramda::List do
     it 'from docs' do
       expect(r.index_of(3, [1, 2, 3, 4])).to be(2)
       expect(r.index_of(1, [1, 2, 3, 4])).to be(0)
-      expect(r.index_of(10, [1, 2, 3, 4])).to be(-1)
+      expect(r.index_of(10, [1, 2, 3, 4])).to be(nil)
     end
   end
 
@@ -190,7 +214,7 @@ describe Ramda::List do
   context '#last_index_of' do
     it 'from docs' do
       expect(r.last_index_of(3, [-1, 3, 3, 0, 1, 2, 3, 4])).to be(6)
-      expect(r.last_index_of(10, [1, 2, 3, 4])).to be(-1)
+      expect(r.last_index_of(10, [1, 2, 3, 4])).to be_nil
     end
   end
 

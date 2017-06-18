@@ -27,6 +27,9 @@
 * equals
 * filter
 * find
+* find_index
+* find_last
+* find_last_index
 * flatten
 * flip
 * group_by

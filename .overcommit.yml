@@ -16,13 +16,13 @@
 # Uncomment the following lines to make the configuration take effect.
 
 PreCommit:
-  ForbiddenBranches:
-    enabled: true
-    on_warn: fail
-    branch_patterns:
-      - master
-      - staging
-      - production
+  # ForbiddenBranches:
+  #   enabled: true
+  #   on_warn: fail
+  #   branch_patterns:
+  #     - master
+  #     - staging
+  #     - production
   HardTabs:
     enabled: true
     on_warn: fail

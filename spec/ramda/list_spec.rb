@@ -449,6 +449,16 @@ describe Ramda::List do
     end
   end
 
+  context '#uniq_with' do
+    it 'from docs' do
+      str_eq = R.invoker(0, 'to_s')
+      expect(r.uniq_with(str_eq).call([1, '1', 2, 1])).to eq([1, 2])
+      expect(r.uniq_with(str_eq).call([{}, {}])).to eq([{}])
+      expect(r.uniq_with(str_eq).call([1, '1', 1])).to eq([1])
+      expect(r.uniq_with(str_eq).call(['1', 1, 1])).to eq(['1'])
+    end
+  end
+
   context '#xprod' do
     it 'from docs' do
       expect(r.xprod([1, 2], ['a', 'b']))

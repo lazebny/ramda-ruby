@@ -4,7 +4,6 @@
 
 ### release 0.2.0
 
-uniq_with
 values_in
 
 ### release 0.2.2

@@ -73,6 +73,7 @@ module Ramda
                  :take,
                  :take_while,
                  :uniq,
+                 :uniq_with,
                  :xprod,
                  :zip,
                  :zip_with

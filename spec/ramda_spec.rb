@@ -112,6 +112,7 @@ describe Ramda do
   r(:union)
   r(:union_with)
   r(:uniq)
+  r(:uniq_with)
   r(:use_with)
   r(:values)
   r(:where)

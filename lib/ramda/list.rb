@@ -408,6 +408,13 @@ module Ramda
     #
     curried_method(:uniq, &:uniq)
 
+    # Returns a new list containing only one copy of each element in the original list,
+    # based upon the value returned by applying the supplied predicate to each list
+    # element.
+    curried_method(:uniq_with) do |fn, xs|
+      xs.uniq(&fn)
+    end
+
     # Creates a new list out of the two supplied by creating each possible pair
     # from the lists.
     #

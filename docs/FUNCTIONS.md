@@ -28,10 +28,14 @@
 * filter
 * find
 * find_index
+* find_index
 * find_last
+* find_last
+* find_last_index
 * find_last_index
 * flatten
 * flip
+* for_each
 * group_by
 * gt
 * gte
@@ -43,6 +47,7 @@
 * intersection
 * invoker
 * is_empty
+* is_nil
 * join
 * keys
 * last_index_of
@@ -55,6 +60,7 @@
 * memoize
 * merge
 * min
+* modulo
 * multiply
 * n_ary
 * not
@@ -76,6 +82,7 @@
 * reduce
 * reduce_right
 * reject
+* repeat
 * reverse
 * sort
 * sort_by
@@ -93,6 +100,7 @@
 * uniq
 * use_with
 * values
+* where
 * xprod
 * zip
 * zip_with

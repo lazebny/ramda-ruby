@@ -158,13 +158,13 @@ describe Ramda::Object do
   context '#where' do
     it 'from docs' do
       pred = R.where(a: R.equals('foo'),
-                     # b: R.complement(R.equals('bar')),
+                     b: R.complement(R.equals('bar')),
                      x: R.lt(10),
                      y: R.gt(20))
 
       expect(pred.call(a: 'foo', b: 'xxx', x: 11, y: 19)).to be_truthy
       expect(pred.call(a: 'xxx', b: 'xxx', x: 11, y: 19)).to be_falsey
-      # expect(pred.call(a: 'foo', b: 'bar', x: 11, y: 19)).to be_falsey
+      expect(pred.call(a: 'foo', b: 'bar', x: 11, y: 19)).to be_falsey
       expect(pred.call(a: 'foo', b: 'xxx', x: 10, y: 19)).to be_falsey
       expect(pred.call(a: 'foo', b: 'xxx', x: 11, y: 20)).to be_falsey
     end

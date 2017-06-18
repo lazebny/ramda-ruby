@@ -8,6 +8,7 @@ describe Ramda::Internal::CurriedMethod do
       a + b + c
     end
 
+    # expect(instance.sample_method.origin_arity).to be(3)
     expect(instance.sample_method.call(1).call(2).call(3)).to be(6)
     expect(instance.sample_method(1).call(2).call(3)).to be(6)
     expect(instance.sample_method(1, 2).call(3)).to be(6)

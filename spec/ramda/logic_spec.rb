@@ -30,13 +30,13 @@ describe Ramda::Logic do
     expect(is_black_card.call(rank: 'Q', suit: 'diamond')).to be_falsey
   end
 
-  xcontext '#complement' do
+  context '#complement' do
     it 'from docs' do
-      # is_not_nil = R.complement(R.is_nil)
-      # expect(R.is_nil(nil)).to be_truthy
-      # expect(is_not_nil(nil)).to be_falsey
-      # expect(R.is_nil(7)).to be_falsey
-      # expect(is_not_nil(7)).to be_truthy
+      is_not_nil = r.complement(R.is_nil)
+      expect(R.is_nil(nil)).to be_truthy
+      expect(is_not_nil.call(nil)).to be_falsey
+      expect(R.is_nil(7)).to be_falsey
+      expect(is_not_nil.call(7)).to be_truthy
     end
   end
 

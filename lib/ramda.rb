@@ -85,7 +85,7 @@ module Ramda
                  :all_pass,
                  :and,
                  :any_pass,
-                 # :complement,
+                 :complement,
                  :if_else,
                  :is_empty,
                  :not,

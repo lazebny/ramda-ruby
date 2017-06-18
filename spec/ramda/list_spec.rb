@@ -365,6 +365,15 @@ describe Ramda::List do
     end
   end
 
+  context '#slice' do
+    it 'from docs' do
+      expect(r.slice(1, 3, ['a', 'b', 'c', 'd'])).to eq(['b', 'c'])
+      expect(r.slice(0, -1, ['a', 'b', 'c', 'd'])).to eq(['a', 'b', 'c'])
+      expect(r.slice(-3, -1, ['a', 'b', 'c', 'd'])).to eq(['b', 'c'])
+      expect(r.slice(0, 3, 'ramda')).to eq('ram')
+    end
+  end
+
   context '#sort' do
     it 'from docs' do
       diff = ->(a, b) { a - b }

@@ -94,6 +94,7 @@ describe Ramda do
   r(:reject)
   r(:repeat)
   r(:reverse)
+  r(:slice)
   r(:sort)
   r(:sort_by)
   r(:split)

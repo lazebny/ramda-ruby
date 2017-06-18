@@ -6,6 +6,7 @@ Added:
 * last
 * partition
 * juxt
+* slice
 
 Release 0.1.1
 ---------------

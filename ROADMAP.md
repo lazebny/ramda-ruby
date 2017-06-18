@@ -4,8 +4,6 @@
 
 #### release 0.1.4
 
-slice
-
 ### release 0.2.0
 
 binary

@@ -351,6 +351,16 @@ module Ramda
       Array.new(n, a)
     end
 
+    # Returns the elements of the given list or string
+    # from fromIndex (inclusive) to toIndex (exclusive).
+    #
+    # Number -> Number -> [a] -> [a]
+    # Number -> Number -> String -> String
+    #
+    curried_method(:slice) do |from, to, xs|
+      xs[from...to]
+    end
+
     # Returns a copy of the list, sorted according to the comparator function,
     # which should accept two values at a time and return a negative number
     # if the first value is smaller, a positive number if it's larger, and

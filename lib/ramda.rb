@@ -54,6 +54,7 @@ module Ramda
                  :last,
                  :last_index_of,
                  :length,
+                 :slice,
                  :sort,
                  :map,
                  :nth,

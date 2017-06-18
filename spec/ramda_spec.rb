@@ -87,6 +87,7 @@ describe Ramda do
   r(:reduce)
   r(:reduce_right)
   r(:reject)
+  r(:repeat)
   r(:reverse)
   r(:sort)
   r(:sort_by)

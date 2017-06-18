@@ -10,6 +10,7 @@ Added:
 * find_last_index
 * for_each
 * modulo
+* repeat
 
 Release 0.1.0
 ---------------

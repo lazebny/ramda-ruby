@@ -324,6 +324,14 @@ module Ramda
       end
     end
 
+    # Returns a fixed list of size n containing a specified identical value.
+    #
+    # a -> n -> [a]
+    #
+    curried_method(:repeat) do |a, n|
+      Array.new(n, a)
+    end
+
     # Returns a copy of the list, sorted according to the comparator function,
     # which should accept two values at a time and return a negative number
     # if the first value is smaller, a positive number if it's larger, and

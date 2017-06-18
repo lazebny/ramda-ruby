@@ -60,6 +60,7 @@ module Ramda
                  :reduce,
                  :reduce_right,
                  :reject,
+                 :repeat,
                  :reverse,
                  :tail,
                  :take,

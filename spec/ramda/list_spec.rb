@@ -334,6 +334,17 @@ describe Ramda::List do
     end
   end
 
+  context '#repeat' do
+    it 'from docs' do
+      expect(r.repeat('hi', 5)).to eq(['hi', 'hi', 'hi', 'hi', 'hi'])
+
+      obj = {}
+      repeated_objs = R.repeat(obj, 5)
+      expect(repeated_objs).to eq([obj, obj, obj, obj, obj])
+      expect(repeated_objs[0]).to be(repeated_objs[1])
+    end
+  end
+
   context '#sort' do
     it 'from docs' do
       diff = ->(a, b) { a - b }

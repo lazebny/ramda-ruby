@@ -36,19 +36,6 @@ And then require:
 require 'ramda'
 ```
 
-## Philosophy of [Ramda](http://ramdajs.com)
-
-* Ramda emphasizes a purer functional style.
-  Immutability and side-effect free functions are at the heart of its design philosophy.
-  This can help you get the job done with simple, elegant code.
-
-* Ramda functions are automatically curried.
-  This allows you to easily build up new functions from old ones simply by not supplying the final parameters.
-
-* The parameters to Ramda functions are arranged to make it convenient for currying.
-  The data to be operated on is generally supplied last.
-
-
 ## Documentation
 
 Currently the gem doesn't have own documentation but it tries to follow specification from [Ramda Js](http://ramdajs.com/docs/)
@@ -62,7 +49,18 @@ Ruby scpecific examples can be found in [tests](spec/ramda).
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+  R = Ramda
+
+  players = [
+    { name: 'Andrey', score: 100 },
+    { name: 'Ivan', score: 200 },
+    { name: 'Masha', score: 150 }
+  ]
+
+  best_player = R.pipe(R.sort_by(R.prop(:score)), R.reverse, R.head, R.prop(:name))
+  best_player.call(players) # Ivan
+```
 
 ## Development
 

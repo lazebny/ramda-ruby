@@ -83,6 +83,7 @@ module Ramda
                  :dec,
                  :divide,
                  :inc,
+                 :modulo,
                  :multiply,
                  :product,
                  :subtract,

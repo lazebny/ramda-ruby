@@ -9,6 +9,7 @@ Added:
 * find_last
 * find_last_index
 * for_each
+* modulo
 
 Release 0.1.0
 ---------------

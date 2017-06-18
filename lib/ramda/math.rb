@@ -37,6 +37,14 @@ module Ramda
       a + 1
     end
 
+    # Divides the first parameter by the second and returns the remainder.
+    #
+    # Number -> Number -> Number
+    #
+    curried_method(:modulo) do |a, divider|
+      a % divider
+    end
+
     # Multiplies two numbers. Equivalent to a * b but curried.
     #
     # Number -> Number -> Number

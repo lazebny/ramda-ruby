@@ -35,6 +35,15 @@ describe Ramda::Math do
     end
   end
 
+  context '#modulo' do
+    it 'from docs' do
+      expect(r.modulo(0, 3)).to be(0)
+      expect(r.modulo(42, 2)).to be(0)
+      expect(r.modulo(21, 2)).to be(1)
+      expect(r.modulo(17, 3)).to be(2)
+    end
+  end
+
   context '#multipy' do
     it 'from docs' do
       triple = r.multiply(3)

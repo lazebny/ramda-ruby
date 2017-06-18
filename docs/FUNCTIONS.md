@@ -44,6 +44,7 @@
 * if_else
 * inc
 * index_of - returns nil if index doesn't exist
+* insert
 * intersection
 * invoker
 * is_empty
@@ -86,6 +87,7 @@
 * reduce
 * reduce_right
 * reject
+* remove
 * repeat
 * reverse
 * slice

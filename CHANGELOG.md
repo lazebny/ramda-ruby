@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.2.2
+---------------
+
 Added:
 
 * insert

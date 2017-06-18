@@ -1,3 +1,5 @@
+* (pending) keys_in
+* (pending) values_in
 * add
 * all
 * all_pass
@@ -7,6 +9,7 @@
 * any_pass
 * append
 * assoc
+* binary
 * clone
 * comparator
 * compose
@@ -27,12 +30,9 @@
 * equals
 * filter
 * find
-* find_index
-* find_index
+* find_index - returns nil if index doesn't exist
 * find_last
-* find_last
-* find_last_index
-* find_last_index
+* find_last_index - returns nil if index doesn't exist
 * flatten
 * flip
 * for_each
@@ -43,7 +43,7 @@
 * identity
 * if_else
 * inc
-* index_of
+* index_of - returns nil if index doesn't exist
 * intersection
 * invoker
 * is_empty
@@ -52,7 +52,7 @@
 * juxt
 * keys
 * last
-* last_index_of
+* last_index_of - returns nil if index doesn't exist
 * length
 * lt
 * lte
@@ -71,6 +71,7 @@
 * once
 * or
 * partition
+* path
 * pick
 * pick_all
 * pipe
@@ -99,9 +100,11 @@
 * tap
 * to_lower
 * to_upper
+* unary
 * union
 * union_with
 * uniq
+* uniq_with - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
 * use_with
 * values
 * where

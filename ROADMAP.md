@@ -2,8 +2,6 @@
 
 * Find out suitable documentation format
 
-### release 0.2.0
-
 ### release 0.2.2
 
 insert

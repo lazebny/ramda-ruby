@@ -1,13 +1,16 @@
 Not Released
 ---------------
 
+Release 0.2.0
+---------------
+
 Added:
 
 * binary
-* (pending) keys_in
 * path
 * unary
 * uniq_with - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
+* (pending) keys_in
 * (pending) values_in
 
 Release 0.1.4
@@ -38,4 +41,5 @@ Added:
 
 Release 0.1.0
 ---------------
+
 Added functions from Ramda Js v0.1.0

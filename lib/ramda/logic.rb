@@ -17,6 +17,20 @@ module Ramda
       predicates.any? { |predicate| predicate.call(obj) }
     end
 
+    # Takes a function f and returns a function g such that if called with
+    # the same arguments when f returns a "truthy" value, g returns false
+    # and when f returns a "falsy" value g returns true.
+    #
+    # R.complement may be applied to any functor
+    #
+    # (*... -> *) -> (*... -> Boolean)
+    #
+    curried_method(:complement) do |fn|
+      ::Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+        !fn.call(*args)
+      end.curry
+    end
+
     # Creates a function that will process either the onTrue or the onFalse
     # function depending upon the result of the condition predicate.
     #

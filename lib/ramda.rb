@@ -8,6 +8,7 @@ require 'ramda/math'
 require 'ramda/object'
 require 'ramda/relation'
 require 'ramda/string'
+require 'ramda/type'
 
 # Ramda library implementation, source: http://ramdajs.com/
 # rubocop:disable Metrics/ModuleLength
@@ -74,6 +75,7 @@ module Ramda
                  :all_pass,
                  :and,
                  :any_pass,
+                 # :complement,
                  :if_else,
                  :is_empty,
                  :not,
@@ -103,7 +105,8 @@ module Ramda
                  :project,
                  :prop,
                  :props,
-                 :values
+                 :values,
+                 :where
 
   def_delegators Ramda::Relation,
                  :count_by,
@@ -128,4 +131,7 @@ module Ramda
                  :split,
                  :to_lower,
                  :to_upper
+
+  def_delegators Ramda::Type,
+                 :is_nil
 end

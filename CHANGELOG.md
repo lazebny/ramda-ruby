@@ -11,6 +11,7 @@ Added:
 * for_each
 * modulo
 * repeat
+* where
 
 Release 0.1.0
 ---------------

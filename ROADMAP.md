@@ -4,7 +4,6 @@
 
 #### release 0.1.4
 
-last
 partition
 slice
 

@@ -165,12 +165,12 @@ module Ramda
     # [a] -> a | NilClass
     # String -> String
     #
-    curried_method(:head) do |x|
-      case x
+    curried_method(:head) do |xs|
+      case xs
       when ::String
-        x[0] || ''
+        xs[0] || ''
       else
-        x[0]
+        xs[0]
       end
     end
 
@@ -199,6 +199,15 @@ module Ramda
     #
     curried_method(:last_index_of) do |x, xs|
       xs.rindex(x)
+    end
+
+    curried_method(:last) do |xs|
+      case xs
+      when ::String
+        xs[-1] || ''
+      else
+        xs[-1]
+      end
     end
 
     # Returns the number of elements in the array by returning list.length

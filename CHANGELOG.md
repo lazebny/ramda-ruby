@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* last
+
 Release 0.1.1
 ---------------
 

@@ -50,6 +50,7 @@ module Ramda
                  :head,
                  :index_of,
                  :join,
+                 :last,
                  :last_index_of,
                  :length,
                  :sort,

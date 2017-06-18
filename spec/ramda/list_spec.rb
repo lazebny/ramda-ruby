@@ -221,6 +221,16 @@ describe Ramda::List do
     end
   end
 
+  context '#last' do
+    it 'from docs' do
+      expect(r.last(['fi', 'fo', 'fum'])).to eq('fum')
+      expect(r.last([])).to eq(nil)
+
+      expect(r.last('abc')).to eq('c')
+      expect(r.last('')).to eq('')
+    end
+  end
+
   context '#last_index_of' do
     it 'from docs' do
       expect(r.last_index_of(3, [-1, 3, 3, 0, 1, 2, 3, 4])).to be(6)

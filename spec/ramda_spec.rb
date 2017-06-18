@@ -57,6 +57,7 @@ describe Ramda do
   r(:is_nil)
   r(:join)
   r(:keys)
+  r(:last)
   r(:last_index_of)
   r(:length)
   r(:lt)

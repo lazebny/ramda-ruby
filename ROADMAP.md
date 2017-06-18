@@ -4,8 +4,6 @@
 
 ### release 0.2.2
 
-remove
-
 ### release 0.2.3
 
 times

@@ -353,6 +353,10 @@ module Ramda
       end
     end
 
+    curried_method(:remove) do |from, n, xs|
+      xs[0...from] + xs[from + n..-1]
+    end
+
     # Returns a fixed list of size n containing a specified identical value.
     #
     # a -> n -> [a]

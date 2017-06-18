@@ -68,6 +68,7 @@ module Ramda
                  :reduce,
                  :reduce_right,
                  :reject,
+                 :remove,
                  :repeat,
                  :reverse,
                  :tail,

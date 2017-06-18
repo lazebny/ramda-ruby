@@ -95,6 +95,7 @@ describe Ramda do
   r(:reduce)
   r(:reduce_right)
   r(:reject)
+  r(:remove)
   r(:repeat)
   r(:reverse)
   r(:slice)

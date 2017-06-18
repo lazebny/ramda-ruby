@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * insert
+* remove
 
 Release 0.2.0
 ---------------

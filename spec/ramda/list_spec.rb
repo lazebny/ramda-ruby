@@ -360,6 +360,12 @@ describe Ramda::List do
     end
   end
 
+  context '#remove' do
+    it 'from docs' do
+      expect(r.remove(2, 3, [1, 2, 3, 4, 5, 6, 7, 8])).to eq([1, 2, 6, 7, 8])
+    end
+  end
+
   context '#repeat' do
     it 'from docs' do
       expect(r.repeat('hi', 5)).to eq(['hi', 'hi', 'hi', 'hi', 'hi'])

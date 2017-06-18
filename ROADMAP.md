@@ -2,8 +2,6 @@
 
 * Find out suitable documentation format
 
-### release 0.2.3
-
 ### release 0.3.0
 
 * ap

@@ -100,6 +100,7 @@
 * take
 * take_while
 * tap
+* times
 * to_lower
 * to_upper
 * unary

@@ -52,6 +52,7 @@ module Ramda
                  :group_by,
                  :head,
                  :index_of,
+                 :insert,
                  :join,
                  :last,
                  :last_index_of,

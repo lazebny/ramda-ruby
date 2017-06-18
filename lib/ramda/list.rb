@@ -183,6 +183,16 @@ module Ramda
       xs.index(x)
     end
 
+    # Inserts the supplied element into the list, at the specified index.
+    # Note that this is not destructive: it returns a copy of the list with
+    # the changes. No lists have been harmed in the application of this function.
+    #
+    # Number -> a -> [a] -> [a]
+    #
+    curried_method(:insert) do |idx, x, xs|
+      xs.dup.insert(idx, x)
+    end
+
     # Returns a string made by inserting the separator between each element and
     # concatenating all the elements into a single string.
     #

@@ -210,6 +210,12 @@ describe Ramda::List do
     end
   end
 
+  context '#insert' do
+    it 'from docs' do
+      expect(r.insert(2, 'x', [1, 2, 3, 4])).to eq([1, 2, 'x', 3, 4])
+    end
+  end
+
   context '#join' do
     it 'from docs' do
       expect(r.join('|', [1, 2, 3])).to eq('1|2|3')

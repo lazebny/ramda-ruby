@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.1.1
+---------------
+
 Breaking changes: index_of, last_index_of return nil instead of -1 if element can't be found
 
 Added:

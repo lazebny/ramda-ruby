@@ -272,6 +272,16 @@ describe Ramda::List do
     end
   end
 
+  context '#partition' do
+    it 'from docs' do
+      expect(r.partition(R.contains('s'), ['sss', 'ttt', 'foo', 'bars']))
+        .to eq([['sss', 'bars'], ['ttt', 'foo']])
+
+      expect(r.partition(R.contains('s'), a: 'sss', b: 'ttt', foo: 'bars'))
+        .to eq([{ a: 'sss', foo: 'bars' }, { b: 'ttt' }])
+    end
+  end
+
   context '#pluck' do
     it 'from docs' do
       expect(r.pluck(:a).call([{ a: 1 }, { a: 2 }])).to eq([1, 2])

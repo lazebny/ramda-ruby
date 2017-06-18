@@ -4,6 +4,8 @@ Not Released
 Added:
 
 * last
+* partition
+* juxt
 
 Release 0.1.1
 ---------------

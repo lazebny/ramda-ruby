@@ -103,6 +103,14 @@ module Ramda
       end.curry
     end
 
+    # juxt applies a list of functions to a list of values.
+    #
+    # [(a, b, ..., m) -> n] -> ((a, b, ..., m) -> [n])
+    #
+    curried_method(:juxt) do |fns, a, *bs|
+      fns.map { |fn| fn.call(a, *bs) }
+    end
+
     # Creates a new function that, when invoked, caches the result of calling
     # fn for a given argument set and returns the result. Subsequent calls to
     # the memoized fn with the same argument set will not result in an

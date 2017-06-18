@@ -112,6 +112,13 @@ describe Ramda::Function do
     end
   end
 
+  context '#juxt' do
+    it 'from docs' do
+      get_range = r.juxt([->(*xs) { xs.min }, ->(*xs) { xs.max }])
+      expect(get_range.call(3, 4, 9, -3)).to eq([-3, 9])
+    end
+  end
+
   context '#memoize' do
     it 'from docs' do
       count = 0

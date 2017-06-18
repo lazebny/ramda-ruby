@@ -251,6 +251,16 @@ module Ramda
       end
     end
 
+    # Takes a predicate and a list or other Filterable object and returns
+    # the pair of filterable objects of the same type of elements which do
+    # and do not satisfy, the predicate, respectively.
+    #
+    # Filterable f => (a -> Boolean) -> f a -> [f a, f a]
+    #
+    curried_method(:partition) do |fn, xs|
+      R.juxt([filter, reject]).call(fn, xs)
+    end
+
     # Returns a new list by plucking the same named property off all objects
     # in the list supplied.
     #

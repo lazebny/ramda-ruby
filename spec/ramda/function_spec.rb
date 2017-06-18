@@ -204,6 +204,16 @@ describe Ramda::Function do
     end
   end
 
+  context '#unary' do
+    it 'from docs' do
+      takes_two_args = ->(a, b) { [a, b] }
+      expect(takes_two_args.call(1, 2)).to eq([1, 2])
+
+      takes_one_args = r.unary(takes_two_args)
+      expect(takes_one_args.call(1, 2)).to eq([1, nil])
+    end
+  end
+
   context '#use_with' do
     it 'from docs' do
       pow = ->(x, count) { Array.new(count, x).reduce(:*) }

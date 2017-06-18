@@ -32,6 +32,7 @@ module Ramda
                  :once,
                  :pipe,
                  :tap,
+                 :unary,
                  :use_with
 
   def_delegators Ramda::List,

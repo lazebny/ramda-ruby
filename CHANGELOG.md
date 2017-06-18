@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * binary
+* unary
 
 Release 0.1.4
 ---------------

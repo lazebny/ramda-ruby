@@ -179,6 +179,16 @@ module Ramda
       x
     end
 
+    # Wraps a function of any arity (including nullary) in a function that
+    # accepts exactly 1 parameter. Any extraneous parameters will not be passed
+    # to the supplied function.
+    #
+    # (* -> b) -> (a -> b)
+    #
+    curried_method(:unary) do |fn|
+      n_ary(1, fn)
+    end
+
     # Accepts a function fn and a list of transformer functions and returns
     # a new curried function. When the new function is invoked, it calls the
     # function fn with parameters consisting of the result of calling each

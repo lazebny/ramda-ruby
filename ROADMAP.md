@@ -2,8 +2,6 @@
 
 * Find out suitable documentation format
 
-#### release 0.1.4
-
 ### release 0.2.0
 
 binary

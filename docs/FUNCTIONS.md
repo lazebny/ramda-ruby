@@ -49,7 +49,9 @@
 * is_empty
 * is_nil
 * join
+* juxt
 * keys
+* last
 * last_index_of
 * length
 * lt
@@ -68,6 +70,7 @@
 * omit
 * once
 * or
+* partition
 * pick
 * pick_all
 * pipe
@@ -84,6 +87,7 @@
 * reject
 * repeat
 * reverse
+* slice
 * sort
 * sort_by
 * split

@@ -4,9 +4,9 @@
 
 #### release 0.1.1
 
-* + find_index
-* + find_last
-* + find_last_index
+* find_index
+* find_last
+* find_last_index
 * for_each
 * modulo
 * repeat

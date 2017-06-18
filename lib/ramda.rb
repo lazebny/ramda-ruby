@@ -44,6 +44,7 @@ module Ramda
                  :find_last,
                  :find_last_index,
                  :flatten,
+                 :for_each,
                  :group_by,
                  :head,
                  :index_of,

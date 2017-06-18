@@ -140,6 +140,15 @@ module Ramda
     #
     curried_method(:flatten, &:flatten)
 
+    # Iterate over an input list, calling a provided function fn for each element
+    # in the list.
+    #
+    # (a -> *) -> [a] -> [a]
+    #
+    curried_method(:for_each) do |fn, xs|
+      xs.each(&fn)
+    end
+
     # Splits a list into sub-lists stored in an object, based on the result of
     # calling a String-returning function on each element, and grouping the
     # results according to values returned.

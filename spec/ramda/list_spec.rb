@@ -144,6 +144,16 @@ describe Ramda::List do
     end
   end
 
+  context '#for_each' do
+    it 'from docs' do
+      counter = 0
+      fn = ->(a) { counter += a }
+
+      expect(r.for_each(fn, [1, 2, 3])).to eq([1, 2, 3])
+      expect(counter).to eq(6)
+    end
+  end
+
   context '#group_by' do
     it 'from docs' do
       by_grade = lambda do |student|

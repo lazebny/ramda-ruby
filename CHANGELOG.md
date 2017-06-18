@@ -6,6 +6,9 @@ Breaking changes: index_of, last_index_of return nil instead of -1 if element ca
 Added:
 
 * find_index
+* find_last
+* find_last_index
+* for_each
 
 Release 0.1.0
 ---------------

@@ -41,6 +41,7 @@ describe Ramda do
   r(:find_last_index)
   r(:flatten)
   r(:flip)
+  r(:for_each)
   r(:group_by)
   r(:gt)
   r(:gte)

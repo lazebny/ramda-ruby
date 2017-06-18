@@ -56,6 +56,20 @@ module Ramda
     #
     curried_method(:keys, &:keys)
 
+    # Returns a list containing the names of all the properties of the supplied
+    # object, including prototype properties. Note that the order of the output
+    # array is not guaranteed.
+    #
+    # {k: v} -> [k]
+    #
+    curried_method(:keys_in) do |obj|
+      obj.methods - obj.class.methods
+      # .map(&:to_s)
+      # .map { |r| r.delete('=') }
+      # .map(&:to_sym)
+      # .uniq
+    end
+
     # Create a new object with the own properties of the first object merged
     # with the own properties of the second object. If a key exists in both
     # objects, the value from the second object will be used.

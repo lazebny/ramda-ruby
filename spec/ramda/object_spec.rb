@@ -47,6 +47,19 @@ describe Ramda::Object do
     end
   end
 
+  xcontext '#keys_in' do
+    it 'from docs' do
+      obj = Class.new do |_x, _y|
+        attr_reader :x
+        attr_accessor :y
+
+        def test; end
+      end.new
+
+      expect(r.keys_in(obj)).to eq([:x, :y, :y=, :test])
+    end
+  end
+
   context '#merge' do
     it 'from docs' do
       expect(r.merge({ name: 'fred', age: 10 }, age: 40))

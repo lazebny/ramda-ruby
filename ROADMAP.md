@@ -4,9 +4,7 @@
 
 ### release 0.2.0
 
-keys_in
 path
-unary
 uniq_with
 values_in
 

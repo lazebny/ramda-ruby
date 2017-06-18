@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * binary
+* (pending) keys_in
 * unary
 
 Release 0.1.4

@@ -115,6 +115,7 @@ describe Ramda do
   r(:uniq_with)
   r(:use_with)
   r(:values)
+  # r(:values_in)
   r(:where)
   r(:xprod)
   r(:zip)

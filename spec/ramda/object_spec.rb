@@ -52,11 +52,12 @@ describe Ramda::Object do
       obj = Class.new do |_x, _y|
         attr_reader :x
         attr_accessor :y
+        attr_writer :z
 
         def test; end
       end.new
 
-      expect(r.keys_in(obj)).to eq([:x, :y, :y=, :test])
+      expect(r.keys_in(obj)).to eq([:x, :y])
     end
   end
 
@@ -132,6 +133,25 @@ describe Ramda::Object do
   context '#values' do
     it 'from docs' do
       expect(r.values(a: 1, b: 2, c: 3)).to eq([1, 2, 3])
+    end
+  end
+
+  xcontext '#values_in' do
+    it 'from docs' do
+      obj = Class.new do |_x, _y|
+        def initialize(x)
+          @x = x
+        end
+
+        attr_reader :x
+        attr_accessor :y
+        attr_writer :z
+
+        def test; end
+      end.new(100)
+      obj.y = 1000
+
+      expect(r.values_in(obj)).to eq([100, 1000])
     end
   end
 

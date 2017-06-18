@@ -57,17 +57,16 @@ module Ramda
     curried_method(:keys, &:keys)
 
     # Returns a list containing the names of all the properties of the supplied
-    # object, including prototype properties. Note that the order of the output
-    # array is not guaranteed.
+    # object, including prototype properties.
     #
     # {k: v} -> [k]
     #
     curried_method(:keys_in) do |obj|
-      obj.methods - obj.class.methods
-      # .map(&:to_s)
-      # .map { |r| r.delete('=') }
-      # .map(&:to_sym)
-      # .uniq
+      (obj.methods - obj.class.methods)
+        .map(&:to_s)
+        .reject { |r| r.include?('=') }
+        .map(&:to_sym)
+        .uniq
     end
 
     # Create a new object with the own properties of the first object merged
@@ -148,6 +147,15 @@ module Ramda
     # {k: v} -> [v]
     #
     curried_method(:values, &:values)
+
+    # Returns a list of all the properties, including prototype properties,
+    # of the supplied object.
+    #
+    # {k: v} -> [v]
+    #
+    curried_method(:values_in) do |obj|
+      keys_in(obj).map(&obj.method(:send))
+    end
 
     # Takes a spec object and a test object; returns true if the test satisfies
     # the spec. Each of the spec's own properties must be a predicate function.

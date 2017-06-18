@@ -7,8 +7,8 @@ Added:
 * (pending) keys_in
 * path
 * unary
-* uniq_with - first argument is a function with 1 arity which transforms each
-list element and applies uniq function to results
+* uniq_with - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
+* (pending) values_in
 
 Release 0.1.4
 ---------------

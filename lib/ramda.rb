@@ -105,6 +105,7 @@ module Ramda
                  :dissoc,
                  :eq_props,
                  :keys,
+                 # :keys_in,
                  :merge,
                  :omit,
                  :path,
@@ -114,6 +115,7 @@ module Ramda
                  :prop,
                  :props,
                  :values,
+                 # :values_in,
                  :where
 
   def_delegators Ramda::Relation,

@@ -37,6 +37,12 @@ module Ramda
       a + 1
     end
 
+    curried_method(:math_mod) do |x, y|
+      #  if (!_isInteger(m)) { return NaN; }
+      #  if (!_isInteger(p) || p < 1) { return NaN; }
+      #  return ((m % p) + p) % p;
+    end
+
     # Divides the first parameter by the second and returns the remainder.
     #
     # Number -> Number -> Number

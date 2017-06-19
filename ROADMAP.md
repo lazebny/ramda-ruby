@@ -4,7 +4,6 @@
 
 ### release 0.3.0
 
-* math_mod
 * of
 * unnest
 * zip_obj

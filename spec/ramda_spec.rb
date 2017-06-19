@@ -71,6 +71,7 @@ describe Ramda do
   r(:lte)
   r(:map)
   r(:match)
+  # r(:math_mod)
   r(:max)
   r(:memoize)
   r(:merge)

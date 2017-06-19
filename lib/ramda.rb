@@ -100,6 +100,7 @@ module Ramda
                  :dec,
                  :divide,
                  :inc,
+                 # :math_mod,
                  :modulo,
                  :multiply,
                  :product,

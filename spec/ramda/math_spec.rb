@@ -35,6 +35,22 @@ describe Ramda::Math do
     end
   end
 
+  xcontext '#math_mod' do
+    it 'from docs' do
+      expect(R.math_mod(-17, 5)).to eq(3)
+      expect(R.math_mod(17, 5)).to eq(2)
+      expect(R.math_mod(17, -5)).to be(nil)
+      expect(R.math_mod(17, 0)).to be(nil)
+      expect(R.math_mod(17.2, 5)).to be(nil)
+      expect(R.math_mod(17, 5.3)).to be(nil)
+
+      seventeen_mod = R.mathMod(17)
+      expect(seventeen_mod.call(3)).to eq(2)
+      expect(seventeen_mod.call(4)).to eq(1)
+      expect(seventeen_mod.call(10)).to eq(7)
+    end
+  end
+
   context '#modulo' do
     it 'from docs' do
       expect(r.modulo(0, 3)).to be(0)

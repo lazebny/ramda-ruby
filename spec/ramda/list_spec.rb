@@ -44,6 +44,22 @@ describe Ramda::List do
     end
   end
 
+  xcontext '#chain' do
+    it 'from docs' do
+      duplicate = ->(n) { [n, n] }
+      expect(r.chain(duplicate, [1, 2, 3])).to eq([1, 1, 2, 2, 3, 3])
+    end
+
+    it 'multiple args' do
+      expect(r.chain(R.compose(R.append, R.head)).call([1, 2, 3])).to eq([1, 2, 3, 1])
+    end
+
+    it 'maps a function (a -> [b]) into a (shallow) flat result' do
+      times2 = ->(x) { [x * 2] }
+      expect(R.chain(times2).call([1, 2, 3, 4])).to eq([2, 4, 6, 8])
+    end
+  end
+
   context '#concat' do
     it 'from docs' do
       expect(r.concat('ABC', 'DEF')).to eq('ABCDEF')

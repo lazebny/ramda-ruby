@@ -40,6 +40,7 @@ module Ramda
                  :all,
                  :any,
                  :append,
+                 # :chain,
                  :concat,
                  :contains,
                  :drop,

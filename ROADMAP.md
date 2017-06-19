@@ -4,7 +4,6 @@
 
 ### release 0.3.0
 
-* chain
 * empty
 * from_pairs
 * is

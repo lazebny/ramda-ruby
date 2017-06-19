@@ -17,6 +17,7 @@ describe Ramda do
   r(:ap)
   r(:append)
   r(:assoc)
+  # r(:chain)
   r(:clone)
   r(:comparator)
   r(:complement)

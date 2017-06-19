@@ -37,6 +37,18 @@ module Ramda
       xs.dup + [x]
     end
 
+    # chain maps a function over a list and concatenates the results. chain is
+    # also known as flatMap in some libraries
+    #
+    # Dispatches to the chain method of the second argument, if present,
+    # according to the FantasyLand Chain spec.
+    #
+    # Chain m => (a -> m b) -> m a -> m b
+    #
+    curried_method(:chain) do |fn, xs|
+      xs.flat_map(&fn)
+    end
+
     # Returns the result of concatenating the given lists or strings.
     # String -> String -> String
     #

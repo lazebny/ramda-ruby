@@ -91,6 +91,18 @@ describe Ramda::Function do
     end
   end
 
+  context '#empty' do
+    it 'from docs' do
+      expect(r.empty([1, 2, 3])).to eq([])
+      expect(r.empty('unicorns')).to eq('')
+      expect(r.empty(x: 1, y: 2)).to eq({})
+    end
+
+    xit 'from docs Just' do
+      # expect(r.empty(Just(42)).to eq(Nothing())
+    end
+  end
+
   context '#flip' do
     def merge_tree
       ->(a, b, c) { [a, b, c] }

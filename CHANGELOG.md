@@ -4,6 +4,7 @@ Not Released
 * (pending) chain
 * ap
 * complement
+* empty - uses x.class.new for defining new empty object
 
 Release 0.2.3
 ---------------

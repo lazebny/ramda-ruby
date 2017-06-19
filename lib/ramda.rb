@@ -24,6 +24,7 @@ module Ramda
                  :construct,
                  :converge,
                  :curry,
+                 :empty,
                  :flip,
                  :identity,
                  :invoker,

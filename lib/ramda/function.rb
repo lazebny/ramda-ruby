@@ -100,6 +100,18 @@ module Ramda
       fn.to_proc.curry
     end
 
+    # Returns the empty value of its argument's type. Ramda defines the empty
+    # value of Array ([]), Object ({}), String ('), and Arguments.
+    # Other types are supported if they define <Type>.empty.
+    #
+    # Dispatches to the empty method of the first argument, if present.'))
+    #
+    # a -> a
+    #
+    curried_method(:empty) do |x|
+      x.class.new
+    end
+
     # Returns a new function much like the supplied one, except that the
     # first two arguments' order is reversed.
     #

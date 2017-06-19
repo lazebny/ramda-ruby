@@ -194,6 +194,13 @@ describe Ramda::Function do
     end
   end
 
+  context '#of' do
+    it 'from docs' do
+      expect(r.of(nil)).to eq([nil])
+      expect(r.of([42])).to eq([[42]])
+    end
+  end
+
   context '#once' do
     it 'from docs' do
       add_one_once = r.once(->(x) { x + 1 })

@@ -31,6 +31,7 @@ module Ramda
                  :juxt,
                  :memoize,
                  :n_ary,
+                 :of,
                  :once,
                  :pipe,
                  :tap,

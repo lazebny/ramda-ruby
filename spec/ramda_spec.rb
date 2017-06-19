@@ -63,6 +63,7 @@ describe Ramda do
   r(:join)
   r(:juxt)
   r(:keys)
+  r(:of)
   # r(:keys_in)
   r(:last)
   r(:last_index_of)

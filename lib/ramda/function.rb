@@ -168,10 +168,24 @@ module Ramda
       end.curry
     end
 
+    # Wraps a function of any arity (including nullary) in a function that
+    # accepts exactly n parameters. Any extraneous parameters will not be
+    # passed to the supplied function.
+    #
+    # Number -> (* -> a) -> (* -> a)
+    #
     curried_method(:n_ary) do |arity, fn|
       Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
         fn.call(*(args.first(arity) + Array.new(fn.arity - arity, nil)))
       end.curry
+    end
+
+    # Returns a singleton array containing the value provided.
+    #
+    # a -> [a]
+    #
+    curried_method(:of) do |x|
+      [x]
     end
 
     # Accepts a function fn and returns a function that guards invocation of fn

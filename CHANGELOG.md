@@ -3,6 +3,7 @@ Not Released
 
 * (pending) chain
 * (pending) math_mod
+* (pending) unnest
 * ap
 * complement
 * empty - uses x.class.new for defining new empty object

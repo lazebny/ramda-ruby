@@ -499,6 +499,13 @@ describe Ramda::List do
     end
   end
 
+  xcontext '#unnest' do
+    it 'from docs' do
+      expect(r.unnest([1, [2], [[3]]])).to eq([1, 2, [3]])
+      expect(r.unnest([[1, 2], [3, 4], [5, 6]])).to eq([1, 2, 3, 4, 5, 6])
+    end
+  end
+
   context '#xprod' do
     it 'from docs' do
       expect(r.xprod([1, 2], ['a', 'b']))

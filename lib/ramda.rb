@@ -42,7 +42,7 @@ module Ramda
                  :all,
                  :any,
                  :append,
-                 # :chain,
+                 :chain,
                  :concat,
                  :contains,
                  :drop,
@@ -82,6 +82,7 @@ module Ramda
                  :times,
                  :uniq,
                  :uniq_with,
+                 # :unnest,
                  :xprod,
                  :zip,
                  :zip_with

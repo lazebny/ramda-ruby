@@ -461,6 +461,14 @@ module Ramda
       xs.uniq(&fn)
     end
 
+    # Shorthand for R.chain(R.identity), which removes one level of nesting from any Chain.
+    #
+    # Chain c => c (c a) -> c a
+    #
+    curried_method(:unnest) do |_xs|
+      Ramda.chain(Ramda.identity)
+    end
+
     # Creates a new list out of the two supplied by creating each possible pair
     # from the lists.
     #

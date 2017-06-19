@@ -4,7 +4,6 @@
 
 ### release 0.3.0
 
-* from_pairs
 * is
 * length
 * math_mod

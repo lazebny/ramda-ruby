@@ -46,6 +46,7 @@ describe Ramda do
   r(:flatten)
   r(:flip)
   r(:for_each)
+  r(:from_pairs)
   r(:group_by)
   r(:gt)
   r(:gte)

@@ -108,6 +108,15 @@ module Ramda
       end
     end
 
+    # Creates a new object from a list key-value pairs. If a key appears in
+    # multiple pairs, the rightmost pair is included in the object.
+    #
+    # [[k,v]] -> {k: v}
+    #
+    curried_method(:from_pairs) do |xs|
+      Hash[xs]
+    end
+
     # Returns the first element of the list which matches the predicate,
     # or undefined if no element matches.
     #

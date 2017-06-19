@@ -46,6 +46,7 @@ module Ramda
                  :contains,
                  :drop,
                  :filter,
+                 :from_pairs,
                  :find,
                  :find_index,
                  :find_last,

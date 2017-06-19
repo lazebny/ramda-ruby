@@ -114,6 +114,12 @@ describe Ramda::List do
     end
   end
 
+  context '#from_pairs' do
+    it 'from docs' do
+      expect(r.from_pairs([[:a, 1], [:b, 2], [:c, 3]])).to eq(a: 1, b: 2, c: 3)
+    end
+  end
+
   context '#find' do
     it 'from docs' do
       list = [{ a: 1 }, { a: 2 }, { a: 3 }]

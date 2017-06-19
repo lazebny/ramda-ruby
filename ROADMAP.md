@@ -4,8 +4,6 @@
 
 ### release 0.3.0
 
-* is
-* length
 * math_mod
 * of
 * unnest

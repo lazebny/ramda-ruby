@@ -150,5 +150,6 @@ module Ramda
                  :to_upper
 
   def_delegators Ramda::Type,
+                 :is,
                  :is_nil
 end

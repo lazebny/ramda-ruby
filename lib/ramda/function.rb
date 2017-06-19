@@ -6,8 +6,27 @@ module Ramda
   module Function
     extend ::Ramda::Internal::CurriedMethod
 
+    # Returns a function that always returns the given value. Note that
+    # for non-primitives the value returned is a reference to the original
+    # value.
+    # This function is known as const, constant, or K (for K combinator)
+    # in other languages and libraries.
+    #
+    # a -> (* -> a)
+    #
     curried_method(:always) do |value|
       -> { value }
+    end
+
+    # ap applies a list of functions to a list of values.
+    # Dispatches to the ap method of the second argument, if present.
+    # Also treats curried functions as applicatives.
+    #
+    # [a -> b] -> [a] -> [b]
+    # Apply f => f (a -> b) -> f a -> f b
+    #
+    curried_method(:ap) do |fns, xs|
+      fns.flat_map { |fn| xs.map(&fn) }
     end
 
     # Wraps a function of any arity (including nullary) in a function that

@@ -17,6 +17,7 @@ module Ramda
 
   def_delegators Ramda::Function,
                  :always,
+                 :ap,
                  :binary,
                  :comparator,
                  :compose,

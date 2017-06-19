@@ -15,6 +15,14 @@ describe Ramda::Function do
     end
   end
 
+  context '#ap' do
+    it 'from docs' do
+      expect(r.ap([R.multiply(2), R.add(3)], [1, 2, 3])).to eq([2, 4, 6, 4, 5, 6])
+      expect(r.ap([R.concat('tasty '), R.to_upper], ['pizza', 'salad']))
+        .to eq(['tasty pizza', 'tasty salad', 'PIZZA', 'SALAD'])
+    end
+  end
+
   context '#binary' do
     it 'from docs' do
       takes_three_args = ->(a, b, c) { [a, b, c]; }

@@ -4,7 +4,6 @@
 
 ### release 0.4.0
 
-* to_pairs
 * to_pairs_in
 
 ### release 0.4.2

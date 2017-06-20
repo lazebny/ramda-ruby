@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * construct_n
+* to_pairs
 
 Release 0.3.0
 ---------------

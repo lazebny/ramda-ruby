@@ -142,6 +142,14 @@ module Ramda
       keys.map(&obj.method(:[]))
     end
 
+    # Converts an object into an array of key, value arrays. Only the
+    # object's own properties are used. Note that the order of the
+    # output array is not guaranteed.
+    #
+    # {String: *} -> [[String,*]]
+    #
+    curried_method(:to_pairs, &:to_a)
+
     # Returns a list of all the enumerable own properties of the supplied object.
     #
     # {k: v} -> [v]

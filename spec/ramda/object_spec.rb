@@ -130,6 +130,12 @@ describe Ramda::Object do
     end
   end
 
+  context '#to_pairs' do
+    it 'from docs' do
+      expect(r.to_pairs(a: 1, b: 2, c: 3)).to eq([[:a, 1], [:b, 2], [:c, 3]])
+    end
+  end
+
   context '#values' do
     it 'from docs' do
       expect(r.values(a: 1, b: 2, c: 3)).to eq([1, 2, 3])

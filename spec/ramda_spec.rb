@@ -120,6 +120,7 @@ describe Ramda do
   r(:tap)
   r(:times)
   r(:to_lower)
+  r(:to_pairs)
   r(:to_upper)
   r(:unary)
   r(:union)

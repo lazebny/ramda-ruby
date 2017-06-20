@@ -136,6 +136,15 @@ describe Ramda::Object do
     end
   end
 
+  xcontext '#to_pairs_in' do
+    it 'from docs' do
+      # var F = function() { this.x = 'X'; };
+      # F.prototype.y = 'Y';
+      # var f = new F();
+      # R.toPairsIn(f); //=> [['x','X'], ['y','Y']]
+    end
+  end
+
   context '#values' do
     it 'from docs' do
       expect(r.values(a: 1, b: 2, c: 3)).to eq([1, 2, 3])

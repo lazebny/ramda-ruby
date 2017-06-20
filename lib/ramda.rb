@@ -127,6 +127,7 @@ module Ramda
                  :prop,
                  :props,
                  :to_pairs,
+                 # :to_pairs_in,
                  :values,
                  # :values_in,
                  :where

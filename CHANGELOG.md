@@ -5,6 +5,7 @@ Added:
 
 * construct_n
 * to_pairs
+* (peiding) to_pairs_in
 
 Release 0.3.0
 ---------------

@@ -40,13 +40,19 @@ module Ramda
     # chain maps a function over a list and concatenates the results. chain is
     # also known as flatMap in some libraries
     #
-    # Dispatches to the chain method of the second argument, if present,
+    # Dispatches to the chain or bind method of the second argument, if present,
     # according to the FantasyLand Chain spec.
     #
     # Chain m => (a -> m b) -> m a -> m b
     #
     curried_method(:chain) do |fn, xs|
-      xs.flat_map(&fn)
+      if xs.respond_to?(:chain)
+        xs.chain(fn)
+      elsif xs.respond_to?(:bind)
+        xs.bind(fn)
+      else
+        xs.flat_map(&fn)
+      end
     end
 
     # Returns the result of concatenating the given lists or strings.
@@ -465,8 +471,8 @@ module Ramda
     #
     # Chain c => c (c a) -> c a
     #
-    curried_method(:unnest) do |_xs|
-      Ramda.chain(Ramda.identity)
+    curried_method(:unnest) do |xs|
+      Ramda.chain(Ramda.identity, xs)
     end
 
     # Creates a new list out of the two supplied by creating each possible pair

@@ -1,15 +1,15 @@
 Not Released
 ---------------
 
-* (pending) chain
 * (pending) math_mod
-* (pending) unnest
 * ap
+* chain
 * complement
-* empty - uses x.class.new for defining new empty object
+* empty - uses x.class.new for defining new empty object if empty method does not exist
 * from_pairs
 * is
 * of
+* unnest
 * zip_obj
 
 Release 0.2.3

@@ -26,7 +26,11 @@ module Ramda
     # Apply f => f (a -> b) -> f a -> f b
     #
     curried_method(:ap) do |fns, xs|
-      fns.flat_map { |fn| xs.map(&fn) }
+      if xs.respond_to?(:ap)
+        xs.ap(fns)
+      else
+        fns.flat_map { |fn| xs.map(&fn) }
+      end
     end
 
     # Wraps a function of any arity (including nullary) in a function that
@@ -109,7 +113,13 @@ module Ramda
     # a -> a
     #
     curried_method(:empty) do |x|
-      x.class.new
+      if x.respond_to?(:empty)
+        x.empty
+      elsif x.class.respond_to?(:empty)
+        x.class.empty
+      else
+        x.class.new
+      end
     end
 
     # Returns a new function much like the supplied one, except that the

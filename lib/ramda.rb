@@ -82,7 +82,7 @@ module Ramda
                  :times,
                  :uniq,
                  :uniq_with,
-                 # :unnest,
+                 :unnest,
                  :xprod,
                  :zip,
                  :zip_obj,

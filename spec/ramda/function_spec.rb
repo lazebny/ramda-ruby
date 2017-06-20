@@ -98,8 +98,14 @@ describe Ramda::Function do
       expect(r.empty(x: 1, y: 2)).to eq({})
     end
 
-    xit 'from docs Just' do
-      # expect(r.empty(Just(42)).to eq(Nothing())
+    it 'object has empty method' do
+      obj = Class.new do
+        def empty
+          []
+        end
+      end.new
+
+      expect(r.empty(obj)).to eq([])
     end
   end
 

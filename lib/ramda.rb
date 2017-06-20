@@ -25,6 +25,7 @@ module Ramda
                  :construct_n,
                  :converge,
                  :curry,
+                 :curry_n,
                  :empty,
                  :flip,
                  :identity,

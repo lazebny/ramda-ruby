@@ -4,8 +4,6 @@
 
 ### release 0.5.0
 
-* curry_n
-
 ### release 0.6.0
 
 * __

@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* curry_n
+
 Release 0.4.0
 ---------------
 

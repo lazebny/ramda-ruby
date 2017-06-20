@@ -119,6 +119,35 @@ module Ramda
       fn.to_proc.curry
     end
 
+    # Returns a curried equivalent of the provided function, with the
+    # specified arity. The curried function has two unusual capabilities.
+    # First, its arguments needn't be provided one at a time.
+    # If g is R.curryN(3, f), the following are equivalent:
+    #
+    # g(1)(2)(3)
+    # g(1)(2, 3)
+    # g(1, 2)(3)
+    # g(1, 2, 3)
+    #
+    # Secondly, the special placeholder value R.__ may be used to specify
+    # "gaps", allowing partial application of any combination of arguments,
+    # regardless of their positions.
+    # If g is as above and _ is R.__, the following are equivalent:
+    #
+    # g(1, 2, 3)
+    # g(_, 2, 3)(1)
+    # g(_, _, 3)(1)(2)
+    # g(_, _, 3)(1, 2)
+    # g(_, 2)(1)(3)
+    # g(_, 2)(1, 3)
+    # g(_, 2)(_, 3)(1)
+    #
+    # Number -> (* -> a) -> (* -> a)
+    #
+    curried_method(:curry_n) do |arity, fn|
+      Ramda::Internal::FunctionWithArity.new.call(arity, &fn).curry
+    end
+
     # Returns the empty value of its argument's type. Ramda defines the empty
     # value of Array ([]), Object ({}), String ('), and Arguments.
     # Other types are supported if they define <Type>.empty.

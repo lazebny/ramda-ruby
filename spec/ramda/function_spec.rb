@@ -107,6 +107,28 @@ describe Ramda::Function do
     end
   end
 
+  context '#curry_n' do
+    it 'from docs' do
+      sum_args = ->(*args) { R.sum(args) }
+
+      curried_add_four_numbers = r.curry_n(4, sum_args)
+      f = curried_add_four_numbers.call(1, 2)
+      g = f.call(3)
+
+      expect(g.call(4)).to eq(10)
+    end
+
+    xit 'with __' do
+      # g(1, 2, 3)
+      # g(_, 2, 3)(1)
+      # g(_, _, 3)(1)(2)
+      # g(_, _, 3)(1, 2)
+      # g(_, 2)(1)(3)
+      # g(_, 2)(1, 3)
+      # g(_, 2)(_, 3)(1)
+    end
+  end
+
   context '#empty' do
     it 'from docs' do
       expect(r.empty([1, 2, 3])).to eq([])

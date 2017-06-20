@@ -34,6 +34,7 @@ describe Ramda do
   r(:converge)
   r(:count_by)
   r(:curry)
+  r(:curry_n)
   r(:dec)
   r(:difference)
   r(:difference_with)

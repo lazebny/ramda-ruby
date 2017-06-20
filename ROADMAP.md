@@ -2,8 +2,6 @@
 
 * Find out suitable documentation format
 
-### release 0.5.0
-
 ### release 0.6.0
 
 * __

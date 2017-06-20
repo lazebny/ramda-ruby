@@ -25,6 +25,7 @@
 * converge
 * count_by
 * curry
+* curry_n
 * dec
 * difference
 * difference_with

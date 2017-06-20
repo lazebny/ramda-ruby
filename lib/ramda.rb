@@ -22,6 +22,7 @@ module Ramda
                  :comparator,
                  :compose,
                  :construct,
+                 :construct_n,
                  :converge,
                  :curry,
                  :empty,

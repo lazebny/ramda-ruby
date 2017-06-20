@@ -3,6 +3,7 @@ require_relative 'internal/function_with_arity'
 
 module Ramda
   # Function functions
+  # rubocop:disable Metrics/ModuleLength
   module Function
     extend ::Ramda::Internal::CurriedMethod
 
@@ -74,6 +75,17 @@ module Ramda
     #
     curried_method(:construct) do |constructor|
       ->(*args) { constructor.new(*args) }
+    end
+
+    # Wraps a constructor function inside a curried function that can be
+    # called with the same arguments and returns the same type. The arity
+    # of the function returned is specified to allow using variadic
+    # constructor functions.
+    #
+    # Number -> (* -> {*}) -> (* -> {*})
+    #
+    curried_method(:construct_n) do |arity, fn|
+      Ramda::Internal::FunctionWithArity.new.call(arity, &fn).curry
     end
 
     # Accepts a converging function and a list of branching functions and returns

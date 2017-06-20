@@ -62,6 +62,15 @@ describe Ramda::Function do
     end
   end
 
+  context '#construct_n' do
+    it 'from docs' do
+      to_a = ->(*args) { args }
+      sum3 = r.construct_n(3, to_a)
+
+      expect(sum3.call(1).call(2).call(3)).to eq([1, 2, 3])
+    end
+  end
+
   context '#converge' do
     it 'from docs' do
       average = r.converge(R.divide, [R.sum, R.length])

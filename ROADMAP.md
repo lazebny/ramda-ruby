@@ -4,7 +4,6 @@
 
 ### release 0.4.0
 
-* construct_n
 * to_pairs
 * to_pairs_in
 

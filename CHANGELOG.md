@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* construct_n
+
 Release 0.3.0
 ---------------
 

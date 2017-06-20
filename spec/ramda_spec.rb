@@ -28,6 +28,7 @@ describe Ramda do
   r(:compose)
   r(:concat)
   r(:construct)
+  r(:construct_n)
   r(:contains)
   r(:converge)
   r(:count_by)

@@ -4,6 +4,8 @@ Not Released
 Release 0.3.0
 ---------------
 
+Added:
+
 * (pending) math_mod
 * ap
 * chain

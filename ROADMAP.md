@@ -2,8 +2,6 @@
 
 * Find out suitable documentation format
 
-### release 0.3.0
-
 ### release 0.4.0
 
 * construct_n
@@ -35,3 +33,37 @@
 * lift_n
 * path_eq
 * replace
+
+### release 0.8.0
+
+* assoc
+* assoc_path
+* if_else
+* lens
+* max_by
+* min_by
+* pick_by
+* type
+* unapply
+
+### release 0.9.0
+
+* all_pass
+* any_pass
+* call
+* dec
+* drop_while
+* evolve
+* F
+* inc
+* init
+* insert_all
+* invert
+* invert_obj
+* is_nil
+* map_obj_indexed
+* negate
+* nth_arg
+* T
+* to_lower
+* to_upper

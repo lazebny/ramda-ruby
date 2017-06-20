@@ -84,8 +84,11 @@ module Ramda
     #
     # Number -> (* -> {*}) -> (* -> {*})
     #
-    curried_method(:construct_n) do |arity, fn|
-      Ramda::Internal::FunctionWithArity.new.call(arity, &fn).curry
+    curried_method(:construct_n) do |arity, constructor|
+      Ramda::Internal::FunctionWithArity
+        .new
+        .call(arity, &constructor.method(:new))
+        .curry
     end
 
     # Accepts a converging function and a list of branching functions and returns

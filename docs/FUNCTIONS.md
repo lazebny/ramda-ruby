@@ -1,3 +1,4 @@
+* (pending) to_pairs_in
 * (pending) keys_in
 * (pending) math_mod
 * (pending) values_in
@@ -19,6 +20,7 @@
 * compose
 * concat
 * construct
+* construct_n
 * contains
 * converge
 * count_by
@@ -110,6 +112,7 @@
 * tap
 * times
 * to_lower
+* to_pairs
 * to_upper
 * unary
 * union

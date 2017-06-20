@@ -1,11 +1,14 @@
 Not Released
 ---------------
 
+Release 0.4.0
+---------------
+
 Added:
 
+* (pending) to_pairs_in
 * construct_n
 * to_pairs
-* (peiding) to_pairs_in
 
 Release 0.3.0
 ---------------

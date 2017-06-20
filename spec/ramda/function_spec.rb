@@ -64,10 +64,17 @@ describe Ramda::Function do
 
   context '#construct_n' do
     it 'from docs' do
-      to_a = ->(*args) { args }
-      sum3 = r.construct_n(3, to_a)
+      calendar = Class.new do
+        attr_reader :days
 
-      expect(sum3.call(1).call(2).call(3)).to eq([1, 2, 3])
+        def initialize(*days)
+          @days = days
+        end
+      end
+
+      callendar_with_three_days = r.construct_n(3, calendar)
+
+      expect(callendar_with_three_days.call(1).call(2).call(3).days).to eq([1, 2, 3])
     end
   end
 

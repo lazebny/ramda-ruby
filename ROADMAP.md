@@ -2,12 +2,6 @@
 
 * Find out suitable documentation format
 
-### release 0.4.0
-
-### release 0.4.2
-
-* converge
-
 ### release 0.5.0
 
 * curry_n

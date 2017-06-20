@@ -129,5 +129,6 @@ describe Ramda do
   r(:where)
   r(:xprod)
   r(:zip)
+  r(:zip_obj)
   r(:zip_with)
 end

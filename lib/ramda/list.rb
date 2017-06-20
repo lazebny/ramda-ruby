@@ -489,6 +489,16 @@ module Ramda
       xs1.zip(xs2)
     end
 
+    # Creates a new object out of a list of keys and a list of values. Key/value
+    # pairing is truncated to the length of the shorter of the two lists. Note:
+    # zipObj is equivalent to pipe(zip_with(pair), from_pairs).
+    #
+    # [String] -> [*] -> {String: *}
+    #
+    curried_method(:zip_obj) do |xs1, xs2|
+      Hash[xs1.zip(xs2)]
+    end
+
     # Creates a new list out of the two supplied by applying the function to each
     # equally-positioned pair in the lists. The returned list is truncated to the
     # length of the shorter of the two input lists.

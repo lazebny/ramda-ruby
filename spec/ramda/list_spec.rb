@@ -520,6 +520,12 @@ describe Ramda::List do
     end
   end
 
+  context '#zip_obj' do
+    it 'from docs' do
+      expect(r.zip_obj([:a, :b, :c], [1, 2, 3])).to eq(a: 1, b: 2, c: 3)
+    end
+  end
+
   context '#zip_with' do
     it 'from docs' do
       f = ->(x, y) { Ramda.join('', [x, y]) }

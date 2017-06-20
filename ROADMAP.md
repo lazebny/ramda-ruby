@@ -4,8 +4,6 @@
 
 ### release 0.3.0
 
-* zip_obj
-
 ### release 0.4.0
 
 * construct_n

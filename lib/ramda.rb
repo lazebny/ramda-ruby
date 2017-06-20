@@ -85,6 +85,7 @@ module Ramda
                  # :unnest,
                  :xprod,
                  :zip,
+                 :zip_obj,
                  :zip_with
 
   def_delegators Ramda::Logic,

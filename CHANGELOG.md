@@ -10,6 +10,7 @@ Not Released
 * from_pairs
 * is
 * of
+* zip_obj
 
 Release 0.2.3
 ---------------

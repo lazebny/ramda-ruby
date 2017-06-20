@@ -15,6 +15,9 @@ module Ramda
     end
 
     # Checks if the input value is nil.
+    #
+    # * -> Boolean
+    #
     curried_method(:is_nil, &:nil?)
   end
 end

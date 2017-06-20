@@ -1,4 +1,5 @@
 * (pending) keys_in
+* (pending) math_mod
 * (pending) values_in
 * add
 * all
@@ -7,11 +8,14 @@
 * and
 * any
 * any_pass
+* ap
 * append
 * assoc
 * binary
+* chain
 * clone
 * comparator
+* complement
 * compose
 * concat
 * construct
@@ -25,6 +29,7 @@
 * dissoc
 * divide
 * drop
+* empty - uses x.class.new for defining new empty object if empty method does not exist
 * eq_by
 * eq_props
 * equals
@@ -36,6 +41,7 @@
 * flatten
 * flip
 * for_each
+* from_pairs
 * group_by
 * gt
 * gte
@@ -47,6 +53,7 @@
 * insert
 * intersection
 * invoker
+* is
 * is_empty
 * is_nil
 * join
@@ -68,6 +75,7 @@
 * n_ary
 * not
 * nth
+* of
 * omit
 * once
 * or
@@ -108,9 +116,11 @@
 * union_with
 * uniq
 * uniq_with - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
+* unnest
 * use_with
 * values
 * where
 * xprod
 * zip
+* zip_obj
 * zip_with

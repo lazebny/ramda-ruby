@@ -18,7 +18,6 @@
 * lift
 * lift_n
 * path_eq
-* replace
 
 ### release 0.8.0
 

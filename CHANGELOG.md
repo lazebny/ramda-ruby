@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* replace - it uses a gsub method and global replace
+
 Release 0.5.0
 ---------------
 

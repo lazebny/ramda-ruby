@@ -5,6 +5,30 @@ module Ramda
   module String
     extend ::Ramda::Internal::CurriedMethod
 
+    # Tests a regular expression against a String. Note that this function will
+    # return an empty array when there are no matches. This differs from
+    # String.prototype.match which returns null when there are no matches.
+    #
+    # RegExp -> String -> [String | NilClass]
+    #
+    curried_method(:match) do |exp, x|
+      case x
+      when ::String
+        x[exp]
+        # x.scan(exp).flatten
+      else
+        type_error(x)
+      end
+    end
+
+    # Replace a substring or regex match in a string with a replacement.
+    #
+    # RegExp|String -> String -> String -> Boolean -> String
+    #
+    curried_method(:replace) do |from, to, x|
+      x.gsub(from, to)
+    end
+
     # Splits a string into an array of strings based on the given separator.
     #
     # (String | RegExp) -> String -> [String]
@@ -24,22 +48,6 @@ module Ramda
     # String -> String
     #
     curried_method(:to_lower, &:downcase)
-
-    # Tests a regular expression against a String. Note that this function will
-    # return an empty array when there are no matches. This differs from
-    # String.prototype.match which returns null when there are no matches.
-    #
-    # RegExp -> String -> [String | NilClass]
-    #
-    curried_method(:match) do |exp, x|
-      case x
-      when ::String
-        x[exp]
-        # x.scan(exp).flatten
-      else
-        type_error(x)
-      end
-    end
 
     # TODO: Extract from this module
     def self.type_error(object)

@@ -11,6 +11,13 @@ describe Ramda::String do
     end
   end
 
+  context '#replace' do
+    it 'from docs' do
+      expect(r.replace('foo', 'bar', 'test foo foo foo')).to eq('test bar bar bar')
+      expect(r.replace(/foo/, 'bar', 'test foo foo foo')).to eq('test bar bar bar')
+    end
+  end
+
   context '#split' do
     it 'from docs' do
       path_components = r.split('/')

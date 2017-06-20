@@ -153,6 +153,7 @@ module Ramda
 
   def_delegators Ramda::String,
                  :match,
+                 :replace,
                  :split,
                  :to_lower,
                  :to_upper

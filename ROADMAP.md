@@ -4,7 +4,6 @@
 
 ### release 0.6.0
 
-* cond
 * prop_or
 * trim
 
@@ -37,7 +36,6 @@
 * dec
 * drop_while
 * evolve
-* F
 * inc
 * init
 * insert_all
@@ -47,6 +45,5 @@
 * map_obj_indexed
 * negate
 * nth_arg
-* T
 * to_lower
 * to_upper

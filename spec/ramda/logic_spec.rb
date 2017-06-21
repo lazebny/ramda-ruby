@@ -40,6 +40,19 @@ describe Ramda::Logic do
     end
   end
 
+  context '#cond' do
+    it 'from docs' do
+      fn = R.cond([
+                    [R.equals(0), R.always('water freezes at 0 C')],
+                    [R.equals(100), R.always('water boils at 100 C')],
+                    [R.T, ->(temp) { "nothing special happens at #{temp} C" }]
+                  ])
+      expect(fn.call(0)).to eq('water freezes at 0 C')
+      expect(fn.call(50)).to eq('nothing special happens at 50 C')
+      expect(fn.call(100)).to eq('water boils at 100 C')
+    end
+  end
+
   context '#if_else' do
     it 'from docs' do
       inc_count = R.if_else(

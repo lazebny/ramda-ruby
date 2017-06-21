@@ -23,6 +23,18 @@ module Ramda
     # g(_, 2)(_, 3)(1)
     #
 
+    # rubocop:disable Style/MethodName
+    def self.F
+      ->(*) { false }
+    end
+    # rubocop:enable Style/MethodName
+
+    # rubocop:disable Style/MethodName
+    def self.T
+      ->(*) { true }
+    end
+    # rubocop:enable Style/MethodName
+
     def self.__
       :ramda_placeholder
     end
@@ -36,7 +48,7 @@ module Ramda
     # a -> (* -> a)
     #
     curried_method(:always) do |value|
-      -> { value }
+      ->(*) { value }
     end
 
     # ap applies a list of functions to a list of values.

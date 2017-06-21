@@ -16,6 +16,8 @@ module Ramda
   extend SingleForwardable
 
   def_delegators Ramda::Function,
+                 :F,
+                 :T,
                  :__,
                  :always,
                  :ap,
@@ -97,6 +99,7 @@ module Ramda
                  :and,
                  :any_pass,
                  :complement,
+                 :cond,
                  :if_else,
                  :is_empty,
                  :not,

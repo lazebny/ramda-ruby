@@ -3,6 +3,18 @@ require 'spec_helper'
 describe Ramda::Function do
   let(:r) { described_class }
 
+  context '#F' do
+    it 'from docs' do
+      expect(r.F.call).to be_falsey
+    end
+  end
+
+  context '#T' do
+    it 'from docs' do
+      expect(r.T.call).to be_truthy
+    end
+  end
+
   context '#__' do
     it 'from docs' do
       greet = R.replace('{name}', r.__, 'Hello, {name}!')

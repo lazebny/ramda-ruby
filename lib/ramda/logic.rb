@@ -31,6 +31,22 @@ module Ramda
       end.curry
     end
 
+    # Returns a function, fn, which encapsulates if/else, if/else, ...
+    # logic. R.cond takes a list of [predicate, transformer] pairs.
+    # All of the arguments to fn are applied to each of the predicates
+    # in turn until one returns a "truthy" value, at which point fn
+    # returns the result of applying its arguments to the corresponding
+    # transformer. If none of the predicates matches, fn returns nil.
+    #
+    # [[(*... -> Boolean),(*... -> *)]] -> (*... -> *)
+    #
+    curried_method(:cond) do |xs, x, *other_x|
+      _, then_fn = xs.find do |(when_fn, _)|
+        when_fn.call(x, *other_x)
+      end
+      then_fn.call(x, *other_x) unless then_fn.nil?
+    end
+
     # Creates a function that will process either the onTrue or the onFalse
     # function depending upon the result of the condition predicate.
     #

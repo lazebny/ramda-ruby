@@ -43,6 +43,16 @@ describe Ramda::Function do
     end
   end
 
+  context '#bind' do
+    it 'from docs' do
+      fn = r.bind(''.method(:upcase), 'abcdef')
+      expect(fn.call).to eq('ABCDEF')
+
+      fn = r.bind(100.method(:+), 1000)
+      expect(fn.call(10)).to eq(1010)
+    end
+  end
+
   context '#comparator' do
     it 'from docs' do
       sort_rule = r.comparator(->(a, b) { a < b })

@@ -23,6 +23,7 @@ describe Ramda do
   r(:append)
   r(:assoc)
   r(:binary)
+  r(:bind)
   r(:chain)
   r(:clone)
   r(:comparator)

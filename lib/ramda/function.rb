@@ -63,6 +63,14 @@ module Ramda
       n_ary(2, fn)
     end
 
+    # Creates a function that is bound to a context.
+    #
+    # (* -> *) -> {*} -> (* -> *)
+    #
+    curried_method(:bind) do |fn, ctx|
+      fn.unbind.bind(ctx)
+    end
+
     # Makes a comparator function out of a function that reports whether
     # the first element is less than the second.
     #

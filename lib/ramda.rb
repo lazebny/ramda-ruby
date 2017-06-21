@@ -20,6 +20,7 @@ module Ramda
                  :always,
                  :ap,
                  :binary,
+                 :bind,
                  :comparator,
                  :compose,
                  :construct,

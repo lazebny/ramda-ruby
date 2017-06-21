@@ -133,6 +133,21 @@ module Ramda
       obj[key]
     end
 
+    # If the given, non-null object has an own property with the specified
+    # name, returns the value of that property. Otherwise returns
+    # the provided default value.
+    #
+    # a -> String -> Object -> a
+    #
+    curried_method(:prop_or) do |val, name, obj|
+      case obj
+      when Hash
+        obj[name] || val
+      else
+        obj.respond_to?(name) || val
+      end
+    end
+
     # Acts as multiple prop: array of keys in, array of values out.
     # Preserves order.
     #

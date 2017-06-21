@@ -107,6 +107,7 @@ describe Ramda do
   r(:project)
   r(:prop)
   r(:prop_eq)
+  r(:prop_or)
   r(:props)
   r(:range)
   r(:reduce)

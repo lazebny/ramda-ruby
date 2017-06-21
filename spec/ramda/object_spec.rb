@@ -122,6 +122,20 @@ describe Ramda::Object do
     end
   end
 
+  context '#prop_or' do
+    it 'from docs' do
+      alice = {
+        name: 'ALICE',
+        age: 101
+      }
+      favorite = R.prop('favoriteLibrary')
+      favorite_with_default = r.prop_or('Ramda', 'favoriteLibrary')
+
+      expect(favorite.call(alice)).to eq(nil)
+      expect(favorite_with_default.call(alice)).to eq('Ramda')
+    end
+  end
+
   context '#props' do
     it 'from docs' do
       expect(r.props([:x, :y], x: 1, y: 2)).to eq([1, 2])

@@ -1,4 +1,5 @@
 FROM ruby:2.1.9
+# FROM jruby:9.1.12
 
 RUN apt-get update && apt-get install -y \
   build-essential \

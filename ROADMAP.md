@@ -4,7 +4,6 @@
 
 ### release 0.6.0
 
-* prop_or
 * trim
 
 ### release 0.7.0

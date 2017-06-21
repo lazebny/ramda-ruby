@@ -131,6 +131,7 @@ module Ramda
                  :pick_all,
                  :project,
                  :prop,
+                 :prop_or,
                  :props,
                  :to_pairs,
                  # :to_pairs_in,

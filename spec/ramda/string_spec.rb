@@ -48,4 +48,11 @@ describe Ramda::String do
       expect(r.to_lower.call('XYZ')).to eq('xyz')
     end
   end
+
+  context '#trim' do
+    it 'from docs' do
+      expect(r.trim('   xyz  ')).to eq('xyz')
+      expect(R.map(r.trim, R.split(',', 'x, y, z'))).to eq(['x', 'y', 'z'])
+    end
+  end
 end

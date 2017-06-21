@@ -162,7 +162,8 @@ module Ramda
                  :replace,
                  :split,
                  :to_lower,
-                 :to_upper
+                 :to_upper,
+                 :trim
 
   def_delegators Ramda::Type,
                  :is,

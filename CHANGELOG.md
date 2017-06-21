@@ -10,6 +10,7 @@ Added:
 * cond
 * prop_or
 * replace - it uses a gsub method and global replacement
+* trim
 
 Release 0.5.0
 ---------------

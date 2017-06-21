@@ -49,6 +49,12 @@ module Ramda
     #
     curried_method(:to_lower, &:downcase)
 
+    # Removes (strips) whitespace from both ends of the string.
+    #
+    # String -> String
+    #
+    curried_method(:trim, &:strip)
+
     # TODO: Extract from this module
     def self.type_error(object)
       raise ArgumentError, "Unexpected type #{object.class}"

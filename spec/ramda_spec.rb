@@ -131,6 +131,7 @@ describe Ramda do
   r(:to_lower)
   r(:to_pairs)
   r(:to_upper)
+  r(:trim)
   r(:unary)
   r(:union)
   r(:union_with)

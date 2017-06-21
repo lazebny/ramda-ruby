@@ -4,8 +4,6 @@
 
 ### release 0.6.0
 
-* trim
-
 ### release 0.7.0
 
 * apply

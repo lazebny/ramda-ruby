@@ -24,6 +24,11 @@ describe Ramda::Math do
       expect(r.divide(71, 100)).to eq(0.71)
     end
 
+    it 'supports placeholder' do
+      half = r.divide(Ramda.__, 2)
+      expect(half.call(10)).to eq(5)
+    end
+
     it 'is curried' do
       expect(r.divide(1).call(4)).to eq(0.25)
     end
@@ -58,6 +63,12 @@ describe Ramda::Math do
       expect(r.modulo(21, 2)).to be(1)
       expect(r.modulo(17, 3)).to be(2)
     end
+
+    it 'supports placeholer' do
+      is_odd = R.modulo(R.__, 2)
+      expect(is_odd.call(42)).to eq(0)
+      expect(is_odd.call(21)).to eq(1)
+    end
   end
 
   context '#multipy' do
@@ -89,6 +100,12 @@ describe Ramda::Math do
       complementary_angel = r.subtract(90)
       expect(complementary_angel.call(30)).to be(60)
       expect(complementary_angel.call(72)).to be(18)
+    end
+
+    it 'support placeholder' do
+      minus5 = r.subtract(R.__, 5)
+      expect(minus5.call(17)).to eq(12)
+      expect(minus5.call(10)).to eq(5)
     end
   end
 

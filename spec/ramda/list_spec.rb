@@ -57,7 +57,7 @@ describe Ramda::List do
         end
       end.new
 
-      expect(r.chain(Ramda.add(5), monad)).to eq(15)
+      expect(r.chain(R.add(5), monad)).to eq(15)
     end
 
     it 'monad with bind' do
@@ -67,7 +67,7 @@ describe Ramda::List do
         end
       end.new
 
-      expect(r.chain(Ramda.add(5), monad)).to eq(15)
+      expect(r.chain(R.add(5), monad)).to eq(15)
     end
 
     # it 'multiple args' do
@@ -548,7 +548,7 @@ describe Ramda::List do
 
   context '#zip_with' do
     it 'from docs' do
-      f = ->(x, y) { Ramda.join('', [x, y]) }
+      f = ->(x, y) { R.join('', [x, y]) }
 
       expect(r.zip_with(f, [1, 2, 3], ['a', 'b', 'c'])).to eq(['1a', '2b', '3c'])
     end

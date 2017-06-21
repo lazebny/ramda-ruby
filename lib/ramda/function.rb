@@ -7,6 +7,26 @@ module Ramda
   module Function
     extend ::Ramda::Internal::CurriedMethod
 
+    # A special placeholder value used to specify "gaps" within curried
+    # functions, allowing partial application of any combination of
+    # arguments, regardless of their positions.
+    #
+    # If g is a curried ternary function and _ is R.__, the following are equivalent:
+    #
+    # g(1, 2, 3)
+    # g(_, 2, 3)(1)
+    # g(_, _, 3)(1)(2)
+    # g(_, _, 3)(1, 2)
+    # g(_, 2, _)(1, 3)
+    # g(_, 2)(1)(3)
+    # g(_, 2)(1, 3)
+    # g(_, 2)(_, 3)(1)
+    #
+
+    def self.__
+      :ramda_placeholder
+    end
+
     # Returns a function that always returns the given value. Note that
     # for non-primitives the value returned is a reference to the original
     # value.
@@ -116,7 +136,7 @@ module Ramda
     # (* -> a) -> (* -> a)
     #
     curried_method(:curry) do |fn|
-      fn.to_proc.curry
+      curried_method_body(fn.arity, &fn)
     end
 
     # Returns a curried equivalent of the provided function, with the
@@ -145,7 +165,7 @@ module Ramda
     # Number -> (* -> a) -> (* -> a)
     #
     curried_method(:curry_n) do |arity, fn|
-      Ramda::Internal::FunctionWithArity.new.call(arity, &fn).curry
+      curried_method_body(arity, &fn)
     end
 
     # Returns the empty value of its argument's type. Ramda defines the empty

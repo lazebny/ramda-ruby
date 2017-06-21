@@ -3,6 +3,16 @@ require 'spec_helper'
 describe Ramda::Function do
   let(:r) { described_class }
 
+  context '#__' do
+    it 'from docs' do
+      greet = R.replace('{name}', r.__, 'Hello, {name}!')
+      expect(greet.call('Alice')).to eq('Hello, Alice!')
+
+      greet = R.replace(r.__, r.__, 'Hello, {name}!')
+      expect(greet.call('{name}', 'Alice')).to eq('Hello, Alice!')
+    end
+  end
+
   context '#always' do
     it 'from docs' do
       str = 'Tee'
@@ -105,6 +115,16 @@ describe Ramda::Function do
     it 'can receive a method' do
       expect(r.curry(method(:test_method)).call(100)).to eq(100)
     end
+
+    it 'supports placeholder' do
+      g = r.curry(->(a, b, c) { a + b + c })
+
+      expect(g.call(1, 2, 3)).to eq(6)
+      expect(g.call(R.__, 2, 3).call(1)).to eq(6)
+      expect(g.call(R.__, R.__, 3).call(1).call(2)).to eq(6)
+      expect(g.call(R.__, R.__, 3).call(1, 2)).to eq(6)
+      expect(g.call(R.__, 2, R.__).call(1, 3)).to eq(6)
+    end
   end
 
   context '#curry_n' do
@@ -118,14 +138,14 @@ describe Ramda::Function do
       expect(g.call(4)).to eq(10)
     end
 
-    xit 'with __' do
-      # g(1, 2, 3)
-      # g(_, 2, 3)(1)
-      # g(_, _, 3)(1)(2)
-      # g(_, _, 3)(1, 2)
-      # g(_, 2)(1)(3)
-      # g(_, 2)(1, 3)
-      # g(_, 2)(_, 3)(1)
+    it 'supports placeholder' do
+      g = r.curry_n(3, ->(*args) { R.sum(args) })
+
+      expect(g.call(1, 2, 3)).to eq(6)
+      expect(g.call(R.__, 2, 3).call(1)).to eq(6)
+      expect(g.call(R.__, R.__, 3).call(1).call(2)).to eq(6)
+      expect(g.call(R.__, R.__, 3).call(1, 2)).to eq(6)
+      expect(g.call(R.__, 2, R.__).call(1, 3)).to eq(6)
     end
   end
 

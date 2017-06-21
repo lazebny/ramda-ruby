@@ -4,7 +4,6 @@
 
 ### release 0.6.0
 
-* __
 * bind
 * cond
 * prop_or

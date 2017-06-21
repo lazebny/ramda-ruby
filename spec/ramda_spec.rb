@@ -11,6 +11,7 @@ describe Ramda do
   # r(:math_mod)
   # r(:to_pairs_in)
   # r(:values_in)
+  r(:__)
   r(:add)
   r(:all)
   r(:all_pass)

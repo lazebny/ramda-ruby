@@ -49,7 +49,10 @@ Ruby scpecific examples can be found in [tests](spec/ramda).
 
 ## Usage
 
+Pointless Style:
+
 ```ruby
+
   R = Ramda
 
   players = [
@@ -60,6 +63,16 @@ Ruby scpecific examples can be found in [tests](spec/ramda).
 
   best_player = R.pipe(R.sort_by(R.prop(:score)), R.reverse, R.head, R.prop(:name))
   best_player.call(players) # Ivan
+
+```
+
+Placeholder:
+
+```ruby
+
+  reset_to_default = R.merge(R.__, x: 0)
+  reset_to_default.call(x: 5, y: 2) # { x: 0, y: 2 }
+
 ```
 
 ## Development

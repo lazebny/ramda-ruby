@@ -43,9 +43,9 @@ describe Ramda::Logic do
   context '#if_else' do
     it 'from docs' do
       inc_count = R.if_else(
-        Ramda.prop(:count),
-        Ramda.prop(:count),
-        Ramda.identity
+        R.prop(:count),
+        R.prop(:count),
+        R.identity
       )
       expect(inc_count.call({})).to eq({})
       expect(inc_count.call(count: 1)).to eq(1)

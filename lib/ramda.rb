@@ -16,6 +16,7 @@ module Ramda
   extend SingleForwardable
 
   def_delegators Ramda::Function,
+                 :__,
                  :always,
                  :ap,
                  :binary,

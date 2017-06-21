@@ -69,8 +69,11 @@ describe Ramda::Object do
 
     it 'is curried' do
       expect(r.merge(a: 1).call(b: 2)).to eq(a: 1, b: 2)
-      # var resetToDefault = R.merge(R.__, {x: 0});
-      # resetToDefault({x: 5, y: 2}); //=> {x: 0, y: 2}
+    end
+
+    it 'supports placeholder' do
+      reset_to_default = R.merge(R.__, x: 0)
+      expect(reset_to_default.call(x: 5, y: 2)).to eq(x: 0, y: 2)
     end
   end
 
@@ -174,8 +177,8 @@ describe Ramda::Object do
     it 'from docs' do
       pred = R.where(a: R.equals('foo'),
                      b: R.complement(R.equals('bar')),
-                     x: R.lt(10),
-                     y: R.gt(20))
+                     x: R.gt(R.__, 10),
+                     y: R.lt(R.__, 20))
 
       expect(pred.call(a: 'foo', b: 'xxx', x: 11, y: 19)).to be_truthy
       expect(pred.call(a: 'xxx', b: 'xxx', x: 11, y: 19)).to be_falsey

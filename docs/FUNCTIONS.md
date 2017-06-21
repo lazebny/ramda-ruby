@@ -1,7 +1,10 @@
-* (pending) to_pairs_in
 * (pending) keys_in
 * (pending) math_mod
+* (pending) to_pairs_in
 * (pending) values_in
+* F
+* T
+* __ - first function call should have all arguments g(___2, __)(1, 3), this means that it doesn't support g(__, 2)(1)(3), g(__, 2)(1, 3) and g(__, 2)(__, 3)(1)
 * add
 * all
 * all_pass
@@ -13,12 +16,14 @@
 * append
 * assoc
 * binary
+* bind
 * chain
 * clone
 * comparator
 * complement
 * compose
 * concat
+* cond
 * construct
 * construct_n
 * contains
@@ -93,6 +98,7 @@
 * project
 * prop
 * prop_eq
+* prop_or
 * props
 * range
 * reduce
@@ -100,6 +106,7 @@
 * reject
 * remove
 * repeat
+* replace - it uses a gsub method and global replacement
 * reverse
 * slice
 * sort
@@ -115,6 +122,7 @@
 * to_lower
 * to_pairs
 * to_upper
+* trim
 * unary
 * union
 * union_with

@@ -83,6 +83,7 @@ describe Ramda do
   r(:last_index_of)
   r(:length)
   r(:lift)
+  r(:lift_n)
   r(:lt)
   r(:lte)
   r(:map)

@@ -37,6 +37,7 @@ module Ramda
                  :invoker,
                  :juxt,
                  :lift,
+                 :lift_n,
                  :memoize,
                  :n_ary,
                  :of,

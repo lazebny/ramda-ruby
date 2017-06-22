@@ -262,7 +262,18 @@ module Ramda
     #
     # https://stackoverflow.com/questions/36558598/cant-wrap-my-head-around-lift-in-ramda-js
     curried_method(:lift) do |fn, a, *xs|
-      ([a] + xs).reduce([Ramda.curry(fn)]) { |acc, x| R.ap(acc, x) }
+      # ([a] + xs).reduce([curry(fn)], &ap)
+      lift_n(fn.arity, fn, a, *xs)
+    end
+
+    # "lifts" a function to be the specified arity, so that it may
+    # "map over" that many lists, Functions or other objects that
+    # satisfy the FantasyLand Apply spec.
+    #
+    # Number -> (*... -> *) -> ([*]... -> [*])
+    #
+    curried_method(:lift_n) do |arity, fn, a, *xs|
+      ([a] + xs).reduce([curry_n(arity, fn)], &ap)
     end
 
     # Creates a new function that, when invoked, caches the result of calling

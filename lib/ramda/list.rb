@@ -295,7 +295,7 @@ module Ramda
     # Filterable f => (a -> Boolean) -> f a -> [f a, f a]
     #
     curried_method(:partition) do |fn, xs|
-      R.juxt([filter, reject]).call(fn, xs)
+      ::Ramda.juxt([filter, reject]).call(fn, xs)
     end
 
     # Returns a new list by plucking the same named property off all objects

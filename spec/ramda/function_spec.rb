@@ -303,6 +303,13 @@ describe Ramda::Function do
     end
   end
 
+  context '#lift_n' do
+    it 'from docs' do
+      madd3 = r.lift_n(3, ->(*args) { R.sum(args) })
+      expect(madd3.call([1, 2, 3], [1, 2, 3], [1])).to eq([3, 4, 5, 4, 5, 6, 5, 6, 7])
+    end
+  end
+
   context '#memoize' do
     it 'from docs' do
       count = 0

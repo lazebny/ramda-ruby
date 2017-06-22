@@ -7,6 +7,7 @@ Added:
 * has
 * has_in
 * lift
+* lift_n
 
 Release 0.6.0
 ---------------

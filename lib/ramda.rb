@@ -123,6 +123,7 @@ module Ramda
                  :clone,
                  :dissoc,
                  :eq_props,
+                 :has,
                  :keys,
                  # :keys_in,
                  :merge,

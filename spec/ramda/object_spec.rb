@@ -24,6 +24,23 @@ describe Ramda::Object do
     end
   end
 
+  context '#has' do
+    it 'from docs' do
+      has_name = R.has(:name)
+      expect(has_name.call(name: 'alice')).to be_truthy
+      expect(has_name.call(name: 'bob')).to be_truthy
+      expect(has_name.call({})).to be_falsey
+    end
+
+    it 'with placeholder' do
+      point = { x: 0, y: 0 }
+      point_has = R.has(R.__, point)
+      expect(point_has.call(:x)).to be_truthy
+      expect(point_has.call(:y)).to be_truthy
+      expect(point_has.call(:z)).to be_falsey
+    end
+  end
+
   context '#eq_props' do
     it 'from docs' do
       o1 = { a: 1, b: 2, c: 3, d: 4 }

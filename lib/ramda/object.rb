@@ -39,6 +39,14 @@ module Ramda
       clone(obj).tap { |o| o.delete(prop) }
     end
 
+    # Returns whether or not an object has an own property with the specified name
+    #
+    # s -> {s: x} -> Boolean
+    #
+    curried_method(:has) do |key, obj|
+      obj.key?(key)
+    end
+
     # Reports whether two objects have the same value, in R.equals terms,
     # for the specified property. Useful as a curried predicate.
     #

@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * apply
+* has
 
 Release 0.6.0
 ---------------

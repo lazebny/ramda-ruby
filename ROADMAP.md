@@ -4,7 +4,6 @@
 
 ### release 0.7.0
 
-* has
 * has_in
 * lift
 * lift_n

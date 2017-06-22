@@ -43,6 +43,11 @@ describe Ramda::Function do
       expect(r.ap([R.concat('tasty '), R.to_upper], ['pizza', 'salad']))
         .to eq(['tasty pizza', 'tasty salad', 'PIZZA', 'SALAD'])
     end
+
+    xit 'with monads' do
+      res = r.ap(r.ap([R.multiply], M::Maybe(10)), M::Maybe(20))
+      expect(res).to eq(M::Maybe::Some.new(200))
+    end
   end
 
   context '#apply' do
@@ -247,6 +252,54 @@ describe Ramda::Function do
     it 'from docs' do
       get_range = r.juxt([->(*xs) { xs.min }, ->(*xs) { xs.max }])
       expect(get_range.call(3, 4, 9, -3)).to eq([-3, 9])
+    end
+  end
+
+  context '#lift' do
+    def madd3
+      r.lift(->(a, b, c) { a + b + c })
+    end
+
+    def madd4
+      r.lift(->(a, b, c, d) { a + b + c + d })
+    end
+
+    def madd5
+      r.lift(->(a, b, c, d, e) { a + b + c + d + e })
+    end
+
+    it 'from docs' do
+      expect(madd3.call([1, 2, 3], [1, 2, 3], [1])).to eq([3, 4, 5, 4, 5, 6, 5, 6, 7])
+      expect(madd5.call([1, 2], [3], [4, 5], [6], [7, 8])).to eq([21, 22, 22, 23, 22, 23, 23, 24])
+    end
+
+    it 'can lift functions with any arity' do
+      expect(madd3.call([1, 10], [2], [3])).to eq([6, 15])
+      expect(madd4.call([1, 10], [2], [3], [40])).to eq([46, 55])
+      expect(madd5.call([1, 10], [2], [3], [40], [500, 1000])).to eq([546, 1046, 555, 1055])
+    end
+
+    it 'example with ap' do
+      madd3 = ->(a, b, c) { a + b + c }
+
+      expect(
+        R.ap(
+          R.ap(
+            R.ap(
+              [R.curry(madd3)],
+              [1, 2, 3]
+            ),
+            [1, 2, 3]
+          ),
+          [1]
+        )
+      ).to eq([3, 4, 5, 4, 5, 6, 5, 6, 7])
+    end
+
+    xit 'with monads' do
+      addm = r.lift(R.add)
+      expect(addm.call(M::Maybe(3), M::Maybe(5))).to eq(M::Maybe(8))
+      # expect(addM.call(M::Maybe(3), M::Maybe(nil))).to eq(M::Maybe::None.new)
     end
   end
 

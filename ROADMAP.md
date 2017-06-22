@@ -4,7 +4,6 @@
 
 ### release 0.7.0
 
-* lift
 * lift_n
 * path_eq
 

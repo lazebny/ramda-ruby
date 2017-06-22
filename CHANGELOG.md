@@ -6,6 +6,7 @@ Added:
 * apply
 * has
 * has_in
+* lift
 
 Release 0.6.0
 ---------------

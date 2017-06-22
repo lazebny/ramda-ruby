@@ -58,11 +58,12 @@ module Ramda
     # [a -> b] -> [a] -> [b]
     # Apply f => f (a -> b) -> f a -> f b
     #
-    curried_method(:ap) do |fns, xs|
-      if xs.respond_to?(:ap)
-        xs.ap(fns)
+    curried_method(:ap) do |apply_f, apply_x|
+      if apply_x.respond_to?(:ap)
+        apply_x.ap(apply_f)
       else
-        fns.flat_map { |fn| xs.map(&fn) }
+        apply_f.flat_map { |fn| apply_x.map(&fn) }
+        # _reduce(function(acc, f) { return _concat(acc, map(f, applyX)); }, [], applyF)
       end
     end
 
@@ -253,6 +254,16 @@ module Ramda
     #
     curried_method(:juxt) do |fns, a, *bs|
       fns.map { |fn| fn.call(a, *bs) }
+    end
+
+    # "lifts" a function of arity > 1 so that it may "map over" a list,
+    # Function or other object that satisfies the FantasyLand Apply spec.
+    #
+    # (*... -> *) -> ([*]... -> [*])
+    #
+    # https://stackoverflow.com/questions/36558598/cant-wrap-my-head-around-lift-in-ramda-js
+    curried_method(:lift) do |fn, a, *xs|
+      ([a] + xs).reduce([Ramda.curry(fn)]) { |acc, x| R.ap(acc, x) }
     end
 
     # Creates a new function that, when invoked, caches the result of calling

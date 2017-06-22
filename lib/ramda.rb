@@ -36,6 +36,7 @@ module Ramda
                  :identity,
                  :invoker,
                  :juxt,
+                 :lift,
                  :memoize,
                  :n_ary,
                  :of,

@@ -5,6 +5,7 @@ Added:
 
 * apply
 * has
+* has_in
 
 Release 0.6.0
 ---------------

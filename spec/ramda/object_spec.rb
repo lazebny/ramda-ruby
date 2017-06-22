@@ -41,6 +41,15 @@ describe Ramda::Object do
     end
   end
 
+  context '#has_in' do
+    it 'from docs' do
+      square = Struct.new(:width, :area).new(2, 2)
+      expect(r.has_in(:width, square)).to be_truthy
+      expect(r.has_in(:area, square)).to be_truthy
+      expect(r.has_in(:duration, square)).to be_falsey
+    end
+  end
+
   context '#eq_props' do
     it 'from docs' do
       o1 = { a: 1, b: 2, c: 3, d: 4 }

@@ -47,6 +47,15 @@ module Ramda
       obj.key?(key)
     end
 
+    # Returns whether or not an object or its prototype chain has a property
+    # with the specified name
+    #
+    # s -> {s: x} -> Boolean
+    #
+    curried_method(:has_in) do |key, obj|
+      obj.respond_to?(key)
+    end
+
     # Reports whether two objects have the same value, in R.equals terms,
     # for the specified property. Useful as a curried predicate.
     #

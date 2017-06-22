@@ -64,6 +64,7 @@ describe Ramda do
   r(:gt)
   r(:gte)
   r(:has)
+  r(:has_in)
   r(:head)
   r(:identity)
   r(:if_else)

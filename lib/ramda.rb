@@ -124,6 +124,7 @@ module Ramda
                  :dissoc,
                  :eq_props,
                  :has,
+                 :has_in,
                  :keys,
                  # :keys_in,
                  :merge,

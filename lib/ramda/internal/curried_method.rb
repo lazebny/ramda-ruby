@@ -5,18 +5,24 @@ module Ramda
     # Curried Method
     module CurriedMethod
       def curried_method(name, &block)
-        define_singleton_method(name, &curried_method_body(block.arity, &block))
+        define_singleton_method(name, &curried_method_body(name, block.arity, &block))
       end
 
-      def curried_method_body(arity, &block)
+      # rubocop:disable Metrics/MethodLength
+      def curried_method_body(name, arity, &block)
         Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
-          if args.include?(Ramda.__)
-            replace_placeholder(args, &block).curry
-          else
-            args.empty? ? block : yield(*args)
+          begin
+            if args.include?(Ramda.__)
+              replace_placeholder(args, &block).curry
+            else
+              args.empty? ? block : yield(*args)
+            end
+          rescue StandardError => e
+            raise e, [name, e.exception].join(' -> '), e.backtrace
           end
         end.curry
       end
+      # rubocop:enable Metrics/MethodLength
 
       def replace_placeholder(basic_args)
         Ramda::Internal::FunctionWithArity.new.call(basic_args.count(Ramda.__)) do |*new_args|

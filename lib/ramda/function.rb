@@ -63,7 +63,6 @@ module Ramda
         apply_x.ap(apply_f)
       else
         apply_f.flat_map { |fn| apply_x.map(&fn) }
-        # _reduce(function(acc, f) { return _concat(acc, map(f, applyX)); }, [], applyF)
       end
     end
 
@@ -167,7 +166,7 @@ module Ramda
     # (* -> a) -> (* -> a)
     #
     curried_method(:curry) do |fn|
-      curried_method_body(fn.arity, &fn)
+      curried_method_body(:curry, fn.arity, &fn)
     end
 
     # Returns a curried equivalent of the provided function, with the
@@ -196,7 +195,7 @@ module Ramda
     # Number -> (* -> a) -> (* -> a)
     #
     curried_method(:curry_n) do |arity, fn|
-      curried_method_body(arity, &fn)
+      curried_method_body(:curry_n, arity, &fn)
     end
 
     # Returns the empty value of its argument's type. Ramda defines the empty

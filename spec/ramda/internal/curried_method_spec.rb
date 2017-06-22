@@ -30,5 +30,14 @@ describe Ramda::Internal::CurriedMethod do
       # expect(instance.g(R.__, 2).call(1, 3)).to eq(6)
       # expect(instance.g(R.__, 2).call(R.__, 3).call(1)).to eq(6)
     end
+
+    it 'exception handler' do
+      instance.curried_method(:g) do |a, b, c|
+        a + b + c
+      end
+
+      expect { instance.g(1, '', 2) }
+        .to raise_error(/g -> String can't be coerced/)
+    end
   end
 end

@@ -23,6 +23,7 @@ describe Ramda do
   r(:any_pass)
   r(:ap)
   r(:append)
+  r(:apply)
   r(:assoc)
   r(:binary)
   r(:bind)

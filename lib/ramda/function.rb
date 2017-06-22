@@ -66,6 +66,16 @@ module Ramda
       end
     end
 
+    # Applies function fn to the argument list args. This is useful
+    # for creating a fixed-arity function from a variadic function.
+    # fn should be a bound function if context is significant.
+    #
+    # (*... -> a) -> [*] -> a
+    #
+    curried_method(:apply) do |fn, xs|
+      fn.call(*xs)
+    end
+
     # Wraps a function of any arity (including nullary) in a function that
     # accepts exactly 2 parameters. Any extraneous parameters will not be
     # passed to the supplied function.

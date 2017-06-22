@@ -1,7 +1,12 @@
 Not Released
 ---------------
 
+Added:
+
+* apply
+
 Release 0.6.0
+---------------
 
 Added:
 

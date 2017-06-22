@@ -21,6 +21,7 @@ module Ramda
                  :__,
                  :always,
                  :ap,
+                 :apply,
                  :binary,
                  :bind,
                  :comparator,

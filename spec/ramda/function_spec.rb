@@ -45,6 +45,21 @@ describe Ramda::Function do
     end
   end
 
+  context '#apply' do
+    def max(*args)
+      args.max
+    end
+    it 'from docs' do
+      nums = [1, 2, 3, -99, 42, 6, 7]
+      expect(r.apply(method(:max), nums)).to be(42)
+    end
+
+    it 'is curried' do
+      nums = [1, 2, 3, -99, 42, 6, 7]
+      expect(r.apply.call(method(:max)).call(nums)).to be(42)
+    end
+  end
+
   context '#binary' do
     it 'from docs' do
       takes_three_args = ->(a, b, c) { [a, b, c]; }

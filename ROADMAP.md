@@ -6,7 +6,6 @@
 
 * lens
 * pick_by
-* type
 * unapply
 
 ### release 0.9.0

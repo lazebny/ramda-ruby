@@ -19,5 +19,11 @@ module Ramda
     # * -> Boolean
     #
     curried_method(:is_nil, &:nil?)
+
+    # Gives a class of the (native) type of a value.
+    #
+    # (* -> {*}) -> String
+    #
+    curried_method(:type, &:class)
   end
 end

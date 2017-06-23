@@ -23,4 +23,16 @@ describe Ramda::Type do
       expect(r.is_nil('')).to be_falsey
     end
   end
+
+  context '#type' do
+    it 'from docs' do
+      expect(r.type({})).to be(Hash)
+      expect(r.type(false)).to be(FalseClass)
+      expect(r.type('s')).to be(String)
+      expect(r.type(nil)).to be(NilClass)
+      expect(r.type([])).to be(Array)
+      expect(r.type(/[A-z]/)).to be(Regexp)
+      expect(r.type(-> {})).to be(Proc)
+    end
+  end
 end

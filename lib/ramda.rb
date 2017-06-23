@@ -176,5 +176,6 @@ module Ramda
 
   def_delegators Ramda::Type,
                  :is,
-                 :is_nil
+                 :is_nil,
+                 :type
 end

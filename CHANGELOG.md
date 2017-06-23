@@ -8,6 +8,7 @@ Added:
 * min_by
 * pick_by
 * type
+* unapply
 
 Release 0.7.0
 ---------------

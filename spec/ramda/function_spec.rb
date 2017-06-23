@@ -392,6 +392,13 @@ describe Ramda::Function do
     end
   end
 
+  context '#unapply' do
+    it 'from docs' do
+      stringify = ->(args) { args.to_s }
+      expect(r.unapply(stringify).call(1, 2, 3)).to eq('[1, 2, 3]')
+    end
+  end
+
   context '#unary' do
     it 'from docs' do
       takes_two_args = ->(a, b) { [a, b] }

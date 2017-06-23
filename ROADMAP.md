@@ -5,7 +5,6 @@
 ### release 0.8.0
 
 * lens
-* unapply
 
 ### release 0.9.0
 

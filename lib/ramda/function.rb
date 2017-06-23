@@ -349,6 +349,22 @@ module Ramda
       x
     end
 
+    # Takes a function fn, which takes a single array argument, and returns a
+    # function which:
+    #
+    # * takes any number of positional arguments;
+    # * passes these arguments to fn as an array; and
+    # * returns the result.
+    #
+    # In other words, R.unapply derives a variadic function from a function
+    # which takes an array. R.unapply is the inverse of R.apply.
+    #
+    # ([*...] -> a) -> (*... -> a)
+    #
+    curried_method(:unapply) do |fn, x, *xs|
+      fn.call([x] + xs)
+    end
+
     # Wraps a function of any arity (including nullary) in a function that
     # accepts exactly 1 parameter. Any extraneous parameters will not be passed
     # to the supplied function.

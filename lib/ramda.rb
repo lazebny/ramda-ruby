@@ -44,6 +44,7 @@ module Ramda
                  :once,
                  :pipe,
                  :tap,
+                 :unapply,
                  :unary,
                  :use_with
 

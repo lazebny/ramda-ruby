@@ -143,6 +143,7 @@ describe Ramda do
   r(:to_upper)
   r(:trim)
   r(:type)
+  r(:unapply)
   r(:unary)
   r(:union)
   r(:union_with)

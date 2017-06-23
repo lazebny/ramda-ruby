@@ -122,6 +122,7 @@ module Ramda
 
   def_delegators Ramda::Object,
                  :assoc,
+                 :assoc_path,
                  :clone,
                  :dissoc,
                  :eq_props,

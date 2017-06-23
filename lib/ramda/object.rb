@@ -16,6 +16,28 @@ module Ramda
       obj.merge(key => val)
     end
 
+    # Makes a shallow clone of an object, setting or overriding the nodes
+    # required to create the given path, and placing the specific value at
+    # the tail end of that path. Note that this copies and flattens
+    # prototype properties onto the new object as well. All non-primitive
+    # properties are copied by reference.
+    #
+    # [Idx] -> a -> {a} -> {a}
+    # Idx = String | Int
+    #
+    curried_method(:assoc_path) do |path, val, obj|
+      if path.empty?
+        val
+      else
+        memo = obj.dup
+        val_idx = path.size - 1
+        path.each_with_index.reduce(memo) do |acc, (key, idx)|
+          acc[key] = idx == val_idx ? val : {}
+        end
+        memo
+      end
+    end
+
     # Creates a deep copy of the value which may contain (nested)
     # Arrays and Objects, Numbers, Strings, Booleans and Dates.
     # Functions are assigned by reference rather than copied

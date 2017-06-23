@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* assoc_path
+
 Release 0.7.0
 ---------------
 

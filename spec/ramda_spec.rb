@@ -25,6 +25,7 @@ describe Ramda do
   r(:append)
   r(:apply)
   r(:assoc)
+  r(:assoc_path)
   r(:binary)
   r(:bind)
   r(:chain)

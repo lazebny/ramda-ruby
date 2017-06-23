@@ -9,6 +9,18 @@ describe Ramda::Object do
     end
   end
 
+  context '#assoc_path' do
+    it 'from docs' do
+      expect(r.assoc_path([:a, :b, :c], 42, a: { b: { c: 0 } })).to eq(a: { b: { c: 42 } })
+      expect(r.assoc_path([:a, :b, :c], 42, a: 5)).to eq(a: { b: { c: 42 } })
+      expect(r.assoc_path([:a, :b, :c], 42, a: 5, d: 10)).to eq(a: { b: { c: 42 } }, d: 10)
+    end
+
+    it 'empty path replaces the the whole object' do
+      expect(r.assoc_path([], 3, a: 1, b: 2)).to eq(3)
+    end
+  end
+
   context '#clone' do
     it 'from docs' do
       objects = [{}, {}, {}]
@@ -26,7 +38,7 @@ describe Ramda::Object do
 
   context '#has' do
     it 'from docs' do
-      has_name = R.has(:name)
+      has_name = r.has(:name)
       expect(has_name.call(name: 'alice')).to be_truthy
       expect(has_name.call(name: 'bob')).to be_truthy
       expect(has_name.call({})).to be_falsey
@@ -34,7 +46,7 @@ describe Ramda::Object do
 
     it 'with placeholder' do
       point = { x: 0, y: 0 }
-      point_has = R.has(R.__, point)
+      point_has = r.has(R.__, point)
       expect(point_has.call(:x)).to be_truthy
       expect(point_has.call(:y)).to be_truthy
       expect(point_has.call(:z)).to be_falsey

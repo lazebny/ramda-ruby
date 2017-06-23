@@ -4,8 +4,6 @@
 
 ### release 0.8.0
 
-* assoc
-* assoc_path
 * if_else
 * lens
 * max_by

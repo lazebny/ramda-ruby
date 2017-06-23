@@ -2,8 +2,6 @@
 
 * Find out suitable documentation format
 
-### release 0.7.0
-
 ### release 0.8.0
 
 * assoc

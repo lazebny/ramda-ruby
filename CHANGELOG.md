@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.7.0
+---------------
+
 Added:
 
 * apply

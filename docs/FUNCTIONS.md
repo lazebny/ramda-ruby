@@ -14,6 +14,7 @@
 * any_pass
 * ap
 * append
+* apply
 * assoc
 * binary
 * bind
@@ -53,6 +54,8 @@
 * group_by
 * gt
 * gte
+* has
+* has_in
 * head
 * identity
 * if_else
@@ -70,6 +73,8 @@
 * last
 * last_index_of - returns nil if index doesn't exist
 * length
+* lift
+* lift_n
 * lt
 * lte
 * map
@@ -89,6 +94,7 @@
 * or
 * partition
 * path
+* path_eq
 * pick
 * pick_all
 * pipe

@@ -135,6 +135,7 @@ module Ramda
                  :path,
                  :pick,
                  :pick_all,
+                 :pick_by,
                  :project,
                  :prop,
                  :prop_or,

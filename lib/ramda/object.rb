@@ -155,6 +155,15 @@ module Ramda
       Hash[keys.map { |k| [k, obj.key?(k) ? obj.fetch(k) : nil] }]
     end
 
+    # Returns a partial copy of an object containing only the keys that
+    # satisfy the supplied predicate.
+    #
+    # (v, k -> Boolean) -> {k: v} -> {k: v}
+    #
+    curried_method(:pick_by) do |fn, obj|
+      obj.select { |k, v| fn.call(v, k) }
+    end
+
     # Reasonable analog to SQL select statement.
     #
     # [k] -> [{k: v}] -> [{k: v}]

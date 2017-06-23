@@ -109,6 +109,7 @@ describe Ramda do
   r(:path_eq)
   r(:pick)
   r(:pick_all)
+  r(:pick_by)
   r(:pipe)
   r(:pluck)
   r(:prepend)

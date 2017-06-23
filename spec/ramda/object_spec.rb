@@ -142,6 +142,14 @@ describe Ramda::Object do
     end
   end
 
+  context '#pick_by' do
+    it 'from docs' do
+      is_upper_case = ->(_, key) { key.upcase == key }
+      expect(r.pick_by(is_upper_case, 'a' => 1, 'b' => 2, 'A' => 3, 'B' => 4))
+        .to eq('A' => 3, 'B' => 4)
+    end
+  end
+
   context '#project' do
     it 'from docs' do
       abby = { name: 'Abby', age: 7, hair: 'blond', grade: 2 }

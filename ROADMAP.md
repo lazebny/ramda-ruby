@@ -5,7 +5,6 @@
 ### release 0.8.0
 
 * lens
-* min_by
 * pick_by
 * type
 * unapply

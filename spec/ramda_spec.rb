@@ -94,6 +94,7 @@ describe Ramda do
   r(:memoize)
   r(:merge)
   r(:min)
+  r(:min_by)
   r(:modulo)
   r(:multiply)
   r(:n_ary)

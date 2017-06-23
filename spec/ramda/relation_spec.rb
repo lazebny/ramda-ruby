@@ -140,6 +140,17 @@ describe Ramda::Relation do
     end
   end
 
+  context '#min_by' do
+    it 'from docs' do
+      square = ->(n) { n * n; }
+
+      expect(r.min_by(square, -3, 2)).to eq(2)
+
+      expect(R.reduce(r.min_by(square), 100, [3, -5, 4, 1, -2])).to eq(1)
+      expect(R.reduce(r.min_by(square), 0, [])).to eq(0)
+    end
+  end
+
   context '#prop_eq' do
     it 'from docs' do
       abby = { name: 'Abby', age: 7, hair: 'blond' }

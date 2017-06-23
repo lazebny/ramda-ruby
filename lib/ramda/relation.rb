@@ -128,6 +128,15 @@ module Ramda
       [a, b].min
     end
 
+    # Takes a function and two values, and returns whichever value
+    # produces the smaller result when passed to the provided function.
+    #
+    # Ord b => (a -> b) -> a -> a -> a
+    #
+    curried_method(:min_by) do |fn, a, b|
+      [a, b].min_by(&fn)
+    end
+
     # Determines whether a nested path on an object has a specific value,
     # in R.equals terms. Most likely used to filter a list.
     #

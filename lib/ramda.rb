@@ -159,6 +159,7 @@ module Ramda
                  :max,
                  :max_by,
                  :min,
+                 :min_by,
                  :path_eq,
                  :prop_eq,
                  :sort_by,

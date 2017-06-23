@@ -5,6 +5,7 @@ Added:
 
 * assoc_path
 * max_by
+* min_by
 
 Release 0.7.0
 ---------------

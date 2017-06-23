@@ -4,9 +4,7 @@
 
 ### release 0.8.0
 
-* if_else
 * lens
-* max_by
 * min_by
 * pick_by
 * type

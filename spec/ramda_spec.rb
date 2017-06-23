@@ -90,6 +90,7 @@ describe Ramda do
   r(:map)
   r(:match)
   r(:max)
+  r(:max_by)
   r(:memoize)
   r(:merge)
   r(:min)

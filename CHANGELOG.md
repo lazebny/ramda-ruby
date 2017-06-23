@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * assoc_path
+* max_by
 
 Release 0.7.0
 ---------------

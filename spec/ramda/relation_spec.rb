@@ -122,6 +122,17 @@ describe Ramda::Relation do
     end
   end
 
+  context '#max_by' do
+    it 'from docs' do
+      square = ->(n) { n * n; }
+
+      expect(r.max_by(square, -3, 2)).to eq(-3)
+
+      expect(R.reduce(r.max_by(square), 0, [3, -5, 4, 1, -2])).to eq(-5)
+      expect(R.reduce(r.max_by(square), 0, [])).to eq(0)
+    end
+  end
+
   context '#min' do
     it 'from docs' do
       expect(r.min(789, 123)).to be(123)

@@ -111,6 +111,15 @@ module Ramda
       [a, b].max
     end
 
+    # Takes a function and two values, and returns whichever value produces
+    # the larger result when passed to the provided function.
+    #
+    # Ord b => (a -> b) -> a -> a -> a
+    #
+    curried_method(:max_by) do |fn, a, b|
+      [a, b].max_by(&fn)
+    end
+
     # Returns the smaller of its two arguments.
     #
     # Ord a => a -> a -> a

@@ -119,6 +119,18 @@ module Ramda
       [a, b].min
     end
 
+    # Determines whether a nested path on an object has a specific value,
+    # in R.equals terms. Most likely used to filter a list.
+    #
+    # [Idx] -> a -> {a} -> Boolean
+    # Idx = String | Int
+    #
+    curried_method(:path_eq) do |path, val, obj|
+      path.reduce(obj) do |acc, key|
+        acc.fetch(key, nil) if acc.is_a?(Hash) || acc.is_a?(Array)
+      end == val
+    end
+
     # Returns true if the specified object property is equal, in R.equals terms,
     # to the given value; false otherwise.
     #

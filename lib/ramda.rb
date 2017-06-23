@@ -157,6 +157,7 @@ module Ramda
                  :lte,
                  :max,
                  :min,
+                 :path_eq,
                  :prop_eq,
                  :sort_by,
                  :union,

@@ -103,6 +103,7 @@ describe Ramda do
   r(:or)
   r(:partition)
   r(:path)
+  r(:path_eq)
   r(:pick)
   r(:pick_all)
   r(:pipe)

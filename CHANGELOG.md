@@ -8,6 +8,7 @@ Added:
 * has_in
 * lift
 * lift_n
+* path_eq
 
 Release 0.6.0
 ---------------

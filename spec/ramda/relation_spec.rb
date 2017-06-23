@@ -141,6 +141,26 @@ describe Ramda::Relation do
     end
   end
 
+  context '#path_eq' do
+    it 'with hash' do
+      user1 = { address: { zipCode: 90_210 } }
+      user2 = { address: { zipCode: 55_555 } }
+      user3 = { name: 'Bob' }
+      users = [user1, user2, user3]
+      is_famous = R.path_eq([:address, :zipCode], 90_210)
+      expect(R.filter(is_famous, users)).to eq([user1])
+    end
+
+    it 'with array' do
+      col1 = [[11_111], [22_222], [33_333]]
+      col2 = [[44_444], [55_555], [66_666]]
+      col3 = [[77_777], [88_888], [99_999]]
+      cols = [col1, col2, col3]
+      predicate = R.path_eq([1, 0], 55_555)
+      expect(R.filter(predicate, cols)).to eq([col2])
+    end
+  end
+
   context '#sort_by' do
     it 'from docs 1' do
       sort_by_first_item = r.sort_by(R.prop(0))

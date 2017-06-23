@@ -4,8 +4,6 @@
 
 ### release 0.7.0
 
-* path_eq
-
 ### release 0.8.0
 
 * assoc

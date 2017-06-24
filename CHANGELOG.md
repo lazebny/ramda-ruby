@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.8.0
+---------------
+
 Added:
 
 * assoc_path

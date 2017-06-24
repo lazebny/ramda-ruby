@@ -16,6 +16,7 @@
 * append
 * apply
 * assoc
+* assoc_path
 * binary
 * bind
 * chain
@@ -73,6 +74,10 @@
 * last
 * last_index_of - returns nil if index doesn't exist
 * length
+* lens - composition does not work compose(lens1, lensb)
+* lens_index
+* lens_path
+* lens_prop
 * lift
 * lift_n
 * lt
@@ -80,23 +85,28 @@
 * map
 * match
 * max
+* max_by
 * memoize
 * merge
 * min
+* min_by
 * modulo
 * multiply
 * n_ary
+* negate
 * not
 * nth
 * of
 * omit
 * once
 * or
+* over
 * partition
 * path
 * path_eq
 * pick
 * pick_all
+* pick_by
 * pipe
 * pluck
 * prepend
@@ -114,6 +124,7 @@
 * repeat
 * replace - it uses a gsub method and global replacement
 * reverse
+* set
 * slice
 * sort
 * sort_by
@@ -129,14 +140,18 @@
 * to_pairs
 * to_upper
 * trim
+* type
+* unapply
 * unary
 * union
 * union_with
 * uniq
 * uniq_with - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
 * unnest
+* update
 * use_with
 * values
+* view
 * where
 * xprod
 * zip

@@ -258,6 +258,8 @@ module Ramda
     # Ramda provides suitable map implementations for Array and Object,
     # so this function may be applied to [1, 2, 3] or {x: 1, y: 2, z: 3}.
     #
+    # Also treats functions as functors and will compose them together.
+    #
     # Functor f => (a -> b) -> f a -> f b
     #
     curried_method(:map) do |f, functor|
@@ -267,7 +269,11 @@ module Ramda
       when ::Array
         functor.map(&f)
       else
-        type_error(functor, :map)
+        if functor.respond_to?(:map)
+          functor.map(f)
+        else
+          type_error(functor, :map)
+        end
       end
     end
 
@@ -281,8 +287,8 @@ module Ramda
       case xs
       when ::String
         xs[index] || ''
-      when ::Array
-        xs[index]
+      when ::Array, ::Hash
+        xs.fetch(index, nil)
       else
         type_error(xs, :nth)
       end
@@ -473,6 +479,15 @@ module Ramda
     #
     curried_method(:unnest) do |xs|
       Ramda.chain(Ramda.identity, xs)
+    end
+
+    # Returns a new copy of the array with the element at the provided
+    # index replaced with the given value.
+    #
+    # Number -> a -> [a] -> [a]
+    #
+    curried_method(:update) do |idx, x, xs|
+      xs.dup.tap { |a| a[idx] = x }
     end
 
     # Creates a new list out of the two supplied by creating each possible pair

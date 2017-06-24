@@ -337,7 +337,7 @@ module Ramda
     # (((a, b, ..., n) -> o), (o -> p), ..., (x -> y), (y -> z)) -> ((a, b, ..., n) -> z)
     #
     curried_method(:pipe) do |*fns|
-      ->(*args) { fns.reduce(args) { |memo, fn| [fn.call(*memo)] }.first }
+      ->(*args) { fns[1..-1].reduce(fns[0].call(*args)) { |memo, fn| fn.call(memo) } }
     end
 
     # Runs the given function with the supplied object, then returns the object.

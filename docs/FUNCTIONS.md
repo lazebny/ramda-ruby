@@ -4,7 +4,7 @@
 * (pending) values_in
 * F
 * T
-* __ - first function call should have all arguments g(___2, __)(1, 3), this means that it doesn't support g(__, 2)(1)(3), g(__, 2)(1, 3) and g(__, 2)(__, 3)(1)
+* `__` - first function call should have all arguments `g(__2, __)(1, 3)`, this means that it doesn't support `g(__, 2)(1)(3)`, `g(__, 2)(1, 3)` and `g(__, 2)(__, 3)(1)`
 * add
 * all
 * all_pass

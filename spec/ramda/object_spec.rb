@@ -16,6 +16,11 @@ describe Ramda::Object do
       expect(r.assoc_path([:a, :b, :c], 42, a: 5, d: 10)).to eq(a: { b: { c: 42 } }, d: 10)
     end
 
+    it 'with object + array' do
+      obj = { x: [{ y: 2, z: 3 }, { y: 4, z: 5 }] }
+      expect(r.assoc_path([:x, 0, :y], 1, obj)).to eq(x: [{ y: 1, z: 3 }, { y: 4, z: 5 }])
+    end
+
     it 'empty path replaces the the whole object' do
       expect(r.assoc_path([], 3, a: 1, b: 2)).to eq(3)
     end
@@ -27,6 +32,31 @@ describe Ramda::Object do
       objects_clone = r.clone(objects)
       expect(objects).not_to be(objects_clone)
       expect(objects[0]).not_to be(objects_clone[0])
+    end
+
+    it 'nested arrays' do
+      obj = [1, [2, 2, [3, 3]]]
+
+      cloned = r.clone(obj)
+      cloned[1][2][0] = 100
+
+      expect(cloned).not_to eq(obj)
+      path = Ramda.path([1, 2])
+      expect(path.call(obj)).to eq([3, 3])
+      expect(path.call(cloned)).to eq([100, 3])
+    end
+
+    it 'nested objects' do
+      obj = { a: { b: { c: 10 } } }
+
+      cloned = r.clone(obj)
+      cloned[:a][:b][:c] = 100
+
+      expect(cloned).not_to eq(obj)
+
+      path = Ramda.path([:a, :b])
+      expect(path.call(obj)).to eq(c: 10)
+      expect(path.call(cloned)).to eq(c: 100)
     end
   end
 
@@ -99,6 +129,124 @@ describe Ramda::Object do
     end
   end
 
+  context '#lens' do
+    def x_lens
+      r.lens(R.prop(:x), R.assoc(:x))
+    end
+
+    it 'with view' do
+      expect(R.view(x_lens, x: 1, y: 2)).to eq(1)
+    end
+
+    it 'with set' do
+      expect(R.set(x_lens, 4, x: 1, y: 2)).to eq(x: 4, y: 2)
+    end
+
+    it 'with over' do
+      expect(R.over(x_lens, R.negate, x: 1, y: 2)).to eq(x: -1, y: 2)
+    end
+  end
+
+  context '#lens_index' do
+    it 'from docs' do
+      head_lens = r.lens_index(0)
+
+      expect(R.view(head_lens, ['a', 'b', 'c'])).to eq('a')
+      expect(R.set(head_lens, 'x', ['a', 'b', 'c'])).to eq(['x', 'b', 'c'])
+      expect(R.over(head_lens, R.to_upper, ['a', 'b', 'c'])).to eq(['A', 'b', 'c'])
+    end
+  end
+
+  context '#lens_path' do
+    it 'from docs' do
+      x_head_y_lens = r.lens_path([:x, 0, :y])
+
+      obj = { x: [{ y: 2, z: 3 }, { y: 4, z: 5 }] }
+
+      expect(R.view(x_head_y_lens, obj)).to eq(2)
+      expect(R.set(x_head_y_lens, 1, obj)).to eq(x: [{ y: 1, z: 3 }, { y: 4, z: 5 }])
+      expect(R.over(x_head_y_lens, R.negate, obj)).to eq(x: [{ y: -2, z: 3 }, { y: 4, z: 5 }])
+
+      expect(obj).to eq(x: [{ y: 2, z: 3 }, { y: 4, z: 5 }])
+    end
+  end
+
+  context '#lens_prop' do
+    it 'from docs' do
+      x_lens = r.lens_prop(:x)
+
+      expect(R.view(x_lens, x: 1, y: 2)).to eq(1)
+      expect(R.set(x_lens, 4, x: 1, y: 2)).to eq(x: 4, y: 2)
+      expect(R.over(x_lens, R.negate, x: 1, y: 2)).to eq(x: -1, y: 2)
+    end
+  end
+
+  context 'view, over, and set' do
+    let(:alice) do
+      {
+        name: 'Alice Jones',
+        address: ['22 Walnut St', 'San Francisco', 'CA'],
+        pets: { dog: 'joker', cat: 'batman' }
+      }
+    end
+    let(:head_lens) { R.lens_index(0) }
+
+    it 'may be applied to a lens created by `lens_path`' do
+      dog_lens = R.lens_path([:pets, :dog])
+      expect(r.view(dog_lens, alice)).to eq('joker')
+    end
+
+    it 'may be applied to a lens created by `lens_prop`' do
+      name_lens = R.lens(R.prop(:name), R.assoc(:name))
+
+      expect(r.view(name_lens, alice)).to eq('Alice Jones')
+
+      expect(r.over(name_lens, R.to_upper, alice)).to eq(
+        name: 'ALICE JONES',
+        address: ['22 Walnut St', 'San Francisco', 'CA'],
+        pets: { dog: 'joker', cat: 'batman' }
+      )
+
+      expect(r.set(name_lens, 'Alice Smith', alice)).to eq(
+        name: 'Alice Smith',
+        address: ['22 Walnut St', 'San Francisco', 'CA'],
+        pets: { dog: 'joker', cat: 'batman' }
+      )
+    end
+
+    it 'may be applied to a lens created by `lens_index`' do
+      expect(R.view(head_lens, alice.fetch(:address))).to eq('22 Walnut St')
+
+      expect(R.over(head_lens, R.to_upper, alice.fetch(:address)))
+        .to eq(['22 WALNUT ST', 'San Francisco', 'CA'])
+
+      expect(R.set(head_lens, '52 Crane Ave', alice.fetch(:address)))
+        .to eq(['52 Crane Ave', 'San Francisco', 'CA'])
+    end
+
+    xit 'may be applied to composed lenses' do
+      address_lens = R.lens_prop(:address)
+      street_lens = R.compose(address_lens, head_lens)
+      dog_lens = R.compose(R.lens_path([:pets]), R.lens_path([:dog]))
+
+      expect(R.view(dog_lens, alice)).to eq(R.view(R.lens_path([:pets, :dog]), alice))
+
+      expect(R.view(street_lens, alice)).to eq('22 Walnut St')
+
+      expect(R.over(street_lens, R.to_upper, alice)).to eq(
+        name: 'Alice Jones',
+        address: ['22 WALNUT ST', 'San Francisco', 'CA'],
+        pets: { dog: 'joker', cat: 'batman' }
+      )
+
+      expect(R.set(street_lens, '52 Crane Ave', alice)).to eq(
+        name: 'Alice Jones',
+        address: ['52 Crane Ave', 'San Francisco', 'CA'],
+        pets: { dog: 'joker', cat: 'batman' }
+      )
+    end
+  end
+
   context '#merge' do
     it 'from docs' do
       expect(r.merge({ name: 'fred', age: 10 }, age: 40))
@@ -125,6 +273,11 @@ describe Ramda::Object do
     it 'from docs' do
       expect(r.path([:a, :b], a: { b: 2 })).to eq(2)
       expect(r.path([:a, :b], c: { b: 2 })).to eq(nil)
+    end
+
+    it 'with object + array' do
+      obj = { x: [{ y: 2, z: 3 }, { y: 4, z: 5 }] }
+      expect(r.path([:x, 0, :y], obj)).to eq(2)
     end
   end
 

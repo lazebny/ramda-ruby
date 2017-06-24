@@ -309,14 +309,22 @@ describe Ramda::List do
   end
 
   context '#nth' do
-    it 'from docs' do
+    it 'with array' do
       list = ['foo', 'bar', 'baz', 'quux']
       expect(r.nth(1, list)).to eq('bar')
       expect(r.nth(-1, list)).to eq('quux')
       expect(r.nth(-99, list)).to be_nil
+    end
 
+    it 'with string' do
       expect(r.nth(2, 'abc')).to eq('c')
       expect(r.nth(3, 'abc')).to eq('')
+    end
+
+    it 'with hash' do
+      list = { a: 123 }
+      expect(r.nth(:a, list)).to eq(123)
+      expect(r.nth(:b, list)).to be_nil
     end
   end
 
@@ -523,6 +531,19 @@ describe Ramda::List do
     it 'from docs' do
       expect(r.unnest([1, [2], [[3]]])).to eq([1, 2, [3]])
       expect(r.unnest([[1, 2], [3, 4], [5, 6]])).to eq([1, 2, 3, 4, 5, 6])
+    end
+  end
+
+  context '#update' do
+    it 'without mutation' do
+      original = [0, 1, 2]
+      updated = r.update(1, 11, original)
+      expect(updated).to eq([0, 11, 2])
+      expect(original).to eq([0, 1, 2])
+    end
+
+    it 'is curried' do
+      expect(r.update(1).call(11).call([0, 1, 2])).to eq([0, 11, 2])
     end
   end
 

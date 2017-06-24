@@ -1,9 +1,13 @@
 require_relative 'internal/curried_method'
+require_relative 'internal/functors'
 
 module Ramda
   # Math functions
+  # rubocop:disable Metrics/ModuleLength
   module Object
     extend ::Ramda::Internal::CurriedMethod
+
+    Functors = ::Ramda::Internals::Functors
 
     # Makes a shallow clone of an object, setting or overriding the specified
     # property with the given value. Note that this copies and flattens
@@ -29,12 +33,16 @@ module Ramda
       if path.empty?
         val
       else
-        memo = obj.dup
-        val_idx = path.size - 1
-        path.each_with_index.reduce(memo) do |acc, (key, idx)|
-          acc[key] = idx == val_idx ? val : {}
-        end
-        memo
+        cloned = clone(obj)
+        path[0...-1].reduce(cloned) do |acc, k|
+          case acc[k]
+          when Hash, Array
+            acc[k]
+          else
+            acc[k] = k.is_a?(Integer) ? [] : {}
+          end
+        end[path[-1]] = val
+        cloned
       end
     end
 
@@ -46,8 +54,14 @@ module Ramda
     #
     curried_method(:clone) do |obj|
       case obj
+      when Hash
+        obj.each_with_object(obj.dup) do |(key, value), acc|
+          acc[clone(key)] = clone(value)
+        end
       when Array
-        obj.dup.map(&method(:clone))
+        obj.map(&clone)
+      when Symbol, Integer, NilClass, TrueClass, FalseClass
+        obj
       else
         obj.dup
       end
@@ -108,6 +122,51 @@ module Ramda
         .uniq
     end
 
+    # Returns a lens for the given getter and setter functions.
+    # The getter "gets" the value of the focus;
+    # the setter "sets" the value of the focus.
+    # The setter should not mutate the data structure.
+    #
+    # (s -> a) -> ((a, s) -> s) -> Lens s a
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:lens) do |getter, setter|
+      curried_method_body(:lens, 2) do |to_functor_fn, target|
+        Ramda.map(
+          ->(focus) { setter.call(focus, target) },
+          to_functor_fn.call(getter.call(target))
+        )
+      end
+    end
+
+    # Returns a lens whose focus is the specified index.
+    #
+    # Number -> Lens s a
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:lens_index) do |n|
+      lens(Ramda.nth(0), Ramda.update(n))
+    end
+
+    # Returns a lens whose focus is the specified path.
+    #
+    # [Idx] -> Lens s a
+    # Idx = String | Int
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:lens_path) do |path|
+      lens(Ramda.path(path), Ramda.assoc_path(path))
+    end
+
+    # Returns a lens whose focus is the specified property.
+    #
+    # String -> Lens s a
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:lens_prop) do |k|
+      lens(Ramda.prop(k), Ramda.assoc(k))
+    end
+
     # Create a new object with the own properties of the first object merged
     # with the own properties of the second object. If a key exists in both
     # objects, the value from the second object will be used.
@@ -123,9 +182,25 @@ module Ramda
     # [String] -> {String: *} -> {String: *}
     #
     curried_method(:omit) do |keys, obj|
-      obj_copy = obj.dup
+      obj_copy = clone(obj)
       keys.each(&obj_copy.method(:delete))
       obj_copy
+    end
+
+    # Returns the result of "setting" the portion of the given data
+    # structure focused by the given lens to the result of applying
+    # the given function to the focused value.
+    #
+    # Lens s a -> (a -> a) -> s -> s
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:over) do |lens, f, x|
+      # The value returned by the getter function is first transformed with `f`,
+      # then set as the value of an `Identity`. This is then mapped over with the
+      # setter function of the lens.
+      lens
+        .call(->(y) { Functors::Identity.of(y).map(f) }, x)
+        .value
     end
 
     # Retrieve the value at a given path.
@@ -134,7 +209,7 @@ module Ramda
     # Idx = String | Int
     #
     curried_method(:path) do |keys, obj|
-      keys.reduce(obj) { |acc, key| acc.is_a?(Hash) ? acc.fetch(key, nil) : nil }
+      keys.reduce(obj) { |acc, key| acc.respond_to?(:fetch) ? acc.fetch(key, nil) : nil }
     end
 
     # Returns a partial copy of an object containing only the keys specified.
@@ -205,6 +280,16 @@ module Ramda
       keys.map(&obj.method(:[]))
     end
 
+    # Returns the result of "setting" the portion of the given data structure
+    # focused by the given lens to the given value.
+    #
+    # Lens s a -> a -> s -> s
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:set) do |lens, v, x|
+      over(lens, Ramda.always(v), x)
+    end
+
     # Converts an object into an array of key, value arrays. Only the
     # object's own properties are used. Note that the order of the
     # output array is not guaranteed.
@@ -226,6 +311,21 @@ module Ramda
     #
     curried_method(:values_in) do |obj|
       keys_in(obj).map(&obj.method(:send))
+    end
+
+    # Returns a "view" of the given data structure, determined
+    # by the given lens. The lens's focus determines which portion
+    # of the data structure is visible.
+    #
+    # Lens s a -> s -> a
+    # Lens s a = Functor f => (a -> f a) -> s -> f s
+    #
+    curried_method(:view) do |lens, x|
+      # Using `const` effectively ignores the setter function of the `lens`,
+      # leaving the value returned by the getter function unmodified.
+      lens
+        .call(Functors::Const.method(:of), x)
+        .value
     end
 
     # Takes a spec object and a test object; returns true if the test satisfies

@@ -84,6 +84,12 @@ describe Ramda::Math do
     end
   end
 
+  context '#negate' do
+    it 'from docs' do
+      expect(R.negate(42)).to eq(-42)
+    end
+  end
+
   context '#product' do
     it 'from docs' do
       expect(r.product([2, 4, 6, 8, 100, 1])).to be(38_400)

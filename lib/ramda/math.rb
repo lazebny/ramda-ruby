@@ -59,6 +59,12 @@ module Ramda
       a * b
     end
 
+    # Negates its argument.
+    #
+    # Number -> Number
+    #
+    curried_method(:negate, &:-@)
+
     # Multiplies together all the elements of a list.
     #
     # [Number] -> Number

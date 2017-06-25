@@ -4,15 +4,15 @@
 $ ruby -v bench/function/compose.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-        Ruby compose   210.151k i/100ms
-       Ramda.compose    22.200k i/100ms
+        Ruby compose   201.181k i/100ms
+       Ramda.compose    21.367k i/100ms
 Calculating -------------------------------------
-        Ruby compose      6.267M (± 3.1%) i/s -     31.312M in   5.002479s
-       Ramda.compose    263.145k (± 5.2%) i/s -      1.332M in   5.078388s
+        Ruby compose      5.857M (± 3.4%) i/s -     29.372M in   5.022187s
+       Ramda.compose    240.154k (± 3.9%) i/s -      1.218M in   5.080074s
 
 Comparison:
-        Ruby compose:  6266670.9 i/s
-       Ramda.compose:   263145.1 i/s - 23.81x  slower
+        Ruby compose:  5856571.7 i/s
+       Ramda.compose:   240153.8 i/s - 24.39x  slower
 
 
 ```
@@ -23,33 +23,33 @@ Comparison:
 $ ruby -v bench/function/curry.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-              Method   181.983k i/100ms
-           Proc.call   142.373k i/100ms
-         Proc.curry0    56.317k i/100ms
-         Proc.curry1    39.747k i/100ms
-       Method.curry0    40.605k i/100ms
-       Method.curry1    28.923k i/100ms
-       C Ramda.curry    15.155k i/100ms
-      CA Ramda.curry    12.776k i/100ms
+              Method   191.455k i/100ms
+           Proc.call   150.454k i/100ms
+         Proc.curry0    57.791k i/100ms
+         Proc.curry1    38.183k i/100ms
+       Method.curry0    39.514k i/100ms
+       Method.curry1    26.761k i/100ms
+       C Ramda.curry    13.519k i/100ms
+      CA Ramda.curry    13.008k i/100ms
 Calculating -------------------------------------
-              Method      4.651M (± 6.1%) i/s -     23.294M in   5.031364s
-           Proc.call      2.884M (± 4.2%) i/s -     14.522M in   5.049270s
-         Proc.curry0    761.914k (± 6.6%) i/s -      3.830M in   5.052607s
-         Proc.curry1    471.160k (± 4.9%) i/s -      2.385M in   5.075564s
-       Method.curry0    486.689k (± 5.5%) i/s -      2.436M in   5.022438s
-       Method.curry1    339.750k (± 5.6%) i/s -      1.706M in   5.041140s
-       C Ramda.curry    159.935k (± 7.1%) i/s -    803.215k in   5.050074s
-      CA Ramda.curry    138.637k (± 5.5%) i/s -    702.680k in   5.084751s
+              Method      4.728M (± 3.7%) i/s -     23.740M in   5.029935s
+           Proc.call      2.909M (± 1.4%) i/s -     14.594M in   5.018392s
+         Proc.curry0    788.273k (± 1.8%) i/s -      3.988M in   5.060328s
+         Proc.curry1    472.671k (± 1.7%) i/s -      2.367M in   5.010012s
+       Method.curry0    499.253k (± 2.4%) i/s -      2.529M in   5.068320s
+       Method.curry1    346.107k (± 2.5%) i/s -      1.739M in   5.028991s
+       C Ramda.curry    165.219k (± 4.1%) i/s -    824.659k in   5.000145s
+      CA Ramda.curry    139.484k (± 5.4%) i/s -    702.432k in   5.051358s
 
 Comparison:
-              Method:  4650886.8 i/s
-           Proc.call:  2883564.6 i/s - 1.61x  slower
-         Proc.curry0:   761913.7 i/s - 6.10x  slower
-       Method.curry0:   486689.3 i/s - 9.56x  slower
-         Proc.curry1:   471160.1 i/s - 9.87x  slower
-       Method.curry1:   339749.6 i/s - 13.69x  slower
-       C Ramda.curry:   159935.1 i/s - 29.08x  slower
-      CA Ramda.curry:   138637.1 i/s - 33.55x  slower
+              Method:  4728199.2 i/s
+           Proc.call:  2908721.3 i/s - 1.63x  slower
+         Proc.curry0:   788273.2 i/s - 6.00x  slower
+       Method.curry0:   499253.3 i/s - 9.47x  slower
+         Proc.curry1:   472670.7 i/s - 10.00x  slower
+       Method.curry1:   346106.8 i/s - 13.66x  slower
+       C Ramda.curry:   165218.7 i/s - 28.62x  slower
+      CA Ramda.curry:   139483.5 i/s - 33.90x  slower
 
 
 ```

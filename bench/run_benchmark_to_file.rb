@@ -11,21 +11,14 @@ module Bench
 
     # rubocop:disable Metrics/MethodLength
     def init
-      fetch_results = ->(f) { `bundle exec rake ramda:run_benchmark[#{f}]` }
-
       compose(
         map(save_results_fn),
         to_pairs,
         map(
           compose(
             join("\n"),
-            map(
-              compose(
-                prepare_content,
-                fetch_results,
-                Ramda.tap(log)
-              )
-            )
+            map(->(t) { t.join[:result] }),
+            map(method(:with_thread))
           )
         ),
         group_by_type
@@ -34,6 +27,18 @@ module Bench
     # rubocop:enable Metrics/MethodLength
 
     private_class_method
+
+    def with_thread(file)
+      fetch_results = ->(f) { `bundle exec rake ramda:run_benchmark[#{f}]` }
+
+      Thread.new do
+        Thread.current[:result] = compose(
+          prepare_content,
+          fetch_results,
+          Ramda.tap(log)
+        ).call(file)
+      end
+    end
 
     def group_by_type
       group_by(compose(nth(1), split('/')))

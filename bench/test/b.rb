@@ -1,0 +1,1 @@
+puts 'from b'

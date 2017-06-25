@@ -34,7 +34,7 @@ module Ramda
     # a -> [a] -> [a]
     #
     curried_method(:append) do |x, xs|
-      xs.dup + [x]
+      xs + [x]
     end
 
     # chain maps a function over a list and concatenates the results. chain is
@@ -288,7 +288,7 @@ module Ramda
       when ::String
         xs[index] || ''
       when ::Array, ::Hash
-        xs.fetch(index, nil)
+        xs[index]
       else
         type_error(xs, :nth)
       end

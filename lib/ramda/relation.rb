@@ -145,7 +145,7 @@ module Ramda
     #
     curried_method(:path_eq) do |path, val, obj|
       path.reduce(obj) do |acc, key|
-        acc.fetch(key, nil) if acc.is_a?(Hash) || acc.is_a?(Array)
+        acc[key] if acc.is_a?(Hash) || acc.is_a?(Array)
       end == val
     end
 

@@ -209,7 +209,7 @@ module Ramda
     # Idx = String | Int
     #
     curried_method(:path) do |keys, obj|
-      keys.reduce(obj) { |acc, key| acc.respond_to?(:fetch) ? acc.fetch(key, nil) : nil }
+      keys.reduce(obj) { |acc, key| acc.respond_to?(:fetch) ? acc[key] : nil }
     end
 
     # Returns a partial copy of an object containing only the keys specified.

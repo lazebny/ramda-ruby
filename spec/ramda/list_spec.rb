@@ -40,7 +40,13 @@ describe Ramda::List do
     end
 
     it 'is curried' do
-      expect(R.append(1).call([4, 3, 2])).to eq([4, 3, 2, 1])
+      expect(r.append(1).call([4, 3, 2])).to eq([4, 3, 2, 1])
+    end
+
+    it 'do not mutate array' do
+      a = [1, 2]
+      expect(r.append(100, a)).to eq([1, 2, 100])
+      expect(a).to eq([1, 2])
     end
   end
 

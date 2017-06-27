@@ -1,7 +1,10 @@
 Not Released
 ---------------
 
-Added ability to change exception handler.
+Release 0.8.1
+
+Added ability to change exceptions handler.
+Added benchmarks.
 
 Release 0.8.0
 ---------------

@@ -86,6 +86,22 @@ Placeholder:
 
 ```
 
+Change Exceptions Handler:
+
+```ruby
+
+  # To use a default 'with_narrow' handler:
+  Ramda.exception_handler = nil
+  # the same as:
+  Ramda.exception_handler = -> Ramda::ExceptionHandler.method(:with_narrow)
+
+  # Set a custom handler:
+  Ramda.exception_handler = -> (e, _method_name) { raise e, e.exception, e.backtrace }
+  # the same as:
+  Ramda.exception_handler = -> Ramda::ExceptionHandler.method(:default)
+
+```
+
 
 Benchmarks
 -------------

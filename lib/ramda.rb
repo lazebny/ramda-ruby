@@ -1,6 +1,7 @@
 require 'forwardable'
 
 require 'ramda/version'
+require 'ramda/exception_handler'
 require 'ramda/function'
 require 'ramda/list'
 require 'ramda/logic'
@@ -189,4 +190,12 @@ module Ramda
                  :is,
                  :is_nil,
                  :type
+
+  def self.exception_handler=(handler)
+    @exception_handler = handler
+  end
+
+  def self.exception_handler
+    @exception_handler ||= ::Ramda::ExceptionHandler.method(:with_narrow)
+  end
 end

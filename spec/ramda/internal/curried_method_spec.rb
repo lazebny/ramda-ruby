@@ -31,13 +31,25 @@ describe Ramda::Internal::CurriedMethod do
       # expect(instance.g(R.__, 2).call(R.__, 3).call(1)).to eq(6)
     end
 
-    it 'exception handler' do
-      instance.curried_method(:g) do |a, b, c|
-        a + b + c
+    context 'exception handler' do
+      before do
+        instance.curried_method(:g) do |a, b, c|
+          a + b + c
+        end
       end
 
-      expect { instance.g(1, '', 2) }
-        .to raise_error(/g -> String can't be coerced/)
+      after do
+        Ramda.exception_handler = nil
+      end
+
+      it 'default behavior' do
+        expect { instance.g(1, '', 2) }.to raise_error(/g -> String can't be coerced/)
+      end
+
+      it 'exception_handler=' do
+        Ramda.exception_handler = ->(*) { raise 'ABC some exception' }
+        expect { instance.g(1, '', 2) }.to raise_error(/ABC some exception/)
+      end
     end
   end
 end

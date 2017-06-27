@@ -1,6 +1,8 @@
 Not Released
 ---------------
 
+Added ability to change exception handler.
+
 Release 0.8.0
 ---------------
 

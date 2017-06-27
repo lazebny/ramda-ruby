@@ -18,7 +18,7 @@ module Ramda
               args.empty? ? block : yield(*args)
             end
           rescue StandardError => e
-            raise e, [name, e.exception].join(' -> '), e.backtrace
+            ::Ramda.exception_handler.call(e, name)
           end
         end.curry
       end

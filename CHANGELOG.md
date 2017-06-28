@@ -1,6 +1,8 @@
 Not Released
 ---------------
 
+Added debug_mode which shows name, arguments and result of each function call.
+
 Added:
 
 * call

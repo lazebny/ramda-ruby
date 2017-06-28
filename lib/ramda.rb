@@ -192,6 +192,16 @@ module Ramda
                  :is_nil,
                  :type
 
+  # Takes Boolean
+  def self.debug_mode=(enabled)
+    @debug_mode = enabled
+  end
+
+  # Returns Boolean/NilClass
+  def self.debug_mode
+    @debug_mode
+  end
+
   def self.exception_handler=(handler)
     @exception_handler = handler
   end

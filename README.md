@@ -86,7 +86,7 @@ Placeholder:
 
 ```
 
-Change Exceptions Handler:
+Change exceptions handler:
 
 ```ruby
 
@@ -99,6 +99,30 @@ Change Exceptions Handler:
   Ramda.exception_handler = -> (e, _method_name) { raise e, e.exception, e.backtrace }
   # the same as:
   Ramda.exception_handler = -> Ramda::ExceptionHandler.method(:default)
+
+```
+
+Ramda in debug mode shows calls trace.
+Notice: trace is shown only for Ramda functions and not for regular procs.
+If you want to show a whole trace you can wrap your proc in Ramda.curry function
+(pleaes see example below).
+
+Enable debug mode:
+
+```ruby
+
+  Ramda.debug_mode = true
+
+  # Example:
+
+  Ramda.filter(Ramda.curry(->(n) { n.even? }), [1, 2, 3, 4])
+
+  # -> curry(#<Proc:0x...@/srv/app/spec/ramda/list_spec.rb:130 (lambda)>) # #<Proc:0x... (lambda)>
+  # -> curry(1) # false
+  # -> curry(2) # true
+  # -> curry(3) # false
+  # -> curry(4) # true
+  # -> filter(#<Proc:0x0055ff3fad4640 (lambda)>, 1, 2, 3, 4) # [2, 4]
 
 ```
 

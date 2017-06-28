@@ -3,6 +3,7 @@ require 'ramda'
 require 'pry'
 
 R = Ramda
+R.debug_mode = true if ENV['RAMDA_DEBUG']
 
 require 'coveralls'
 Coveralls.wear!

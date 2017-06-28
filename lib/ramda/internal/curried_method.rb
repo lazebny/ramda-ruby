@@ -15,7 +15,9 @@ module Ramda
             if args.include?(Ramda.__)
               replace_placeholder(args, &block).curry
             else
-              args.empty? ? block : yield(*args)
+              result = args.empty? ? block : yield(*args)
+              debug_log(name, args, result) if ::Ramda.debug_mode
+              result
             end
           rescue StandardError => e
             ::Ramda.exception_handler.call(e, name)
@@ -28,7 +30,9 @@ module Ramda
         Ramda::Internal::FunctionWithArity.new.call(basic_args.count(Ramda.__)) do |*new_args|
           cloned_args = basic_args.dup
           new_args.each { |arg| cloned_args[cloned_args.index(Ramda.__)] = arg }
-          yield(*cloned_args)
+          result = yield(*cloned_args)
+          debug_log(name, cloned_args, result) if ::Ramda.debug_mode
+          result
         end
       end
 
@@ -42,6 +46,10 @@ module Ramda
         end
 
         define_singleton_method(name, &fn.curry)
+      end
+
+      def debug_log(name, args, result)
+        puts "-> #{name}(#{args.join(', ')}) # #{result}"
       end
 
       def curried_method_v1(name, &block)

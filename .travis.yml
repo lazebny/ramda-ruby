@@ -19,6 +19,8 @@ rvm:
 
   - rbx
 
+script: bundle exec rake && RAMDA_DEBUG=true bundle exec rake
+
 matrix:
   include:
     - rvm: 2.3.4

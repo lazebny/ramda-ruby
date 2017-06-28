@@ -25,6 +25,7 @@ module Ramda
                  :apply,
                  :binary,
                  :bind,
+                 :call,
                  :comparator,
                  :compose,
                  :construct,

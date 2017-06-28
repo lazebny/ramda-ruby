@@ -93,6 +93,10 @@ module Ramda
       fn.unbind.bind(ctx)
     end
 
+    curried_method(:call) do |fn, *xs|
+      fn.call(*xs)
+    end
+
     # Makes a comparator function out of a function that reports whether
     # the first element is less than the second.
     #

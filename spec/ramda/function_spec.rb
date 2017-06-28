@@ -85,6 +85,35 @@ describe Ramda::Function do
     end
   end
 
+  context '#call' do
+    it 'from docs' do
+      indent_n = R.pipe(R.times(R.always(' ')),
+                        R.join(''),
+                        R.replace(/^(?!$)/m))
+
+      format = R.converge(R.call, [
+                            R.pipe(R.prop(:indent), indent_n),
+                            R.prop(:value)
+                          ])
+
+      expect(format.call(indent: 2, value: "foo\nbar\nbaz\n")).to eq("  foo\n  bar\n  baz\n")
+    end
+
+    it 'returns the result of calling its first argument with the remaining arguments' do
+      fn = ->(*args) { args.max }
+      expect(R.call(fn, 1, 2, 3, -99, 42, 6, 7)).to eq(42)
+    end
+
+    it 'accepts one or more arguments' do
+      fn = ->(*args) { args.length; }
+
+      expect(R.call(fn)).to eq(0)
+      expect(R.call(fn, 'x')).to eq(1)
+      expect(R.call(fn, 'x', 'y')).to eq(2)
+      expect(R.call(fn, 'x', 'y', 'z')).to eq(3)
+    end
+  end
+
   context '#comparator' do
     it 'from docs' do
       sort_rule = r.comparator(->(a, b) { a < b })

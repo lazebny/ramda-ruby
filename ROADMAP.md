@@ -1,6 +1,5 @@
 Release 0.9.0
 ---------------
-* call
 * drop_while
 * evolve
 * init

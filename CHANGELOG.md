@@ -1,7 +1,13 @@
 Not Released
 ---------------
 
+Added:
+
+* call
+
+
 Release 0.8.1
+---------------
 
 Added ability to change exceptions handler.
 Added benchmarks.

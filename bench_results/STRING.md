@@ -4,21 +4,21 @@
 $ ruby -v bench/string/match.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-        String#match   112.475k i/100ms
-         Ramda.match    35.981k i/100ms
-       C Ramda.match    26.745k i/100ms
-      CA Ramda.match    21.381k i/100ms
+        String#match   126.591k i/100ms
+         Ramda.match    41.413k i/100ms
+       C Ramda.match    27.077k i/100ms
+      CA Ramda.match    22.075k i/100ms
 Calculating -------------------------------------
-        String#match      2.003M (± 5.4%) i/s -     10.010M in   5.020173s
-         Ramda.match    546.263k (± 3.3%) i/s -      2.735M in   5.012657s
-       C Ramda.match    352.129k (± 0.8%) i/s -      1.765M in   5.013205s
-      CA Ramda.match    264.370k (± 7.3%) i/s -      1.326M in   5.048530s
+        String#match      1.966M (± 3.0%) i/s -      9.874M in   5.028084s
+         Ramda.match    537.596k (± 2.8%) i/s -      2.692M in   5.011621s
+       C Ramda.match    331.260k (± 1.9%) i/s -      1.679M in   5.069652s
+      CA Ramda.match    255.061k (± 4.5%) i/s -      1.280M in   5.032187s
 
 Comparison:
-        String#match:  2002651.2 i/s
-         Ramda.match:   546263.1 i/s - 3.67x  slower
-       C Ramda.match:   352128.5 i/s - 5.69x  slower
-      CA Ramda.match:   264370.0 i/s - 7.58x  slower
+        String#match:  1965780.5 i/s
+         Ramda.match:   537596.2 i/s - 3.66x  slower
+       C Ramda.match:   331259.5 i/s - 5.93x  slower
+      CA Ramda.match:   255061.1 i/s - 7.71x  slower
 
 
 ```

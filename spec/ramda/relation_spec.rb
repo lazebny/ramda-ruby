@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::Relation do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   context '#equals' do
     it 'from docs' do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::String do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   context '#match' do
     it 'from docs' do

@@ -7,38 +7,6 @@ module Ramda
   module Function
     extend ::Ramda::Internal::CurriedMethod
 
-    # A special placeholder value used to specify "gaps" within curried
-    # functions, allowing partial application of any combination of
-    # arguments, regardless of their positions.
-    #
-    # If g is a curried ternary function and _ is R.__, the following are equivalent:
-    #
-    # g(1, 2, 3)
-    # g(_, 2, 3)(1)
-    # g(_, _, 3)(1)(2)
-    # g(_, _, 3)(1, 2)
-    # g(_, 2, _)(1, 3)
-    # g(_, 2)(1)(3)
-    # g(_, 2)(1, 3)
-    # g(_, 2)(_, 3)(1)
-    #
-
-    # rubocop:disable Style/MethodName
-    def self.F
-      ->(*) { false }
-    end
-    # rubocop:enable Style/MethodName
-
-    # rubocop:disable Style/MethodName
-    def self.T
-      ->(*) { true }
-    end
-    # rubocop:enable Style/MethodName
-
-    def self.__
-      :ramda_placeholder
-    end
-
     # Returns a function that always returns the given value. Note that
     # for non-primitives the value returned is a reference to the original
     # value.
@@ -82,7 +50,7 @@ module Ramda
     #
     #
     curried_method(:binary) do |fn|
-      n_ary(2, fn)
+      ::Ramda.n_ary(2, fn)
     end
 
     # Creates a function that is bound to a context.
@@ -119,7 +87,7 @@ module Ramda
     #
     # Note: The result of compose is not automatically curried.
     curried_method(:compose) do |*fns|
-      pipe(*fns.reverse)
+      ::Ramda.pipe(*fns.reverse)
     end
 
     # Wraps a constructor function inside a curried function that can be called
@@ -139,7 +107,7 @@ module Ramda
     # Number -> (* -> {*}) -> (* -> {*})
     #
     curried_method(:construct_n) do |arity, constructor|
-      Ramda::Internal::FunctionWithArity
+      ::Ramda::Internal::FunctionWithArity
         .new
         .call(arity, &constructor.method(:new))
         .curry
@@ -246,7 +214,7 @@ module Ramda
     # Number -> String -> (a -> b -> ... -> n -> Object -> *)
     #
     curried_method(:invoker) do |arity, method_name|
-      Ramda::Internal::FunctionWithArity.new.call(arity + 1) do |*args, object|
+      ::Ramda::Internal::FunctionWithArity.new.call(arity + 1) do |*args, object|
         object.public_send(method_name, *args)
       end.curry
     end
@@ -267,7 +235,7 @@ module Ramda
     # https://stackoverflow.com/questions/36558598/cant-wrap-my-head-around-lift-in-ramda-js
     curried_method(:lift) do |fn, a, *xs|
       # ([a] + xs).reduce([curry(fn)], &ap)
-      lift_n(fn.arity, fn, a, *xs)
+      ::Ramda.lift_n(fn.arity, fn, a, *xs)
     end
 
     # "lifts" a function to be the specified arity, so that it may
@@ -277,7 +245,7 @@ module Ramda
     # Number -> (*... -> *) -> ([*]... -> [*])
     #
     curried_method(:lift_n) do |arity, fn, a, *xs|
-      ([a] + xs).reduce([curry_n(arity, fn)], &ap)
+      ([a] + xs).reduce([::Ramda.curry_n(arity, fn)], &::Ramda.ap)
     end
 
     # Creates a new function that, when invoked, caches the result of calling
@@ -291,7 +259,7 @@ module Ramda
     curried_method(:memoize) do |fn|
       memo = {}
 
-      Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
         memo[args] = fn.call(*args) unless memo.key?(args)
         memo[args]
       end.curry
@@ -304,7 +272,7 @@ module Ramda
     # Number -> (* -> a) -> (* -> a)
     #
     curried_method(:n_ary) do |arity, fn|
-      Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
         fn.call(*(args.first(arity) + Array.new(fn.arity - arity, nil)))
       end.curry
     end
@@ -327,7 +295,7 @@ module Ramda
     curried_method(:once) do |fn|
       memo = {}
 
-      Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
         memo[:result] = fn.call(*args) unless memo.key?(:result)
         memo[:result]
       end.curry
@@ -376,7 +344,7 @@ module Ramda
     # (* -> b) -> (a -> b)
     #
     curried_method(:unary) do |fn|
-      n_ary(1, fn)
+      ::Ramda.n_ary(1, fn)
     end
 
     # Accepts a function fn and a list of transformer functions and returns
@@ -387,7 +355,7 @@ module Ramda
     # (x1 -> x2 -> ... -> z) -> [(a -> b -> ... -> x1), ...] -> (a -> b -> ... -> z)
     #
     curried_method(:use_with) do |fn, fns|
-      Ramda::Internal::FunctionWithArity.new.call(fns.count) do |*args|
+      ::Ramda::Internal::FunctionWithArity.new.call(fns.count) do |*args|
         modified_args = args.each_with_index.map do |arg, index|
           fns[index].call(arg)
         end

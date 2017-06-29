@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::Math do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   context '#add' do
     it 'from docs' do

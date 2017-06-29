@@ -1,11 +1,17 @@
 require 'spec_helper'
 
 describe Ramda::Internal::CurriedMethod do
-  let(:instance) { Class.new { extend Ramda::Internal::CurriedMethod } }
+  let(:klass) do
+    Class.new do
+      extend Ramda::Internal::CurriedMethod
+      include Ramda::Internal::Java::MakeCurryProc if RUBY_PLATFORM == 'java'
+    end
+  end
+  let(:instance) { klass.new }
 
   context '#curried_method' do
     it 'without placeholder' do
-      instance.curried_method(:g) do |a, b, c|
+      klass.curried_method(:g) do |a, b, c|
         a + b + c
       end
 
@@ -17,7 +23,7 @@ describe Ramda::Internal::CurriedMethod do
     end
 
     it 'with placeholder' do
-      instance.curried_method(:g) do |a, b, c|
+      klass.curried_method(:g) do |a, b, c|
         a + b + c
       end
 
@@ -33,7 +39,7 @@ describe Ramda::Internal::CurriedMethod do
 
     context 'exception handler' do
       before do
-        instance.curried_method(:g) do |a, b, c|
+        klass.curried_method(:g) do |a, b, c|
           a + b + c
         end
       end

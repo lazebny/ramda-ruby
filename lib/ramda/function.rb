@@ -108,7 +108,6 @@ module Ramda
     #
     curried_method(:construct_n) do |arity, constructor|
       ::Ramda::Internal::FunctionWithArity
-        .new
         .call(arity, &constructor.method(:new))
         .curry
     end
@@ -214,7 +213,7 @@ module Ramda
     # Number -> String -> (a -> b -> ... -> n -> Object -> *)
     #
     curried_method(:invoker) do |arity, method_name|
-      ::Ramda::Internal::FunctionWithArity.new.call(arity + 1) do |*args, object|
+      ::Ramda::Internal::FunctionWithArity.call(arity + 1) do |*args, object|
         object.public_send(method_name, *args)
       end.curry
     end
@@ -259,7 +258,7 @@ module Ramda
     curried_method(:memoize) do |fn|
       memo = {}
 
-      ::Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.call(fn.arity) do |*args|
         memo[args] = fn.call(*args) unless memo.key?(args)
         memo[args]
       end.curry
@@ -272,7 +271,7 @@ module Ramda
     # Number -> (* -> a) -> (* -> a)
     #
     curried_method(:n_ary) do |arity, fn|
-      ::Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.call(arity) do |*args|
         fn.call(*(args.first(arity) + Array.new(fn.arity - arity, nil)))
       end.curry
     end
@@ -295,7 +294,7 @@ module Ramda
     curried_method(:once) do |fn|
       memo = {}
 
-      ::Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.call(fn.arity) do |*args|
         memo[:result] = fn.call(*args) unless memo.key?(:result)
         memo[:result]
       end.curry
@@ -355,7 +354,7 @@ module Ramda
     # (x1 -> x2 -> ... -> z) -> [(a -> b -> ... -> x1), ...] -> (a -> b -> ... -> z)
     #
     curried_method(:use_with) do |fn, fns|
-      ::Ramda::Internal::FunctionWithArity.new.call(fns.count) do |*args|
+      ::Ramda::Internal::FunctionWithArity.call(fns.count) do |*args|
         modified_args = args.each_with_index.map do |arg, index|
           fns[index].call(arg)
         end

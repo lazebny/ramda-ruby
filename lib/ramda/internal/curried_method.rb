@@ -10,7 +10,7 @@ module Ramda
 
       # rubocop:disable Metrics/MethodLength
       def curried_method_body(name, arity, &block)
-        Ramda::Internal::FunctionWithArity.new.call(arity) do |*args|
+        Ramda::Internal::FunctionWithArity.call(arity) do |*args|
           begin
             if args.include?(Ramda.__)
               replace_placeholder(args, &block).curry
@@ -27,7 +27,7 @@ module Ramda
       # rubocop:enable Metrics/MethodLength
 
       def replace_placeholder(basic_args)
-        Ramda::Internal::FunctionWithArity.new.call(basic_args.count(Ramda.__)) do |*new_args|
+        Ramda::Internal::FunctionWithArity.call(basic_args.count(Ramda.__)) do |*new_args|
           cloned_args = basic_args.dup
           new_args.each { |arg| cloned_args[cloned_args.index(Ramda.__)] = arg }
           result = yield(*cloned_args)
@@ -37,7 +37,7 @@ module Ramda
       end
 
       def curried_method_v2(name, &block)
-        fn = Ramda::Internal::FunctionWithArity.new.call(block.arity) do |*args|
+        fn = Ramda::Internal::FunctionWithArity.call(block.arity) do |*args|
           if args.empty?
             block
           else

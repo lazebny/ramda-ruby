@@ -1,11 +1,11 @@
 module Ramda
   module Internal
     # Curried Method
-    class FunctionWithArity
+    module FunctionWithArity
       # rubocop:disable Metrics/CyclomaticComplexity
       # rubocop:disable Metrics/MethodLength
       # rubocop:disable Metrics/ParameterLists
-      def call(arity)
+      def self.call(arity)
         case arity
         when 0, -1
           ->(*a) { yield(*a) }

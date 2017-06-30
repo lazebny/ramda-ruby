@@ -1,13 +1,13 @@
 module Ramda
   module Internal
     module Java
+      # This hack resolved issue:
+      #   undefined method `__make_curry_proc__' for Ramda::Math:Module
+      #
+      # Source:
+      #   https://github.com/jruby/jruby/issues/1523
+      #
       module MakeCurryProc
-        # This hack resolved issue:
-        #   undefined method `__make_curry_proc__' for Ramda::Math:Module
-        #
-        # Source:
-        #   https://github.com/jruby/jruby/issues/1523
-        #
         # rubocop:disable Metrics/MethodLength
         def __make_curry_proc__(proc, passed, arity)
           is_lambda = proc.lambda?

@@ -12,7 +12,7 @@ module Ramda
       def curried_method_body(name, arity, &block)
         Ramda::Internal::FunctionWithArity.call(arity) do |*args|
           begin
-            if args.include?(Ramda.__)
+            if args.index(Ramda.__)
               replace_placeholder(args, &block).curry
             else
               result = args.empty? ? block : yield(*args)

@@ -16,7 +16,7 @@ module Ramda
               replace_placeholder(args, &block).curry
             else
               result = args.empty? ? block : yield(*args)
-              debug_log(name, args, result) if ::Ramda.debug_mode
+              debug_log(name, args, result) if ::Ramda::DEBUG_MODE
               result
             end
           rescue StandardError => e
@@ -31,7 +31,7 @@ module Ramda
           cloned_args = basic_args.dup
           new_args.each { |arg| cloned_args[cloned_args.index(Ramda.__)] = arg }
           result = yield(*cloned_args)
-          debug_log(name, cloned_args, result) if ::Ramda.debug_mode
+          debug_log(name, cloned_args, result) if ::Ramda::DEBUG_MODE
           result
         end
       end

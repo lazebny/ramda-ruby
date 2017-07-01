@@ -22,6 +22,16 @@ module Ramda
   extend Ramda::Type
   extend Ramda::Internal::Java::MakeCurryProc if RUBY_PLATFORM == 'java'
 
+  # Constants are faster than module variables
+  #
+  def self.const_missing(name)
+    value = {
+      DEBUG_MODE: false
+    }[name]
+
+    value.nil? ? super : const_set(name, value)
+  end
+
   # A special placeholder value used to specify "gaps" within curried
   # functions, allowing partial application of any combination of
   # arguments, regardless of their positions.
@@ -63,12 +73,12 @@ module Ramda
 
   # Takes Boolean
   def self.debug_mode=(enabled)
-    @debug_mode = enabled
+    const_set('DEBUG_MODE', enabled)
   end
 
   # Returns Boolean/NilClass
   def self.debug_mode
-    @debug_mode
+    DEBUG_MODE
   end
 
   def self.exception_handler=(handler)
@@ -80,4 +90,4 @@ module Ramda
   end
 end
 
-Ramda.debug_mode = false
+# Ramda.debug_mode = true

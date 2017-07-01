@@ -9,6 +9,8 @@ group :development do
   gem 'benchmark-ips', '~> 2.0'
   # gem 'ruby-prof'
   # gem 'fasterer'
+  # gem 'stackprof'
+  # gem 'flamegraph'
 end
 
 group :testing do

@@ -79,3 +79,5 @@ module Ramda
     @exception_handler ||= ::Ramda::ExceptionHandler.method(:with_narrow)
   end
 end
+
+Ramda.debug_mode = false

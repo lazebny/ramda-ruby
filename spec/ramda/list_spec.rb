@@ -125,6 +125,20 @@ describe Ramda::List do
     end
   end
 
+  context '#drop_while' do
+    it 'from docs' do
+      lte_two = ->(x) { x <= 2 }
+
+      expect(R.drop_while(lte_two, [1, 2, 3, 4, 3, 2, 1])).to eq([3, 4, 3, 2, 1])
+    end
+
+    it 'is curried' do
+      drop_lt7 = R.drop_while(->(x) { x < 7 })
+      expect(drop_lt7.call([1, 3, 5, 7, 9])).to eq([7, 9])
+      expect(drop_lt7.call([2, 4, 6, 8, 10])).to eq([8, 10])
+    end
+  end
+
   context '#filter' do
     def is_even
       ->(n) { n.even? }

@@ -49,6 +49,7 @@ describe Ramda do
   r(:dissoc)
   r(:divide)
   r(:drop)
+  r(:drop_while)
   r(:empty)
   r(:eq_by)
   r(:eq_props)

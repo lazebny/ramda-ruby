@@ -2,10 +2,12 @@ Not Released
 ---------------
 
 Added debug_mode which shows name, arguments and result of each function call.
+Small performance improvements.
 
 Added:
 
 * call
+* drop_while
 
 
 Release 0.8.1

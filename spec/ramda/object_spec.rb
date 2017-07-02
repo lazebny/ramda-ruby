@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::Object do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   context '#assoc' do
     it 'from docs' do

@@ -26,7 +26,7 @@ module Ramda
     # (*... -> *) -> (*... -> Boolean)
     #
     curried_method(:complement) do |fn|
-      ::Ramda::Internal::FunctionWithArity.new.call(fn.arity) do |*args|
+      ::Ramda::Internal::FunctionWithArity.call(fn.arity) do |*args|
         !fn.call(*args)
       end.curry
     end

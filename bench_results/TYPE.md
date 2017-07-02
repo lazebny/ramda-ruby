@@ -4,21 +4,21 @@
 $ ruby -v bench/type/is.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-        Object#is_a?   208.740k i/100ms
-            Ramda.is    50.923k i/100ms
-          C Ramda.is    35.256k i/100ms
-         CA Ramda.is    27.414k i/100ms
+        Object#is_a?   236.507k i/100ms
+            Ramda.is    71.785k i/100ms
+          C Ramda.is    42.919k i/100ms
+         CA Ramda.is    30.524k i/100ms
 Calculating -------------------------------------
-        Object#is_a?      6.471M (± 0.6%) i/s -     32.355M in   5.000468s
-            Ramda.is    740.801k (± 6.9%) i/s -      3.717M in   5.048026s
-          C Ramda.is    440.135k (± 1.1%) i/s -      2.221M in   5.047121s
-         CA Ramda.is    323.843k (± 1.3%) i/s -      1.645M in   5.079962s
+        Object#is_a?      6.314M (± 7.3%) i/s -     31.455M in   5.018973s
+            Ramda.is      1.032M (± 8.3%) i/s -      5.169M in   5.059860s
+          C Ramda.is    522.732k (± 8.8%) i/s -      2.618M in   5.056747s
+         CA Ramda.is    357.127k (±10.2%) i/s -      1.801M in   5.107361s
 
 Comparison:
-        Object#is_a?:  6470604.4 i/s
-            Ramda.is:   740800.6 i/s - 8.73x  slower
-          C Ramda.is:   440135.1 i/s - 14.70x  slower
-         CA Ramda.is:   323843.3 i/s - 19.98x  slower
+        Object#is_a?:  6314025.5 i/s
+            Ramda.is:  1032426.5 i/s - 6.12x  slower
+          C Ramda.is:   522731.9 i/s - 12.08x  slower
+         CA Ramda.is:   357127.5 i/s - 17.68x  slower
 
 
 ```

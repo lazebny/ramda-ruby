@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::Type do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   context '#is' do
     it 'from docs' do

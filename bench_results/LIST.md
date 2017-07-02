@@ -4,21 +4,21 @@
 $ ruby -v bench/list/all.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-           Array#all    77.401k i/100ms
-           Ramda.all    27.392k i/100ms
-         C Ramda.all    18.190k i/100ms
-        CA Ramda.all    14.078k i/100ms
+           Array#all    78.579k i/100ms
+           Ramda.all    31.803k i/100ms
+         C Ramda.all    20.851k i/100ms
+        CA Ramda.all    15.853k i/100ms
 Calculating -------------------------------------
-           Array#all      1.336M (± 4.8%) i/s -      6.734M in   5.053966s
-           Ramda.all    353.765k (± 4.4%) i/s -      1.780M in   5.045097s
-         C Ramda.all    217.545k (± 4.7%) i/s -      1.091M in   5.030257s
-        CA Ramda.all    162.398k (± 1.3%) i/s -    816.524k in   5.028813s
+           Array#all      1.322M (± 3.1%) i/s -      6.679M in   5.056336s
+           Ramda.all    415.865k (±12.6%) i/s -      2.035M in   5.023699s
+         C Ramda.all    255.882k (± 3.6%) i/s -      1.293M in   5.060079s
+        CA Ramda.all    184.662k (± 3.1%) i/s -    935.327k in   5.070336s
 
 Comparison:
-           Array#all:  1336460.3 i/s
-           Ramda.all:   353764.7 i/s - 3.78x  slower
-         C Ramda.all:   217545.0 i/s - 6.14x  slower
-        CA Ramda.all:   162398.3 i/s - 8.23x  slower
+           Array#all:  1322394.1 i/s
+           Ramda.all:   415865.5 i/s - 3.18x  slower
+         C Ramda.all:   255881.7 i/s - 5.17x  slower
+        CA Ramda.all:   184662.2 i/s - 7.16x  slower
 
 
 ```
@@ -29,21 +29,21 @@ Comparison:
 $ ruby -v bench/list/any.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-           Array#any    14.270k i/100ms
-           Ramda.any    10.273k i/100ms
-         C Ramda.any     8.640k i/100ms
-        CA Ramda.any     7.705k i/100ms
+           Array#any    13.865k i/100ms
+           Ramda.any    10.925k i/100ms
+         C Ramda.any     9.095k i/100ms
+        CA Ramda.any     8.044k i/100ms
 Calculating -------------------------------------
-           Array#any    152.847k (± 0.7%) i/s -    770.580k in   5.041731s
-           Ramda.any    113.928k (± 0.7%) i/s -    575.288k in   5.049828s
-         C Ramda.any     94.225k (± 0.9%) i/s -    475.200k in   5.043649s
-        CA Ramda.any     83.198k (± 0.8%) i/s -    416.070k in   5.001284s
+           Array#any    149.617k (± 5.0%) i/s -    748.710k in   5.021474s
+           Ramda.any    113.890k (±12.7%) i/s -    557.175k in   5.009868s
+         C Ramda.any     98.636k (± 2.4%) i/s -    500.225k in   5.074447s
+        CA Ramda.any     85.775k (± 1.3%) i/s -    434.376k in   5.065018s
 
 Comparison:
-           Array#any:   152847.5 i/s
-           Ramda.any:   113928.3 i/s - 1.34x  slower
-         C Ramda.any:    94224.9 i/s - 1.62x  slower
-        CA Ramda.any:    83198.3 i/s - 1.84x  slower
+           Array#any:   149616.8 i/s
+           Ramda.any:   113889.6 i/s - 1.31x  slower
+         C Ramda.any:    98636.0 i/s - 1.52x  slower
+        CA Ramda.any:    85775.0 i/s - 1.74x  slower
 
 
 ```
@@ -54,21 +54,21 @@ Comparison:
 $ ruby -v bench/list/append.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-             Array#+    83.756k i/100ms
-        Ramda.append    25.782k i/100ms
-      C Ramda.append    18.050k i/100ms
-     CA Ramda.append    14.551k i/100ms
+             Array#+    89.729k i/100ms
+        Ramda.append    31.285k i/100ms
+      C Ramda.append    20.996k i/100ms
+     CA Ramda.append    16.171k i/100ms
 Calculating -------------------------------------
-             Array#+      1.554M (± 2.1%) i/s -      7.789M in   5.016231s
-        Ramda.append    331.857k (± 1.4%) i/s -      1.676M in   5.050819s
-      C Ramda.append    213.022k (± 1.3%) i/s -      1.083M in   5.084918s
-     CA Ramda.append    166.543k (± 2.5%) i/s -    843.958k in   5.070777s
+             Array#+      1.547M (± 2.8%) i/s -      7.806M in   5.050427s
+        Ramda.append    384.766k (±10.6%) i/s -      1.908M in   5.042390s
+      C Ramda.append    246.361k (± 5.2%) i/s -      1.239M in   5.044613s
+     CA Ramda.append    181.351k (± 5.3%) i/s -    905.576k in   5.010010s
 
 Comparison:
-             Array#+:  1553585.5 i/s
-        Ramda.append:   331857.1 i/s - 4.68x  slower
-      C Ramda.append:   213022.0 i/s - 7.29x  slower
-     CA Ramda.append:   166542.7 i/s - 9.33x  slower
+             Array#+:  1546948.1 i/s
+        Ramda.append:   384765.6 i/s - 4.02x  slower
+      C Ramda.append:   246360.8 i/s - 6.28x  slower
+     CA Ramda.append:   181350.8 i/s - 8.53x  slower
 
 
 ```
@@ -79,21 +79,21 @@ Comparison:
 $ ruby -v bench/list/map.rb
 ruby 2.1.9p490 (2016-03-30 revision 54437) [x86_64-linux]
 Warming up --------------------------------------
-           Array#map     7.974k i/100ms
-           Ramda.map     6.374k i/100ms
-         C Ramda.map     5.774k i/100ms
-        CA Ramda.map     5.298k i/100ms
+           Array#map     7.790k i/100ms
+           Ramda.map     6.720k i/100ms
+         C Ramda.map     6.032k i/100ms
+        CA Ramda.map     5.436k i/100ms
 Calculating -------------------------------------
-           Array#map     82.584k (± 1.2%) i/s -    414.648k in   5.021657s
-           Ramda.map     67.571k (± 1.1%) i/s -    337.822k in   5.000119s
-         C Ramda.map     61.159k (± 2.8%) i/s -    306.022k in   5.008188s
-        CA Ramda.map     57.192k (± 4.5%) i/s -    286.092k in   5.014351s
+           Array#map     82.804k (± 1.8%) i/s -    420.660k in   5.082046s
+           Ramda.map     66.957k (±11.4%) i/s -    329.280k in   5.000794s
+         C Ramda.map     64.663k (± 3.8%) i/s -    325.728k in   5.045904s
+        CA Ramda.map     59.583k (± 6.0%) i/s -    298.980k in   5.042270s
 
 Comparison:
-           Array#map:    82584.4 i/s
-           Ramda.map:    67571.4 i/s - 1.22x  slower
-         C Ramda.map:    61159.2 i/s - 1.35x  slower
-        CA Ramda.map:    57192.1 i/s - 1.44x  slower
+           Array#map:    82804.2 i/s
+           Ramda.map:    66957.0 i/s - 1.24x  slower
+         C Ramda.map:    64663.2 i/s - 1.28x  slower
+        CA Ramda.map:    59582.6 i/s - 1.39x  slower
 
 
 ```

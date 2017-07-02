@@ -1,5 +1,3 @@
-require 'forwardable'
-
 require 'ramda/version'
 require 'ramda/exception_handler'
 require 'ramda/function'
@@ -10,196 +8,77 @@ require 'ramda/object'
 require 'ramda/relation'
 require 'ramda/string'
 require 'ramda/type'
+require 'ramda/internal/java/__make_curry_proc__' if RUBY_PLATFORM == 'java'
 
 # Ramda library implementation, source: http://ramdajs.com/
-# rubocop:disable Metrics/ModuleLength
 module Ramda
-  extend SingleForwardable
+  extend Ramda::Function
+  extend Ramda::List
+  extend Ramda::Logic
+  extend Ramda::Math
+  extend Ramda::Object
+  extend Ramda::Relation
+  extend Ramda::String
+  extend Ramda::Type
+  extend Ramda::Internal::Java::MakeCurryProc if RUBY_PLATFORM == 'java'
 
-  def_delegators Ramda::Function,
-                 :F,
-                 :T,
-                 :__,
-                 :always,
-                 :ap,
-                 :apply,
-                 :binary,
-                 :bind,
-                 :call,
-                 :comparator,
-                 :compose,
-                 :construct,
-                 :construct_n,
-                 :converge,
-                 :curry,
-                 :curry_n,
-                 :empty,
-                 :flip,
-                 :identity,
-                 :invoker,
-                 :juxt,
-                 :lift,
-                 :lift_n,
-                 :memoize,
-                 :n_ary,
-                 :of,
-                 :once,
-                 :pipe,
-                 :tap,
-                 :unapply,
-                 :unary,
-                 :use_with
+  # Constants are faster than module variables
+  #
+  def self.const_missing(name)
+    value = {
+      DEBUG_MODE: false
+    }[name]
 
-  def_delegators Ramda::List,
-                 :all,
-                 :any,
-                 :append,
-                 :chain,
-                 :concat,
-                 :contains,
-                 :drop,
-                 :filter,
-                 :from_pairs,
-                 :find,
-                 :find_index,
-                 :find_last,
-                 :find_last_index,
-                 :flatten,
-                 :for_each,
-                 :group_by,
-                 :head,
-                 :index_of,
-                 :insert,
-                 :join,
-                 :last,
-                 :last_index_of,
-                 :length,
-                 :slice,
-                 :sort,
-                 :map,
-                 :nth,
-                 :partition,
-                 :pluck,
-                 :prepend,
-                 :range,
-                 :reduce,
-                 :reduce_right,
-                 :reject,
-                 :remove,
-                 :repeat,
-                 :reverse,
-                 :tail,
-                 :take,
-                 :take_while,
-                 :times,
-                 :uniq,
-                 :uniq_with,
-                 :unnest,
-                 :update,
-                 :xprod,
-                 :zip,
-                 :zip_obj,
-                 :zip_with
+    value.nil? ? super : const_set(name, value)
+  end
 
-  def_delegators Ramda::Logic,
-                 :all_pass,
-                 :and,
-                 :any_pass,
-                 :complement,
-                 :cond,
-                 :if_else,
-                 :is_empty,
-                 :not,
-                 :or
+  # A special placeholder value used to specify "gaps" within curried
+  # functions, allowing partial application of any combination of
+  # arguments, regardless of their positions.
+  #
+  # If g is a curried ternary function and _ is R.__, the following are equivalent:
+  #
+  # g(1, 2, 3)
+  # g(_, 2, 3)(1)
+  # g(_, _, 3)(1)(2)
+  # g(_, _, 3)(1, 2)
+  # g(_, 2, _)(1, 3)
+  # g(_, 2)(1)(3)
+  # g(_, 2)(1, 3)
+  # g(_, 2)(_, 3)(1)
+  #
+  def self.__
+    :ramda_placeholder
+  end
 
-  def_delegators Ramda::Math,
-                 # :math_mod,
-                 :add,
-                 :dec,
-                 :divide,
-                 :inc,
-                 :modulo,
-                 :multiply,
-                 :negate,
-                 :product,
-                 :subtract,
-                 :sum
+  # A function that always returns false. Any passed in parameters are ignored.
+  #
+  # * -> Boolean
+  #
+  # rubocop:disable Style/MethodName
+  def self.F
+    ->(*) { false }
+  end
+  # rubocop:enable Style/MethodName
 
-  def_delegators Ramda::Object,
-                 # :keys_in,
-                 # :to_pairs_in,
-                 # :values_in,
-                 :assoc,
-                 :assoc_path,
-                 :clone,
-                 :dissoc,
-                 :eq_props,
-                 :has,
-                 :has_in,
-                 :keys,
-                 :lens,
-                 :lens_index,
-                 :lens_path,
-                 :lens_prop,
-                 :merge,
-                 :omit,
-                 :over,
-                 :path,
-                 :pick,
-                 :pick_all,
-                 :pick_by,
-                 :project,
-                 :prop,
-                 :prop_or,
-                 :props,
-                 :set,
-                 :to_pairs,
-                 :values,
-                 :view,
-                 :where
-
-  def_delegators Ramda::Relation,
-                 :count_by,
-                 :difference,
-                 :difference_with,
-                 :eq_by,
-                 :equals,
-                 :gt,
-                 :gte,
-                 :intersection,
-                 :lt,
-                 :lte,
-                 :max,
-                 :max_by,
-                 :min,
-                 :min_by,
-                 :path_eq,
-                 :prop_eq,
-                 :sort_by,
-                 :union,
-                 :union_with
-
-  def_delegators Ramda::String,
-                 :match,
-                 :replace,
-                 :split,
-                 :to_lower,
-                 :to_upper,
-                 :trim
-
-  def_delegators Ramda::Type,
-                 :is,
-                 :is_nil,
-                 :type
+  # A function that always returns true. Any passed in parameters are ignored.
+  #
+  # * -> Boolean
+  #
+  # rubocop:disable Style/MethodName
+  def self.T
+    ->(*) { true }
+  end
+  # rubocop:enable Style/MethodName
 
   # Takes Boolean
   def self.debug_mode=(enabled)
-    @debug_mode = enabled
+    const_set('DEBUG_MODE', enabled)
   end
 
   # Returns Boolean/NilClass
   def self.debug_mode
-    @debug_mode
+    DEBUG_MODE
   end
 
   def self.exception_handler=(handler)
@@ -210,3 +89,5 @@ module Ramda
     @exception_handler ||= ::Ramda::ExceptionHandler.method(:with_narrow)
   end
 end
+
+# Ramda.debug_mode = true

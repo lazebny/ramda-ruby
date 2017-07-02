@@ -301,7 +301,7 @@ module Ramda
     # Filterable f => (a -> Boolean) -> f a -> [f a, f a]
     #
     curried_method(:partition) do |fn, xs|
-      ::Ramda.juxt([filter, reject]).call(fn, xs)
+      ::Ramda.juxt([::Ramda.filter, ::Ramda.reject]).call(fn, xs)
     end
 
     # Returns a new list by plucking the same named property off all objects
@@ -425,7 +425,7 @@ module Ramda
     # String -> String
     #
     curried_method(:tail) do |xs|
-      drop(1, xs)
+      ::Ramda.drop(1, xs)
     end
 
     # Returns the first n elements of the given list, string.
@@ -478,7 +478,7 @@ module Ramda
     # Chain c => c (c a) -> c a
     #
     curried_method(:unnest) do |xs|
-      Ramda.chain(Ramda.identity, xs)
+      ::Ramda.chain(::Ramda.identity, xs)
     end
 
     # Returns a new copy of the array with the element at the provided

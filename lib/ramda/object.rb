@@ -33,7 +33,7 @@ module Ramda
       if path.empty?
         val
       else
-        cloned = clone(obj)
+        cloned = ::Ramda.clone(obj)
         path[0...-1].reduce(cloned) do |acc, k|
           case acc[k]
           when Hash, Array
@@ -56,10 +56,10 @@ module Ramda
       case obj
       when Hash
         obj.each_with_object(obj.dup) do |(key, value), acc|
-          acc[clone(key)] = clone(value)
+          acc[::Ramda.clone(key)] = ::Ramda.clone(value)
         end
       when Array
-        obj.map(&clone)
+        obj.map(&::Ramda.clone)
       when Symbol, Integer, NilClass, TrueClass, FalseClass
         obj
       else
@@ -72,7 +72,7 @@ module Ramda
     # String -> {k: v} -> {k: v}
     #
     curried_method(:dissoc) do |prop, obj|
-      clone(obj).tap { |o| o.delete(prop) }
+      ::Ramda.clone(obj).tap { |o| o.delete(prop) }
     end
 
     # Returns whether or not an object has an own property with the specified name
@@ -132,7 +132,7 @@ module Ramda
     #
     curried_method(:lens) do |getter, setter|
       curried_method_body(:lens, 2) do |to_functor_fn, target|
-        Ramda.map(
+        ::Ramda.map(
           ->(focus) { setter.call(focus, target) },
           to_functor_fn.call(getter.call(target))
         )
@@ -145,7 +145,7 @@ module Ramda
     # Lens s a = Functor f => (a -> f a) -> s -> f s
     #
     curried_method(:lens_index) do |n|
-      lens(Ramda.nth(0), Ramda.update(n))
+      ::Ramda.lens(::Ramda.nth(0), ::Ramda.update(n))
     end
 
     # Returns a lens whose focus is the specified path.
@@ -155,7 +155,7 @@ module Ramda
     # Lens s a = Functor f => (a -> f a) -> s -> f s
     #
     curried_method(:lens_path) do |path|
-      lens(Ramda.path(path), Ramda.assoc_path(path))
+      ::Ramda.lens(Ramda.path(path), Ramda.assoc_path(path))
     end
 
     # Returns a lens whose focus is the specified property.
@@ -164,7 +164,7 @@ module Ramda
     # Lens s a = Functor f => (a -> f a) -> s -> f s
     #
     curried_method(:lens_prop) do |k|
-      lens(Ramda.prop(k), Ramda.assoc(k))
+      ::Ramda.lens(Ramda.prop(k), Ramda.assoc(k))
     end
 
     # Create a new object with the own properties of the first object merged
@@ -182,7 +182,7 @@ module Ramda
     # [String] -> {String: *} -> {String: *}
     #
     curried_method(:omit) do |keys, obj|
-      obj_copy = clone(obj)
+      obj_copy = ::Ramda.clone(obj)
       keys.each(&obj_copy.method(:delete))
       obj_copy
     end
@@ -244,7 +244,7 @@ module Ramda
     # [k] -> [{k: v}] -> [{k: v}]
     #
     curried_method(:project) do |keys, objs|
-      objs.map(&pick_all(keys))
+      objs.map(&::Ramda.pick_all(keys))
     end
 
     # Returns a function that when supplied an object returns the indicated
@@ -287,7 +287,7 @@ module Ramda
     # Lens s a = Functor f => (a -> f a) -> s -> f s
     #
     curried_method(:set) do |lens, v, x|
-      over(lens, Ramda.always(v), x)
+      ::Ramda.over(lens, Ramda.always(v), x)
     end
 
     # Converts an object into an array of key, value arrays. Only the

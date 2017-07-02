@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::Logic do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   it '#all_pass' do
     is_queen = R.prop_eq(:rank, 'Queen')

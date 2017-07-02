@@ -7,7 +7,10 @@ group :development do
   gem 'rake', '~> 10.0'
   # gem 'benchmark-bigo', '~> 1.0'
   gem 'benchmark-ips', '~> 2.0'
+  # gem 'ruby-prof'
   # gem 'fasterer'
+  # gem 'stackprof'
+  # gem 'flamegraph'
 end
 
 group :testing do

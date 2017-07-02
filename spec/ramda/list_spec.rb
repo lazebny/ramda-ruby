@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Ramda::List do
-  let(:r) { described_class }
+  let(:r) { Ramda }
 
   context '#all' do
     it 'test' do

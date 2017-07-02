@@ -276,6 +276,14 @@ module Ramda
       end.curry
     end
 
+    # Returns a function which returns its nth argument.
+    #
+    # Number -> *... -> *
+    #
+    curried_method(:nth_arg) do |index, x, *xs|
+      ([x] + xs)[index]
+    end
+
     # Returns a singleton array containing the value provided.
     #
     # a -> [a]

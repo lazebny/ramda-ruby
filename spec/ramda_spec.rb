@@ -113,6 +113,7 @@ describe Ramda do
   r(:negate)
   r(:not)
   r(:nth)
+  r(:nth_arg)
   r(:of)
   r(:omit)
   r(:once)

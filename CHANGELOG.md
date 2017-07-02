@@ -14,6 +14,7 @@ Added:
 * invert
 * invert_obj
 * map_obj_indexed
+* nth_arg
 
 
 Release 0.8.1

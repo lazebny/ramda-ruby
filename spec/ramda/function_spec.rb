@@ -384,6 +384,14 @@ describe Ramda::Function do
     end
   end
 
+  context '#nth_arg' do
+    it 'from docs' do
+      expect(R.nth_arg(1, 'a', 'b', 'c')).to eq('b')
+      expect(R.nth_arg(1).call('a', 'b', 'c')).to eq('b')
+      expect(R.nth_arg(-1).call('a', 'b', 'c')).to eq('c')
+    end
+  end
+
   context '#of' do
     it 'from docs' do
       expect(r.of(nil)).to eq([nil])

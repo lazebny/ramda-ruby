@@ -4,7 +4,6 @@ app:
   dockerfile: Dockerfile
   volumes:
     - .:/srv/app
-    - ./config/config.yml.example:/srv/app/config/config.yml
     - ~/.gem/credentials:/root/.gem/credentials
     - ~/.gitconfig:/root/.gitconfig
   volumes_from:

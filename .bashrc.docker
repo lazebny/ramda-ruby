@@ -1,2 +1,2 @@
-# alias rspec='bundle exec rspec'
-alias rspec='bin/rspec'
+alias rspec='bundle exec rspec'
+# alias rspec='bin/rspec'

@@ -168,15 +168,28 @@ bundle exec rake ramda:run_benchmark_to_file[bench/list/*]
 Development
 --------------
 
-After checking out the repo, run `bin/setup` to install dependencies.
-Then, run `rake spec` to run the tests. You can also run `bin/console`
-for an interactive prompt that will allow you to experiment.
+You can use either regular approach with installing gems on local machine
+or with docker-compose which is handy when you are playing with ruby versions.
 
-To install this gem onto your local machine, run `bundle exec rake install`.
+With docker-compose:
+
+1. Install [Docker](https://docs.docker.com/engine/installation/)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/)
+3. Run tests
+
+```sh
+
+touch .bashrc.docker .pry_history.docker
+docker-compose run --rm app bash
+bundle
+rspec
+
+```
+
 To release a new version, update the version number in `version.rb`,
 and then run `bundle exec rake release`, which will create a git tag
 for the version, push git commits and tags, and push the `.gem` file
-  to [rubygems.org](https://rubygems.org).
+to [rubygems.org](https://rubygems.org).
 
 
 Contributing
@@ -184,9 +197,11 @@ Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Make changes
+4. Check with Rubocop and resolve all issues(`rubocop -aD`)
+5. Commit your changes (`git commit -am 'Add some feature'`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create new Pull Request
 
 
 License

@@ -4,6 +4,7 @@ Ramda Ruby
 This is a ruby version of [Ramda Js](http://ramdajs.com) library.
 
 [![Gem Version](https://badge.fury.io/rb/ramda-ruby.svg)](http://badge.fury.io/rb/ramda-ruby)
+[![Functions](https://img.shields.io/badge/Functions-164-green.svg)](docs/FUNCTIONS.md)
 [![Travis badge](https://travis-ci.org/lazebny/ramda-ruby.svg?branch=master)](https://travis-ci.org/lazebny/ramda-ruby)
 [![AppVeyor status](https://ci.appveyor.com/api/projects/status/ponccdax7aj4ufw2?svg=true)](https://ci.appveyor.com/project/lazebny/ramda-ruby)
 [![Coverage Status](https://coveralls.io/repos/lazebny/ramda-ruby/badge.png)](https://coveralls.io/r/lazebny/ramda-ruby)
@@ -11,6 +12,12 @@ This is a ruby version of [Ramda Js](http://ramdajs.com) library.
 [![Inch CI](http://inch-ci.org/github/lazebny/ramda-ruby.svg)](http://inch-ci.org/github/lazebny/ramda-ruby)
 [![Dependency Status](https://gemnasium.com/lazebny/ramda-ruby.svg)](https://gemnasium.com/lazebny/ramda-ruby)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](http://opensource.org/licenses/MIT)
+
+Information
+------------
+
+This library uses some stuff like `curry` and `__` which reduces performance.
+Please review benchmarks section.
 
 
 Installation

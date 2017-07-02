@@ -1,7 +1,11 @@
 Not Released
 ---------------
 
+Release 0.9.0
+---------------
+
 Added debug_mode which shows name, arguments and result of each function call.
+
 Small performance improvements.
 
 Added:

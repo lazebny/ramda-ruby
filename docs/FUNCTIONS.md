@@ -19,6 +19,7 @@
 * assoc_path
 * binary
 * bind
+* call
 * chain
 * clone
 * comparator
@@ -39,10 +40,12 @@
 * dissoc
 * divide
 * drop
+* drop_while
 * empty - uses x.class.new for defining new empty object if empty method does not exist
 * eq_by
 * eq_props
 * equals
+* evolve
 * filter
 * find
 * find_index - returns nil if index doesn't exist
@@ -62,8 +65,12 @@
 * if_else
 * inc
 * index_of - returns nil if index doesn't exist
+* init
 * insert
+* insert_all
 * intersection
+* invert
+* invert_obj
 * invoker
 * is
 * is_empty
@@ -83,6 +90,7 @@
 * lt
 * lte
 * map
+* map_obj_indexed
 * match
 * max
 * max_by
@@ -96,6 +104,7 @@
 * negate
 * not
 * nth
+* nth_arg
 * of
 * omit
 * once

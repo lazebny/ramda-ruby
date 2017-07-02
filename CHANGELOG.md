@@ -10,6 +10,7 @@ Added:
 * drop_while
 * evolve
 * init
+* insert_all
 
 
 Release 0.8.1

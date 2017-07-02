@@ -1,6 +1,5 @@
 Release 0.9.0
 ---------------
-* insert_all
 * invert
 * invert_obj
 * map_obj_indexed

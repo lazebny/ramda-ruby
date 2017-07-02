@@ -76,6 +76,7 @@ describe Ramda do
   r(:index_of)
   r(:init)
   r(:insert)
+  r(:insert_all)
   r(:intersection)
   r(:invoker)
   r(:is)

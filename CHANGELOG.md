@@ -11,6 +11,7 @@ Added:
 * evolve
 * init
 * insert_all
+* invert
 
 
 Release 0.8.1

@@ -134,6 +134,29 @@ describe Ramda::Object do
     end
   end
 
+  context '#invert' do
+    it 'from docs' do
+      race_results_by_first_name = {
+        first: 'alice',
+        second: 'jake',
+        third: 'alice'
+      }
+      expect(R.invert(race_results_by_first_name))
+        .to eq('alice' => [:first, :third], 'jake' => [:second])
+    end
+
+    it 'returns an empty object when applied to a primitive' do
+      expect(R.invert(42)).to eq({})
+      expect(R.invert('abc')).to eq({})
+      expect(R.invert(nil)).to eq({})
+    end
+
+    it "returns the input's values as keys, and keys as values of an array" do
+      expect(R.invert([:a, :b, :c])).to eq(a: [0], b: [1], c: [2])
+      expect(R.invert(x: 'a', y: 'b', z: 'c')).to eq('a' => [:x], 'b' => [:y], 'c' => [:z])
+    end
+  end
+
   context '#keys' do
     it 'from docs' do
       expect(r.keys(a: 1, b: 2, c: 3)).to eq([:a, :b, :c])

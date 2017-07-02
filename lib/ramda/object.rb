@@ -123,6 +123,23 @@ module Ramda
       end
     end
 
+    # Same as R.invertObj, however this accounts for objects with duplicate
+    # values by putting the values into an array.
+    #
+    # {s: x} -> {x: [ s, ...]}
+    #
+    curried_method(:invert) do |obj|
+      case obj
+      when Hash
+        # Ramda.map(Ramda.map(:first.to_proc), obj.group_by { |_, v| v })
+        Hash[obj.group_by { |_, v| v }.map { |k, v| [k, v.map(&:first)] }]
+      when Array
+        Hash[obj.each_with_index.group_by { |v, _| v }.map { |k, v| [k, v.map(&:last)] }]
+      else
+        {}
+      end
+    end
+
     # Returns a list containing the names of all the enumerable own properties
     # of the supplied object.
     # Note that the order of the output array is not guaranteed.

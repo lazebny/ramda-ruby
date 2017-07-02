@@ -9,6 +9,7 @@ Added:
 * call
 * drop_while
 * evolve
+* init
 
 
 Release 0.8.1

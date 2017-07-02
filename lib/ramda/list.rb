@@ -226,6 +226,15 @@ module Ramda
       xs.index(x)
     end
 
+    # Returns all but the last element of the given list or string.
+    #
+    # [a] -> [a]
+    # String -> String
+    #
+    curried_method(:init) do |xs|
+      xs[0..-2]
+    end
+
     # Inserts the supplied element into the list, at the specified index.
     # Note that this is not destructive: it returns a copy of the list with
     # the changes. No lists have been harmed in the application of this function.

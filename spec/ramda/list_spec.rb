@@ -272,6 +272,20 @@ describe Ramda::List do
     end
   end
 
+  context '#init' do
+    it 'from docs' do
+      expect(R.init([1, 2, 3])).to eq([1, 2])
+      expect(R.init([1, 2])).to eq([1])
+      expect(R.init([1])).to eq([])
+      expect(R.init([])).to eq([])
+
+      expect(R.init('abc')).to eq('ab')
+      expect(R.init('ab')).to eq('a')
+      expect(R.init('a')).to eq('')
+      expect(R.init('')).to eq('')
+    end
+  end
+
   context '#insert' do
     it 'from docs' do
       expect(r.insert(2, 'x', [1, 2, 3, 4])).to eq([1, 2, 'x', 3, 4])

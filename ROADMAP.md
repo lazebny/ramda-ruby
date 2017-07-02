@@ -1,6 +1,5 @@
 Release 0.9.0
 ---------------
-* init
 * insert_all
 * invert
 * invert_obj

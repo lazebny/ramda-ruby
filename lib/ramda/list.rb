@@ -1,4 +1,5 @@
 require_relative 'internal/curried_method'
+require_relative 'internal/dispatchable'
 
 module Ramda
   # List functions
@@ -8,24 +9,36 @@ module Ramda
 
     # Returns true if all elements of the list match the predicate,
     # false if there are any that don't.
+    #
     # Dispatches to the all method of the second argument, if present.
+    #
     # Acts as a transducer if a transformer is given in list position.
     #
     # (a -> Boolean) -> [a] -> Boolean
     #
     curried_method(:all) do |f, xs|
-      xs.all?(&f)
+      if xs.is_a?(::Array)
+        xs.all?(&f)
+      else
+        Internal::Dispatchable.call([:any], nil, f, xs)
+      end
     end
 
     # Returns true if at least one of elements of the list match the predicate,
     # false otherwise.
+    #
     # Dispatches to the any method of the second argument, if present.
+    #
     # Acts as a transducer if a transformer is given in list position.
     #
     # (a -> Boolean) -> [a] -> Boolean
     #
     curried_method(:any) do |f, xs|
-      xs.any?(&f)
+      if xs.is_a?(::Array)
+        xs.any?(&f)
+      else
+        Internal::Dispatchable.call([:any], nil, f, xs)
+      end
     end
 
     # Returns a new list containing the contents of the given list,
@@ -45,13 +58,11 @@ module Ramda
     #
     # Chain m => (a -> m b) -> m a -> m b
     #
-    curried_method(:chain) do |fn, xs|
-      if xs.respond_to?(:chain)
-        xs.chain(fn)
-      elsif xs.respond_to?(:bind)
-        xs.bind(fn)
+    curried_method(:chain) do |f, xs|
+      if xs.is_a?(::Array)
+        xs.flat_map(&f)
       else
-        xs.flat_map(&fn)
+        Internal::Dispatchable.call([:chain, :bind], nil, f, xs)
       end
     end
 
@@ -61,18 +72,20 @@ module Ramda
     # List -> List -> List
     #
     curried_method(:concat) do |list_a, list_b|
-      case list_a
+      case list_b
       when ::String, ::Symbol
         [list_a, list_b].join('')
       when ::Array
         list_a.dup + list_b
       else
-        type_error(list_a, :concat)
+        Internal::Dispatchable.call([:concat], nil, list_a, list_b)
       end
     end
 
     # Returns true if the specified value is equal, in R.equals terms,
     # to at least one element of the given list; false otherwise.
+    #
+    # Dispatches to the concat method of the first argument, if present.
     #
     # a -> [a] -> Boolean
     #
@@ -82,6 +95,8 @@ module Ramda
 
     # Returns all but the first n elements of the given list, string,
     # or transducer/transformer (or object with a drop method).
+    #
+    # Dispatches to the drop method of the second argument, if present.
     #
     # Number -> [a] -> [a]
     # Number -> String -> String
@@ -93,7 +108,7 @@ module Ramda
       when ::Array
         xs[num..-1] || []
       else
-        type_error(xs, :drop)
+        Internal::Dispatchable.call([:drop], nil, num, xs)
       end
     end
 
@@ -109,14 +124,19 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> [a]
     #
-    curried_method(:drop_while) do |fn, xs|
-      xs.drop_while(&fn)
+    curried_method(:drop_while) do |f, xs|
+      if xs.is_a?(::Array)
+        xs.drop_while(&f)
+      else
+        Internal::Dispatchable.call([:drop_while], nil, f, xs)
+      end
     end
 
     # Takes a predicate and a Filterable, and returns a new filterable of the same
     # type containing the members of the given filterable which satisfy the given
     # predicate. Filterable objects include plain objects or any object that
     # has a filter method such as Array.
+    #
     # Dispatches to the filter method of the second argument, if present.
     #
     # Filterable f => (a -> Boolean) -> f a -> f a
@@ -125,8 +145,10 @@ module Ramda
       case xs
       when ::Hash
         xs.select { |_, value| f.call(value) }
-      else
+      when ::Array
         xs.select(&f)
+      else
+        Internal::Dispatchable.call([:filter], nil, f, xs)
       end
     end
 
@@ -142,10 +164,16 @@ module Ramda
     # Returns the first element of the list which matches the predicate,
     # or undefined if no element matches.
     #
+    # Dispatches to the find method of the second argument, if present.
+    #
     # (a -> Boolean) -> [a] -> a | NilClass
     #
     curried_method(:find) do |f, xs|
-      xs.find(&f)
+      if xs.is_a?(::Array)
+        xs.find(&f)
+      else
+        Internal::Dispatchable.call([:find], nil, f, xs)
+      end
     end
 
     # Returns the index of the first element of the list which matches the predicate,
@@ -153,8 +181,8 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> Number | NilClass
     #
-    curried_method(:find_index) do |fn, xs|
-      xs.index(&fn)
+    curried_method(:find_index) do |f, xs|
+      xs.index(&f)
     end
 
     # Returns the last element of the list which matches the predicate,
@@ -162,8 +190,8 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> a | NilClass
     #
-    curried_method(:find_last) do |fn, xs|
-      index = xs.rindex(&fn)
+    curried_method(:find_last) do |f, xs|
+      index = xs.rindex(&f)
       xs[index] unless index.nil?
     end
 
@@ -172,8 +200,8 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> Number | NilClass
     #
-    curried_method(:find_last_index) do |fn, xs|
-      xs.rindex(&fn)
+    curried_method(:find_last_index) do |f, xs|
+      xs.rindex(&f)
     end
 
     # Returns a new list by pulling every item out of it (and all its sub-arrays)
@@ -186,20 +214,33 @@ module Ramda
     # Iterate over an input list, calling a provided function fn for each element
     # in the list.
     #
+    # Dispatches to the forEach method of the second argument, if present.
+    #
     # (a -> *) -> [a] -> [a]
     #
-    curried_method(:for_each) do |fn, xs|
-      xs.each(&fn)
+    curried_method(:for_each) do |f, xs|
+      if xs.is_a?(::Array)
+        xs.each(&f)
+      else
+        Internal::Dispatchable.call([:for_each], nil, f, xs)
+      end
     end
 
     # Splits a list into sub-lists stored in an object, based on the result of
     # calling a String-returning function on each element, and grouping the
     # results according to values returned.
     #
+    # Dispatches to the groupBy method of the second argument, if present.
+    #
+    #
     # (a -> String) -> [a] -> {String: [a]}
     #
     curried_method(:group_by) do |f, xs|
-      xs.group_by(&f)
+      if xs.is_a?(::Array)
+        xs.group_by(&f)
+      else
+        Internal::Dispatchable.call([:group_by], nil, f, xs)
+      end
     end
 
     # Returns the first element of the given list or string. In some libraries
@@ -297,18 +338,14 @@ module Ramda
     #
     # Functor f => (a -> b) -> f a -> f b
     #
-    curried_method(:map) do |f, functor|
-      case functor
+    curried_method(:map) do |f, xs|
+      case xs
       when ::Hash
-        Hash[functor.map { |k, v| [k, f.call(v)] }]
+        Hash[xs.map { |k, v| [k, f.call(v)] }]
       when ::Array
-        functor.map(&f)
+        xs.map(&f)
       else
-        if functor.respond_to?(:map)
-          functor.map(f)
-        else
-          type_error(functor, :map)
-        end
+        Internal::Dispatchable.call([:map], nil, f, xs)
       end
     end
 
@@ -335,8 +372,8 @@ module Ramda
     #
     # Filterable f => (a -> Boolean) -> f a -> [f a, f a]
     #
-    curried_method(:partition) do |fn, xs|
-      ::Ramda.juxt([::Ramda.filter, ::Ramda.reject]).call(fn, xs)
+    curried_method(:partition) do |f, xs|
+      ::Ramda.juxt([::Ramda.filter, ::Ramda.reject]).call(f, xs)
     end
 
     # Returns a new list by plucking the same named property off all objects
@@ -378,8 +415,8 @@ module Ramda
     #
     # ((a, b) -> a) -> a -> [b] -> a
     #
-    curried_method(:reduce) do |fn, acc, xs|
-      xs.reduce(acc, &fn)
+    curried_method(:reduce) do |f, acc, xs|
+      xs.reduce(acc, &f)
     end
 
     # Returns a single item by iterating through the list, successively
@@ -394,8 +431,8 @@ module Ramda
     #
     # ((a, b) -> a) -> a -> [b] -> a
     #
-    curried_method(:reduce_right) do |fn, acc_arg, xs|
-      xs.reverse.reduce(acc_arg) { |acc, x| fn.call(x, acc) }
+    curried_method(:reduce_right) do |f, acc_arg, xs|
+      xs.reverse.reduce(acc_arg) { |acc, x| f.call(x, acc) }
     end
 
     # Returns a new list or string with the elements or characters in reverse order.
@@ -430,7 +467,7 @@ module Ramda
     # a -> n -> [a]
     #
     curried_method(:repeat) do |a, n|
-      Array.new(n, a)
+      ::Array.new(n, a)
     end
 
     # Returns the elements of the given list or string
@@ -440,7 +477,12 @@ module Ramda
     # Number -> Number -> String -> String
     #
     curried_method(:slice) do |from, to, xs|
-      xs[from...to]
+      case xs
+      when ::Array, ::String
+        xs[from...to]
+      else
+        Internal::Dispatchable.call([:slice], nil, from, to, xs)
+      end
     end
 
     # Returns a copy of the list, sorted according to the comparator function,
@@ -465,11 +507,18 @@ module Ramda
 
     # Returns the first n elements of the given list, string.
     #
+    # Dispatches to the take method of the second argument, if present.
+    #
     # Number -> [a] -> [a]
     # Number -> String -> String
     #
     curried_method(:take) do |num, xs|
-      xs[0, num]
+      case xs
+      when ::Array, ::String
+        xs[0, num]
+      else
+        Internal::Dispatchable.call([:take], nil, num, xs)
+      end
     end
 
     # Returns a new list containing the first n elements of a given list,
@@ -480,8 +529,12 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> [a]
     #
-    curried_method(:take_while) do |fn, xs|
-      xs[0, xs.index { |x| !fn.call(x) } || xs.size]
+    curried_method(:take_while) do |f, xs|
+      if xs.is_a?(::Array)
+        xs[0, xs.index { |x| !f.call(x) } || xs.size]
+      else
+        Internal::Dispatchable.call([:take_while], nil, f, xs)
+      end
     end
 
     # Calls an input function n times, returning an array containing the results
@@ -491,8 +544,8 @@ module Ramda
     #
     # (Number -> a) -> Number -> [a]
     #
-    curried_method(:times) do |fn, n|
-      n.times.to_a.map(&fn)
+    curried_method(:times) do |f, n|
+      n.times.to_a.map(&f)
     end
 
     # Returns a new list containing only one copy of each element in the original list.
@@ -504,8 +557,8 @@ module Ramda
     # Returns a new list containing only one copy of each element in the original list,
     # based upon the value returned by applying the supplied predicate to each list
     # element.
-    curried_method(:uniq_with) do |fn, xs|
-      xs.uniq(&fn)
+    curried_method(:uniq_with) do |f, xs|
+      xs.uniq(&f)
     end
 
     # Shorthand for R.chain(R.identity), which removes one level of nesting from any Chain.
@@ -561,8 +614,8 @@ module Ramda
     #
     # (a,b -> c) -> [a] -> [b] -> [c]
     #
-    curried_method(:zip_with) do |fn, xs1, xs2|
-      xs1.zip(xs2).map { |(a, b)| fn.call(a, b) }
+    curried_method(:zip_with) do |f, xs1, xs2|
+      xs1.zip(xs2).map { |(a, b)| f.call(a, b) }
     end
 
     # TODO: Extract from this module

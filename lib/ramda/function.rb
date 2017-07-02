@@ -27,10 +27,10 @@ module Ramda
     # Apply f => f (a -> b) -> f a -> f b
     #
     curried_method(:ap) do |apply_f, apply_x|
-      if apply_x.respond_to?(:ap)
-        apply_x.ap(apply_f)
-      else
+      if apply_x.is_a?(Array)
         apply_f.flat_map { |fn| apply_x.map(&fn) }
+      else
+        Internal::Dispatchable.call([:ap], nil, apply_f, apply_x)
       end
     end
 

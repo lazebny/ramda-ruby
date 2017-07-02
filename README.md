@@ -12,12 +12,6 @@ This is a ruby version of [Ramda Js](http://ramdajs.com) library.
 [![Dependency Status](https://gemnasium.com/lazebny/ramda-ruby.svg)](https://gemnasium.com/lazebny/ramda-ruby)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](http://opensource.org/licenses/MIT)
 
-Problems
-------------
-
-This gem is stable but i think it isn't production ready - benchmarks
-are showing a huge performance loss comparing to the plain ruby.
-
 
 Installation
 ------------

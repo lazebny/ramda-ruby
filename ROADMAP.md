@@ -1,6 +1,5 @@
 Release 0.9.0
 ---------------
-* map_obj_indexed
 * nth_arg
 
 Release 0.10.0

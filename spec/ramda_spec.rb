@@ -99,6 +99,7 @@ describe Ramda do
   r(:lt)
   r(:lte)
   r(:map)
+  r(:map_obj_indexed)
   r(:match)
   r(:max)
   r(:max_by)

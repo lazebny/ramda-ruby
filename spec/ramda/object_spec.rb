@@ -315,6 +315,37 @@ describe Ramda::Object do
     end
   end
 
+  context '#map_obj_indexed' do
+    def square_vowels(x, key, *)
+      vowels = [:a, :e, :i, :o, :u]
+      R.contains(key, vowels) ? x * x : x
+    end
+
+    it'works just like a normal mapObj' do
+      times2 = ->(x, *) { x * 2 }
+
+      expect(R.map_obj_indexed(times2, a: 1, b: 2, c: 3, d: 4))
+        .to eq(a: 2, b: 4, c: 6, d: 8)
+    end
+
+    it 'passes the index as a second parameter to the callback' do
+      add_indexed = ->(x, key, *) { [x, key].join }
+      expect(R.map_obj_indexed(add_indexed, a: 8, b: 6, c: 7, d: 5, e: 3, f: 0, g: 9))
+        .to eq(a: '8a', b: '6b', c: '7c', d: '5d', e: '3e', f: '0f', g: '9g')
+    end
+
+    it 'passes the entire list as a third parameter to the callback' do
+      expect(R.map_obj_indexed(method(:square_vowels), a: 8, b: 6, c: 7, d: 5, e: 3, f: 0, g: 9))
+        .to eq(a: 64, b: 6, c: 7, d: 5, e: 9, f: 0, g: 9)
+    end
+
+    it 'is curried' do
+      make_square_vowels = R.map_obj_indexed(method(:square_vowels))
+      expect(make_square_vowels.call(a: 8, b: 6, c: 7, d: 5, e: 3, f: 0, g: 9))
+        .to eq(a: 64, b: 6, c: 7, d: 5, e: 9, f: 0, g: 9)
+    end
+  end
+
   context '#merge' do
     it 'from docs' do
       expect(r.merge({ name: 'fred', age: 10 }, age: 40))

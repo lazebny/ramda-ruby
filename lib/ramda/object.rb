@@ -217,6 +217,16 @@ module Ramda
       ::Ramda.lens(Ramda.prop(k), Ramda.assoc(k))
     end
 
+    # An Object-specific version of map. The function is applied to
+    # three arguments: (value, key, obj).
+    # If only the value is significant, use map instead.
+    #
+    # ((*, String, Object) -> *) -> Object -> Object
+    #
+    curried_method(:map_obj_indexed) do |fn, obj|
+      Hash[obj.map { |(k, v)| [k, fn.call(v, k, obj)] }]
+    end
+
     # Create a new object with the own properties of the first object merged
     # with the own properties of the second object. If a key exists in both
     # objects, the value from the second object will be used.

@@ -13,6 +13,7 @@ Added:
 * insert_all
 * invert
 * invert_obj
+* map_obj_indexed
 
 
 Release 0.8.1

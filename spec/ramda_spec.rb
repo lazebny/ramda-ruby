@@ -54,6 +54,7 @@ describe Ramda do
   r(:eq_by)
   r(:eq_props)
   r(:equals)
+  r(:evolve)
   r(:filter)
   r(:find)
   r(:find_index)

@@ -101,6 +101,28 @@ module Ramda
       a[prop] == b[prop]
     end
 
+    # Creates a new object by recursively evolving a shallow copy of object,
+    # according to the transformation functions. All non-primitive properties
+    # are copied by reference.
+    #
+    # A transformation function will not be invoked if its corresponding
+    # key does not exist in the evolved object.
+    #
+    # {k: (v -> v)} -> {k: v} -> {k: v}
+    #
+    curried_method(:evolve) do |trans, obj|
+      obj.each_with_object({}) do |(key, val), acc|
+        acc[key] = case trans[key]
+                   when Hash
+                     ::Ramda.evolve(trans[key], val)
+                   when Proc
+                     trans[key].call(val)
+                   else
+                     val
+                   end
+      end
+    end
+
     # Returns a list containing the names of all the enumerable own properties
     # of the supplied object.
     # Note that the order of the output array is not guaranteed.

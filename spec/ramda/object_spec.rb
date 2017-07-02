@@ -109,6 +109,31 @@ describe Ramda::Object do
     end
   end
 
+  context '#evolve' do
+    it 'from docs' do
+      tomato = {
+        firstName: '  Tomato ',
+        data: {
+          elapsed: 100,
+          remaining: 1400
+        },
+        id: 123
+      }
+
+      transformations = {
+        firstName: R.trim,
+        lastName: R.trim, # Will not get invoked.
+        data: {
+          elapsed: R.add(1),
+          remaining: R.add(-1)
+        }
+      }
+
+      expect(R.evolve(transformations, tomato))
+        .to eq(firstName: 'Tomato', data: { elapsed: 101, remaining: 1399 }, id: 123)
+    end
+  end
+
   context '#keys' do
     it 'from docs' do
       expect(r.keys(a: 1, b: 2, c: 3)).to eq([:a, :b, :c])

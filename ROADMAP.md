@@ -1,6 +1,5 @@
 Release 0.9.0
 ---------------
-* evolve
 * init
 * insert_all
 * invert

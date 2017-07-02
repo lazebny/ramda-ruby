@@ -9,6 +9,7 @@ AllCops:
     - '**/*.yml'
     - 'tmp/**/*'
     - 'docker-compose/**/*'
+    - 'profiler/**/*'
   TargetRubyVersion: 2.1
   DefaultFormatter: fuubar
 

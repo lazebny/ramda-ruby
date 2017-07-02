@@ -8,6 +8,7 @@ Added:
 
 * call
 * drop_while
+* evolve
 
 
 Release 0.8.1

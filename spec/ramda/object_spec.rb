@@ -157,6 +157,26 @@ describe Ramda::Object do
     end
   end
 
+  context '#invert_obj' do
+    it 'from docs' do
+      race_results = {
+        first: 'alice',
+        second: 'jake',
+        third: 'alice'
+      }
+      expect(R.invert_obj(race_results)).to eq('alice' => :third, 'jake' => :second)
+
+      race_results = ['alice', 'jake', 'alice']
+      expect(R.invert_obj(race_results)).to eq('alice' => 2, 'jake' => 1)
+    end
+
+    it 'returns an empty object when applied to a primitive' do
+      expect(R.invert(42)).to eq({})
+      expect(R.invert('abc')).to eq({})
+      expect(R.invert(nil)).to eq({})
+    end
+  end
+
   context '#keys' do
     it 'from docs' do
       expect(r.keys(a: 1, b: 2, c: 3)).to eq([:a, :b, :c])

@@ -140,6 +140,17 @@ module Ramda
       end
     end
 
+    curried_method(:invert_obj) do |obj|
+      case obj
+      when Hash
+        obj.invert
+      when Array
+        Hash[obj.each_with_index.map { |k, v| [k, v] }]
+      else
+        {}
+      end
+    end
+
     # Returns a list containing the names of all the enumerable own properties
     # of the supplied object.
     # Note that the order of the output array is not guaranteed.

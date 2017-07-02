@@ -12,6 +12,7 @@ Added:
 * init
 * insert_all
 * invert
+* invert_obj
 
 
 Release 0.8.1

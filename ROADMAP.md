@@ -1,6 +1,5 @@
 Release 0.9.0
 ---------------
-* invert_obj
 * map_obj_indexed
 * nth_arg
 

@@ -168,6 +168,7 @@ describe Ramda do
   r(:type)
   r(:unapply)
   r(:unary)
+  r(:unfold)
   r(:union)
   r(:union_with)
   r(:uniq)

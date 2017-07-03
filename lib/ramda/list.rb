@@ -497,8 +497,8 @@ module Ramda
     #
     # (a,b -> a) -> a -> [b] -> [a]
     #
-    curried_method(:scan) do |fn, acc0, xs|
-      xs.reduce([acc0]) { |acc, x| acc << fn.call(acc[-1], x) }
+    curried_method(:scan) do |f, acc0, xs|
+      xs.reduce([acc0]) { |acc, x| acc << f.call(acc[-1], x) }
     end
 
     # Returns the elements of the given list or string
@@ -577,6 +577,28 @@ module Ramda
     #
     curried_method(:times) do |f, n|
       n.times.to_a.map(&f)
+    end
+
+    # Builds a list from a seed value. Accepts an iterator function, which
+    # returns either false to stop iteration or an array of length 2
+    # containing the value to add to the resulting list and the seed
+    # to be used in the next call to the iterator function.
+    #
+    # The iterator function receives one argument: (seed).
+    #
+    # (a -> [b]) -> * -> [b]
+    #
+    curried_method(:unfold) do |f, n|
+      xs = []
+      loop do
+        res = f.call(n)
+
+        break if res.is_a?(FalseClass)
+
+        xs << res[0]
+        n = res[1]
+      end
+      xs
     end
 
     # Returns a new list containing only one copy of each element in the original list.

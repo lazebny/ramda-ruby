@@ -12,6 +12,7 @@ Added:
 * partial
 * partial_right
 * scan
+* unfold
 
 
 Release 0.9.0

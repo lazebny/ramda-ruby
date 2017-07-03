@@ -594,6 +594,13 @@ describe Ramda::List do
     end
   end
 
+  context '#unfold' do
+    it 'from docs' do
+      f = ->(n) { n > 50 ? false : [-n, n + 10] }
+      expect(R.unfold(f, 10)).to eq([-10, -20, -30, -40, -50])
+    end
+  end
+
   context '#uniq' do
     it 'from docs' do
       expect(r.uniq([1, 1, 2, 1])).to eq([1, 2])

@@ -1,6 +1,5 @@
 Release 0.10.0
 ---------------
-* merge_all
 * partial
 * partial_right
 * scan

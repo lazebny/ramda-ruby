@@ -108,6 +108,7 @@ describe Ramda do
   r(:max_by)
   r(:memoize)
   r(:merge)
+  r(:merge_all)
   r(:min)
   r(:min_by)
   r(:modulo)

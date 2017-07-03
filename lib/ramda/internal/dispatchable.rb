@@ -1,5 +1,6 @@
 module Ramda
   module Internal
+    # Dispatchable
     module Dispatchable
       #
       #   Returns a function that dispatches with different strategies based on the
@@ -15,15 +16,13 @@ module Ramda
       #   - @param {Function} fn default ramda implementation
       #   - @return {Function} A function that dispatches on object in list position
       #
-      def self.call(method_names, xf, *args, xs)
+      def self.call(method_names, _xf, *args, xs)
         method_name = method_names.find { |name| xs.respond_to?(name) }
 
-        if method_name
-          xs.public_send(method_name, *args)
-        else
-          raise ArgumentError, "Unexpected type #{xs.class} in method: #{method_name}"
-        end
-			end
+        return xs.public_send(method_name, *args) if method_name
+
+        raise ArgumentError, "Unexpected type #{xs.class} in method: #{method_name}"
+      end
     end
   end
 end

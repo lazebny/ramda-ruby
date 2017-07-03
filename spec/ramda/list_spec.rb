@@ -359,6 +359,17 @@ describe Ramda::List do
   #   end
   # end
 
+  context '#merge_all' do
+    it 'from docs' do
+      expect(R.merge_all([{ foo: 1 }, { bar: 2 }, { baz: 3 }])).to eq(foo: 1, bar: 2, baz: 3)
+      expect(R.merge_all([{ foo: 1 }, { foo: 2 }, { bar: 2 }])).to eq(foo: 2, bar: 2)
+    end
+
+    it 'curried' do
+      expect(R.merge_all.call([{ foo: 1 }, { bar: 2 }])).to eq(foo: 1, bar: 2)
+    end
+  end
+
   context '#nth' do
     it 'with array' do
       list = ['foo', 'bar', 'baz', 'quux']

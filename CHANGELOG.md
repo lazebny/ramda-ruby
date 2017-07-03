@@ -8,6 +8,7 @@ Added:
 * (pending) map_accum
 * (pending) map_accum_right
 * default_to
+* merge_all
 
 
 Release 0.9.0

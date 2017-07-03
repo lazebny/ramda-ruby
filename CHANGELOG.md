@@ -10,6 +10,7 @@ Added:
 * default_to
 * merge_all
 * partial
+* partial_right
 
 
 Release 0.9.0

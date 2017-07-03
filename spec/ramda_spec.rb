@@ -124,6 +124,7 @@ describe Ramda do
   r(:or)
   r(:over)
   r(:partial)
+  r(:partial_right)
   r(:partition)
   r(:path)
   r(:path_eq)

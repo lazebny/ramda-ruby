@@ -1,6 +1,5 @@
 Release 0.10.0
 ---------------
-* partial_right
 * scan
 * unfold
 

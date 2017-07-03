@@ -3,8 +3,10 @@ Not Released
 
 Added:
 
-* (pending)compose_p
-* (pending)pipe_p
+* (pending) compose_p
+* (pending) pipe_p
+* (pending) map_accum
+* (pending) map_accum_right
 * default_to
 
 

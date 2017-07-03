@@ -349,6 +349,20 @@ module Ramda
       end
     end
 
+    # The mapAccum function behaves like a combination of map and reduce;
+    # it applies a function to each element of a list, passing
+    # an accumulating parameter from left to right, and returning
+    # a final value of this accumulator together with the new list.
+    #
+    # The iterator function receives two arguments, acc and value,
+    # and should return a tuple [acc, value].
+    #
+    # (acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])
+    #
+    # curried_method(:map_accum) do |fn, acc, xs|
+    #
+    # end
+
     # Returns the nth element of the given list or string. If n is negative
     # the element at index length + n is returned.
     #

@@ -1,7 +1,5 @@
 Release 0.10.0
 ---------------
-* map_accum
-* map_accum_right
 * merge_all
 * partial
 * partial_right

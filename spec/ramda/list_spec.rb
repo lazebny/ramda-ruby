@@ -350,6 +350,15 @@ describe Ramda::List do
     end
   end
 
+  # context '#map_accum' do
+  #   it 'from docs' do
+  #     digits = ['1', '2', '3', '4'];
+  #     appender = -> (a, b) { [a + b, a + b] }
+  #
+  #     expect(R.map_accum(appender, 0, digits)).to eq(['01234', ['01', '012', '0123', '01234']])
+  #   end
+  # end
+
   context '#nth' do
     it 'with array' do
       list = ['foo', 'bar', 'baz', 'quux']

@@ -8,6 +8,8 @@ describe Ramda do
   end
 
   # r(:keys_in)
+  # r(:map_accum)
+  # r(:map_accum_right)
   # r(:math_mod)
   # r(:to_pairs_in)
   # r(:values_in)

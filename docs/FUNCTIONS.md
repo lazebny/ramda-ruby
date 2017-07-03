@@ -1,5 +1,9 @@
+* (pending) compose_p
 * (pending) keys_in
+* (pending) map_accum
+* (pending) map_accum_right
 * (pending) math_mod
+* (pending) pipe_p
 * (pending) to_pairs_in
 * (pending) values_in
 
@@ -34,6 +38,8 @@ Function
 * [nth_arg](http://ramdajs.com/docs/#nthArg)
 * [of](http://ramdajs.com/docs/#cond)
 * [once](http://ramdajs.com/docs/#once)
+* [partial](http://ramdajs.com/docs/#partial)
+* [partial_right](http://ramdajs.com/docs/#partialRight)
 * [pipe](http://ramdajs.com/docs/#pipe)
 * [tap](http://ramdajs.com/docs/#tap)
 * [unapply](http://ramdajs.com/docs/#unapply)
@@ -71,6 +77,7 @@ List
 * [length](http://ramdajs.com/docs/#length)
 * [map](http://ramdajs.com/docs/#map)
 * [map_obj_indexed](http://ramdajs.com/docs/#mapObjIndexed)
+* [merge_all](http://ramdajs.com/docs/#mergeAll)
 * [nth](http://ramdajs.com/docs/#nth)
 * [partition](http://ramdajs.com/docs/#partition)
 * [pluck](http://ramdajs.com/docs/#pluck)
@@ -82,6 +89,7 @@ List
 * [remove](http://ramdajs.com/docs/#remove)
 * [repeat](http://ramdajs.com/docs/#repeat)
 * [reverse](http://ramdajs.com/docs/#reverse)
+* [scan](http://ramdajs.com/docs/#scan)
 * [slice](http://ramdajs.com/docs/#slice)
 * [sort](http://ramdajs.com/docs/#sort)
 * [sort_by](http://ramdajs.com/docs/#sortBy)
@@ -89,6 +97,7 @@ List
 * [take](http://ramdajs.com/docs/#take)
 * [take_while](http://ramdajs.com/docs/#takeWhile)
 * [times](http://ramdajs.com/docs/#times)
+* [unfold](http://ramdajs.com/docs/#unfold)
 * [uniq](http://ramdajs.com/docs/#uniq)
 * [uniq_with](http://ramdajs.com/docs/#uniqWith) - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
 * [unnest](http://ramdajs.com/docs/#unnest)
@@ -106,6 +115,7 @@ Logic
 * [any_pass](http://ramdajs.com/docs/#anyPass)
 * [complement](http://ramdajs.com/docs/#complement)
 * [cond](http://ramdajs.com/docs/#cond)
+* [default_to](http://ramdajs.com/docs/#defaultTo)
 * [if_else](http://ramdajs.com/docs/#ifElse)
 * [is_empty](http://ramdajs.com/docs/#isEmpty)
 * [not](http://ramdajs.com/docs/#not)

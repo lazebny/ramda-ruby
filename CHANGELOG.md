@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.10.0
+---------------
+
 Added:
 
 * (pending) compose_p

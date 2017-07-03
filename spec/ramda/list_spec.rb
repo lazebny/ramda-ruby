@@ -489,6 +489,29 @@ describe Ramda::List do
     end
   end
 
+  context '#scan' do
+    let(:add) { ->(a, b) { a + b } }
+    let(:mult) { ->(a, b) { a * b;  }; }
+
+    it 'scans simple functions over arrays with the supplied accumulator' do
+      expect(R.scan(add, 0, [1, 2, 3, 4])).to eq([0, 1, 3, 6, 10])
+      expect(R.scan(mult, 1, [1, 2, 3, 4])).to eq([1, 1, 2, 6, 24])
+    end
+
+    it 'returns the accumulator for an empty array' do
+      expect(R.scan(add, 0, [])).to eq([0])
+      expect(R.scan(mult, 1, [])).to eq([1])
+    end
+
+    it 'is curried' do
+      add_or_concat = R.scan(add)
+      sum = add_or_concat.call(0)
+      cat = add_or_concat.call('')
+      expect(sum.call([1, 2, 3, 4])).to eq([0, 1, 3, 6, 10])
+      expect(cat.call(['1', '2', '3', '4'])).to eq(['', '1', '12', '123', '1234'])
+    end
+  end
+
   context '#slice' do
     it 'from docs' do
       expect(r.slice(1, 3, ['a', 'b', 'c', 'd'])).to eq(['b', 'c'])

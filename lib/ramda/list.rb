@@ -492,6 +492,15 @@ module Ramda
       ::Array.new(n, a)
     end
 
+    # Scan is similar to reduce, but returns a list of successively
+    # reduced values from the left
+    #
+    # (a,b -> a) -> a -> [b] -> [a]
+    #
+    curried_method(:scan) do |fn, acc0, xs|
+      xs.reduce([acc0]) { |acc, x| acc << fn.call(acc[-1], x) }
+    end
+
     # Returns the elements of the given list or string
     # from fromIndex (inclusive) to toIndex (exclusive).
     #

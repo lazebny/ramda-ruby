@@ -11,6 +11,7 @@ Added:
 * merge_all
 * partial
 * partial_right
+* scan
 
 
 Release 0.9.0

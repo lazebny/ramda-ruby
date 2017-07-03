@@ -1,6 +1,5 @@
 Release 0.10.0
 ---------------
-* scan
 * unfold
 
 Release 0.11.0

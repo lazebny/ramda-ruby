@@ -148,6 +148,7 @@ describe Ramda do
   r(:repeat)
   r(:replace)
   r(:reverse)
+  r(:scan)
   r(:set)
   r(:slice)
   r(:sort)

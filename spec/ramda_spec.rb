@@ -44,6 +44,7 @@ describe Ramda do
   r(:curry)
   r(:curry_n)
   r(:dec)
+  r(:default_to)
   r(:difference)
   r(:difference_with)
   r(:dissoc)

@@ -53,6 +53,15 @@ describe Ramda::Logic do
     end
   end
 
+  context '#default_to' do
+    it 'from docs' do
+      default_to42 = R.default_to(42)
+
+      expect(default_to42.call(nil)).to eq(42)
+      expect(default_to42.call('Ramda')).to eq('Ramda')
+    end
+  end
+
   context '#if_else' do
     it 'from docs' do
       inc_count = R.if_else(

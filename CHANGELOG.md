@@ -1,6 +1,13 @@
 Not Released
 ---------------
 
+Added:
+
+* (pending)compose_p
+* (pending)pipe_p
+* default_to
+
+
 Release 0.9.0
 ---------------
 

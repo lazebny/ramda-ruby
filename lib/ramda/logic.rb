@@ -47,6 +47,15 @@ module Ramda
       then_fn.call(x, *other_x) unless then_fn.nil?
     end
 
+    # Returns the second argument if it is not null, undefined or NaN;
+    # otherwise the first argument is returned.
+    #
+    # a -> b -> a | b
+    #
+    curried_method(:default_to) do |a, b|
+      b || a
+    end
+
     # Creates a function that will process either the onTrue or the onFalse
     # function depending upon the result of the condition predicate.
     #

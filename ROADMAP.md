@@ -1,13 +1,10 @@
 Release 0.10.0
 ---------------
-* compose_p
-* default_to
 * map_accum
 * map_accum_right
 * merge_all
 * partial
 * partial_right
-* pipe_p
 * scan
 * unfold
 

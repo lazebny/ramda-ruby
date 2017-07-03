@@ -123,6 +123,7 @@ describe Ramda do
   r(:once)
   r(:or)
   r(:over)
+  r(:partial)
   r(:partition)
   r(:path)
   r(:path_eq)

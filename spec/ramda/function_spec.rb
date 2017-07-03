@@ -407,6 +407,22 @@ describe Ramda::Function do
     end
   end
 
+  context '#partial' do
+    it 'spec_name' do
+      multiply2 = ->(a, b) { a * b }
+      double_fn = R.partial(multiply2, [2])
+      expect(double_fn.call(2)).to eq(4)
+
+      greet = lambda { |salutation, title, first_name, last_name|
+        salutation + ', ' + title + ' ' + first_name + ' ' + last_name + '!'
+      }
+
+      say_hello = R.partial(greet, ['Hello'])
+      say_hello_to_ms = R.partial(say_hello, ['Ms.'])
+      expect(say_hello_to_ms.call('Jane', 'Jones')).to eq('Hello, Ms. Jane Jones!')
+    end
+  end
+
   context '#pipe' do
     it 'from docs' do
       classy_greeting = lambda do |first_name, last_name|

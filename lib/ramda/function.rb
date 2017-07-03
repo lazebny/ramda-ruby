@@ -308,6 +308,16 @@ module Ramda
       end.curry
     end
 
+    # Takes a function f and a list of arguments, and returns a function g.
+    # When applied, g returns the result of applying f to the arguments
+    # provided initially followed by the arguments provided to g.
+    #
+    # ((a, b, c, ..., n) -> x) -> [a, b, c, ...] -> ((d, e, f, ..., n) -> x)
+    #
+    curried_method(:partial) do |fn, args|
+      Ramda.curry(fn).call(*args)
+    end
+
     # Performs left-to-right function composition. The leftmost function may
     # have any arity; the remaining functions must be unary.
     # In some libraries this function is named sequence.

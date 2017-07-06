@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* dissoc_path
+
 Release 0.10.0
 ---------------
 

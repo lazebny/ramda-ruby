@@ -50,6 +50,7 @@ describe Ramda do
   r(:difference)
   r(:difference_with)
   r(:dissoc)
+  r(:dissoc_path)
   r(:divide)
   r(:drop)
   r(:drop_while)

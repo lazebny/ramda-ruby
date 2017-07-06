@@ -66,6 +66,53 @@ describe Ramda::Object do
     end
   end
 
+  context '#dissoc_path' do
+    it 'makes a shallow clone of an object, omitting only what is necessary for the path' do
+      obj1 = {
+        a: { b: 1, c: 2, d: { e: 3 } },
+        f: [{ g: 4 }, { h: 5, i: 6, j: { k: 7, l: 8 } }],
+        m: 9
+      }
+      obj2 = R.dissoc_path([:f, 1, :i], obj1)
+
+      expect(obj2).to eq(a: { b: 1, c: 2, d: { e: 3 } },
+                         f: [{ g: 4 }, { h: 5, j: { k: 7, l: 8 } }],
+                         m: 9)
+      expect(obj2[:a]).to be(obj1[:a])
+      expect(obj2[:m]).to be(obj1[:m])
+      expect(obj2[:f][0]).to be(obj1[:f][0])
+      expect(obj2[:f][1][:h]).to be(obj1[:f][1][:h])
+      expect(obj2[:f][1][:j]).to be(obj1[:f][1][:j])
+    end
+
+    it 'does not try to omit inner properties that do not exist' do
+      obj1 = { a: 1, b: { c: 2, d: 3 }, e: 4, f: 5 }
+      obj2 = R.dissoc_path([:x, 0, :z], obj1)
+
+      expect(obj2).to eq(a: 1, b: { c: 2, d: 3 }, e: 4, f: 5)
+
+      expect(obj2[:a]).to be(obj1[:a])
+      expect(obj2[:b]).to be(obj1[:b])
+      expect(obj2[:f]).to be(obj1[:f])
+    end
+
+    it 'leaves an empty object when all properties omitted' do
+      obj1 = { a: 1, b: { c: 2 }, d: 3 }
+      obj2 = R.dissoc_path([:b, :c], obj1)
+      expect(obj2).to eq(a: 1, b: {}, d: 3)
+    end
+
+    it 'leaves an empty array when all indexes are omitted' do
+      obj1 = { a: 1, b: [2], d: 3 }
+      obj2 = R.dissoc_path([:b, 0], obj1)
+      expect(obj2).to eq(a: 1, b: [], d: 3)
+    end
+
+    it 'accepts empty path' do
+      expect(R.dissoc_path([], a: 1, b: 2)).to eq(a: 1, b: 2)
+    end
+  end
+
   context '#has' do
     it 'from docs' do
       has_name = r.has(:name)

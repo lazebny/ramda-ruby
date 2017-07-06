@@ -75,6 +75,33 @@ module Ramda
       ::Ramda.clone(obj).tap { |o| o.delete(prop) }
     end
 
+    # Makes a shallow clone of an object, omitting the property
+    # at the given path. Note that this copies and flattens prototype
+    # properties onto the new object as well.
+    # All non-primitive properties are copied by reference.
+    #
+    # [Idx] -> {k: v} -> {k: v}
+    # Idx = String | Int
+    #
+    curried_method(:dissoc_path) do |path, obj|
+      cloned = obj.dup
+      unless path.empty?
+        result = path[1..-1].reduce([cloned, path[0]]) do |(acc, last_key), key|
+          case acc[last_key]
+          when ::Array, ::Hash
+            [acc[last_key], key]
+          else
+            [acc, last_key]
+          end
+        end
+
+        acc, last_key = result
+
+        acc.is_a?(::Array) ? acc.delete_at(last_key) : acc.delete(last_key)
+      end
+      cloned
+    end
+
     # Returns whether or not an object has an own property with the specified name
     #
     # s -> {s: x} -> Boolean

@@ -142,6 +142,7 @@ Object
 * [assoc_path](http://ramdajs.com/docs/#assocPath)
 * [clone](http://ramdajs.com/docs/#clone)
 * [dissoc](http://ramdajs.com/docs/#dissoc)
+* [dissoc_path](http://ramdajs.com/docs/#dissocPath)
 * [eq_props](http://ramdajs.com/docs/#eqProps)
 * [evolve](http://ramdajs.com/docs/#evolve)
 * [has](http://ramdajs.com/docs/#has)

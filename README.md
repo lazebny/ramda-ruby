@@ -47,15 +47,17 @@ require 'ramda'
 Documentation
 -------------
 
-Currently the gem doesn't have own documentation but it tries to follow specification from [Ramda Js](http://ramdajs.com/docs/)
+* [Function](docs/FUNCTIONS.md#function)
+* [List](docs/FUNCTIONS.md#list)
+* [Logic](docs/FUNCTIONS.md#logic)
+* [Math](docs/FUNCTIONS.md#math)
+* [Object](docs/FUNCTIONS.md#object)
+* [Relation](docs/FUNCTIONS.md#relation)
+* [String](docs/FUNCTIONS.md#string)
+* [Type](docs/FUNCTIONS.md#type)
 
-* each release includes [functions](docs/FUNCTIONS.md) from the relevant [Ramda Js](http://ramdajs.com) release
-* each release includes more functions which i found pretty useful but they are from upcoming releases
-
-You could use [Ramda Js](http://ramdajs.com/docs/) as a source of documentation.
-
-Ruby scpecific examples can be found in [tests](spec/ramda).
-
+You can use Ramda [docs](http://ramdajs.com/docs/) as a documentation
+or to check Ruby [examples](spec/ramda).
 
 Usage
 -------------

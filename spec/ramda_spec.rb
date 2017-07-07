@@ -31,6 +31,7 @@ describe Ramda do
   r(:assoc_path)
   r(:binary)
   r(:bind)
+  r(:both)
   r(:call)
   r(:chain)
   r(:clone)

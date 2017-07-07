@@ -3,31 +3,47 @@ require 'spec_helper'
 describe Ramda::Logic do
   let(:r) { Ramda }
 
-  it '#all_pass' do
-    is_queen = R.prop_eq(:rank, 'Queen')
-    is_spade = R.prop_eq(:suit, 'Spade')
+  context '#all_pass' do
+    it 'from docs' do
+      is_queen = R.prop_eq(:rank, 'Queen')
+      is_spade = R.prop_eq(:suit, 'Spade')
 
-    is_queen_of_spades = r.all_pass([is_queen, is_spade])
+      is_queen_of_spades = r.all_pass([is_queen, is_spade])
 
-    expect(is_queen_of_spades.call(rank: 'King', suit: 'Spade')).to be_falsey
-    expect(is_queen_of_spades.call(rank: 'Queen', suit: 'Spade')).to be_truthy
+      expect(is_queen_of_spades.call(rank: 'King', suit: 'Spade')).to be_falsey
+      expect(is_queen_of_spades.call(rank: 'Queen', suit: 'Spade')).to be_truthy
+    end
   end
 
-  it '#and' do
-    expect(r.and(true, true)).to be_truthy
-    expect(r.and(true, false)).to be_falsey
-    expect(r.and(false, true)).to be_falsey
-    expect(r.and(false, false)).to be_falsey
+  context '#and' do
+    it 'from docs' do
+      expect(r.and(true, true)).to be_truthy
+      expect(r.and(true, false)).to be_falsey
+      expect(r.and(false, true)).to be_falsey
+      expect(r.and(false, false)).to be_falsey
+    end
   end
 
-  it '#any_pass' do
-    is_club = R.prop_eq(:suit, 'club')
-    is_spade = R.prop_eq(:suit, 'spade')
-    is_black_card = r.any_pass([is_club, is_spade])
+  context '#any_pass' do
+    it 'from docs' do
+      is_club = R.prop_eq(:suit, 'club')
+      is_spade = R.prop_eq(:suit, 'spade')
+      is_black_card = r.any_pass([is_club, is_spade])
 
-    expect(is_black_card.call(rank: '10', suit: 'club')).to be_truthy
-    expect(is_black_card.call(rank: 'Q', suit: 'spade')).to be_truthy
-    expect(is_black_card.call(rank: 'Q', suit: 'diamond')).to be_falsey
+      expect(is_black_card.call(rank: '10', suit: 'club')).to be_truthy
+      expect(is_black_card.call(rank: 'Q', suit: 'spade')).to be_truthy
+      expect(is_black_card.call(rank: 'Q', suit: 'diamond')).to be_falsey
+    end
+  end
+
+  context '#both' do
+    it 'from docs' do
+      gt10 = R.gt(R.__, 10)
+      lt20 = R.lt(R.__, 20)
+      f = R.both(gt10, lt20)
+      expect(f.call(15)).to be_truthy
+      expect(f.call(30)).to be_falsey
+    end
   end
 
   context '#complement' do

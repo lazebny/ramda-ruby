@@ -5,16 +5,53 @@ module Ramda
   module Logic
     extend ::Ramda::Internal::CurriedMethod
 
+    # Takes a list of predicates and returns a predicate that returns
+    # true for a given list of arguments if every one of the provided
+    # predicates is satisfied by those arguments.
+    #
+    # The function returned is a curried function whose arity matches
+    # that of the highest-arity predicate.
+    #
+    # [(*... -> Boolean)] -> (*... -> Boolean)
+    #
     curried_method(:all_pass) do |predicates, obj|
       predicates.all? { |predicate| predicate.call(obj) }
     end
 
+    # Returns true if both arguments are true; false otherwise.
+    #
+    # a -> b -> a | b
+    #
     curried_method(:and) do |a, b|
       a && b
     end
 
+    # Takes a list of predicates and returns a predicate that returns
+    # true for a given list of arguments if at least one of the
+    # provided predicates is satisfied by those arguments.
+    #
+    # The function returned is a curried function whose arity matches
+    # that of the highest-arity predicate.
+    #
+    # [(*... -> Boolean)] -> (*... -> Boolean)
+    #
     curried_method(:any_pass) do |predicates, obj|
       predicates.any? { |predicate| predicate.call(obj) }
+    end
+
+    # A function which calls the two provided functions and returns
+    # the && of the results. It returns the result of the first function
+    # if it is false-y and the result of the second function otherwise.
+    # Note that this is short-circuited, meaning that the second function
+    # will not be invoked if the first returns a false-y value.
+    #
+    # In addition to functions, R.both also accepts any fantasy-land
+    # compatible applicative functor.
+    #
+    # (*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)
+    #
+    curried_method(:both) do |fa, fb|
+      ->(*args) { fa.call(*args) && fb.call(*args) }
     end
 
     # Takes a function f and returns a function g such that if called with

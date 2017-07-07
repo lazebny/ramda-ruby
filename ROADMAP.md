@@ -1,6 +1,5 @@
 Release 0.12.0
 ---------------
-* both
 * either
 * into
 * none

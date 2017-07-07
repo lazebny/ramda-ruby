@@ -1,6 +1,5 @@
 Release 0.12.0
 ---------------
-* either
 * into
 * none
 * test

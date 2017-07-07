@@ -78,6 +78,16 @@ describe Ramda::Logic do
     end
   end
 
+  context '#either' do
+    it 'from docs' do
+      gt10 = ->(x) { x > 10 }
+      even = :even?.to_proc
+      f = R.either(gt10, even)
+      expect(f.call(101)).to be_truthy
+      expect(f.call(8)).to be_truthy
+    end
+  end
+
   context '#if_else' do
     it 'from docs' do
       inc_count = R.if_else(

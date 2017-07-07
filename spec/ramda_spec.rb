@@ -57,6 +57,7 @@ describe Ramda do
   r(:drop)
   r(:drop_while)
   r(:empty)
+  r(:either)
   r(:eq_by)
   r(:eq_props)
   r(:equals)

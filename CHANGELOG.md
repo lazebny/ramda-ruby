@@ -1,6 +1,10 @@
 Not Released
 ---------------
 
+Added:
+
+* aperture
+
 Release 0.11.0
 ---------------
 

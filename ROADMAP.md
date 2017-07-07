@@ -1,6 +1,5 @@
 Release 0.12.0
 ---------------
-* apperture
 * both
 * either
 * into

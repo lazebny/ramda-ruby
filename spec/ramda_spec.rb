@@ -24,6 +24,7 @@ describe Ramda do
   r(:any)
   r(:any_pass)
   r(:ap)
+  r(:aperture)
   r(:append)
   r(:apply)
   r(:assoc)

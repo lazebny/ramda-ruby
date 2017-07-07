@@ -41,6 +41,17 @@ module Ramda
       end
     end
 
+    # Returns a new list, composed of n-tuples of consecutive elements.
+    # If n is greater than the length of the list, an empty list is returned.
+    #
+    # Acts as a transducer if a transformer is given in list position.
+    #
+    # Number -> [a] -> [[a]]
+    #
+    curried_method(:aperture) do |n, xs|
+      xs.each_cons(n).to_a
+    end
+
     # Returns a new list containing the contents of the given list,
     # followed by the given element.
     #

@@ -32,6 +32,14 @@ describe Ramda::List do
     end
   end
 
+  context '#aperture' do
+    it 'from docs' do
+      expect(R.aperture(2, [1, 2, 3, 4, 5])).to eq([[1, 2], [2, 3], [3, 4], [4, 5]])
+      expect(R.aperture(3, [1, 2, 3, 4, 5])).to eq([[1, 2, 3], [2, 3, 4], [3, 4, 5]])
+      expect(R.aperture(7, [1, 2, 3, 4, 5])).to eq([])
+    end
+  end
+
   context '#append' do
     it 'from docs' do
       expect(r.append('tests', ['write', 'more'])).to eq(['write', 'more', 'tests'])

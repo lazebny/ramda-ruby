@@ -119,6 +119,7 @@ describe Ramda do
   r(:multiply)
   r(:n_ary)
   r(:negate)
+  r(:none)
   r(:not)
   r(:nth)
   r(:nth_arg)

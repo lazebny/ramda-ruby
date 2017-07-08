@@ -382,6 +382,16 @@ module Ramda
       xs.reduce(&:merge)
     end
 
+    # Returns true if no elements of the list match the predicate, false otherwise.
+    #
+    # Dispatches to the none? method of the second argument, if present.
+    #
+    # (a -> Boolean) -> [a] -> Boolean
+    #
+    curried_method(:none) do |f, xs|
+      xs.none?(&f)
+    end
+
     # Returns the nth element of the given list or string. If n is negative
     # the element at index length + n is returned.
     #

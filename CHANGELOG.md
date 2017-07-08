@@ -6,6 +6,7 @@ Added:
 * aperture
 * both
 * either
+* none
 
 Release 0.11.0
 ---------------

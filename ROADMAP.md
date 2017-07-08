@@ -1,7 +1,6 @@
 Release 0.12.0
 ---------------
 * into
-* none
 * test
 * transduce
 

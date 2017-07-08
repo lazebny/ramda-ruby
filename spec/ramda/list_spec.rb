@@ -378,6 +378,16 @@ describe Ramda::List do
     end
   end
 
+  context '#none' do
+    it 'from docs' do
+      is_even = :even?.to_proc
+      is_odd = :odd?.to_proc
+
+      expect(R.none(is_even, [1, 3, 5, 7, 9, 11])).to be_truthy
+      expect(R.none(is_odd, [1, 3, 5, 7, 9, 11])).to be_falsey
+    end
+  end
+
   context '#nth' do
     it 'with array' do
       list = ['foo', 'bar', 'baz', 'quux']

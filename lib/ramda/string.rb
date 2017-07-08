@@ -37,6 +37,14 @@ module Ramda
       x.split(sep)
     end
 
+    # Determines whether a given string matches a given regular expression.
+    #
+    # RegExp -> String -> Boolean
+    #
+    curried_method(:test) do |rx, str|
+      !str.match(rx).nil?
+    end
+
     # The upper case version of a string.
     #
     # String -> String

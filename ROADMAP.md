@@ -1,7 +1,6 @@
 Release 0.12.0
 ---------------
 * into
-* test
 * transduce
 
 Release 0.13.0

@@ -165,6 +165,7 @@ describe Ramda do
   r(:take)
   r(:take_while)
   r(:tap)
+  r(:test)
   r(:times)
   r(:to_lower)
   r(:to_pairs)

@@ -29,6 +29,13 @@ describe Ramda::String do
     end
   end
 
+  context '#test' do
+    it 'from docs' do
+      expect(R.test(/^x/, 'xyz')).to be_truthy
+      expect(R.test(/^y/, 'xyz')).to be_falsey
+    end
+  end
+
   context '#to_upper' do
     it 'from docs' do
       expect(r.to_upper('abc')).to eq('ABC')

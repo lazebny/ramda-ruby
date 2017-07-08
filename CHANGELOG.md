@@ -7,6 +7,7 @@ Added:
 * both
 * either
 * none
+* test
 
 Release 0.11.0
 ---------------

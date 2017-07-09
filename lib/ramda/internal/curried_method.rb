@@ -4,9 +4,11 @@ module Ramda
   module Internal
     # Curried Method
     module CurriedMethod
-      def curried_method(name, &block)
+      def curried(name, &block)
         define_method(name, &curried_method_body(name, block.arity, &block))
       end
+
+      alias curried_method curried
 
       # rubocop:disable Metrics/MethodLength
       def curried_method_body(name, arity, &block)

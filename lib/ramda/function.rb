@@ -1,4 +1,5 @@
 require_relative 'internal/curried_method'
+require_relative 'internal/dispatchable'
 require_relative 'internal/function_with_arity'
 
 module Ramda
@@ -6,6 +7,7 @@ module Ramda
   # rubocop:disable Metrics/ModuleLength
   module Function
     extend ::Ramda::Internal::CurriedMethod
+    extend ::Ramda::Internal::Dispatchable
 
     # Returns a function that always returns the given value. Note that
     # for non-primitives the value returned is a reference to the original
@@ -26,13 +28,9 @@ module Ramda
     # [a -> b] -> [a] -> [b]
     # Apply f => f (a -> b) -> f a -> f b
     #
-    curried_method(:ap) do |apply_f, apply_x|
-      if apply_x.is_a?(Array)
-        apply_f.flat_map { |fn| apply_x.map(&fn) }
-      else
-        Internal::Dispatchable.call([:ap], nil, apply_f, apply_x)
-      end
-    end
+    curried(:ap, &dispatchable(:ap, ::Array) do |apply_f, apply_x|
+      apply_f.flat_map { |fn| apply_x.map(&fn) }
+    end)
 
     # Applies function fn to the argument list args. This is useful
     # for creating a fixed-arity function from a variadic function.

@@ -6,6 +6,7 @@ module Ramda
   # rubocop:disable Metrics/ModuleLength
   module List
     extend ::Ramda::Internal::CurriedMethod
+    extend ::Ramda::Internal::Dispatchable
 
     # Returns true if all elements of the list match the predicate,
     # false if there are any that don't.
@@ -16,13 +17,9 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> Boolean
     #
-    curried_method(:all) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.all?(&f)
-      else
-        Internal::Dispatchable.call([:any], nil, f, xs)
-      end
-    end
+    curried(:all, &dispatchable(:all, ::Array) do |f, xs|
+      xs.all?(&f)
+    end)
 
     # Returns true if at least one of elements of the list match the predicate,
     # false otherwise.
@@ -33,13 +30,9 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> Boolean
     #
-    curried_method(:any) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.any?(&f)
-      else
-        Internal::Dispatchable.call([:any], nil, f, xs)
-      end
-    end
+    curried(:any, &dispatchable(:any, ::Array) do |f, xs|
+      xs.any?(&f)
+    end)
 
     # Returns a new list, composed of n-tuples of consecutive elements.
     # If n is greater than the length of the list, an empty list is returned.
@@ -69,34 +62,27 @@ module Ramda
     #
     # Chain m => (a -> m b) -> m a -> m b
     #
-    curried_method(:chain) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.flat_map(&f)
-      else
-        Internal::Dispatchable.call([:chain, :bind], nil, f, xs)
-      end
-    end
+    curried(:chain, &dispatchable([:chain, :bind], ::Array) do |f, xs|
+      xs.flat_map(&f)
+    end)
 
     # Returns the result of concatenating the given lists or strings.
-    # String -> String -> String
     #
+    # Dispatches to the concat method of the first argument, if present.
+    #
+    # String -> String -> String
     # List -> List -> List
     #
-    curried_method(:concat) do |list_a, list_b|
-      case list_b
-      when ::String, ::Symbol
-        [list_a, list_b].join('')
-      when ::Array
-        list_a.dup + list_b
+    curried(:concat, &dispatchable(:concat, [::Array, ::String, ::Symbol]) do |list_a, list_b|
+      if list_b.is_a?(::Array)
+        list_a + list_b
       else
-        Internal::Dispatchable.call([:concat], nil, list_a, list_b)
+        [list_a, list_b].join('')
       end
-    end
+    end)
 
     # Returns true if the specified value is equal, in R.equals terms,
     # to at least one element of the given list; false otherwise.
-    #
-    # Dispatches to the concat method of the first argument, if present.
     #
     # a -> [a] -> Boolean
     #
@@ -112,16 +98,9 @@ module Ramda
     # Number -> [a] -> [a]
     # Number -> String -> String
     #
-    curried_method(:drop) do |num, xs|
-      case xs
-      when ::String
-        xs[num..-1] || ''
-      when ::Array
-        xs[num..-1] || []
-      else
-        Internal::Dispatchable.call([:drop], nil, num, xs)
-      end
-    end
+    curried(:drop, &dispatchable(:drop, [::Array, ::String]) do |num, xs|
+      xs[num..-1] || xs.class.new
+    end)
 
     # Returns a new list excluding the leading elements of a given list which
     # satisfy the supplied predicate function. It passes each value to the
@@ -135,13 +114,9 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> [a]
     #
-    curried_method(:drop_while) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.drop_while(&f)
-      else
-        Internal::Dispatchable.call([:drop_while], nil, f, xs)
-      end
-    end
+    curried(:drop_while, &dispatchable(:drop_while, ::Array) do |f, xs|
+      xs.drop_while(&f)
+    end)
 
     # Takes a predicate and a Filterable, and returns a new filterable of the same
     # type containing the members of the given filterable which satisfy the given
@@ -152,16 +127,13 @@ module Ramda
     #
     # Filterable f => (a -> Boolean) -> f a -> f a
     #
-    curried_method(:filter) do |f, xs|
-      case xs
-      when ::Hash
+    curried(:filter, &dispatchable(:filter, [::Array, ::Hash]) do |f, xs|
+      if xs.is_a?(Hash)
         xs.select { |_, value| f.call(value) }
-      when ::Array
-        xs.select(&f)
       else
-        Internal::Dispatchable.call([:filter], nil, f, xs)
+        xs.select(&f)
       end
-    end
+    end)
 
     # Creates a new object from a list key-value pairs. If a key appears in
     # multiple pairs, the rightmost pair is included in the object.
@@ -179,13 +151,9 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> a | NilClass
     #
-    curried_method(:find) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.find(&f)
-      else
-        Internal::Dispatchable.call([:find], nil, f, xs)
-      end
-    end
+    curried(:find, &dispatchable(:find, ::Array) do |f, xs|
+      xs.find(&f)
+    end)
 
     # Returns the index of the first element of the list which matches the predicate,
     # or nil if no element matches.
@@ -229,13 +197,9 @@ module Ramda
     #
     # (a -> *) -> [a] -> [a]
     #
-    curried_method(:for_each) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.each(&f)
-      else
-        Internal::Dispatchable.call([:for_each], nil, f, xs)
-      end
-    end
+    curried(:for_each, &dispatchable(:for_each, ::Array) do |f, xs|
+      xs.each(&f)
+    end)
 
     # Splits a list into sub-lists stored in an object, based on the result of
     # calling a String-returning function on each element, and grouping the
@@ -246,13 +210,9 @@ module Ramda
     #
     # (a -> String) -> [a] -> {String: [a]}
     #
-    curried_method(:group_by) do |f, xs|
-      if xs.is_a?(::Array)
-        xs.group_by(&f)
-      else
-        Internal::Dispatchable.call([:group_by], nil, f, xs)
-      end
-    end
+    curried(:group_by, &dispatchable(:group_by, ::Array) do |f, xs|
+      xs.group_by(&f)
+    end)
 
     # Returns the first element of the given list or string. In some libraries
     # this function is named first.
@@ -349,16 +309,14 @@ module Ramda
     #
     # Functor f => (a -> b) -> f a -> f b
     #
-    curried_method(:map) do |f, xs|
+    curried(:map, &dispatchable([:map], [::Hash, ::Array]) do |f, xs|
       case xs
       when ::Hash
         Hash[xs.map { |k, v| [k, f.call(v)] }]
       when ::Array
         xs.map(&f)
-      else
-        Internal::Dispatchable.call([:map], nil, f, xs)
       end
-    end
+    end)
 
     # The mapAccum function behaves like a combination of map and reduce;
     # it applies a function to each element of a list, passing
@@ -528,14 +486,9 @@ module Ramda
     # Number -> Number -> [a] -> [a]
     # Number -> Number -> String -> String
     #
-    curried_method(:slice) do |from, to, xs|
-      case xs
-      when ::Array, ::String
-        xs[from...to]
-      else
-        Internal::Dispatchable.call([:slice], nil, from, to, xs)
-      end
-    end
+    curried(:slice, &dispatchable(:slice, [::Array, ::String]) do |from, to, xs|
+      xs[from...to]
+    end)
 
     # Returns a copy of the list, sorted according to the comparator function,
     # which should accept two values at a time and return a negative number
@@ -564,14 +517,9 @@ module Ramda
     # Number -> [a] -> [a]
     # Number -> String -> String
     #
-    curried_method(:take) do |num, xs|
-      case xs
-      when ::Array, ::String
-        xs[0, num]
-      else
-        Internal::Dispatchable.call([:take], nil, num, xs)
-      end
-    end
+    curried(:take, &dispatchable(:take, [::Array, ::String]) do |num, xs|
+      xs[0, num]
+    end)
 
     # Returns a new list containing the first n elements of a given list,
     # passing each value to the supplied predicate function, and terminating
@@ -581,13 +529,9 @@ module Ramda
     #
     # (a -> Boolean) -> [a] -> [a]
     #
-    curried_method(:take_while) do |f, xs|
-      if xs.is_a?(::Array)
-        xs[0, xs.index { |x| !f.call(x) } || xs.size]
-      else
-        Internal::Dispatchable.call([:take_while], nil, f, xs)
-      end
-    end
+    curried(:take_while, &dispatchable(:take_while, ::Array) do |f, xs|
+      xs[0, xs.index { |x| !f.call(x) } || xs.size]
+    end)
 
     # Calls an input function n times, returning an array containing the results
     # of those function calls.

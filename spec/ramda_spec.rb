@@ -170,6 +170,7 @@ describe Ramda do
   r(:to_lower)
   r(:to_pairs)
   r(:to_upper)
+  r(:transduce)
   r(:trim)
   r(:type)
   r(:unapply)

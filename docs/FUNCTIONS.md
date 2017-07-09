@@ -57,7 +57,7 @@ List
 * [contains](http://ramdajs.com/docs/#contains)
 * [drop](http://ramdajs.com/docs/#drop)
 * [drop_while](http://ramdajs.com/docs/#dropWhile)
-* [filter](http://ramdajs.com/docs/#filter)
+* [filter](http://ramdajs.com/docs/#filter) - transducer
 * [find](http://ramdajs.com/docs/#find)
 * [find_index](http://ramdajs.com/docs/#findIndex) - returns nil if index doesn't exist
 * [find_last](http://ramdajs.com/docs/#findLast)
@@ -75,7 +75,7 @@ List
 * [last](http://ramdajs.com/docs/#last)
 * [last_index_of](http://ramdajs.com/docs/#lastIndexOf) - returns nil if index doesn't exist
 * [length](http://ramdajs.com/docs/#length)
-* [map](http://ramdajs.com/docs/#map)
+* [map](http://ramdajs.com/docs/#map) - transducer
 * [map_obj_indexed](http://ramdajs.com/docs/#mapObjIndexed)
 * [merge_all](http://ramdajs.com/docs/#mergeAll)
 * [nth](http://ramdajs.com/docs/#nth)
@@ -94,7 +94,7 @@ List
 * [sort](http://ramdajs.com/docs/#sort)
 * [sort_by](http://ramdajs.com/docs/#sortBy)
 * [tail](http://ramdajs.com/docs/#tail)
-* [take](http://ramdajs.com/docs/#take)
+* [take](http://ramdajs.com/docs/#take)- transducer
 * [take_while](http://ramdajs.com/docs/#takeWhile)
 * [times](http://ramdajs.com/docs/#times)
 * [unfold](http://ramdajs.com/docs/#unfold)

@@ -8,6 +8,7 @@ Added:
 * either
 * none
 * test
+* transduce
 
 Release 0.11.0
 ---------------

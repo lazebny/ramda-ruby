@@ -612,6 +612,58 @@ describe Ramda::List do
     end
   end
 
+  context '#transduce' do
+    context 'transduces into arrays' do
+      let(:append) { R.flip(R.append) }
+
+      it 'different cases' do
+        xform = R.map(R.add(10))
+        expect(R.transduce(xform, append, [], [1, 2, 3, 4])).to eq([11, 12, 13, 14])
+
+        xform = R.filter(:odd?.to_proc)
+        expect(R.transduce(xform, append, [], [1, 2, 3, 4])).to eq([1, 3])
+
+        xform = R.compose(R.map(R.add(10)), R.take(2))
+        expect(R.transduce(xform, append, [], [1, 2, 3, 4])).to eq([11, 12])
+
+        xform = R.compose(R.filter(:odd?.to_proc), R.take(2))
+        expect(R.transduce(xform, append, [], [1, 2, 3, 4, 5])).to eq([1, 3])
+        expect(R.transduce(xform, R.add, 100, [1, 2, 3, 4, 5])).to eq(104)
+      end
+    end
+
+    context '#transducers into strings' do
+      let(:add) { ->(acc, x) { [acc, x].join } }
+
+      it 'different cases' do
+        xform = R.map(R.inc)
+        expect(R.transduce(xform, add, '', [1, 2, 3, 4])).to eq('2345')
+
+        xform = R.filter(:odd?.to_proc)
+        expect(R.transduce(xform, add, '', [1, 2, 3, 4])).to eq('13')
+
+        xform = R.compose(R.map(R.add(1)), R.take(2))
+        expect(R.transduce(xform, add, '', [1, 2, 3, 4])).to eq('23')
+      end
+    end
+
+    context 'transduces into objects' do
+      it 'different cases' do
+        xform = R.map(R.identity)
+        expect(R.transduce(xform, R.merge, {}, [{ a: 1 }, { b: 2, c: 3 }])).to eq(a: 1, b: 2, c: 3)
+      end
+    end
+
+    it 'returns the accumulator for an empty collection' do
+      reducer = ->(acc, x) { acc + x }
+
+      xform = R.map(R.identity)
+      expect(R.transduce(xform, reducer, 0, [])).to be(0)
+      expect(R.transduce(xform, reducer, 1, [])).to be(1)
+      expect(R.transduce(xform, reducer, [], [])).to eql([])
+    end
+  end
+
   context '#unfold' do
     it 'from docs' do
       f = ->(n) { n > 50 ? false : [-n, n + 10] }

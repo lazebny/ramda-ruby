@@ -28,7 +28,7 @@ module Ramda
             yield(*args, xs)
 
           when Proc # transducer behaviour
-            xf
+            xf.call(*args, xs)
 
           else # method dispatch behaviour
             method_name = method_names.find { |name| xs.respond_to?(name) }

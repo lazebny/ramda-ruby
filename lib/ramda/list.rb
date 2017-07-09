@@ -1,10 +1,13 @@
 require_relative 'internal/curried_method'
 require_relative 'internal/dispatchable'
+require_relative 'internal/transducers'
 
 module Ramda
   # List functions
   # rubocop:disable Metrics/ModuleLength
   module List
+    Transducer = ->(method) { ::Ramda::Internal::Transducers.method(method) }
+
     extend ::Ramda::Internal::CurriedMethod
     extend ::Ramda::Internal::Dispatchable
 
@@ -127,7 +130,7 @@ module Ramda
     #
     # Filterable f => (a -> Boolean) -> f a -> f a
     #
-    curried(:filter, &dispatchable(:filter, [::Array, ::Hash]) do |f, xs|
+    curried(:filter, &dispatchable(:filter, [::Array, ::Hash], Transducer[:filter]) do |f, xs|
       if xs.is_a?(Hash)
         xs.select { |_, value| f.call(value) }
       else
@@ -309,7 +312,7 @@ module Ramda
     #
     # Functor f => (a -> b) -> f a -> f b
     #
-    curried(:map, &dispatchable([:map], [::Hash, ::Array]) do |f, xs|
+    curried(:map, &dispatchable(:map, [::Hash, ::Array], Transducer[:map]) do |f, xs|
       case xs
       when ::Hash
         Hash[xs.map { |k, v| [k, f.call(v)] }]
@@ -517,7 +520,7 @@ module Ramda
     # Number -> [a] -> [a]
     # Number -> String -> String
     #
-    curried(:take, &dispatchable(:take, [::Array, ::String]) do |num, xs|
+    curried(:take, &dispatchable(:take, [::Array, ::String], Transducer[:take]) do |num, xs|
       xs[0, num]
     end)
 
@@ -542,6 +545,26 @@ module Ramda
     #
     curried_method(:times) do |f, n|
       n.times.to_a.map(&f)
+    end
+
+    # Returns a single item by iterating through the list, successively
+    # calling the iterator function and passing it an accumulator value
+    # and the current value from the array, and then passing the result
+    # to the next call.
+    #
+    # The iterator function receives two values: (acc, value).
+    # It may use R.reduced to shortcut the iteration.
+    #
+    # The arguments' order of reduceRight's iterator function is (value, acc).
+    #
+    # Dispatches to the reduce method of the third argument, if present.
+    # When doing so, it is up to the user to handle the R.reduced shortcuting,
+    # as this is not implemented by reduce.
+    #
+    # ((a, b) -> a) -> a -> [b] -> a
+    #
+    curried_method(:transduce) do |xf, rx, acc, xs|
+      xs.reduce(acc, &xf.call(rx))
     end
 
     # Builds a list from a seed value. Accepts an iterator function, which

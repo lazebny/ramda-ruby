@@ -1,15 +1,24 @@
 Not Released
 ---------------
 
+Release 0.12.0
+---------------
+
 Added:
 
-* aperture
-* both
-* either
-* into
-* none
-* test
-* transduce
+* [aperture](http://ramdajs.com/docs/#aperture)
+* [both](http://ramdajs.com/docs/#both)
+* [either](http://ramdajs.com/docs/#either)
+* [into](http://ramdajs.com/docs/#into)
+* [none](http://ramdajs.com/docs/#none)
+* [test](http://ramdajs.com/docs/#test)
+* [transduce](http://ramdajs.com/docs/#transduce)
+
+Transducers for:
+
+* filter
+* map
+* take
 
 Release 0.11.0
 ---------------

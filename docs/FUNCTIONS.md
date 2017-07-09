@@ -51,6 +51,7 @@ List
 
 * [all](http://ramdajs.com/docs/#all)
 * [any](http://ramdajs.com/docs/#any)
+* [aperture](http://ramdajs.com/docs/#aperture)
 * [append](http://ramdajs.com/docs/#append)
 * [chain](http://ramdajs.com/docs/#chain)
 * [concat](http://ramdajs.com/docs/#concat)
@@ -71,6 +72,7 @@ List
 * [init](http://ramdajs.com/docs/#init)
 * [insert](http://ramdajs.com/docs/#insert)
 * [insert_all](http://ramdajs.com/docs/#insertAll)
+* [into](http://ramdajs.com/docs/#into)
 * [join](http://ramdajs.com/docs/#join)
 * [last](http://ramdajs.com/docs/#last)
 * [last_index_of](http://ramdajs.com/docs/#lastIndexOf) - returns nil if index doesn't exist
@@ -78,6 +80,7 @@ List
 * [map](http://ramdajs.com/docs/#map) - transducer
 * [map_obj_indexed](http://ramdajs.com/docs/#mapObjIndexed)
 * [merge_all](http://ramdajs.com/docs/#mergeAll)
+* [none](http://ramdajs.com/docs/#none)
 * [nth](http://ramdajs.com/docs/#nth)
 * [partition](http://ramdajs.com/docs/#partition)
 * [pluck](http://ramdajs.com/docs/#pluck)
@@ -97,6 +100,7 @@ List
 * [take](http://ramdajs.com/docs/#take)- transducer
 * [take_while](http://ramdajs.com/docs/#takeWhile)
 * [times](http://ramdajs.com/docs/#times)
+* [transduce](http://ramdajs.com/docs/#transduce)
 * [unfold](http://ramdajs.com/docs/#unfold)
 * [uniq](http://ramdajs.com/docs/#uniq)
 * [uniq_with](http://ramdajs.com/docs/#uniqWith) - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
@@ -113,9 +117,11 @@ Logic
 * [all_pass](http://ramdajs.com/docs/#allPass)
 * [and](http://ramdajs.com/docs/#and)
 * [any_pass](http://ramdajs.com/docs/#anyPass)
+* [both](http://ramdajs.com/docs/#both)
 * [complement](http://ramdajs.com/docs/#complement)
 * [cond](http://ramdajs.com/docs/#cond)
 * [default_to](http://ramdajs.com/docs/#defaultTo)
+* [either](http://ramdajs.com/docs/#either)
 * [if_else](http://ramdajs.com/docs/#ifElse)
 * [is_empty](http://ramdajs.com/docs/#isEmpty)
 * [not](http://ramdajs.com/docs/#not)
@@ -201,6 +207,7 @@ String
 * [match](http://ramdajs.com/docs/#math)
 * [replace](http://ramdajs.com/docs/#replace) - it uses a gsub method and global replacement
 * [split](http://ramdajs.com/docs/#split)
+* [test](http://ramdajs.com/docs/#test)
 * [to_lower](http://ramdajs.com/docs/#toLower)
 * [to_upper](http://ramdajs.com/docs/#toUpper)
 * [trim](http://ramdajs.com/docs/#trim)

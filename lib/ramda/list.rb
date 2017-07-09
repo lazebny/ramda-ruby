@@ -270,6 +270,43 @@ module Ramda
       xs.dup.insert(index, *elts)
     end
 
+    # Transforms the items of the list with the transducer and appends
+    # the transformed items to the accumulator using an appropriate iterator
+    # function based on the accumulator type.
+    #
+    # The accumulator can be an array, string, object or a transformer.
+    # Iterated items will be appended to arrays and concatenated to strings.
+    # Objects will be merged directly.
+    #
+    # The accumulator can also be a transformer object that provides a 2-arity
+    # reducing iterator function, step, 0-arity initial value function,
+    # init, and 1-arity result extraction function result.
+    # The step function is used as the iterator function in reduce. The result
+    # function is used to convert the final accumulator into the return type
+    # and in most cases is R.identity. The init function is used to provide
+    # the initial accumulator.
+    #
+    # The iteration is performed with R.reduce after initializing the transducer.
+    #
+    # a -> (b -> b) -> [c] -> a
+    #
+    curried_method(:into) do |acc, xf, xs|
+      rx = case acc
+           when ::Array
+             lambda { |arr, x|
+               arr.push(x)
+               arr
+             }
+           when ::String
+             ->(str, x) { "#{str}#{x}" }
+           when ::Object
+             ->(obj, x) { obj.merge(x) }
+           else
+             raise ArgumetError, "Cannot create transformer for #{acc}"
+           end
+      xs.reduce(acc, &xf.call(rx))
+    end
+
     # Returns a string made by inserting the separator between each element and
     # concatenating all the elements into a single string.
     #

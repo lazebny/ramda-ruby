@@ -6,6 +6,7 @@ Added:
 * aperture
 * both
 * either
+* into
 * none
 * test
 * transduce

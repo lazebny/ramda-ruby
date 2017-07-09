@@ -105,8 +105,9 @@ Transducers:
   R.transduce(xform, appender, [], [1, 2, 3, 4]) # [11, 12]
 
   xform = R.compose(R.filter(:odd?.to_proc), R.take(2))
-  expect(R.transduce(xform, appender, [], [1, 2, 3, 4, 5])).to eq([1, 3])
-  expect(R.transduce(xform, R.add, 100, [1, 2, 3, 4, 5])).to eq(104)
+  R.transduce(xform, R.add, 100, [1, 2, 3, 4, 5]) # 104)
+  R.transduce(xform, appender, [], [1, 2, 3, 4, 5]) # [1, 3])
+  R.into([], xform, [1, 2, 3, 4, 5]) # [1, 3])
 
 
 ```

@@ -308,6 +308,32 @@ describe Ramda::List do
     end
   end
 
+  context '#into' do
+    it 'transduces into arrays' do
+      expect(R.into([], R.map(R.add(1)), [1, 2, 3, 4])).to eq([2, 3, 4, 5])
+      expect(R.into([], R.filter(:odd?.to_proc), [1, 2, 3, 4])).to eq([1, 3])
+      expect(R.into([], R.compose(R.map(R.add(1)), R.take(2)), [1, 2, 3, 4])).to eq([2, 3])
+    end
+
+    it 'transduces into strings' do
+      expect(R.into('', R.map(R.add(1)), [1, 2, 3, 4])).to eq('2345')
+      expect(R.into('', R.filter(:odd?.to_proc), [1, 2, 3, 4])).to eq('13')
+      expect(R.into('', R.compose(R.map(R.add(1)), R.take(2)), [1, 2, 3, 4])).to eq('23')
+    end
+
+    it 'transduces into objects' do
+      # expect(R.into({}, R.identity, [[:a, 1], [:b, 2]])).to eq(a: 1, b: 2)
+      expect(R.into({}, R.identity, [{ a: 1 }, { b: 2, c: 3 }])).to eq(a: 1, b: 2, c: 3)
+    end
+
+    it 'is curried' do
+      into_array = R.into([])
+      add2 = R.map(R.add(2))
+      result = into_array.call(add2)
+      expect(result.call([1, 2, 3, 4])).to eq([3, 4, 5, 6])
+    end
+  end
+
   context '#join' do
     it 'from docs' do
       expect(r.join('|', [1, 2, 3])).to eq('1|2|3')

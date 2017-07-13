@@ -7,7 +7,7 @@ module Ramda
   module Object
     extend ::Ramda::Internal::CurriedMethod
 
-    Functors = ::Ramda::Internals::Functors
+    Functors = ::Ramda::Internal::Functors
 
     # Makes a shallow clone of an object, setting or overriding the specified
     # property with the given value. Note that this copies and flattens

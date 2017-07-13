@@ -44,6 +44,16 @@ describe Ramda::Logic do
       expect(f.call(15)).to be_truthy
       expect(f.call(30)).to be_falsey
     end
+
+    it 'accepts fantasy-land applicative functors' do
+      some = Maybe::Some
+      none = Maybe::None
+      expect(R.both(some.new(true), some.new(true))). to eq(some.new(true))
+      expect(R.both(some.new(true), some.new(false))).to eq(some.new(false))
+      expect(R.both(some.new(true), none.new)).to eq(none.new)
+      expect(R.both(none.new, some.new(false))).to eq(none.new)
+      expect(R.both(none.new, none.new)).to eq(none.new)
+    end
   end
 
   context '#complement' do
@@ -53,6 +63,15 @@ describe Ramda::Logic do
       expect(is_not_nil.call(nil)).to be_falsey
       expect(R.is_nil(7)).to be_falsey
       expect(is_not_nil.call(7)).to be_truthy
+    end
+
+    it 'accepts fantasy-land functors' do
+      some = Maybe::Some
+      none = Maybe::None
+
+      expect(R.complement(some.new(true))).to eq(some.new(false))
+      expect(R.complement(some.new(false))).to eq(some.new(true))
+      expect(R.complement(none.new)).to eq(none.new)
     end
   end
 
@@ -85,6 +104,17 @@ describe Ramda::Logic do
       f = R.either(gt10, even)
       expect(f.call(101)).to be_truthy
       expect(f.call(8)).to be_truthy
+    end
+
+    it 'accepts fantasy-land applicative functors' do
+      some = Maybe::Some
+      none = Maybe::None
+      expect(R.either(some.new(true), some.new(true))).to eq(some.new(true))
+      expect(R.either(some.new(true), some.new(false))).to eq(some.new(true))
+      expect(R.either(some.new(false), some.new(false))).to eq(some.new(false))
+      expect(R.either(some.new(true), none.new)).to eq(none.new)
+      expect(R.either(none.new, some.new(false))).to eq(none.new)
+      expect(R.either(none.new, none.new)).to eq(none.new)
     end
   end
 

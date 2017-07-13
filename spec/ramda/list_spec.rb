@@ -64,26 +64,6 @@ describe Ramda::List do
       expect(r.chain(duplicate, [1, 2, 3])).to eq([1, 1, 2, 2, 3, 3])
     end
 
-    it 'monad with chain' do
-      monad = Class.new do
-        def chain(fn)
-          fn.call(10)
-        end
-      end.new
-
-      expect(r.chain(R.add(5), monad)).to eq(15)
-    end
-
-    it 'monad with bind' do
-      monad = Class.new do
-        def bind(fn)
-          fn.call(10)
-        end
-      end.new
-
-      expect(r.chain(R.add(5), monad)).to eq(15)
-    end
-
     # it 'multiple args' do
     #   expect(r.chain(R.compose(R.append, R.head)).call([1, 2, 3])).to eq([1, 2, 3, 1])
     # end
@@ -91,6 +71,23 @@ describe Ramda::List do
     it 'maps a function (a -> [b]) into a (shallow) flat result' do
       times2 = ->(x) { [x * 2] }
       expect(R.chain(times2).call([1, 2, 3, 4])).to eq([2, 4, 6, 8])
+    end
+
+    context 'supports gem' do
+      it 'fantasy-ruby' do
+        result = R.chain(->(x) { Maybe.of(R.add(5, x)) }, Maybe.of(10))
+        expect(result).to eq(Maybe.of(15))
+      end
+
+      it 'dry-monads', market: :dry_monads do
+        result = R.chain(->(x) { DryMaybe.pure(R.add(5, x)) }, DryMaybe.pure(10))
+        expect(result).to eq(DryMaybe.pure(15))
+      end
+
+      it 'kleisli' do
+        result = R.chain(->(x) { KleisliMaybe::Some.new(R.add(5, x)) }, KleisliMaybe::Some.new(10))
+        expect(result).to eq(KleisliMaybe::Some.new(15))
+      end
     end
   end
 
@@ -382,6 +379,23 @@ describe Ramda::List do
 
       expect(r.map(double_fn).call([1, 2, 3])).to eq([2, 4, 6])
     end
+
+    context 'supports gem' do
+      it 'fantasy-ruby' do
+        result = R.map(R.add(5), Maybe.of(10))
+        expect(result).to eq(Maybe.of(15))
+      end
+
+      it 'dry-monads', market: :dry_monads do
+        result = R.map(R.add(5), DryMaybe.pure(10))
+        expect(result).to eq(DryMaybe.pure(15))
+      end
+
+      it 'kleisli' do
+        result = R.map(R.add(5), KleisliMaybe::Some.new(10))
+        expect(result).to eq(KleisliMaybe::Some.new(15))
+      end
+    end
   end
 
   # context '#map_accum' do
@@ -448,6 +462,10 @@ describe Ramda::List do
     it 'from docs' do
       expect(r.pluck(:a).call([{ a: 1 }, { a: 2 }])).to eq([1, 2])
       expect(r.pluck(0).call([[1, 2], [3, 4]])).to eq([1, 3])
+    end
+
+    it 'works with functor' do
+      expect(R.pluck(:a, Maybe.of(a: 100))).to eq(Maybe.of(100))
     end
   end
 

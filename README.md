@@ -59,6 +59,45 @@ Documentation
 You can use Ramda [docs](http://ramdajs.com/docs/) as a documentation
 or to check Ruby [examples](spec/ramda).
 
+
+Algebraic structures
+-------------
+
+Methods which supports algebraic types:
+
+* ap
+* both
+* chain
+* complement
+* either
+* lift
+* lift_n
+* map
+* pluck
+
+Supported libraries ([comparison](docs/FUNCTORS.md)):
+
+* [dry-monads](https://github.com/dry-rb/dry-monads)
+* [kleisli](https://github.com/txus/kleisli)
+
+dry-monads
+
+works with ruby >= 2.1
+
+kleisli works from this fork:
+
+```ruby
+
+gem 'kleisli', git: 'git@github.com:lazebny/kleisli.git', branch: 'ramda-ruby'
+
+```
+
+Differences:
+
+* https://github.com/txus/kleisli/pull/28
+* https://github.com/txus/kleisli/pull/29
+
+
 Usage
 -------------
 
@@ -112,6 +151,30 @@ Transducers:
 
 ```
 
+With algebraic structures:
+
+```ruby
+
+  # ap
+  R.ap(R.ap(Maybe.of(R.add), Maybe.of(3)), Maybe.of(5)) # Some(8)
+
+  # chain
+  R.chain(->(x) { Maybe.of(R.add(5, x)) }, Maybe.of(3)) # Some(8)
+
+  # map
+
+
+  # lift
+  add_m = R.lift(R.add)
+  add_m.call(Maybe.of(3), Maybe.of(5)) # Some(8)
+
+  # lift_n
+  add_m = R.lift_n(3, -> (a, b, c) { a + b + c })
+  add_m.call(Maybe.of(3), Maybe.of(5), Maybe.of(10)) # Some(18)
+
+```
+
+
 Change exceptions handler:
 
 ```ruby
@@ -151,6 +214,10 @@ Enable debug mode:
   # -> filter(#<Proc:0x0055ff3fad4640 (lambda)>, 1, 2, 3, 4) # [2, 4]
 
 ```
+
+Resources
+-------------------
+* [Cleaner Ruby validations using the Either monad and Kleisli gem](https://blog.abevoelker.com/you-got-haskell-in-my-ruby-cleaner-ruby-validations-using-either-monad-kleisli-gem/)
 
 
 Benchmarks

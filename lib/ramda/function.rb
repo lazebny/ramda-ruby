@@ -1,3 +1,4 @@
+require_relative 'internal/class_which_respond_to'
 require_relative 'internal/curried_method'
 require_relative 'internal/dispatchable'
 require_relative 'internal/function_with_arity'
@@ -8,6 +9,7 @@ module Ramda
   module Function
     extend ::Ramda::Internal::CurriedMethod
     extend ::Ramda::Internal::Dispatchable
+    extend ::Ramda::Internal::ClassWhichRespondTo
 
     # Returns a function that always returns the given value. Note that
     # for non-primitives the value returned is a reference to the original
@@ -28,8 +30,19 @@ module Ramda
     # [a -> b] -> [a] -> [b]
     # Apply f => f (a -> b) -> f a -> f b
     #
-    curried(:ap, &dispatchable(:ap, ::Array) do |apply_f, apply_x|
-      apply_f.flat_map { |fn| apply_x.map(&fn) }
+    class_with_ap = class_which_responds_to(:ap)
+    class_with_m = class_which_responds_to(:*)
+    curried(:ap, &dispatchable(:ap, [::Array, class_with_ap, class_with_m]) do |apply_f, apply_x|
+      case apply_f
+      when ::Array
+        apply_f.flat_map { |fn| apply_x.map(&fn) }
+
+      when class_with_ap
+        apply_f.ap(apply_x)
+
+      when class_with_m
+        apply_f * apply_x
+      end
     end)
 
     # Applies function fn to the argument list args. This is useful
@@ -242,7 +255,13 @@ module Ramda
     # Number -> (*... -> *) -> ([*]... -> [*])
     #
     curried_method(:lift_n) do |arity, fn, a, *xs|
-      ([a] + xs).reduce([::Ramda.curry_n(arity, fn)], &::Ramda.ap)
+      # Applicative
+      if a.respond_to?(:ap)
+        xs.reduce(a.map(::Ramda.curry_n(arity, fn)), &::Ramda.ap)
+      # Array
+      else
+        ([a] + xs).reduce([::Ramda.curry_n(arity, fn)], &::Ramda.ap)
+      end
     end
 
     # Creates a new function that, when invoked, caches the result of calling

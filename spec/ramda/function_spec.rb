@@ -44,9 +44,18 @@ describe Ramda::Function do
         .to eq(['tasty pizza', 'tasty salad', 'PIZZA', 'SALAD'])
     end
 
-    xit 'with monads' do
-      res = r.ap(r.ap([R.multiply], M::Maybe(10)), M::Maybe(20))
-      expect(res).to eq(M::Maybe::Some.new(200))
+    it 'with monads' do
+      expect(Maybe.of(R.multiply).ap(Maybe.of(10)).ap(Maybe.of(20))).to eq(Maybe.of(200))
+
+      res = R.ap(R.ap(Maybe.of(R.multiply), Maybe.of(10)), Maybe.of(20))
+      expect(res).to eq(Maybe.of(200))
+    end
+
+    context 'supports gem' do
+      it 'kleisli' do
+        result = R.ap(KleisliMaybe::Some.new(R.add(5)), KleisliMaybe::Some.new(10))
+        expect(result).to eq(KleisliMaybe::Some.new(15))
+      end
     end
   end
 
@@ -325,10 +334,9 @@ describe Ramda::Function do
       ).to eq([3, 4, 5, 4, 5, 6, 5, 6, 7])
     end
 
-    xit 'with monads' do
-      addm = r.lift(R.add)
-      expect(addm.call(M::Maybe(3), M::Maybe(5))).to eq(M::Maybe(8))
-      # expect(addM.call(M::Maybe(3), M::Maybe(nil))).to eq(M::Maybe::None.new)
+    it 'with monads' do
+      add_m = r.lift(R.add)
+      expect(add_m.call(Maybe.of(3), Maybe.of(5))).to eq(Maybe.of(8))
     end
   end
 
@@ -336,6 +344,11 @@ describe Ramda::Function do
     it 'from docs' do
       madd3 = r.lift_n(3, ->(*args) { R.sum(args) })
       expect(madd3.call([1, 2, 3], [1, 2, 3], [1])).to eq([3, 4, 5, 4, 5, 6, 5, 6, 7])
+    end
+
+    it 'works with other functors such as "Maybe"' do
+      add_m = R.lift_n(3, ->(a, b, c) { a + b + c })
+      expect(add_m.call(Maybe.of(3), Maybe.of(5), Maybe.of(10))).to eq(Maybe.of(18))
     end
   end
 

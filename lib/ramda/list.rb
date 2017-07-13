@@ -65,7 +65,7 @@ module Ramda
     #
     # Chain m => (a -> m b) -> m a -> m b
     #
-    curried(:chain, &dispatchable([:chain, :bind], ::Array) do |f, xs|
+    curried(:chain, &dispatchable([:chain, :bind, :'>'], ::Array) do |f, xs|
       xs.flat_map(&f)
     end)
 
@@ -349,7 +349,7 @@ module Ramda
     #
     # Functor f => (a -> b) -> f a -> f b
     #
-    curried(:map, &dispatchable(:map, [::Hash, ::Array], Transducer[:map]) do |f, xs|
+    curried(:map, &dispatchable([:map, :fmap], [::Hash, ::Array], Transducer[:map]) do |f, xs|
       case xs
       when ::Hash
         Hash[xs.map { |k, v| [k, f.call(v)] }]
@@ -426,7 +426,7 @@ module Ramda
     # Functor f => k -> f {k: v} -> f v
     #
     curried_method(:pluck) do |key, xs|
-      xs.map { |x| x[key] }
+      Ramda.map(->(x) { x[key] }, xs)
     end
 
     # Returns a new list with the given element at the front, followed by the

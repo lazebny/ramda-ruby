@@ -16,6 +16,9 @@ end
 group :testing do
   gem 'codeclimate-test-reporter', '~> 0.4.7', group: :test, require: nil
   gem 'coveralls', '~> 0.8.2', require: false
+  gem 'dry-monads', '~> 0.3.1' if RUBY_VERSION.to_f >= 2.1
+  # gem 'kleisli', '~> 0.2.7'
+  gem 'kleisli', git: 'https://github.com/lazebny/kleisli.git', branch: 'ramda-ruby'
   gem 'pry', '~> 0.10.4'
   gem 'rspec', '~> 3.6.0'
   gem 'simplecov', '~> 0.10.0', platforms: :mri, require: false

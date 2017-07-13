@@ -51,7 +51,11 @@ module Ramda
     # (*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean)
     #
     curried_method(:both) do |fa, fb|
-      ->(*args) { fa.call(*args) && fb.call(*args) }
+      if fa.is_a?(Proc)
+        ->(*args) { fa.call(*args) && fb.call(*args) }
+      else
+        Ramda.lift(Ramda.and, fa, fb)
+      end
     end
 
     # Takes a function f and returns a function g such that if called with
@@ -63,9 +67,13 @@ module Ramda
     # (*... -> *) -> (*... -> Boolean)
     #
     curried_method(:complement) do |fn|
-      ::Ramda::Internal::FunctionWithArity.call(fn.arity) do |*args|
-        !fn.call(*args)
-      end.curry
+      if fn.is_a?(Proc)
+        ::Ramda::Internal::FunctionWithArity.call(fn.arity) do |*args|
+          !fn.call(*args)
+        end.curry
+      else
+        Ramda.lift(Ramda.not, fn)
+      end
     end
 
     # Returns a function, fn, which encapsulates if/else, if/else, ...
@@ -105,7 +113,11 @@ module Ramda
     # (*... -> Boolean) -> (*... -> Boolean) -> (*... -> Boolean))
     #
     curried_method(:either) do |fa, fb|
-      ->(*args) { fa.call(*args) || fb.call(*args) }
+      if fa.is_a?(Proc)
+        ->(*args) { fa.call(*args) || fb.call(*args) }
+      else
+        ::Ramda.lift(Ramda.or, fa, fb)
+      end
     end
 
     # Creates a function that will process either the onTrue or the onFalse

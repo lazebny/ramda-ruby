@@ -56,6 +56,7 @@ describe Ramda do
   r(:dissoc_path)
   r(:divide)
   r(:drop)
+  r(:drop_repeats)
   r(:drop_while)
   r(:empty)
   r(:either)

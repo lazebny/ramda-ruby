@@ -140,6 +140,24 @@ describe Ramda::List do
     end
   end
 
+  context '#drop_repeats' do
+    let(:x1s) { [1, 2, 3, 4, 5, 3, 2] }
+    let(:x2s) { [1, 2, 2, 2, 3, 4, 4, 5, 5, 3, 2, 2] }
+
+    it 'removes repeated elements' do
+      expect(R.drop_repeats(x2s)).to eql(x1s)
+      expect(R.drop_repeats(x1s)).to eql(x1s)
+    end
+
+    it 'returns an empty array for an empty array' do
+      expect(R.drop_repeats([])).to eq([])
+    end
+
+    it 'can act as a transducer' do
+      expect(R.into([], R.drop_repeats, x2s)).to eq(x1s)
+    end
+  end
+
   context '#drop_while' do
     it 'from docs' do
       lte_two = ->(x) { x <= 2 }

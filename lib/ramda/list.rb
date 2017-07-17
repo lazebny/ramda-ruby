@@ -115,6 +115,17 @@ module Ramda
       xs[num..-1] || xs.class.new
     end)
 
+    # Returns a new list without any consecutively repeating elements.
+    # R.equals is used to determine equality.
+    #
+    # Acts as a transducer if a transformer is given in list position.
+    #
+    # [a] -> [a]
+    #
+    curried_method(:drop_repeats, &dispatchable1([], ::Array, Transducer[:drop_repeats]) do |xs|
+      xs.chunk { |n| n }.map(&:first)
+    end)
+
     # Returns a new list excluding the leading elements of a given list which
     # satisfy the supplied predicate function. It passes each value to the
     # supplied predicate function, skipping elements while the predicate

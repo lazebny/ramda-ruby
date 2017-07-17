@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * [adjust](http://ramdajs.com/docs/#adjust)
+* [drop_repeats](http://ramdajs.com/docs/#drop_repeats)
 
 Release 0.12.0
 ---------------

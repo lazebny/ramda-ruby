@@ -3,6 +3,16 @@ require 'spec_helper'
 describe Ramda::List do
   let(:r) { Ramda }
 
+  context '#adjust' do
+    it 'from docs' do
+      expect(R.adjust(R.add(10), 1, [1, 2, 3])).to eq([1, 12, 3])
+    end
+
+    it 'is curried' do
+      expect(R.adjust(R.add(10)).call(1).call([1, 2, 3])).to eq([1, 12, 3])
+    end
+  end
+
   context '#all' do
     it 'test' do
       equals3 = R.equals(3)

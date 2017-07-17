@@ -162,7 +162,7 @@ With algebraic structures:
   R.chain(->(x) { Maybe.of(R.add(5, x)) }, Maybe.of(3)) # Some(8)
 
   # map
-
+  R.map(R.add(3), Maybe.of(5)) # Some(8)
 
   # lift
   add_m = R.lift(R.add)
@@ -204,7 +204,7 @@ Enable debug mode:
 
   # Example:
 
-  Ramda.filter(Ramda.curry(->(n) { n.even? }), [1, 2, 3, 4])
+  Ramda.filter(Ramda.curry(:even?.to_proc, [1, 2, 3, 4])
 
   # -> curry(#<Proc:0x...@/srv/app/spec/ramda/list_spec.rb:130 (lambda)>) # #<Proc:0x... (lambda)>
   # -> curry(1) # false

@@ -11,6 +11,16 @@ module Ramda
     extend ::Ramda::Internal::CurriedMethod
     extend ::Ramda::Internal::Dispatchable
 
+    # Applies a function to the value at the given index of an array,
+    # returning a new copy of the array with the element at the given
+    # index replaced with the result of the function application.
+    #
+    # (a -> a) -> Number -> [a] -> [a]
+    #
+    curried_method(:adjust) do |f, idx, xs|
+      xs.dup.tap { |a| a[idx] = f.call(a[idx]) }
+    end
+
     # Returns true if all elements of the list match the predicate,
     # false if there are any that don't.
     #

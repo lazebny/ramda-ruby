@@ -57,15 +57,31 @@ describe Ramda::Math do
   end
 
   context '#mean' do
-    it('returns mean of a nonempty list') do
+    it 'returns mean of a nonempty list' do
       expect(R.mean([2])).to eq(2)
       expect(R.mean([2, 7])).to eq(4.5)
       expect(R.mean([2, 7, 9])).to eq(6)
       expect(R.mean([2, 7, 9, 10])).to eq(7)
     end
 
-    it('returns Nil for an empty list') do
+    it 'returns Nil for an empty list' do
       expect(R.mean([])).to be_nan
+    end
+  end
+
+  context '#median' do
+    it 'returns middle value of an odd-length list' do
+      expect(R.median([2])).to eq(2)
+      expect(R.median([2, 9, 7])).to eq(7)
+    end
+
+    it 'returns mean of two middle values of a nonempty even-length list' do
+      expect(R.median([7, 2])).to eq(4.5)
+      expect(R.median([7, 2, 10, 9])).to eq(8)
+    end
+
+    it 'returns NaN for an empty list' do
+      expect(R.median([])).to be_nan
     end
   end
 

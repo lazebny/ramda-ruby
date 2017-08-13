@@ -26,7 +26,7 @@ module Ramda
     # Number -> Number -> Number
     #
     curried_method(:divide) do |a, b|
-      a.to_f / b
+      a.fdiv(b)
     end
 
     # Increments its argument.
@@ -48,7 +48,30 @@ module Ramda
     # [Number] -> Number
     #
     curried_method(:mean) do |xs|
-      xs.reduce(&:+).to_f / xs.size
+      size = xs.size
+
+      if size.zero?
+        Float::NAN
+      else
+        xs.reduce(&:+).fdiv(size)
+      end
+    end
+
+    # Returns the median of the given list of numbers.
+    #
+    # [Number] -> Number
+    #
+    curried_method(:median) do |xs|
+      sorted = xs.sort
+      size = sorted.size
+
+      if size.zero?
+        Float::NAN
+      elsif size.odd?
+        sorted[size / 2]
+      else
+        sorted[size / 2 - 1, 2].reduce(&:+).fdiv(2)
+      end
     end
 
     # Divides the first parameter by the second and returns the remainder.

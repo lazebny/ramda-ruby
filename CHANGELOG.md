@@ -8,6 +8,7 @@ Added:
 * [drop_repeats_with](http://ramdajs.com/docs/#drop_repeats_with)
 * [intersperse](http://ramdajs.com/docs/#intersperse)
 * [mean](http://ramdajs.com/docs/#mean)
+* [median](http://ramdajs.com/docs/#median)
 
 Release 0.12.0
 ---------------

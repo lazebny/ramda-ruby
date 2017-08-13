@@ -116,6 +116,7 @@ describe Ramda do
   r(:max)
   r(:max_by)
   r(:mean)
+  r(:median)
   r(:memoize)
   r(:merge)
   r(:merge_all)

@@ -88,6 +88,7 @@ describe Ramda do
   r(:insert)
   r(:insert_all)
   r(:intersection)
+  r(:intersperse)
   r(:into)
   r(:invert)
   r(:invert_obj)

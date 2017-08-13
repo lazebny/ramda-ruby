@@ -309,6 +309,19 @@ module Ramda
       xs.dup.insert(index, *elts)
     end
 
+    # Creates a new list with the separator interposed between elements.
+    #
+    # Dispatches to the intersperse method of the second argument, if present.
+    #
+    # a -> [a] -> [a]
+    #
+    curried_method(:intersperse, &dispatchable([:intersperse], ::Array) do |sep, xs|
+      xs.reduce([]) do |acc, a|
+        acc << sep if acc.any?
+        acc << a
+      end
+    end)
+
     # Transforms the items of the list with the transducer and appends
     # the transformed items to the accumulator using an appropriate iterator
     # function based on the accumulator type.

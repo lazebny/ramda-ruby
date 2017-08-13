@@ -347,6 +347,12 @@ describe Ramda::List do
     end
   end
 
+  context '#intersperse' do
+    it 'from docs' do
+      expect(R.intersperse('n', ['ba', 'a', 'a'])).to eq(['ba', 'n', 'a', 'n', 'a'])
+    end
+  end
+
   context '#into' do
     it 'transduces into arrays' do
       expect(R.into([], R.map(R.add(1)), [1, 2, 3, 4])).to eq([2, 3, 4, 5])

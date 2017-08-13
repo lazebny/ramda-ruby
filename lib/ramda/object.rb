@@ -429,5 +429,18 @@ module Ramda
     curried_method(:where) do |spec, test|
       spec.all? { |k, v| v.call(test[k]) }
     end
+
+    # Takes a spec object and a test object; returns true if the test satisfies
+    # the spec, false otherwise. An object satisfies the spec if, for each of
+    # the spec's own properties, accessing that property of the object gives
+    # the same value (in R.equals terms) as accessing that property of the spec.
+    #
+    # whereEq is a specialization of where.)
+    #
+    # {String: *} -> {String: *} -> Boolean
+    #
+    curried_method(:where_eq) do |spec, test|
+      spec.all? { |k, v| test[k] && test[k] == v }
+    end
   end
 end

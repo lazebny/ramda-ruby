@@ -546,4 +546,15 @@ describe Ramda::Object do
       expect(pred.call(a: 'foo', b: 'xxx', x: 11, y: 20)).to be_falsey
     end
   end
+
+  context '#where_eq' do
+    it 'from docs' do
+      pred = R.where_eq(a: 1, b: 2)
+
+      expect(pred.call(a: 1)).to be_falsey
+      expect(pred.call(a: 1, b: 2)).to be_truthy
+      expect(pred.call(a: 1, b: 2, c: 3)).to be_truthy
+      expect(pred.call(a: 1, b: 1)).to be_falsey
+    end
+  end
 end

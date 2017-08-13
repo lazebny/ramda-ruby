@@ -3,6 +3,7 @@ Not Released
 
 Added:
 
+* (pending) uncurry_n
 * [adjust](http://ramdajs.com/docs/#adjust)
 * [drop_repeats](http://ramdajs.com/docs/#dropRepeats)
 * [drop_repeats_with](http://ramdajs.com/docs/#dropRepeatsWith)
@@ -10,6 +11,7 @@ Added:
 * [mean](http://ramdajs.com/docs/#mean)
 * [median](http://ramdajs.com/docs/#median)
 * [to_string](http://ramdajs.com/docs/#toString)
+* [where_eq](http://ramdajs.com/docs/#whereEq)
 
 Release 0.12.0
 ---------------

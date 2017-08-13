@@ -194,6 +194,7 @@ describe Ramda do
   r(:values)
   r(:view)
   r(:where)
+  r(:where_eq)
   r(:xprod)
   r(:zip)
   r(:zip_obj)

@@ -5,6 +5,7 @@
 * (pending) math_mod
 * (pending) pipe_p
 * (pending) to_pairs_in
+* (pending) uncurry_n
 * (pending) values_in
 
 Function
@@ -49,6 +50,7 @@ Function
 List
 ------------
 
+* [adjust](http://ramdajs.com/docs/#adjust)
 * [all](http://ramdajs.com/docs/#all)
 * [any](http://ramdajs.com/docs/#any)
 * [aperture](http://ramdajs.com/docs/#aperture)
@@ -57,6 +59,8 @@ List
 * [concat](http://ramdajs.com/docs/#concat)
 * [contains](http://ramdajs.com/docs/#contains)
 * [drop](http://ramdajs.com/docs/#drop)
+* [drop_repeats](http://ramdajs.com/docs/#dropRepeats)
+* [drop_repeats_with](http://ramdajs.com/docs/#dropRepeatsWith)
 * [drop_while](http://ramdajs.com/docs/#dropWhile)
 * [filter](http://ramdajs.com/docs/#filter) - transducer
 * [find](http://ramdajs.com/docs/#find)
@@ -72,6 +76,7 @@ List
 * [init](http://ramdajs.com/docs/#init)
 * [insert](http://ramdajs.com/docs/#insert)
 * [insert_all](http://ramdajs.com/docs/#insertAll)
+* [intersperse](http://ramdajs.com/docs/#intersperse)
 * [into](http://ramdajs.com/docs/#into)
 * [join](http://ramdajs.com/docs/#join)
 * [last](http://ramdajs.com/docs/#last)
@@ -134,6 +139,8 @@ Math
 * [dec](http://ramdajs.com/docs/#dec)
 * [divide](http://ramdajs.com/docs/#divide)
 * [inc](http://ramdajs.com/docs/#inc)
+* [mean](http://ramdajs.com/docs/#mean)
+* [median](http://ramdajs.com/docs/#median)
 * [modulo](http://ramdajs.com/docs/#modulo)
 * [multiply](http://ramdajs.com/docs/#multiply)
 * [negate](http://ramdajs.com/docs/#negate)
@@ -176,6 +183,7 @@ Object
 * [values](http://ramdajs.com/docs/#values)
 * [view](http://ramdajs.com/docs/#view)
 * [where](http://ramdajs.com/docs/#where)
+* [where_eq](http://ramdajs.com/docs/#whereEq)
 
 
 Relation
@@ -209,6 +217,7 @@ String
 * [split](http://ramdajs.com/docs/#split)
 * [test](http://ramdajs.com/docs/#test)
 * [to_lower](http://ramdajs.com/docs/#toLower)
+* [to_string](http://ramdajs.com/docs/#toString)
 * [to_upper](http://ramdajs.com/docs/#toUpper)
 * [trim](http://ramdajs.com/docs/#trim)
 

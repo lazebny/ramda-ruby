@@ -4,6 +4,7 @@ Not Released
 Added:
 
 * [add_index](http://ramdajs.com/docs/#addIndex)
+* [identical](http://ramdajs.com/docs/#identical)
 
 
 Release 0.14.0

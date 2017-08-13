@@ -57,7 +57,7 @@ module Ramda
     # a -> b -> Boolean
     #
     curried_method(:equals) do |a, b|
-      a == b
+      a.eql?(b)
     end
 
     # Returns true if the first argument is greater than the second; false otherwise.
@@ -75,6 +75,15 @@ module Ramda
     #
     curried_method(:gte) do |a, b|
       a >= b
+    end
+
+    # Returns true if its arguments are identical, false otherwise.
+    # Values are identical if they reference the same memory.
+    #
+    # a -> a -> Boolean
+    #
+    curried_method(:identical) do |a, b|
+      a.equal?(b)
     end
 
     # Combines two lists into a set (i.e. no duplicates) composed of those elements

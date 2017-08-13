@@ -1,6 +1,5 @@
 Releaes 0.15.0
 ---------------
-* identical
 * reduced
 
 Release 0.16.0

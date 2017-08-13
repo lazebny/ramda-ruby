@@ -81,6 +81,7 @@ describe Ramda do
   r(:has)
   r(:has_in)
   r(:head)
+  r(:identical)
   r(:identity)
   r(:if_else)
   r(:inc)

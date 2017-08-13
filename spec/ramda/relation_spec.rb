@@ -77,6 +77,17 @@ describe Ramda::Relation do
     end
   end
 
+  context '#identical' do
+    it 'from docs' do
+      o = {}
+      expect(R.identical(o, o)).to be_truthy
+      expect(R.identical(1, 1)).to be_truthy
+      expect(R.identical(1, '1')).to be_falsey
+      expect(R.identical([], [])).to be_falsey
+      expect(R.identical(nil, nil)).to be_truthy
+    end
+  end
+
   context '#intersection' do
     it 'from docs' do
       expect(r.intersection([1, 2, 3, 4], [7, 6, 5, 4, 3])).to eq([3, 4])

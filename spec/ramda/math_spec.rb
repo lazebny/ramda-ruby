@@ -56,6 +56,19 @@ describe Ramda::Math do
     end
   end
 
+  context '#mean' do
+    it('returns mean of a nonempty list') do
+      expect(R.mean([2])).to eq(2)
+      expect(R.mean([2, 7])).to eq(4.5)
+      expect(R.mean([2, 7, 9])).to eq(6)
+      expect(R.mean([2, 7, 9, 10])).to eq(7)
+    end
+
+    it('returns Nil for an empty list') do
+      expect(R.mean([])).to be_nan
+    end
+  end
+
   context '#modulo' do
     it 'from docs' do
       expect(r.modulo(0, 3)).to be(0)

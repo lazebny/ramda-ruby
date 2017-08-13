@@ -115,6 +115,7 @@ describe Ramda do
   r(:match)
   r(:max)
   r(:max_by)
+  r(:mean)
   r(:memoize)
   r(:merge)
   r(:merge_all)

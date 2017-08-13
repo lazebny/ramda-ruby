@@ -43,6 +43,14 @@ module Ramda
       #  return ((m % p) + p) % p;
     end
 
+    # Returns the mean of the given list of numbers.
+    #
+    # [Number] -> Number
+    #
+    curried_method(:mean) do |xs|
+      xs.reduce(&:+).to_f / xs.size
+    end
+
     # Divides the first parameter by the second and returns the remainder.
     #
     # Number -> Number -> Number

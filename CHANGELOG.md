@@ -7,6 +7,7 @@ Added:
 * [drop_repeats](http://ramdajs.com/docs/#drop_repeats)
 * [drop_repeats_with](http://ramdajs.com/docs/#drop_repeats_with)
 * [intersperse](http://ramdajs.com/docs/#intersperse)
+* [mean](http://ramdajs.com/docs/#mean)
 
 Release 0.12.0
 ---------------

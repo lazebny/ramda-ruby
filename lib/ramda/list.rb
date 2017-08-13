@@ -6,10 +6,10 @@ module Ramda
   # List functions
   # rubocop:disable Metrics/ModuleLength
   module List
-    Transducer = ->(method) { ::Ramda::Internal::Transducers.method(method) }
-
     extend ::Ramda::Internal::CurriedMethod
     extend ::Ramda::Internal::Dispatchable
+
+    Trans = ::Ramda::Internal::Transducers
 
     # Applies a function to the value at the given index of an array,
     # returning a new copy of the array with the element at the given
@@ -122,9 +122,26 @@ module Ramda
     #
     # [a] -> [a]
     #
-    curried_method(:drop_repeats, &dispatchable1([], ::Array, Transducer[:drop_repeats]) do |xs|
-      xs.chunk { |n| n }.map(&:first)
-    end)
+    curried_method(:drop_repeats,
+                   &dispatchable1([], ::Array, Trans::DropRepeatsTransducer.new) do |xs|
+                      xs.chunk { |n| n }.map(&:first)
+                    end)
+
+    # Returns a new list without any consecutively repeating elements.
+    # Equality is determined by applying the supplied predicate to each
+    # pair of consecutive elements.
+    # The first element in a series of equal elements will be preserved.
+    #
+    # Acts as a transducer if a transformer is given in list position.
+    #
+    # (a, a -> Boolean) -> [a] -> [a]
+    #
+    curried_method(:drop_repeats_with,
+                   &dispatchable([], [::Array], Trans::DropRepeatsWithTransducer.new) do |f, xs|
+                      xs.each_with_object([]) do |a, acc|
+                        acc.push(a) unless acc.any? && f.call(acc.last, a)
+                      end
+                    end)
 
     # Returns a new list excluding the leading elements of a given list which
     # satisfy the supplied predicate function. It passes each value to the
@@ -151,13 +168,14 @@ module Ramda
     #
     # Filterable f => (a -> Boolean) -> f a -> f a
     #
-    curried(:filter, &dispatchable(:filter, [::Array, ::Hash], Transducer[:filter]) do |f, xs|
-      if xs.is_a?(Hash)
-        xs.select { |_, value| f.call(value) }
-      else
-        xs.select(&f)
-      end
-    end)
+    curried(:filter,
+            &dispatchable(:filter, [::Array, ::Hash], Trans::FilterTransducer.new) do |f, xs|
+               if xs.is_a?(Hash)
+                 xs.select { |_, value| f.call(value) }
+               else
+                 xs.select(&f)
+               end
+             end)
 
     # Creates a new object from a list key-value pairs. If a key appears in
     # multiple pairs, the rightmost pair is included in the object.
@@ -314,16 +332,13 @@ module Ramda
     curried_method(:into) do |acc, xf, xs|
       rx = case acc
            when ::Array
-             lambda { |arr, x|
-               arr.push(x)
-               arr
-             }
+             ->(arr, x) { arr << x }
            when ::String
              ->(str, x) { "#{str}#{x}" }
            when ::Object
              ->(obj, x) { obj.merge(x) }
            else
-             raise ArgumetError, "Cannot create transformer for #{acc}"
+             raise ArgumetError, "Cannot create default transformer for #{acc}"
            end
       xs.reduce(acc, &xf.call(rx))
     end
@@ -370,14 +385,15 @@ module Ramda
     #
     # Functor f => (a -> b) -> f a -> f b
     #
-    curried(:map, &dispatchable([:map, :fmap], [::Hash, ::Array], Transducer[:map]) do |f, xs|
-      case xs
-      when ::Hash
-        Hash[xs.map { |k, v| [k, f.call(v)] }]
-      when ::Array
-        xs.map(&f)
-      end
-    end)
+    curried(:map,
+            &dispatchable([:map, :fmap], [::Hash, ::Array], Trans::MapTransducer.new) do |f, xs|
+               case xs
+               when ::Hash
+                 Hash[xs.map { |k, v| [k, f.call(v)] }]
+               when ::Array
+                 xs.map(&f)
+               end
+             end)
 
     # The mapAccum function behaves like a combination of map and reduce;
     # it applies a function to each element of a list, passing
@@ -578,9 +594,10 @@ module Ramda
     # Number -> [a] -> [a]
     # Number -> String -> String
     #
-    curried(:take, &dispatchable(:take, [::Array, ::String], Transducer[:take]) do |num, xs|
-      xs[0, num]
-    end)
+    curried(:take,
+            &dispatchable(:take, [::Array, ::String], Trans::TakeTransducer.new) do |num, xs|
+               xs[0, num]
+             end)
 
     # Returns a new list containing the first n elements of a given list,
     # passing each value to the supplied predicate function, and terminating

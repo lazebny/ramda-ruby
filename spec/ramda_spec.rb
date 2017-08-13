@@ -57,6 +57,7 @@ describe Ramda do
   r(:divide)
   r(:drop)
   r(:drop_repeats)
+  r(:drop_repeats_with)
   r(:drop_while)
   r(:empty)
   r(:either)

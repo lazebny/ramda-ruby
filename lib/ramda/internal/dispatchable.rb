@@ -36,7 +36,7 @@ module Ramda
             if method_name
               xs.public_send(method_name, *args)
             else
-              disaptchable_error(xs, method_name)
+              dispatchable_error(xs, method_name)
             end
           end
         end
@@ -60,7 +60,7 @@ module Ramda
             if method_name
               xs.public_send(method_name)
             else
-              disaptchable_error(xs, method_name)
+              dispatchable_error(xs, method_name)
             end
           end
         end

@@ -5,6 +5,7 @@ Added:
 
 * [adjust](http://ramdajs.com/docs/#adjust)
 * [drop_repeats](http://ramdajs.com/docs/#drop_repeats)
+* [drop_repeats_with](http://ramdajs.com/docs/#drop_repeats_with)
 
 Release 0.12.0
 ---------------

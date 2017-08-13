@@ -158,6 +158,20 @@ describe Ramda::List do
     end
   end
 
+  context '#drop_repeats_with' do
+    let(:drop_repeats_with_abs) { R.drop_repeats_with(R.eq_by(:abs.to_proc)) }
+
+    it 'removes repeated elements' do
+      xs = [1, -1, 1, 3, 4, -4, -4, -5, 5, 3, 3]
+      expect(drop_repeats_with_abs.call(xs)).to eq([1, 3, 4, -5, 3])
+    end
+
+    it 'can act as a transducer' do
+      xs = [1, -1, 1, 3, 4, -4, -4, -5, 5, 3, 3]
+      expect(R.into([], drop_repeats_with_abs, xs)).to eq([1, 3, 4, -5, 3])
+    end
+  end
+
   context '#drop_while' do
     it 'from docs' do
       lte_two = ->(x) { x <= 2 }

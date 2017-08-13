@@ -11,6 +11,29 @@ module Ramda
     extend ::Ramda::Internal::Dispatchable
     extend ::Ramda::Internal::ClassWhichRespondTo
 
+    # Creates a new list iteration function from an existing one by
+    # adding two new parameters to its callback function:
+    # the current index, and the entire list.
+    #
+    # This would turn, for instance, R.map function into one that
+    # more closely resembles Array.prototype.map.
+    # Note that this will only work for functions in which the
+    # iteration callback function is the first parameter, and where
+    # the list is the last parameter. (This latter might be unimportant
+    # if the list parameter is not used.)
+    #
+    # ((a ... -> b) ... -> [a] -> *) -> (a ..., Int, [a] -> b) ... -> [a] -> *)
+    #
+    curried_method(:add_index) do |f|
+      curried_method_body(:add_index, f.arity) do |*args|
+        idx = -1
+        orig_reducer = args[0]
+        xs = args[-1]
+        new_reducer = ->(*reducer_args) { orig_reducer.call(*reducer_args, idx += 1, xs) }
+        f.call(new_reducer, *args[1..-1])
+      end
+    end
+
     # Returns a function that always returns the given value. Note that
     # for non-primitives the value returned is a reference to the original
     # value.

@@ -3,6 +3,14 @@ Not Released
 
 Added:
 
+* [add_index](http://ramdajs.com/docs/#addIndex)
+
+
+Release 0.14.0
+---------------
+
+Added:
+
 * (pending) uncurry_n
 * [adjust](http://ramdajs.com/docs/#adjust)
 * [drop_repeats](http://ramdajs.com/docs/#dropRepeats)

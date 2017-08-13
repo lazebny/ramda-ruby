@@ -17,6 +17,7 @@ describe Ramda do
   r(:T)
   r(:__)
   r(:add)
+  r(:add_index)
   r(:adjust)
   r(:all)
   r(:all_pass)

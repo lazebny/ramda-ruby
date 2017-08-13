@@ -1,12 +1,5 @@
-Release 0.13.0
----------------
-
-Release 0.14.0
----------------
-
 Releaes 0.15.0
 ---------------
-* add_index
 * identical
 * reduced
 

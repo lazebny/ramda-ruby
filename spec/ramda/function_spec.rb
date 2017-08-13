@@ -25,6 +25,84 @@ describe Ramda::Function do
     end
   end
 
+  context '#add_index' do
+    describe 'unary functions like `map`' do
+      let(:times2) { proc { |x| x * 2 } }
+      let(:add_index_param) { proc { |x, idx| x + idx } }
+      let(:square_ends) do
+        proc do |x, idx, xs|
+          idx == 0 || idx == xs.size - 1 ? x * x : x
+        end
+      end
+      let(:map_indexed) { R.add_index(R.map) }
+
+      it 'works just like a normal map' do
+        expect(map_indexed.call(times2, [1, 2, 3, 4])).to eq([2, 4, 6, 8])
+      end
+
+      it 'passes the index as a second parameter to the callback' do
+        expect(map_indexed.call(add_index_param, [8, 6, 7, 5, 3, 0, 9]))
+          .to eq([8, 7, 9, 8, 7, 5, 15]); # [8 + 0, 6 + 1...]
+      end
+
+      it 'passes the entire list as a third parameter to the callback' do
+        expect(map_indexed.call(square_ends, [8, 6, 7, 5, 3, 0, 9])).to eq([64, 6, 7, 5, 3, 0, 81])
+      end
+
+      xit 'acts as a curried function' do
+        make_square_ends = map_indexed.call(square_ends)
+        expect(make_square_ends.call([8, 6, 7, 5, 3, 0, 9])).to eq([64, 6, 7, 5, 3, 0, 81])
+      end
+    end
+
+    describe 'binary functions like `reduce`' do
+      let(:reduce_indexed) { R.add_index(R.reduce); }
+      let(:times_indexed) { proc { |tot, num, idx| tot + (num * idx); }; }
+      let(:objectify) do
+        proc { |acc, elem, idx|
+          acc[elem] = idx
+          acc
+        }
+      end
+
+      it 'passes the index as a third parameter to the predicate' do
+        expect(reduce_indexed.call(times_indexed, 0, [1, 2, 3, 4, 5])).to eq(40)
+        expect(reduce_indexed.call(objectify, {}, [:a, :b, :c, :d, :e]))
+          .to eq(a: 0, b: 1, c: 2, d: 3, e: 4)
+      end
+
+      it 'passes the entire list as a fourth parameter to the predicate' do
+        list = [1, 2, 3]
+        reduce_indexed.call(lambda { |acc, _x, _idx, ls|
+          expect(ls).to eq(list)
+          acc
+        }, 0, list)
+      end
+    end
+
+    describe 'works with functions like `all` that do not typically have index applied' do
+      let(:all_indexed) { R.add_index(R.all) }
+      let(:super_diagonal) { all_indexed.call(R.gt) }
+
+      it 'passes the index as a second parameter' do
+        expect(super_diagonal.call([8, 6, 5, 4, 9]))
+          .to be_truthy # 8 > 0, 6 > 1, 5 > 2, 4 > 3, 9 > 5
+        expect(super_diagonal.call([8, 6, 1, 3, 9]))
+          .to be_falsey # 1 !> 2, 3 !> 3
+      end
+    end
+
+    describe 'works with arbitrary user-defined functions' do
+      let(:map_filter) { proc { |m, f, list| R.filter(R.compose(f, m), list); } }
+      let(:map_filter_indexed) { R.add_index(map_filter) }
+
+      it 'passes the index as an additional parameter' do
+        expect(map_filter_indexed.call(R.multiply, R.gt(R.__, 13), [8, 6, 7, 5, 3, 0, 9]))
+          .to eq([7, 5, 9]); # 2 * 7 > 13, 3 * 5 > 13, 6 * 9 > 13
+      end
+    end
+  end
+
   context '#always' do
     it 'from docs' do
       str = 'Tee'

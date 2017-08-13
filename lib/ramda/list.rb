@@ -507,7 +507,11 @@ module Ramda
     # ((a, b) -> a) -> a -> [b] -> a
     #
     curried_method(:reduce) do |f, acc, xs|
-      xs.reduce(acc, &f)
+      xs.reduce(acc) do |loc_acc, x|
+        res = f.call(loc_acc, x)
+        break res.value if res.is_a?(::Ramda::Internal::Transducers::Transducer) && res.reduced
+        res
+      end
     end
 
     # Returns a single item by iterating through the list, successively
@@ -523,7 +527,28 @@ module Ramda
     # ((a, b) -> a) -> a -> [b] -> a
     #
     curried_method(:reduce_right) do |f, acc_arg, xs|
-      xs.reverse.reduce(acc_arg) { |acc, x| f.call(x, acc) }
+      xs.reverse.reduce(acc_arg) do |acc, x|
+        res = f.call(x, acc)
+        break res.value if res.is_a?(::Ramda::Internal::Transducers::Transducer) && res.reduced
+        res
+      end
+    end
+
+    # Returns a value wrapped to indicate that it is the final value of
+    # the reduce and transduce functions. The returned value should be
+    # considered a black box: the internal structure is not guaranteed
+    # to be stable.
+    #
+    # Note: this optimization is unavailable to functions not explicitly
+    # listed above.
+    #
+    # a -> *
+    #
+    curried_method(:reduced) do |x|
+      t = ::Ramda::Internal::Transducers::Transducer.new
+      t.reduced = true
+      t.value = x
+      t
     end
 
     # Returns a new list or string with the elements or characters in reverse order.
@@ -652,7 +677,12 @@ module Ramda
     # ((a, b) -> a) -> a -> [b] -> a
     #
     curried_method(:transduce) do |xf, rx, acc, xs|
-      xs.reduce(acc, &xf.call(rx))
+      f = xf.call(rx)
+      xs.reduce(acc) do |loc_acc, x|
+        res = f.call(loc_acc, x)
+        break res.value if res.is_a?(::Ramda::Internal::Transducers::Transducer) && res.reduced
+        res
+      end
     end
 
     # Builds a list from a seed value. Accepts an iterator function, which

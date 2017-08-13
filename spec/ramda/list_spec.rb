@@ -537,6 +537,34 @@ describe Ramda::List do
     end
   end
 
+  context '#reduced' do
+    it 'wraps a value' do
+      # // white box test.
+      v = {}
+      expect(R.reduced(v).value).to be(v)
+    end
+
+    it 'flags value as reduced' do
+      # // white box test.
+      expect(R.reduced({}).reduced).to be_truthy
+    end
+
+    it 'short-circuits reduce' do
+      # // black box test.
+      expect(
+        R.reduce(
+          lambda { |acc, v|
+            result = acc + v
+            result = R.reduced(result) if result >= 10
+            result
+          },
+          0,
+          [1, 2, 3, 4, 5]
+        )
+      ).to eq(10)
+    end
+  end
+
   context '#reduce_right' do
     def avg
       ->(a, b) { (a + b) / 2 }

@@ -156,6 +156,7 @@ describe Ramda do
   r(:props)
   r(:range)
   r(:reduce)
+  r(:reduced)
   r(:reduce_right)
   r(:reject)
   r(:remove)

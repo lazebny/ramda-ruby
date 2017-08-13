@@ -4,7 +4,7 @@ Ramda Ruby
 This is a ruby version of [Ramda Js](http://ramdajs.com) library.
 
 [![Gem Version](https://badge.fury.io/rb/ramda-ruby.svg)](http://badge.fury.io/rb/ramda-ruby)
-[![Functions](https://img.shields.io/badge/Functions-186-green.svg)](docs/FUNCTIONS.md)
+[![Functions](https://img.shields.io/badge/Functions-187-green.svg)](docs/FUNCTIONS.md)
 [![Travis badge](https://travis-ci.org/lazebny/ramda-ruby.svg?branch=master)](https://travis-ci.org/lazebny/ramda-ruby)
 [![AppVeyor status](https://ci.appveyor.com/api/projects/status/ponccdax7aj4ufw2?svg=true)](https://ci.appveyor.com/project/lazebny/ramda-ruby)
 [![Coverage Status](https://coveralls.io/repos/lazebny/ramda-ruby/badge.png)](https://coveralls.io/r/lazebny/ramda-ruby)

@@ -176,6 +176,7 @@ describe Ramda do
   r(:times)
   r(:to_lower)
   r(:to_pairs)
+  r(:to_string)
   r(:to_upper)
   r(:transduce)
   r(:trim)

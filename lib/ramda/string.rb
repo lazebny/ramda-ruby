@@ -1,9 +1,11 @@
 require_relative 'internal/curried_method'
+require_relative 'internal/dispatchable'
 
 module Ramda
   # String functions
   module String
     extend ::Ramda::Internal::CurriedMethod
+    extend ::Ramda::Internal::Dispatchable
 
     # Tests a regular expression against a String. Note that this function will
     # return an empty array when there are no matches. This differs from
@@ -45,17 +47,34 @@ module Ramda
       !str.match(rx).nil?
     end
 
-    # The upper case version of a string.
-    #
-    # String -> String
-    #
-    curried_method(:to_upper, &:upcase)
-
     # The lower case version of a string.
     #
     # String -> String
     #
     curried_method(:to_lower, &:downcase)
+
+    # Returns the string representation of the given value.
+    # eval'ing the output should result in a value equivalent to the input value.
+    # Many of the built-in to_string methods do not satisfy this requirement.
+    #
+    # * -> String
+    #
+    curried_method(:to_string, &dispatchable([:inspect], []) do |x|
+      # case x
+      # when Array
+      # when TrueClass, FalseClass
+      # when DateTime
+      # when NilClass
+      # when Number
+      # when String
+      # end
+    end)
+
+    # The upper case version of a string.
+    #
+    # String -> String
+    #
+    curried_method(:to_upper, &:upcase)
 
     # Removes (strips) whitespace from both ends of the string.
     #

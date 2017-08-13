@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.15.0
+---------------
+
 Added:
 
 * [add_index](http://ramdajs.com/docs/#addIndex)

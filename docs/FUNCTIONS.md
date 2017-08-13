@@ -14,6 +14,7 @@ Function
 * [F](http://ramdajs.com/docs/#F)
 * [T](http://ramdajs.com/docs/#T)
 * [`__`](http://ramdajs.com/docs/) - first function call should have all arguments `g(__2, __)(1, 3)`, this means that it doesn't support `g(__, 2)(1)(3)`, `g(__, 2)(1, 3)` and `g(__, 2)(__, 3)(1)`
+* [add_index](http://ramdajs.com/docs/#addIndex)
 * [always](http://ramdajs.com/docs/#always)
 * [ap](http://ramdajs.com/docs/#ap)
 * [apply](http://ramdajs.com/docs/#apply)
@@ -93,6 +94,7 @@ List
 * [range](http://ramdajs.com/docs/#range)
 * [reduce](http://ramdajs.com/docs/#reduce)
 * [reduce_right](http://ramdajs.com/docs/#reduceRight)
+* [reduced](http://ramdajs.com/docs/#reduced)
 * [reject](http://ramdajs.com/docs/#reject)
 * [remove](http://ramdajs.com/docs/#remove)
 * [repeat](http://ramdajs.com/docs/#repeat)
@@ -196,6 +198,7 @@ Relation
 * [equals](http://ramdajs.com/docs/#equals)
 * [gt](http://ramdajs.com/docs/#gt)
 * [gte](http://ramdajs.com/docs/#gte)
+* [identical](http://ramdajs.com/docs/#identical)
 * [intersection](http://ramdajs.com/docs/#intersection)
 * [lt](http://ramdajs.com/docs/#lt)
 * [lte](http://ramdajs.com/docs/#lte)

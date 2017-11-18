@@ -1,5 +1,6 @@
 require_relative 'function_with_arity'
 
+# rubocop:disable Performance/RedundantBlockCall
 module Ramda
   module Internal
     # Curried Method
@@ -17,7 +18,7 @@ module Ramda
             if args.index(Ramda.__)
               replace_placeholder(args, &block).curry
             else
-              result = args.empty? ? block : yield(*args)
+              result = args.empty? ? block : block.call(*args)
               debug_log(name, args, result) if ::Ramda::DEBUG_MODE
               result
             end
@@ -28,11 +29,11 @@ module Ramda
       end
       # rubocop:enable Metrics/MethodLength
 
-      def replace_placeholder(basic_args)
+      def replace_placeholder(basic_args, &block)
         Ramda::Internal::FunctionWithArity.call(basic_args.count(Ramda.__)) do |*new_args|
           cloned_args = basic_args.dup
           new_args.each { |arg| cloned_args[cloned_args.index(Ramda.__)] = arg }
-          result = yield(*cloned_args)
+          result = block.call(*cloned_args)
           debug_log(name, cloned_args, result) if ::Ramda::DEBUG_MODE
           result
         end

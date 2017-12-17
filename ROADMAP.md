@@ -72,3 +72,8 @@ Release 0.24.0
 * merge_deep_with_key
 * o
 * starts_with
+
+Release 0.25.0
+---------------
+* apply_to
+* memoize(deprecate)

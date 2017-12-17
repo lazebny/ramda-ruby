@@ -149,6 +149,7 @@ describe Ramda do
   r(:pick_all)
   r(:pick_by)
   r(:pipe)
+  r(:pipe_k)
   r(:pluck)
   r(:prepend)
   r(:product)

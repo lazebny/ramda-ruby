@@ -388,6 +388,17 @@ module Ramda
       ->(*args) { fns[1..-1].reduce(fns[0].call(*args)) { |memo, fn| fn.call(memo) } }
     end
 
+    # Chain m => ((a -> m b), (b -> m c), ..., (y -> m z)) -> (a -> m z)
+    #
+    # Returns the left-to-right Kleisli composition of the provided functions,
+    # each of which must return a value of a type supported by chain.
+    #
+    # R.pipeK(f, g, h) is equivalent to R.pipe(f, R.chain(g), R.chain(h)).
+    #
+    curried(:pipe_k) do |*fns|
+      ::Ramda.pipe(*(fns[0, 1] + fns[1..-1].map(&::Ramda.chain)))
+    end
+
     # Runs the given function with the supplied object, then returns the object.
     #
     # (a -> *) -> a -> a

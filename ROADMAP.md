@@ -1,6 +1,5 @@
 Release 0.16.0
 ---------------
-* pipe_k
 * prop_is
 * prop_satisfies
 * split_every

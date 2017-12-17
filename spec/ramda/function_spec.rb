@@ -557,6 +557,37 @@ describe Ramda::Function do
     end
   end
 
+  context '#pipe_k' do
+    it 'from docs' do
+      # parse_json :: String -> Maybe *
+      parse_json = lambda do |json|
+        Maybe.new(
+          begin
+           JSON.parse(json)
+          rescue
+            nil
+          end
+        )
+      end
+
+      # get :: String -> Object -> Maybe *
+      get = R.curry(->(prop_name, obj) { Maybe.new(obj[prop_name]) })
+
+      # get_status_code :: Maybe String -> Maybe String
+      get_status_code = R.pipe_k(
+        parse_json,
+        get['user'],
+        get['address'],
+        get['state'],
+        R.compose(Maybe.method(:of), R.to_upper)
+      )
+
+      actual = get_status_code.call('{"user":{"address":{"state":"ny"}}}')
+      expect(actual).to eq(Maybe::Some.new('NY'))
+      expect(get_status_code.call('[Invalid JSON]')).to eq(Maybe::None.new)
+    end
+  end
+
   context '#tap' do
     it 'from docs' do
       say_x = instance_double(Proc)

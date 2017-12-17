@@ -4,6 +4,7 @@ Not Released
 * [compose_k](http://ramdajs.com/docs/#composeK)
 * [drop_last](http://ramdajs.com/docs/#dropLast)
 * [drop_last_while](http://ramdajs.com/docs/#dropLastWhile)
+* [pipe_k](http://ramdajs.com/docs/#pipeK)
 
 Release 0.15.0
 ---------------

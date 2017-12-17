@@ -121,7 +121,29 @@ module Ramda
     # Returns a list containing all but the last n elements of the given list.
     #
     curried(:drop_last) do |x, xs|
-      xs[0..-(x + 1)]
+      xs[0...-x]
+    end
+
+    # (a -> Boolean) -> [a] -> [a]
+    # (a -> Boolean) -> String -> String
+    #
+    # Returns a new list excluding all the tailing elements of a given list
+    # which satisfy the supplied predicate function.
+    # It passes each value from the right to the supplied predicate function,
+    # skipping elements until the predicate function returns a falsy value.
+    # The predicate function is applied to one argument: (value).
+    #
+    curried(:drop_last_while) do |fn, xs|
+      new_xs =
+        case xs
+        when ::String
+          xs.chars
+        else
+          xs
+        end
+
+      index = new_xs.reverse.find_index { |x| !fn.call(x) } || 0
+      xs[0...-index]
     end
 
     # Returns a new list without any consecutively repeating elements.

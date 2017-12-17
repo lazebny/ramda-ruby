@@ -59,6 +59,7 @@ describe Ramda do
   r(:divide)
   r(:drop)
   r(:drop_last)
+  r(:drop_last_while)
   r(:drop_repeats)
   r(:drop_repeats_with)
   r(:drop_while)

@@ -3,6 +3,7 @@ Not Released
 
 * [compose_k](http://ramdajs.com/docs/#composeK)
 * [drop_last](http://ramdajs.com/docs/#dropLast)
+* [drop_last_while](http://ramdajs.com/docs/#dropLastWhile)
 
 Release 0.15.0
 ---------------

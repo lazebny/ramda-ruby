@@ -150,6 +150,22 @@ describe Ramda::List do
     end
   end
 
+  context '#drop_last_while' do
+    it 'from docs' do
+      lte_three = ->(x) { x <= 3 }
+
+      expect(R.drop_last_while(lte_three, [1, 2, 3, 4, 3, 2, 1])).to eq([1, 2, 3, 4])
+
+      not_d = ->(x) { x != 'd' }
+      expect(R.drop_last_while(not_d, 'Ramda')).to eq('Ramd')
+    end
+
+    it 'returns empty list' do
+      always_fn = ->(*) { true }
+      expect(R.drop_last_while(always_fn, [1, 2, 3])).to eq([])
+    end
+  end
+
   context '#drop_repeats' do
     let(:x1s) { [1, 2, 3, 4, 5, 3, 2] }
     let(:x2s) { [1, 2, 2, 2, 3, 4, 4, 5, 5, 3, 2, 2] }

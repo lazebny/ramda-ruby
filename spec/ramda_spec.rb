@@ -40,6 +40,7 @@ describe Ramda do
   r(:comparator)
   r(:complement)
   r(:compose)
+  r(:compose_k)
   r(:concat)
   r(:cond)
   r(:construct)

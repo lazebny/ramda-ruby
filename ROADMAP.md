@@ -1,6 +1,5 @@
 Release 0.16.0
 ---------------
-* compose_k
 * drop_last
 * drop_last_while
 * pipe_k

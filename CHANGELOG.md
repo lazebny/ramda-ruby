@@ -1,6 +1,8 @@
 Not Released
 ---------------
 
+* [compose_k](http://ramdajs.com/docs/#composeK)
+
 Release 0.15.0
 ---------------
 

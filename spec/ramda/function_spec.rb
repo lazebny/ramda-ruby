@@ -223,6 +223,23 @@ describe Ramda::Function do
     end
   end
 
+  context '#compose_k' do
+    it 'from docs' do
+      #  get :: String -> Object -> Maybe *
+      get = R.curry(->(prop_name, obj) { Maybe.new(obj[prop_name]) })
+
+      # get_status_code :: Maybe String -> Maybe String
+      get_status_code = R.compose_k(
+        R.compose(Maybe.method(:new), R.to_upper),
+        get[:state],
+        get[:address],
+        get[:user]
+      )
+      expect(get_status_code.call(user: { address: { state: 'ny' } })).to eq(Maybe::Some.new('NY'))
+      expect(get_status_code.call({})).to eql(Maybe::None.new)
+    end
+  end
+
   context '#construct' do
     it 'from docs' do
       array_builder = r.construct(Array)

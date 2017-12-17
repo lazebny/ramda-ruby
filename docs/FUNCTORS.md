@@ -30,10 +30,11 @@ chain :: Chain m => m a ~> (a -> m b) -> m b
 Comparison
 ---------------
 
-|Language   |Library         |Functor |Apply |Applicative |Chain |
-|-----------|----------------|--------|------|------------|------|
-|Haskel     |out of box      |<$>|fmap|<*>   |pure        |>>=   |
-|JavaScript |ramda-fantasy   |map     |ap    |of          |chain |
-|Ruby       |dry-monads      |fmap    |      |pure        |bind  |
-|Ruby       |kleisli         |fmap    |*     |            |>     |
-|Ruby       |ramda-ruby      |map     |ap    |            |chain |
+|Language   |Library         |Functor |Apply |Applicative |Chain    |
+|-----------|----------------|--------|------|------------|---------|
+|Haskel     |                |<$>|fmap|<*>   |pure        |>>=      |
+|JavaScript |ramda-fantasy   |map     |ap    |of          |chain    |
+|Ruby       |                |map     |      |            |flat_map |
+|Ruby       |dry-monads      |fmap    |      |pure        |bind     |
+|Ruby       |kleisli         |fmap    |*     |            |>        |
+|Ruby       |ramda-ruby      |map     |ap    |            |chain    |

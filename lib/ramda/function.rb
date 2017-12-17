@@ -124,6 +124,15 @@ module Ramda
       ::Ramda.pipe(*fns.reverse)
     end
 
+    # Chain m => ((y -> m z), (x -> m y), ..., (a -> m b)) -> (a -> m z)
+    # Returns the right-to-left Kleisli composition of the provided functions,
+    # each of which must return a value of a type supported by chain.
+
+    # R.compose_k(h, g, f) is equivalent to R.compose(R.chain(h), R.chain(g), f).
+    curried_method(:compose_k) do |*fns|
+      ::Ramda.compose(*(fns[0..-2].map(&::Ramda.chain) + fns[-1, 1]))
+    end
+
     # Wraps a constructor function inside a curried function that can be called
     # with the same arguments and returns the same type.
     #

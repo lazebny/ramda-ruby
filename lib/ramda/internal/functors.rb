@@ -42,6 +42,10 @@ module Ramda
 
       # The `Maybe` type represents the possibility of some value or nothing.
       class Maybe
+        def self.new(x)
+          x.nil? ? None.new : Some.new(x)
+        end
+
         def self.of(x)
           Some.new(x)
         end
@@ -83,7 +87,13 @@ module Ramda
         class None
           attr_reader :value
 
-          def initialize(*); end
+          class << self
+            alias orig_new new
+
+            def new
+              @instance ||= orig_new
+            end
+          end
 
           def ==(other)
             instance_of?(other.class)

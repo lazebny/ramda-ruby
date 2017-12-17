@@ -1,6 +1,5 @@
 Release 0.16.0
 ---------------
-* prop_satisfies
 * split_every
 * take_last
 * take_last_while

@@ -26,8 +26,8 @@ describe Ramda::Type do
 
   context '#prop_is' do
     it 'from docs' do
-      expect(R.prop_is(Integer, :x, {x: 1, y: 2})).to be_truthy
-      expect(R.prop_is(Integer, :x, {x: 'foo'})).to be_falsey
+      expect(R.prop_is(Integer, :x, x: 1, y: 2)).to be_truthy
+      expect(R.prop_is(Integer, :x, x: 'foo')).to be_falsey
       expect(R.prop_is(Integer, :x, {})).to be_falsey
     end
   end

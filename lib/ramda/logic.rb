@@ -157,5 +157,14 @@ module Ramda
     curried_method(:or) do |a, b|
       a || b
     end
+
+    # (a -> Boolean) -> String -> {String: a} -> Boolean
+    #
+    # Returns true if the specified object property satisfies the given predicate;
+    # false otherwise. You can test multiple properties with R.where.
+    #
+    curried(:prop_satisfies) do |fn, key, obj|
+      fn.call(obj[key])
+    end
   end
 end

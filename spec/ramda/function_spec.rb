@@ -563,7 +563,7 @@ describe Ramda::Function do
       parse_json = lambda do |json|
         Maybe.new(
           begin
-           JSON.parse(json)
+            JSON.parse(json)
           rescue
             nil
           end

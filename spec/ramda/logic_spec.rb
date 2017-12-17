@@ -159,4 +159,11 @@ describe Ramda::Logic do
       expect(r.or(false, false)).to be_falsey
     end
   end
+
+  context '#prop_satisfies' do
+    it 'from docs' do
+      expect(R.prop_satisfies(0.method(:<), :x, x: 1, y: 2)).to be_truthy
+      expect(R.prop_satisfies(0.method(:<), :x, x: -1, y: 2)).to be_falsey
+    end
+  end
 end

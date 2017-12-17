@@ -1,6 +1,9 @@
 Not Released
 ---------------
 
+Release 0.16.0
+---------------
+
 * [compose_k](http://ramdajs.com/docs/#composeK)
 * [drop_last](http://ramdajs.com/docs/#dropLast)
 * [drop_last_while](http://ramdajs.com/docs/#dropLastWhile)

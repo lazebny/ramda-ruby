@@ -23,6 +23,7 @@ Function
 * [call](http://ramdajs.com/docs/#call)
 * [comparator](http://ramdajs.com/docs/#comparator)
 * [compose](http://ramdajs.com/docs/#compose)
+* [compose_k](http://ramdajs.com/docs/#composeK)
 * [construct](http://ramdajs.com/docs/#construct)
 * [construct_n](http://ramdajs.com/docs/#constructN)
 * [converge](http://ramdajs.com/docs/#converge)
@@ -43,6 +44,7 @@ Function
 * [partial](http://ramdajs.com/docs/#partial)
 * [partial_right](http://ramdajs.com/docs/#partialRight)
 * [pipe](http://ramdajs.com/docs/#pipe)
+* [pipe_k](http://ramdajs.com/docs/#pipeK)
 * [tap](http://ramdajs.com/docs/#tap)
 * [unapply](http://ramdajs.com/docs/#unapply)
 * [unary](http://ramdajs.com/docs/#unary)
@@ -60,6 +62,8 @@ List
 * [concat](http://ramdajs.com/docs/#concat)
 * [contains](http://ramdajs.com/docs/#contains)
 * [drop](http://ramdajs.com/docs/#drop)
+* [drop_last](http://ramdajs.com/docs/#dropLast)
+* [drop_last_while](http://ramdajs.com/docs/#dropLastWhile)
 * [drop_repeats](http://ramdajs.com/docs/#dropRepeats)
 * [drop_repeats_with](http://ramdajs.com/docs/#dropRepeatsWith)
 * [drop_while](http://ramdajs.com/docs/#dropWhile)
@@ -103,13 +107,17 @@ List
 * [slice](http://ramdajs.com/docs/#slice)
 * [sort](http://ramdajs.com/docs/#sort)
 * [sort_by](http://ramdajs.com/docs/#sortBy)
+* [split_every](http://ramdajs.com/docs/#splitEvery)
 * [tail](http://ramdajs.com/docs/#tail)
 * [take](http://ramdajs.com/docs/#take)- transducer
+* [take_last](http://ramdajs.com/docs/#takeLast)
+* [take_last_while](http://ramdajs.com/docs/#takeLastWhile)
 * [take_while](http://ramdajs.com/docs/#takeWhile)
 * [times](http://ramdajs.com/docs/#times)
 * [transduce](http://ramdajs.com/docs/#transduce)
 * [unfold](http://ramdajs.com/docs/#unfold)
 * [uniq](http://ramdajs.com/docs/#uniq)
+* [uniq_by](http://ramdajs.com/docs/#uniqBy)
 * [uniq_with](http://ramdajs.com/docs/#uniqWith) - first argument is a function with 1 arity which transforms each list element and applies uniq function to results
 * [unnest](http://ramdajs.com/docs/#unnest)
 * [update](http://ramdajs.com/docs/#update)
@@ -133,6 +141,7 @@ Logic
 * [is_empty](http://ramdajs.com/docs/#isEmpty)
 * [not](http://ramdajs.com/docs/#not)
 * [or](http://ramdajs.com/docs/#or)
+* [prop_satisfies](http://ramdajs.com/docs/#propSatisfies)
 
 Math
 ------------
@@ -229,4 +238,5 @@ Type
 
 * [is](http://ramdajs.com/docs/#is)
 * [is_nil](http://ramdajs.com/docs/#isNil)
+* [prop_is](http://ramdajs.com/docs/#propIs)
 * [type](http://ramdajs.com/docs/#type)

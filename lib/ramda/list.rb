@@ -134,7 +134,7 @@ module Ramda
     # The predicate function is applied to one argument: (value).
     #
     curried(:drop_last_while) do |fn, xs|
-      new_xs =
+      lxs =
         case xs
         when ::String
           xs.chars.to_a
@@ -142,7 +142,7 @@ module Ramda
           xs
         end
 
-      index = new_xs.reverse.find_index { |x| !fn.call(x) } || 0
+      index = lxs.reverse.index { |x| !fn.call(x) } || 0
       xs[0...-index]
     end
 
@@ -698,6 +698,25 @@ module Ramda
     #
     curried(:take_last) do |n, xs|
       xs[-(n > xs.size ? xs.size : n)..-1]
+    end
+
+    # Number -> [a] -> [a]
+    # Number -> String -> String
+    #
+    # Returns a new list containing the last n elements of the given list.
+    # If n > list.length, returns a list of list.length elements.
+    #
+    curried(:take_last_while) do |f, xs|
+      lxs =
+        case xs
+        when ::String
+          xs.chars.to_a
+        else
+          xs
+        end
+
+      index = lxs.reverse.index { |x| !f.call(x) } || lxs.size
+      xs[-index..-1]
     end
 
     # Returns a new list containing the first n elements of a given list,

@@ -760,6 +760,17 @@ describe Ramda::List do
     end
   end
 
+  context '#take_last_while' do
+    it 'from docs' do
+      is_not_one = ->(x) { x != 1 }
+
+      expect(R.take_last_while(is_not_one, [1, 2, 3, 4])).to eq([2, 3, 4])
+
+      is_not_r = ->(x) { x != 'R' }
+      expect(R.take_last_while(is_not_r, 'Ramda')).to eq('amda')
+    end
+  end
+
   context '#take_while' do
     it 'from docs' do
       is_not_four = ->(x) { x != 4 }

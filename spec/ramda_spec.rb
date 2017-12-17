@@ -180,6 +180,7 @@ describe Ramda do
   r(:tail)
   r(:take)
   r(:take_last)
+  r(:take_last_while)
   r(:take_while)
   r(:tap)
   r(:test)

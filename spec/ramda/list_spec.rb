@@ -750,6 +750,16 @@ describe Ramda::List do
     end
   end
 
+  context '#take_last' do
+    it 'from docs' do
+      expect(R.take_last(1, ['foo', 'bar', 'baz'])).to eq(['baz'])
+      expect(R.take_last(2, ['foo', 'bar', 'baz'])).to eq(['bar', 'baz'])
+      expect(R.take_last(3, ['foo', 'bar', 'baz'])).to eq(['foo', 'bar', 'baz'])
+      expect(R.take_last(4, ['foo', 'bar', 'baz'])).to eq(['foo', 'bar', 'baz'])
+      expect(R.take_last(3, 'ramda')).to eq('mda')
+    end
+  end
+
   context '#take_while' do
     it 'from docs' do
       is_not_four = ->(x) { x != 4 }

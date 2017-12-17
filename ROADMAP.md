@@ -1,6 +1,5 @@
 Release 0.16.0
 ---------------
-* take_last
 * take_last_while
 * uniq_by
 

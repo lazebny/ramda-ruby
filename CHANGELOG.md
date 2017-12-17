@@ -8,6 +8,7 @@ Not Released
 * [prop_is](http://ramdajs.com/docs/#propIs)
 * [prop_satisfies](http://ramdajs.com/docs/#propSatisfies)
 * [split_every](http://ramdajs.com/docs/#splitEvery)
+* [take_last](http://ramdajs.com/docs/#takeLast)
 
 Release 0.15.0
 ---------------

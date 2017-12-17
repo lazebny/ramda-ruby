@@ -137,7 +137,7 @@ module Ramda
       new_xs =
         case xs
         when ::String
-          xs.chars
+          xs.chars.to_a
         else
           xs
         end
@@ -689,6 +689,16 @@ module Ramda
             &dispatchable(:take, [::Array, ::String], Trans::TakeTransducer.new) do |num, xs|
                xs[0, num]
              end)
+
+    # Number -> [a] -> [a]
+    # Number -> String -> String
+    #
+    # Returns a new list containing the last n elements of the given list.
+    # If n > list.length, returns a list of list.length elements.
+    #
+    curried(:take_last) do |n, xs|
+      xs[-(n > xs.size ? xs.size : n)..-1]
+    end
 
     # Returns a new list containing the first n elements of a given list,
     # passing each value to the supplied predicate function, and terminating

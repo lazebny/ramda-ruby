@@ -20,6 +20,15 @@ module Ramda
     #
     curried_method(:is_nil, &:nil?)
 
+    # Type -> String -> Object -> Boolean
+    #
+    # Returns true if the specified object property is of the given type;
+    # false otherwise.
+    #
+    curried(:prop_is) do |type, key, obj|
+      obj[key].is_a?(type)
+    end
+
     # Gives a class of the (native) type of a value.
     #
     # (* -> {*}) -> String

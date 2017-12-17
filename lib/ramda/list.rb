@@ -646,6 +646,28 @@ module Ramda
       xs.sort(&comparator)
     end
 
+    # Number -> [a] -> [[a]]
+    # Number -> String -> [String]
+    #
+    # Splits a collection into slices of the specified length.
+    #
+    curried(:split_every) do |num, xs|
+      case xs
+      when ::Array
+        xs
+          .each_slice(num)
+          .to_a
+      when ::String
+        xs
+          .chars
+          .each_slice(num)
+          .to_a
+          .map(&:join)
+      else
+        type_error(xs, :split_every)
+      end
+    end
+
     # Returns all but the first element of the given list or string
     # (or object with a tail method).
     #

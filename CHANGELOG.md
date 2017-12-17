@@ -7,6 +7,7 @@ Not Released
 * [pipe_k](http://ramdajs.com/docs/#pipeK)
 * [prop_is](http://ramdajs.com/docs/#propIs)
 * [prop_satisfies](http://ramdajs.com/docs/#propSatisfies)
+* [split_every](http://ramdajs.com/docs/#splitEvery)
 
 Release 0.15.0
 ---------------

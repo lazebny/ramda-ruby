@@ -692,6 +692,13 @@ describe Ramda::List do
     end
   end
 
+  context '#split_every' do
+    it 'from docs' do
+      expect(R.split_every(3, [1, 2, 3, 4, 5, 6, 7])).to eq([[1, 2, 3], [4, 5, 6], [7]])
+      expect(R.split_every(3, 'foobarbaz')).to eq(['foo', 'bar', 'baz'])
+    end
+  end
+
   context '#tail' do
     it 'from docs' do
       expect(r.tail([1, 2, 3])).to eq([2, 3])

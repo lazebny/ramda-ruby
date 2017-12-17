@@ -174,6 +174,7 @@ describe Ramda do
   r(:sort)
   r(:sort_by)
   r(:split)
+  r(:split_every)
   r(:subtract)
   r(:sum)
   r(:tail)

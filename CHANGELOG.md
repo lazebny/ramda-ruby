@@ -10,6 +10,7 @@ Not Released
 * [split_every](http://ramdajs.com/docs/#splitEvery)
 * [take_last](http://ramdajs.com/docs/#takeLast)
 * [take_last_while](http://ramdajs.com/docs/#takeLastWhile)
+* [uniq_by](http://ramdajs.com/docs/#uniqBy)
 
 Release 0.15.0
 ---------------

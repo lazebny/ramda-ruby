@@ -198,6 +198,7 @@ describe Ramda do
   r(:union)
   r(:union_with)
   r(:uniq)
+  r(:uniq_by)
   r(:uniq_with)
   r(:unnest)
   r(:update)

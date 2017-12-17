@@ -853,6 +853,12 @@ describe Ramda::List do
     end
   end
 
+  context '#uniq_by' do
+    it 'from docs' do
+      expect(R.uniq_by(:abs.to_proc, [-1, -5, 2, 10, 1, 2])).to eq([-1, -5, 2, 10])
+    end
+  end
+
   context '#uniq_with' do
     it 'from docs' do
       str_eq = R.invoker(0, 'to_s')

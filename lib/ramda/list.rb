@@ -115,6 +115,15 @@ module Ramda
       xs[num..-1] || xs.class.new
     end)
 
+    # Number -> [a] -> [a]
+    # Number -> String -> String
+    #
+    # Returns a list containing all but the last n elements of the given list.
+    #
+    curried(:drop_last) do |x, xs|
+      xs[0..-(x + 1)]
+    end
+
     # Returns a new list without any consecutively repeating elements.
     # R.equals is used to determine equality.
     #

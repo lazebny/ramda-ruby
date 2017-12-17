@@ -140,6 +140,16 @@ describe Ramda::List do
     end
   end
 
+  context '#drop_last' do
+    it 'from docs' do
+      expect(R.drop_last(1, ['foo', 'bar', 'baz'])).to eq(['foo', 'bar'])
+      expect(R.drop_last(2, ['foo', 'bar', 'baz'])).to eq(['foo'])
+      expect(R.drop_last(3, ['foo', 'bar', 'baz'])).to eq([])
+      expect(R.drop_last(4, ['foo', 'bar', 'baz'])).to eq([])
+      expect(R.drop_last(3, 'ramda')).to eq('ra')
+    end
+  end
+
   context '#drop_repeats' do
     let(:x1s) { [1, 2, 3, 4, 5, 3, 2] }
     let(:x2s) { [1, 2, 2, 2, 3, 4, 4, 5, 5, 3, 2, 2] }

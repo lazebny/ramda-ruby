@@ -795,7 +795,7 @@ module Ramda
     #
     curried_method(:uniq, &:uniq)
 
-    # (a → b) → [a] → [a]
+    # (a -> b) -> [a] -> [a]
     #
     # Returns a new list containing only one copy of each element in the original list,
     # based upon the value returned by applying the supplied function to each list element.

@@ -556,5 +556,14 @@ describe Ramda::Object do
       expect(pred.call(a: 1, b: 2, c: 3)).to be_truthy
       expect(pred.call(a: 1, b: 1)).to be_falsey
     end
+
+    it 'if hash includes nil value' do
+      pred = R.where_eq(b: nil)
+
+      expect(pred.call(a: 1)).to be_falsey
+      expect(pred.call(a: 1, b: nil)).to be_truthy
+      expect(pred.call(a: 1, b: nil, c: 3)).to be_truthy
+      expect(pred.call(a: 1, b: 1)).to be_falsey
+    end
   end
 end

@@ -440,7 +440,13 @@ module Ramda
     # {String: *} -> {String: *} -> Boolean
     #
     curried_method(:where_eq) do |spec, test|
-      spec.all? { |k, v| test[k] && test[k] == v }
+      spec.all? do |k, v|
+        if v.nil?
+          test.key?(k) && test[k].nil?
+        else
+          test[k] && test[k] == v
+        end
+      end
     end
   end
 end
